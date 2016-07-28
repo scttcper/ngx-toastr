@@ -1,9 +1,10 @@
-import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
 import { ToastrService } from '../components/toastr/toastr';
+import { OVERLAY_PROVIDERS } from '@angular2-material/core';
 
 @Component({
   selector: 'demo-app',
-  providers: [ToastrService],
+  providers: [ToastrService, OVERLAY_PROVIDERS],
   templateUrl: 'demo-app/demo-app.html',
   styleUrls: ['demo-app/demo-app.css'],
   directives: [],
@@ -11,8 +12,12 @@ import { ToastrService } from '../components/toastr/toastr';
   pipes: [],
 })
 export class DemoApp {
-  constructor() { }
+  constructor(
+    private toastrService: ToastrService,
+    private viewContainerRef: ViewContainerRef
+  ) { }
   toastMe() {
     console.log('hi')
+    this.toastrService.success(this.viewContainerRef, 'hello')
   }
 }
