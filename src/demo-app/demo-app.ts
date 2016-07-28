@@ -1,8 +1,9 @@
 import {Component, ViewEncapsulation, OnInit} from '@angular/core';
+import { ToastrService } from '../components/toastr/toastr';
 
 @Component({
   selector: 'demo-app',
-  providers: [],
+  providers: [ToastrService],
   templateUrl: 'demo-app/demo-app.html',
   styleUrls: ['demo-app/demo-app.css'],
   directives: [],
@@ -11,4 +12,7 @@ import {Component, ViewEncapsulation, OnInit} from '@angular/core';
 })
 export class DemoApp {
   constructor() { }
+  toastMe() {
+    console.log('hi')
+  }
 }

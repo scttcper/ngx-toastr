@@ -35,6 +35,7 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
+  '@angular2-material/core',
 
   // Thirdparty barrels.
   'rxjs',
@@ -62,10 +63,19 @@ declare var System: any;
 System.config({
   map: {
     '@angular': 'vendor/@angular',
+    '@angular2-material': 'vendor/@angular2-material',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js'
   },
   packages: _cliSystemConfig
+});
+
+const materialPkgs:string[] = [
+  'core',
+];
+
+materialPkgs.forEach((pkg) => {
+  packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
 });
 
 // Apply the user's configuration.
