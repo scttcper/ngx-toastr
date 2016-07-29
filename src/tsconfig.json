@@ -18,11 +18,11 @@
   },
   "angularCompilerOptions": {
     "genDir": "../../dist",
-    "skipTemplateCodegen": true,
     "debug": true
   },
   "files": [
-    "main.ts"
+    "main.ts",
+    "typings.d.ts"
   ],
   "atom": { "rewriteTsconfig": false },
   "compileOnSave": false,

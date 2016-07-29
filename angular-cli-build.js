@@ -20,15 +20,21 @@ module.exports = function(defaults) {
         'src/core/style'
       ]
     },
+    polyfills: [
+      'vendor/core-js/client/core.js',
+      'vendor/systemjs/dist/system.src.js',
+      'vendor/zone.js/dist/zone.js',
+    ],
     vendorNpmFiles: [
       'systemjs/dist/system-polyfills.js',
       'systemjs/dist/system.src.js',
-      'zone.js/dist/*.js',
-      'es6-shim/es6-shim.js',
+      'zone.js/dist/*.+(js|js.map)',
+      'core-js/client/core.js',
       'reflect-metadata/*.js',
       'rxjs/**/*.js',
       '@angular/**/*.js',
       '@angular2-material/**/*.js',
+      '@types/**/*.js',
     ]
   });
 

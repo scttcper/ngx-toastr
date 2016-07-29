@@ -12,31 +12,56 @@ import {
   ElementRef,
   ViewContainerRef,
   Renderer,
+  ComponentResolver,
+  Inject,
+  ComponentRef,
+  Injector,
 } from '@angular/core';
-import { ComponentPortal, OVERLAY_PROVIDERS, Overlay, OverlayRef } from '@angular2-material/core';
-import { OVERLAY_CONTAINER_TOKEN } from '@angular2-material/core';
+import {
+  OVERLAY_CONTAINER_TOKEN,
+  OVERLAY_PROVIDERS,
+  Overlay,
+  OverlayRef,
+  OverlayState,
+  DomPortalHost,
+  Portal,
+  ComponentPortal,
+} from '@angular2-material/core';
 
+let nextUniqueId = 0;
+let defaultState = new OverlayState();
 @Injectable()
 export class ToastrService {
-  constructor(
-    public overlay: Overlay
-  ) {}
+  public viewContainerRef: ViewContainerRef;
 
-  public success(viewContainerRef: ViewContainerRef, message?: string, title?: string, optionsOverride?: any) {
-    let component = new ComponentPortal(Toast, viewContainerRef);
+  constructor(
+    private _componentResolver: ComponentResolver,
+    private overlay: Overlay
+  ) {
+  }
+
+  public success(message?: string, title?: string, optionsOverride?: any) {
+    let component = new ComponentPortal(Toast, this.viewContainerRef);
     this.overlay.create()
       .then((ref: OverlayRef) => {
-        ref.attach(component)
-        console.log(ref)
+        ref.attach(component);
+        console.log(ref);
+        return ref;
       })
+      .then((ref: OverlayRef) => {
+        // ref.detach();
+      });
   }
 }
 
 @Component({
   selector: '[toast]',
+  styleUrls: ['components/toastr/toastr.scss'],
   template: `
-  <div class="{{toastClass}}" (click)="tapToast()">
-    Toast {{test}}
+  <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
+    <div class="toast toast-success" style="display: block;">
+      <div class="toast-message">My name is Inigo Montoya. You killed my father. Prepare to die!</div>
+    </div>
   </div>
   `,
 })

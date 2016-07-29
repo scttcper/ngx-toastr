@@ -36,6 +36,7 @@ const barrels: string[] = [
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
   '@angular2-material/core',
+  '@types/core-js',
 
   // Thirdparty barrels.
   'rxjs',
