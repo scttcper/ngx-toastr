@@ -20,6 +20,6 @@ export class DemoApp {
     toastrService.viewContainerRef = this.viewContainerRef;
   }
   toastMe() {
-    this.toastrService.success('hello')
+    this.toastrService.success('hello');
   }
 }

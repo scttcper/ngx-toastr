@@ -58,10 +58,8 @@ export class ToastrService {
   selector: '[toast]',
   styleUrls: ['components/toastr/toastr.scss'],
   template: `
-  <div id="toast-container" class="toast-top-right" aria-live="polite" role="alert">
-    <div class="toast toast-success" style="display: block;">
-      <div class="toast-message">My name is Inigo Montoya. You killed my father. Prepare to die!</div>
-    </div>
+  <div class="toast toast-success" style="display: block;">
+    <div class="toast-message">My name is Inigo Montoya. You killed my father. Prepare to die!</div>
   </div>
   `,
 })
@@ -69,8 +67,7 @@ export class Toast {
   toastClass: string = 'toast';
   test: string = 'swag';
 
-  constructor(
-  ) {}
+  constructor() {}
 
   tapToast() {
     console.log('clicked');
