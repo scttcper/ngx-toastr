@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
 import { ToastrService } from '../components/toastr/toastr';
-import { OVERLAY_PROVIDERS } from '@angular2-material/core';
+import { OVERLAY_PROVIDERS } from '../components/toastr/overlay/overlay';
 
 
 @Component({

@@ -17,19 +17,10 @@ import {
   ComponentRef,
   Injector,
 } from '@angular/core';
-import {
-  OVERLAY_CONTAINER_TOKEN,
-  OVERLAY_PROVIDERS,
-  Overlay,
-  OverlayRef,
-  OverlayState,
-  DomPortalHost,
-  Portal,
-  ComponentPortal,
-} from '@angular2-material/core';
+import { Overlay } from './overlay/overlay';
+import { OverlayRef } from './overlay/overlay-ref';
+import { ComponentPortal } from './portal/portal';
 
-let nextUniqueId = 0;
-let defaultState = new OverlayState();
 @Injectable()
 export class ToastrService {
   public viewContainerRef: ViewContainerRef;
@@ -43,13 +34,10 @@ export class ToastrService {
   public success(message?: string, title?: string, optionsOverride?: any) {
     let component = new ComponentPortal(Toast, this.viewContainerRef);
     this.overlay.create()
-      .then((ref: OverlayRef) => {
+      .then((ref) => {
         ref.attach(component);
         console.log(ref);
         return ref;
-      })
-      .then((ref: OverlayRef) => {
-        // ref.detach();
       });
   }
 }
