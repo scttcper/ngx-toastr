@@ -1,4 +1,4 @@
-import { ComponentResolver, Injectable } from '@angular/core';
+import {ComponentResolver, Injectable} from '@angular/core';
 import {DomPortalHost} from '../portal/dom-portal-host';
 import {OverlayRef} from './overlay-ref';
 
@@ -42,13 +42,14 @@ export class Overlay {
    * @returns Promise resolving to the created element.
    */
   private _createPaneElement(): Promise<HTMLElement> {
-    let pane = document.createElement('div');
-    pane.id = `md-overlay-${nextUniqueId++}`;
-    pane.classList.add('md-overlay-pane');
+    // not being used for toastr
+    // let pane = document.createElement('div');
+    // pane.id = `md-overlay-${nextUniqueId++}`;
+    // pane.classList.add('md-overlay-pane');
+    //
+    // this._overlayContainer.getContainerElement().appendChild(pane);
 
-    this._overlayContainer.getContainerElement().appendChild(pane);
-
-    return Promise.resolve(pane);
+    return Promise.resolve(this._overlayContainer.getContainerElement());
   }
 
   /**

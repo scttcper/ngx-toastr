@@ -15,47 +15,114 @@ import {
   ComponentResolver,
   Inject,
   ComponentRef,
-  Injector,
+  ReflectiveInjector,
+  provide,
+  Optional,
 } from '@angular/core';
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
 
 @Injectable()
+export class ToastrConfig {
+  allowHtml: boolean = false;
+  autoDismiss: boolean = false;
+  closeButton: boolean = false;
+  closeHtml: string = '<button>&times;</button>';
+  containerId: string = 'toast-container';
+  extendedTimeOut: number = 1000;
+  iconClasses = {
+    error: 'toast-error',
+    info: 'toast-info',
+    success: 'toast-success',
+    warning: 'toast-warning',
+  };
+  maxOpened: number = 0;
+  messageClass: string = 'toast-message';
+  newestOnTop: boolean = true;
+  // onHidden: null;
+  // onShown: null;
+  // onTap: null;
+  positionClass: string = 'toast-top-right';
+  preventDuplicates: boolean = false;
+  preventOpenDuplicates: boolean = false;
+  progressBar: boolean = false;
+  tapToDismiss: boolean = true;
+  target: string = 'body';
+  // templates = {
+  //   toast: 'directives/toast/toast.html',
+  //   progressbar: 'directives/progressbar/progressbar.html',
+  // };
+  timeOut: number = 5000;
+  titleClass: string = 'toast-title';
+  toastClass: string = 'toast';
+}
+
+@Injectable()
+export class OptionsOverride extends ToastrConfig {
+
+}
+
+@Injectable()
 export class ToastrService {
   public viewContainerRef: ViewContainerRef;
 
   constructor(
+    @Optional() public toastrConfig: ToastrConfig,
     private _componentResolver: ComponentResolver,
     private overlay: Overlay
-  ) {
-  }
+  ) {}
 
-  public success(message?: string, title?: string, optionsOverride?: any) {
+  public success(message: string,
+    title?: string,
+    optionsOverride: OptionsOverride = new OptionsOverride()
+  ) {
+    let injector = ReflectiveInjector.resolveAndCreate([OptionsOverride]);
     let component = new ComponentPortal(Toast, this.viewContainerRef);
+
     this.overlay.create()
       .then((ref) => {
-        ref.attach(component);
-        console.log(ref);
-        return ref;
+        let res = ref.attach(component);
+        // TODO: possible use this ref to detach() later
+        return res;
+      })
+      .then((attached) => {
+        attached._hostElement.component.message = message;
+        attached._hostElement.component.title = title;
+        attached._hostElement.component.toastType = 'toast-success';
       });
   }
 }
 
 @Component({
   selector: '[toast]',
-  styleUrls: ['components/toastr/toastr.scss'],
+  providers: [OptionsOverride, Overlay, ToastrService],
   template: `
-  <div class="toast toast-success" style="display: block;">
-    <div class="toast-message">My name is Inigo Montoya. You killed my father. Prepare to die!</div>
+  <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
+    <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
+    <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">{{message}}</div>
+    <!-- TODO: allow html -->
+    <!--
+    <div ng-switch on="allowHtml">
+      <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
+      <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
+    </div>
+    -->
+    <progress-bar *ngIf="progressBar"></progress-bar>
   </div>
   `,
 })
 export class Toast {
-  toastClass: string = 'toast';
-  test: string = 'swag';
+  message: string;
+  title: string;
+  toastType: string;
 
-  constructor() {}
+  constructor(
+    public options: OptionsOverride,
+    private toastrService: ToastrService
+  ) {
+    console.log(this.options)
+  }
 
   tapToast() {
     console.log('clicked');

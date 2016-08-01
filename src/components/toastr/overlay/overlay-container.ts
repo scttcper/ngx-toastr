@@ -23,6 +23,7 @@ export class OverlayContainer {
   private _createContainer(): void {
     let container = document.createElement('div');
     container.classList.add('md-overlay-container');
+    container.id = 'toast-container';
     document.body.appendChild(container);
     this._containerElement = container;
   }

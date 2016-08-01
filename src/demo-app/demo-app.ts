@@ -18,8 +18,9 @@ export class DemoApp {
     private viewContainerRef: ViewContainerRef
   ) {
     toastrService.viewContainerRef = this.viewContainerRef;
+    this.toastMe();
   }
   toastMe() {
-    this.toastrService.success('hello');
+    this.toastrService.success('My name is Inigo Montoya. You killed my father. Prepare to die!');
   }
 }
