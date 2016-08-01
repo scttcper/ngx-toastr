@@ -5,12 +5,11 @@ import {
     OnInit,
     Input,
     OnDestroy,
-    ElementRef
+    ElementRef,
 } from '@angular/core';
 import {Overlay} from './overlay';
 import {OverlayRef} from './overlay-ref';
 import {TemplatePortal} from '../portal/portal';
-import {OverlayState} from './overlay-state';
 
 
 /**
@@ -35,15 +34,12 @@ export class OverlayOrigin {
  * Directive to facilitate declarative creation of an Overlay using a ConnectedPositionStrategy.
  */
 @Directive({
-  selector: '[connected-overlay]'
+  selector: '[connected-overlay]',
 })
 export class ConnectedOverlayDirective implements OnInit, OnDestroy {
+  @Input() origin: OverlayOrigin;
   private _overlayRef: OverlayRef;
   private _templatePortal: TemplatePortal;
-
-  @Input() origin: OverlayOrigin;
-
-  // TODO(jelbourn): inputs for size, scroll behavior, animation, etc.
 
   constructor(
       private _overlay: Overlay,
@@ -68,10 +64,7 @@ export class ConnectedOverlayDirective implements OnInit, OnDestroy {
 
   /** Creates an overlay and attaches this directive's template to it. */
   private _createOverlay() {
-
-    let overlayConfig = new OverlayState();
-
-    this._overlay.create(overlayConfig).then(ref => {
+    this._overlay.create().then(ref => {
       this._overlayRef = ref;
       this._overlayRef.attach(this._templatePortal);
     });

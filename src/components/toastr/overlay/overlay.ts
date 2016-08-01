@@ -1,8 +1,4 @@
-import {
-  ComponentResolver,
-  Injectable,
-} from '@angular/core';
-import {OverlayState} from './overlay-state';
+import { ComponentResolver, Injectable } from '@angular/core';
 import {DomPortalHost} from '../portal/dom-portal-host';
 import {OverlayRef} from './overlay-ref';
 
@@ -10,9 +6,6 @@ import {OverlayContainer} from './overlay-container';
 
 /** Next overlay unique ID. */
 let nextUniqueId = 0;
-
-/** The default state for newly created overlays. */
-let defaultState = new OverlayState();
 
 
 /**
@@ -33,8 +26,8 @@ export class Overlay {
    * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
-  create(state: OverlayState = defaultState): Promise<OverlayRef> {
-    return this._createPaneElement().then(pane => this._createOverlayRef(pane, state));
+  create(): Promise<OverlayRef> {
+    return this._createPaneElement().then(pane => this._createOverlayRef(pane));
   }
 
   /**
@@ -49,7 +42,7 @@ export class Overlay {
    * @returns Promise resolving to the created element.
    */
   private _createPaneElement(): Promise<HTMLElement> {
-    var pane = document.createElement('div');
+    let pane = document.createElement('div');
     pane.id = `md-overlay-${nextUniqueId++}`;
     pane.classList.add('md-overlay-pane');
 
@@ -73,8 +66,8 @@ export class Overlay {
    * @param state
    * @returns {OverlayRef}
    */
-  private _createOverlayRef(pane: HTMLElement, state: OverlayState): OverlayRef {
-    return new OverlayRef(this._createPortalHost(pane), pane, state);
+  private _createOverlayRef(pane: HTMLElement): OverlayRef {
+    return new OverlayRef(this._createPortalHost(pane), pane);
   }
 }
 

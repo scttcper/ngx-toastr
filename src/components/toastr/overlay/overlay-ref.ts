@@ -1,5 +1,4 @@
 import {PortalHost, Portal} from '../portal/portal';
-import {OverlayState} from './overlay-state';
 
 /**
  * Reference to an overlay that has been created with the Overlay service.
@@ -8,19 +7,10 @@ import {OverlayState} from './overlay-state';
 export class OverlayRef implements PortalHost {
   constructor(
       private _portalHost: PortalHost,
-      private _pane: HTMLElement,
-      private _state: OverlayState) { }
+      private _pane: HTMLElement) { }
 
   attach(portal: Portal<any>): Promise<any> {
-    let attachPromise = this._portalHost.attach(portal);
-
-    // Don't chain the .then() call in the return because we want the result of portalHost.attach
-    // to be returned from this method.
-    attachPromise.then(() => {
-      this.updatePosition();
-    });
-
-    return attachPromise;
+    return this._portalHost.attach(portal);
   }
 
   detach(): Promise<any> {
@@ -34,15 +24,4 @@ export class OverlayRef implements PortalHost {
   hasAttached(): boolean {
     return this._portalHost.hasAttached();
   }
-
-  /** Gets the current state config of the overlay. */
-  getState() {
-    return this._state;
-  }
-
-  /** Updates the position of the overlay based on the position strategy. */
-  updatePosition() {
-  }
-
-  // TODO(jelbourn): add additional methods for manipulating the overlay.
 }
