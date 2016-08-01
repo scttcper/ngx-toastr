@@ -1,22 +1,11 @@
 import {
-  Directive,
   Component,
-  HostBinding,
-  EventEmitter,
-  Host,
-  Attribute,
   Output,
-  ContentChildren,
-  QueryList,
   Injectable,
-  ElementRef,
   ViewContainerRef,
-  Renderer,
   ComponentResolver,
   Inject,
-  ComponentRef,
   ReflectiveInjector,
-  provide,
   Optional,
 } from '@angular/core';
 import { Overlay } from './overlay/overlay';
