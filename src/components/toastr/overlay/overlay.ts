@@ -26,8 +26,8 @@ export class Overlay {
    * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
-  create(): Promise<OverlayRef> {
-    return this._createPaneElement().then(pane => this._createOverlayRef(pane));
+  create(positionClass: string): Promise<OverlayRef> {
+    return this._createPaneElement(positionClass).then(pane => this._createOverlayRef(pane));
   }
 
   /**
@@ -41,7 +41,7 @@ export class Overlay {
    * Creates the DOM element for an overlay and appends it to the overlay container.
    * @returns Promise resolving to the created element.
    */
-  private _createPaneElement(): Promise<HTMLElement> {
+  private _createPaneElement(positionClass: string): Promise<HTMLElement> {
     // not being used for toastr
     // let pane = document.createElement('div');
     // pane.id = `md-overlay-${nextUniqueId++}`;
@@ -49,7 +49,7 @@ export class Overlay {
     //
     // this._overlayContainer.getContainerElement().appendChild(pane);
 
-    return Promise.resolve(this._overlayContainer.getContainerElement());
+    return Promise.resolve(this._overlayContainer.getContainerElement(positionClass));
   }
 
   /**

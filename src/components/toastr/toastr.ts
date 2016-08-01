@@ -71,16 +71,38 @@ export class ToastrService {
     @Optional() public toastrConfig: ToastrConfig,
     private _componentResolver: ComponentResolver,
     private overlay: Overlay
-  ) {}
+  ) {
+    if (!this.toastrConfig) {
+      this.toastrConfig = new ToastrConfig();
+    }
+  }
 
-  public success(message: string,
+  public success(message: string, title?: string, optionsOverride?: OptionsOverride) {
+    const type = this.toastrConfig.iconClasses.success;
+    this._buildNotification(type, message, title, optionsOverride);
+  }
+  public error(message: string, title?: string, optionsOverride?: OptionsOverride) {
+    const type = this.toastrConfig.iconClasses.error;
+    this._buildNotification(type, message, title, optionsOverride);
+  }
+  public info(message: string, title?: string, optionsOverride?: OptionsOverride) {
+    const type = this.toastrConfig.iconClasses.info;
+    this._buildNotification(type, message, title, optionsOverride);
+  }
+  public warning(message: string, title?: string, optionsOverride?: OptionsOverride) {
+    const type = this.toastrConfig.iconClasses.warning;
+    this._buildNotification(type, message, title, optionsOverride);
+  }
+
+  private _buildNotification(
+    type: string,
+    message: string,
     title?: string,
     optionsOverride: OptionsOverride = new OptionsOverride()
   ) {
     let injector = ReflectiveInjector.resolveAndCreate([OptionsOverride]);
     let component = new ComponentPortal(Toast, this.viewContainerRef);
-
-    this.overlay.create()
+    this.overlay.create(this.toastrConfig.positionClass)
       .then((ref) => {
         let res = ref.attach(component);
         // TODO: possible use this ref to detach() later
@@ -89,7 +111,7 @@ export class ToastrService {
       .then((attached) => {
         attached._hostElement.component.message = message;
         attached._hostElement.component.title = title;
-        attached._hostElement.component.toastType = 'toast-success';
+        attached._hostElement.component.toastType = type;
       });
   }
 }

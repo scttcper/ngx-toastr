@@ -11,8 +11,8 @@ export class OverlayContainer {
    * the container in non-browser environments.
    * @returns {HTMLElement} the container element
    */
-  getContainerElement(): HTMLElement {
-    if (!this._containerElement) { this._createContainer(); }
+  getContainerElement(positionClass: string): HTMLElement {
+    if (!this._containerElement) { this._createContainer(positionClass); }
     return this._containerElement;
   }
 
@@ -20,9 +20,9 @@ export class OverlayContainer {
    * Create the overlay container element, which is simply a div
    * with the 'md-overlay-container' class on the document body.
    */
-  private _createContainer(): void {
+  private _createContainer(positionClass: string): void {
     let container = document.createElement('div');
-    container.classList.add('md-overlay-container');
+    container.classList.add(positionClass);
     container.id = 'toast-container';
     document.body.appendChild(container);
     this._containerElement = container;
