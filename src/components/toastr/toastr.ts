@@ -49,13 +49,20 @@ export class ToastrConfig {
 @Injectable()
 export class OptionsOverride extends ToastrConfig {}
 
+const toasts: any[] = [];
+
 @Injectable()
 export class ToastrService {
+  // TODO: remove when we can access the global view ref from service
   public viewContainerRef: ViewContainerRef;
+  public index: number = 0;
+  // public toasts: any[] = [];
+
+
 
   constructor(
-    @Optional() public toastrConfig: ToastrConfig,
-    private overlay: Overlay
+    private overlay: Overlay,
+    @Optional() public toastrConfig: ToastrConfig
   ) {
     if (!this.toastrConfig) {
       this.toastrConfig = new ToastrConfig();
@@ -78,6 +85,17 @@ export class ToastrService {
     const type = this.toastrConfig.iconClasses.warning;
     this._buildNotification(type, message, title, optionsOverride);
   }
+  public remove(toastId: number) {
+    let ref = this.findToast(toastId);
+    ref.OverlayRef.detach();
+  }
+  private findToast(toastId: number) {
+    for (var i = 0; i < toasts.length; i++) {
+      if (toasts[i].toastId === toastId) {
+        return toasts[i];
+      }
+    }
+  }
 
   private _buildNotification(
     type: string,
@@ -86,17 +104,25 @@ export class ToastrService {
     optionsOverride: ToastrConfig = this.toastrConfig
   ) {
     let component = new ComponentPortal(Toast, this.viewContainerRef);
+
+    let inserted: any = {}
     this.overlay.create(this.toastrConfig.positionClass)
       .then((ref) => {
         let res = ref.attach(component);
         // TODO: possible use this ref to detach() later
+        inserted.OverlayRef = ref;
         return res;
       })
       .then((attached) => {
+        this.index = this.index + 1;
+        attached._hostElement.component.toastId = this.index;
         attached._hostElement.component.message = message;
         attached._hostElement.component.title = title;
         attached._hostElement.component.toastType = type;
         attached._hostElement.component.options = optionsOverride;
+        inserted.attached = attached;
+        inserted.toastId = this.index;
+        toasts.push(inserted);
       });
   }
 }
@@ -124,6 +150,7 @@ export const TOASTR_PROVIDERS = [
   `,
 })
 export class Toast {
+  toastId: number;
   message: string;
   title: string;
   toastType: string;
@@ -134,6 +161,8 @@ export class Toast {
   ) {}
 
   tapToast() {
+    console.log(this.toastId)
     console.log('clicked');
+    this.toastrService.remove(this.toastId);
   }
 }
