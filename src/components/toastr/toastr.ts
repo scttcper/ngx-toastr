@@ -7,6 +7,7 @@ import {
   Inject,
   ReflectiveInjector,
   Optional,
+  Provider,
 } from '@angular/core';
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
@@ -48,9 +49,7 @@ export class ToastrConfig {
 }
 
 @Injectable()
-export class OptionsOverride extends ToastrConfig {
-
-}
+export class OptionsOverride extends ToastrConfig {}
 
 @Injectable()
 export class ToastrService {
@@ -87,9 +86,8 @@ export class ToastrService {
     type: string,
     message: string,
     title?: string,
-    optionsOverride: OptionsOverride = new OptionsOverride()
+    optionsOverride: ToastrConfig = this.toastrConfig
   ) {
-    let injector = ReflectiveInjector.resolveAndCreate([OptionsOverride]);
     let component = new ComponentPortal(Toast, this.viewContainerRef);
     this.overlay.create(this.toastrConfig.positionClass)
       .then((ref) => {
@@ -101,13 +99,14 @@ export class ToastrService {
         attached._hostElement.component.message = message;
         attached._hostElement.component.title = title;
         attached._hostElement.component.toastType = type;
+        attached._hostElement.component.options = optionsOverride;
       });
   }
 }
 
 @Component({
   selector: '[toast]',
-  providers: [OptionsOverride, Overlay, ToastrService],
+  providers: [Overlay, ToastrService],
   template: `
   <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
@@ -127,13 +126,11 @@ export class Toast {
   message: string;
   title: string;
   toastType: string;
+  options: ToastrConfig;
 
   constructor(
-    public options: OptionsOverride,
     private toastrService: ToastrService
-  ) {
-    console.log(this.options)
-  }
+  ) {}
 
   tapToast() {
     console.log('clicked');

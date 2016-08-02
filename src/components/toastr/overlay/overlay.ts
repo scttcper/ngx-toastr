@@ -31,13 +31,6 @@ export class Overlay {
   }
 
   /**
-   * Returns a position builder that can be used, via fluent API,
-   * to construct and configure a position strategy.
-   */
-  position() {
-  }
-
-  /**
    * Creates the DOM element for an overlay and appends it to the overlay container.
    * @returns Promise resolving to the created element.
    */
@@ -48,7 +41,6 @@ export class Overlay {
     // pane.classList.add('md-overlay-pane');
     //
     // this._overlayContainer.getContainerElement().appendChild(pane);
-
     return Promise.resolve(this._overlayContainer.getContainerElement(positionClass));
   }
 
