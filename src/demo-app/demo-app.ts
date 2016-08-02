@@ -1,11 +1,10 @@
 import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
-import { ToastrService } from '../components/toastr/toastr';
-import { OVERLAY_PROVIDERS } from '../components/toastr/overlay/overlay';
+import { TOASTR_PROVIDERS, ToastrService } from '../components/toastr/toastr';
 
 
 @Component({
   selector: 'demo-app',
-  providers: [OVERLAY_PROVIDERS, ToastrService],
+  providers: [TOASTR_PROVIDERS],
   templateUrl: 'demo-app/demo-app.html',
   styleUrls: ['demo-app/demo-app.css'],
   directives: [],

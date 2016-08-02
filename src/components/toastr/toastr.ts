@@ -3,14 +3,12 @@ import {
   Output,
   Injectable,
   ViewContainerRef,
-  ComponentResolver,
   Inject,
   ReflectiveInjector,
   Optional,
   Provider,
 } from '@angular/core';
-import { Overlay } from './overlay/overlay';
-import { OverlayRef } from './overlay/overlay-ref';
+import { Overlay, OVERLAY_PROVIDERS } from './overlay/overlay';
 import { ComponentPortal } from './portal/portal';
 
 @Injectable()
@@ -57,7 +55,6 @@ export class ToastrService {
 
   constructor(
     @Optional() public toastrConfig: ToastrConfig,
-    private _componentResolver: ComponentResolver,
     private overlay: Overlay
   ) {
     if (!this.toastrConfig) {
@@ -104,9 +101,13 @@ export class ToastrService {
   }
 }
 
+export const TOASTR_PROVIDERS = [
+  ...OVERLAY_PROVIDERS, ToastrService
+];
+
 @Component({
   selector: '[toast]',
-  providers: [Overlay, ToastrService],
+  providers: [TOASTR_PROVIDERS],
   template: `
   <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
