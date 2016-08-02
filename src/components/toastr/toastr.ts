@@ -155,14 +155,15 @@ export const TOASTR_PROVIDERS: any = [
   <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
     <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">{{message}}</div>
-    <!-- TODO: allow html -->
-    <!--
+    <!--TODO: allow html
     <div ng-switch on="allowHtml">
       <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
       <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
     </div>
     -->
+    <!-- TODO: progressbar
     <progress-bar *ngIf="progressBar"></progress-bar>
+    -->
   </div>
   `,
 })
