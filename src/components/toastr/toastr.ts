@@ -89,6 +89,7 @@ export class ToastrService {
   public remove(toastId: number) {
     let ref = this.findToast(toastId);
     ref.OverlayRef.detach();
+    
   }
   private findToast(toastId: number) {
     for (var i = 0; i < this.toasts.length; i++) {

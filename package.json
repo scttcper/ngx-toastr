@@ -31,6 +31,7 @@
     "@angular/platform-browser-dynamic": "2.0.0-rc.4",
     "@angular/router": "v3.0.0-beta.2",
     "@angular2-material/core": "^2.0.0-alpha.6",
+    "bootstrap": "^4.0.0-alpha.3",
     "@types/core-js": "^0.9.28",
     "@types/es6-promise": "0.0.28",
     "@types/es6-shim": "0.0.28",

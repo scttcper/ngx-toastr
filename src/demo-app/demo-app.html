@@ -1,3 +1,185 @@
-<div class="demo-root">
-  <button (click)="toastMe()">Click Me</button>
+<h1 class="text-xs-center">toastr-ng2</h1>
+<div class="container">
+  <div class="row">
+    <div class="card col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+      <div class="card-block">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="toastTitle">Title</label>
+              <input type="email" class="form-control" id="toastTitle" placeholder="Toast title">
+            </div>
+            <div class="form-group">
+              <label for="toastMessage">Title</label>
+              <input type="email" class="form-control" id="toastMessage" placeholder="Toast message">
+            </div>
+            <!-- <div class="form-group">
+              <label for="toastButton">Close button html</label>
+              <input type="text" ng-model="options.closeHtml" class="form-control" id="toastbutton" ng-disabled="!options.closeButton">
+            </div> -->
+            <div class="form-group">
+              <!-- <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.newestOnTop"> New toasts on top?
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.tapToDismiss"> Tap to dismiss?
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.progressBar"> Progress bar
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.closeButton"> Close button?
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.html"> Allow html?
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.preventDuplicates"> Prevent duplicates
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.preventOpenDuplicates"> Prevent open duplicates
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" ng-model="options.customTemplate"> Custom template
+                </label>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-md-4">
+            <fieldset class="form-group">
+              <label>Toast type</label>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="typeRadios" ng-model="options.type" value="success">
+                  Success
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="typeRadios" ng-model="options.type" value="info">
+                  Info
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="typeRadios" ng-model="options.type" value="warning">
+                  Warning
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="typeRadios" ng-model="options.type" value="error">
+                  Error
+                </label>
+              </div>
+            </fieldset>
+            <fieldset class="form-group">
+              <label>Toast position</label>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-top-right">
+                  Top Right
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-bottom-right">
+                  Bottom Right
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-bottom-left">
+                  Bottom Left
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-top-left">
+                  Top Left
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-top-full-width">
+                  Top Full Width
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-bottom-full-width">
+                  Bottom Full Width
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-top-center">
+                  Top Center
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="positionRadio" ng-model="options.position" value="toast-bottom-center">
+                  Bottom Center
+                </label>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="toastTimeout">Timeout</label>
+              <input type="email" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
+              <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
+            </div>
+            <div class="form-group">
+              <label for="maxNumberToasts">Maximum Toasts</label>
+              <input type="email" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+              <small id="maxNumberToastsHelp" class="form-text text-muted">0 means no limit</small>
+            </div>
+            <!-- <div class="form-group">
+              <label for="toastExtendedTimeout">Extended timeout</label>
+              <input type="text" ng-model="options.extendedTimeout" class="form-control" id="toastExtendedTimeout">
+            </div> -->
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="options.autoDismiss"> Auto dismiss?
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- <div ng-if="options.customTemplate" class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="toastMessage">Custom template</label>
+              <textarea class="form-control" ng-model="toast.customTemplate" id="custom-template" placeholder="Custom template"></textarea>
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+          <div class="col-md-12">
+            <button (click)="openToast()" class="btn btn-primary">Open Toast</button>
+            <button (click)="openRandomToast()" class="btn btn-primary">Open Random Toast</button>
+            <button (click)="clearToasts()" class="btn btn-danger">Clear Toasts</button>
+            <button (click)="clearLastToast()" class="btn btn-danger">Clear Last Toast</button>
+            <!-- <button (click)="openPinkToast()" class="btn btn-pink">Custom Pink Toast</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
