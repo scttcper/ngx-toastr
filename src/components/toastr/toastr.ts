@@ -6,10 +6,15 @@ import {
   Inject,
   ReflectiveInjector,
   Optional,
+  provide,
+  OnInit,
+  Injector,
   Provider,
 } from '@angular/core';
-import { Overlay, OVERLAY_PROVIDERS } from './overlay/overlay';
+import { Overlay } from './overlay/overlay';
+import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
+import { OverlayContainer } from './overlay/overlay-container';
 
 @Injectable()
 export class ToastrConfig {
@@ -47,52 +52,48 @@ export class ToastrConfig {
 }
 
 @Injectable()
-export class OptionsOverride extends ToastrConfig {}
-
-const toasts: any[] = [];
-
-@Injectable()
 export class ToastrService {
   // TODO: remove when we can access the global view ref from service
   public viewContainerRef: ViewContainerRef;
   public index: number = 0;
-  // public toasts: any[] = [];
-
-
+  public toasts: any[] = [];
+  public container: OverlayRef;
 
   constructor(
+    public toastrConfig: ToastrConfig,
     private overlay: Overlay,
-    @Optional() public toastrConfig: ToastrConfig
+    private injector: Injector
   ) {
     if (!this.toastrConfig) {
+      console.log('new')
       this.toastrConfig = new ToastrConfig();
     }
   }
 
-  public success(message: string, title?: string, optionsOverride?: OptionsOverride) {
+  public success(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
     const type = this.toastrConfig.iconClasses.success;
-    this._buildNotification(type, message, title, optionsOverride);
+    return this._buildNotification(type, message, title, optionsOverride);
   }
-  public error(message: string, title?: string, optionsOverride?: OptionsOverride) {
+  public error(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
     const type = this.toastrConfig.iconClasses.error;
-    this._buildNotification(type, message, title, optionsOverride);
+    return this._buildNotification(type, message, title, optionsOverride);
   }
-  public info(message: string, title?: string, optionsOverride?: OptionsOverride) {
+  public info(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
     const type = this.toastrConfig.iconClasses.info;
-    this._buildNotification(type, message, title, optionsOverride);
+    return this._buildNotification(type, message, title, optionsOverride);
   }
-  public warning(message: string, title?: string, optionsOverride?: OptionsOverride) {
+  public warning(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
     const type = this.toastrConfig.iconClasses.warning;
-    this._buildNotification(type, message, title, optionsOverride);
+    return this._buildNotification(type, message, title, optionsOverride);
   }
   public remove(toastId: number) {
     let ref = this.findToast(toastId);
     ref.OverlayRef.detach();
   }
   private findToast(toastId: number) {
-    for (var i = 0; i < toasts.length; i++) {
-      if (toasts[i].toastId === toastId) {
-        return toasts[i];
+    for (var i = 0; i < this.toasts.length; i++) {
+      if (this.toasts[i].toastId === toastId) {
+        return this.toasts[i];
       }
     }
   }
@@ -103,10 +104,16 @@ export class ToastrService {
     title?: string,
     optionsOverride: ToastrConfig = this.toastrConfig
   ) {
-    let component = new ComponentPortal(Toast, this.viewContainerRef);
-
+    // pass current view to toast
+    // this keeps the ToastrService as a singleton
+    let resolvedProviders = ReflectiveInjector.resolve([
+      new Provider('view', { useValue: this.viewContainerRef }),
+      new Provider('ToastrService', {useValue: this}),
+    ]);
+    let child = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
+    let component = new ComponentPortal(Toast, this.viewContainerRef, child);
     let inserted: any = {}
-    this.overlay.create(this.toastrConfig.positionClass)
+    return this.overlay.create(this.toastrConfig.positionClass)
       .then((ref) => {
         let res = ref.attach(component);
         // TODO: possible use this ref to detach() later
@@ -115,6 +122,7 @@ export class ToastrService {
       })
       .then((attached) => {
         this.index = this.index + 1;
+        // TODO: explore injecting these values
         attached._hostElement.component.toastId = this.index;
         attached._hostElement.component.message = message;
         attached._hostElement.component.title = title;
@@ -122,18 +130,27 @@ export class ToastrService {
         attached._hostElement.component.options = optionsOverride;
         inserted.attached = attached;
         inserted.toastId = this.index;
-        toasts.push(inserted);
+        console.log(this)
+        this.toasts.push(inserted);
+        return inserted;
       });
   }
 }
 
-export const TOASTR_PROVIDERS = [
-  ...OVERLAY_PROVIDERS, ToastrService
+export const TOASTR_PROVIDERS: any = [
+  OverlayContainer,
+  Overlay,
+  provide(ToastrService, {
+    useFactory: (overlay: Overlay, injector: Injector) => {
+      return new ToastrService(new ToastrConfig(), overlay, injector);
+    },
+    deps: [Overlay, Injector]
+  })
 ];
 
 @Component({
   selector: '[toast]',
-  providers: [TOASTR_PROVIDERS],
+  providers: [],
   template: `
   <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
@@ -149,8 +166,9 @@ export const TOASTR_PROVIDERS = [
   </div>
   `,
 })
-export class Toast {
+export class Toast implements OnInit {
   toastId: number;
+  timeout: number;
   message: string;
   title: string;
   toastType: string;
@@ -159,6 +177,12 @@ export class Toast {
   constructor(
     private toastrService: ToastrService
   ) {}
+
+  ngOnInit() {
+    this.timeout = setTimeout(() => {
+      this.toastrService.remove(this.toastId)
+    }, this.options.timeOut)
+  }
 
   tapToast() {
     console.log(this.toastId)

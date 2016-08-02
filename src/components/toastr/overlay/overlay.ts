@@ -63,9 +63,3 @@ export class Overlay {
     return new OverlayRef(this._createPortalHost(pane), pane);
   }
 }
-
-
-/** Providers for Overlay and its related injectables. */
-export const OVERLAY_PROVIDERS = [
-  Overlay,
-];

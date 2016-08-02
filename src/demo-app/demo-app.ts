@@ -1,10 +1,12 @@
 import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
-import { TOASTR_PROVIDERS, ToastrService } from '../components/toastr/toastr';
+import { ToastrService } from '../components/toastr/toastr';
+
+
 
 
 @Component({
   selector: 'demo-app',
-  providers: [TOASTR_PROVIDERS],
+  providers: [],
   templateUrl: 'demo-app/demo-app.html',
   styleUrls: ['demo-app/demo-app.css'],
   directives: [],
@@ -20,6 +22,6 @@ export class DemoApp {
     this.toastMe();
   }
   toastMe() {
-    this.toastrService.success('My name is Inigo Montoya. You killed my father. Prepare to die!');
+    this.toastrService.success('My name is Inigo Montoya. You killed my father. Prepare to die!', 'Title');
   }
 }
