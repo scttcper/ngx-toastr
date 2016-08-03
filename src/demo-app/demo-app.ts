@@ -87,6 +87,6 @@ export class DemoApp {
     this.toastrService.clear();
   }
   clearLastToast() {
-    this.toastrService.remove(this.lastInserted.pop());
+    this.toastrService.clear(this.lastInserted.pop());
   }
 }

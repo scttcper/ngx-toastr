@@ -103,10 +103,16 @@ export class ToastrService {
     }
     return true;
   }
-  public clear() {
+  public clear(toastId?: number) {
     // Call every toast's remove function
     for (let i = 0; i < this.toasts.length; i++) {
-      this.toasts[i].portal._hostElement.component.remove();
+      if (toastId !== undefined) {
+        if (this.toasts[i].toastId === toastId) {
+          this.toasts[i].portal._hostElement.component.remove();
+        }
+      } else {
+        this.toasts[i].portal._hostElement.component.remove();
+      }
     }
   }
   private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
