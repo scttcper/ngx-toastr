@@ -72,9 +72,7 @@ export class ToastrService {
     public toastrConfig: ToastrConfig,
     private overlay: Overlay,
     private injector: Injector
-  ) {
-    console.log(this.toastrConfig)
-  }
+  ) {}
 
   public success(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
     const type = this.toastrConfig.iconClasses.success;
@@ -107,12 +105,12 @@ export class ToastrService {
   }
   public clear() {
     // Call every toast's remove function
-    for (var i = 0; i < this.toasts.length; i++) {
+    for (let i = 0; i < this.toasts.length; i++) {
       this.toasts[i].portal._hostElement.component.remove();
     }
   }
   private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
-    for (var i = 0; i < this.toasts.length; i++) {
+    for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return {index: i, activeToast: this.toasts[i]};
       }
@@ -133,7 +131,11 @@ export class ToastrService {
       new Provider('ToastrService', {useValue: this}),
     ]);
     let child = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
-    let component = new ComponentPortal(optionsOverride.toastComponent, this.viewContainerRef, child);
+    let component = new ComponentPortal(
+      optionsOverride.toastComponent,
+      this.viewContainerRef,
+      child
+    );
     let inserted: ActiveToast = { toastId: this.index++ };
     return this.overlay.create(optionsOverride.positionClass)
       .then((ref) => {
@@ -173,7 +175,9 @@ export const TOASTR_PROVIDERS: any = [
   template: `
   <div @flyInOut="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
-    <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">{{message}}</div>
+    <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
+      {{message}}
+    </div>
     <!--TODO: allow html
     <div ng-switch on="allowHtml">
       <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>

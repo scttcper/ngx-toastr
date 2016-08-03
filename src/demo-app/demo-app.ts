@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastrService, ToastrConfig, ActiveToast } from '../components/toastr/toastr';
 
 const quotes = [
@@ -78,7 +78,7 @@ export class DemoApp {
     let inserted = this.toastrService[this.type](this.message, this.title, this.options);
     inserted.then((activeToast: ActiveToast) => {
       this.lastInserted.push(activeToast.toastId);
-    })
+    });
   }
   openRandomToast() {
 
