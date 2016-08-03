@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
-import { ToastrService, ToastrConfig } from '../components/toastr/toastr';
+import { ToastrService, ToastrConfig, ActiveToast } from '../components/toastr/toastr';
 
 const quotes = [
   {
@@ -62,6 +62,7 @@ export class DemoApp {
   title: string = '';
   type: string = types[0];
   message: string = '';
+  lastInserted: number[] = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -74,7 +75,10 @@ export class DemoApp {
     this.options = new ToastrConfig();
   }
   openToast() {
-    this.toastrService[this.type](this.message, this.title, this.options);
+    let inserted = this.toastrService[this.type](this.message, this.title, this.options);
+    inserted.then((activeToast: ActiveToast) => {
+      this.lastInserted.push(activeToast.toastId);
+    })
   }
   openRandomToast() {
 
@@ -83,6 +87,6 @@ export class DemoApp {
     this.toastrService.clear();
   }
   clearLastToast() {
-    this.toastrService.clear();
+    this.toastrService.remove(this.lastInserted.pop());
   }
 }

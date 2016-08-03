@@ -15,7 +15,7 @@ import {
 } from '@angular/core';
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
-import { ComponentPortal } from './portal/portal';
+import { ComponentPortal, PortalHost } from './portal/portal';
 import { OverlayContainer } from './overlay/overlay-container';
 
 @Injectable()
@@ -54,6 +54,12 @@ export class ToastrConfig {
   toastComponent = Toast;
 }
 
+export interface ActiveToast {
+  toastId?: number;
+  portal?: PortalHost;
+  overlayRef?: OverlayRef;
+}
+
 @Injectable()
 export class ToastrService {
   // TODO: remove when we can access the global view ref from service
@@ -86,27 +92,32 @@ export class ToastrService {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public remove(toastId: number) {
-    let { index, ref } = this._findToast(toastId);
-    ref.OverlayRef.detach();
+  public remove(toastId: number): boolean {
+    let { index, activeToast } = this._findToast(toastId);
+    if (!activeToast) {
+      return false;
+    }
+    activeToast.overlayRef.detach();
     this.toasts.splice(index, 1);
     if (!this.toasts.length) {
       this.overlay.dispose();
-      ref.OverlayRef.dispose();
+      activeToast.overlayRef.dispose();
     }
+    return true;
   }
   public clear() {
     // Call every toast's remove function
     for (var i = 0; i < this.toasts.length; i++) {
-      this.toasts[i].attached._hostElement.component.remove();
+      this.toasts[i].portal._hostElement.component.remove();
     }
   }
-  private _findToast(toastId: number) {
+  private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
     for (var i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
-        return {index: i, ref: this.toasts[i]};
+        return {index: i, activeToast: this.toasts[i]};
       }
     }
+    return {index: null, activeToast: null};
   }
 
   private _buildNotification(
@@ -114,7 +125,7 @@ export class ToastrService {
     message: string,
     title?: string,
     optionsOverride: ToastrConfig = this.toastrConfig
-  ) {
+  ): Promise<ActiveToast> {
     // pass current view to toast
     // this keeps the ToastrService as a singleton
     let resolvedProviders = ReflectiveInjector.resolve([
@@ -123,25 +134,22 @@ export class ToastrService {
     ]);
     let child = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
     let component = new ComponentPortal(optionsOverride.toastComponent, this.viewContainerRef, child);
-    let inserted: any = {}
+    let inserted: ActiveToast = { toastId: this.index++ };
     return this.overlay.create(optionsOverride.positionClass)
       .then((ref) => {
         let res = ref.attach(component);
         // TODO: possible use this ref to detach() later
-        inserted.OverlayRef = ref;
+        inserted.overlayRef = ref;
         return res;
       })
-      .then((attached) => {
-        this.index = this.index + 1;
+      .then((portal) => {
         // TODO: explore injecting these values
-        attached._hostElement.component.toastId = this.index;
-        attached._hostElement.component.message = message;
-        attached._hostElement.component.title = title;
-        attached._hostElement.component.toastType = type;
-        attached._hostElement.component.options = optionsOverride;
-        inserted.attached = attached;
-        inserted.toastId = this.index;
-        console.log(this)
+        portal._hostElement.component.toastId = inserted.toastId;
+        portal._hostElement.component.message = message;
+        portal._hostElement.component.title = title;
+        portal._hostElement.component.toastType = type;
+        portal._hostElement.component.options = optionsOverride;
+        inserted.portal = portal;
         this.toasts.push(inserted);
         return inserted;
       });
