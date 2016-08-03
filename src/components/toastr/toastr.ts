@@ -90,6 +90,18 @@ export class ToastrService {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, optionsOverride);
   }
+  public clear(toastId?: number) {
+    // Call every toast's remove function
+    for (let i = 0; i < this.toasts.length; i++) {
+      if (toastId !== undefined) {
+        if (this.toasts[i].toastId === toastId) {
+          this.toasts[i].portal._hostElement.component.remove();
+        }
+      } else {
+        this.toasts[i].portal._hostElement.component.remove();
+      }
+    }
+  }
   public remove(toastId: number): boolean {
     let { index, activeToast } = this._findToast(toastId);
     if (!activeToast) {
@@ -102,18 +114,6 @@ export class ToastrService {
       activeToast.overlayRef.dispose();
     }
     return true;
-  }
-  public clear(toastId?: number) {
-    // Call every toast's remove function
-    for (let i = 0; i < this.toasts.length; i++) {
-      if (toastId !== undefined) {
-        if (this.toasts[i].toastId === toastId) {
-          this.toasts[i].portal._hostElement.component.remove();
-        }
-      } else {
-        this.toasts[i].portal._hostElement.component.remove();
-      }
-    }
   }
   private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
     for (let i = 0; i < this.toasts.length; i++) {
