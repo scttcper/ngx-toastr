@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation, OnInit, ViewContainerRef} from '@angular/core';
-import { ToastrService } from '../components/toastr/toastr';
+import { ToastrService, ToastrConfig } from '../components/toastr/toastr';
 
 const quotes = [
   {
@@ -18,8 +18,8 @@ const quotes = [
     message: 'We have you covered with ui-router'
   },
   {
-    title: 'Angular 2',
-    message: 'Is gonna rock the world'
+    title: null,
+    message: 'My name is Inigo Montoya. You killed my father. Prepare to die!',
   },
   {
     title: null,
@@ -36,14 +36,15 @@ const quotes = [
       allowHtml: true
     }
   },
-  {
-    title: 'Ionic is <em>cool</em>',
-    message: 'Best mobile framework ever',
-    options: {
-      allowHtml: true
-    }
-  }
-]
+  // {
+  //   title: 'Ionic is <em>cool</em>',
+  //   message: 'Best mobile framework ever',
+  //   options: {
+  //     allowHtml: true
+  //   }
+  // }
+];
+const types: string[] = ['success', 'error', 'info', 'warning'];
 
 
 @Component({
@@ -56,14 +57,23 @@ const quotes = [
   pipes: [],
 })
 export class DemoApp {
+  options: ToastrConfig;
+
+  title: string = '';
+  type: string = types[0];
+  message: string = '';
+
   constructor(
     private toastrService: ToastrService,
     private viewContainerRef: ViewContainerRef
   ) {
+    // necessary until we can accesses viewContainerRef in service
     toastrService.viewContainerRef = this.viewContainerRef;
-    this.toastMe();
+
+    // setup
+    this.options = new ToastrConfig();
   }
-  toastMe() {
-    this.toastrService.success('My name is Inigo Montoya. You killed my father. Prepare to die!', 'Title');
+  openToast() {
+    this.toastrService[this.type](this.message, this.title, this.options);
   }
 }

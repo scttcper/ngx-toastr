@@ -24,7 +24,7 @@ export class ToastrConfig {
   closeHtml: string = '<button>&times;</button>';
   containerId: string = 'toast-container';
   extendedTimeOut: number = 1000;
-  iconClasses = {
+  iconClasses: any = {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
@@ -64,10 +64,7 @@ export class ToastrService {
     private overlay: Overlay,
     private injector: Injector
   ) {
-    if (!this.toastrConfig) {
-      console.log('new')
-      this.toastrConfig = new ToastrConfig();
-    }
+    console.log(this.toastrConfig)
   }
 
   public success(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
@@ -89,7 +86,7 @@ export class ToastrService {
   public remove(toastId: number) {
     let ref = this.findToast(toastId);
     ref.OverlayRef.detach();
-    
+
   }
   private findToast(toastId: number) {
     for (var i = 0; i < this.toasts.length; i++) {
