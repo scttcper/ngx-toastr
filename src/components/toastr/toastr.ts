@@ -111,7 +111,7 @@ export class ToastrService {
     let child = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
     let component = new ComponentPortal(Toast, this.viewContainerRef, child);
     let inserted: any = {}
-    return this.overlay.create(this.toastrConfig.positionClass)
+    return this.overlay.create(optionsOverride.positionClass)
       .then((ref) => {
         let res = ref.attach(component);
         // TODO: possible use this ref to detach() later

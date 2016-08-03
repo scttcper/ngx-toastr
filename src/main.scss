@@ -2,8 +2,11 @@ $enable-flex: true;
 $font-size-root: 14px;
 @import 'node_modules/bootstrap/scss/bootstrap';
 
-.card {
+.container {
   margin-top: 30px;
+}
+.card {
+  margin-top: 15px;
 }
 
 .btn-pink {
