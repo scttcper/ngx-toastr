@@ -76,4 +76,7 @@ export class DemoApp {
   openToast() {
     this.toastrService[this.type](this.message, this.title, this.options);
   }
+  clearToasts() {
+    this.toastrService.clear();
+  }
 }

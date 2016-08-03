@@ -51,6 +51,7 @@ export class ToastrConfig {
   timeOut: number = 5000;
   titleClass: string = 'toast-title';
   toastClass: string = 'toast';
+  toastComponent = Toast;
 }
 
 @Injectable()
@@ -86,16 +87,21 @@ export class ToastrService {
     return this._buildNotification(type, message, title, optionsOverride);
   }
   public remove(toastId: number) {
-    let { index, ref } = this.findToast(toastId);
+    let { index, ref } = this._findToast(toastId);
     ref.OverlayRef.detach();
     this.toasts.splice(index, 1);
     if (!this.toasts.length) {
       this.overlay.dispose();
       ref.OverlayRef.dispose();
     }
-
   }
-  private findToast(toastId: number) {
+  public clear() {
+    // Call every toast's remove function
+    for (var i = 0; i < this.toasts.length; i++) {
+      this.toasts[i].attached._hostElement.component.remove();
+    }
+  }
+  private _findToast(toastId: number) {
     for (var i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return {index: i, ref: this.toasts[i]};
@@ -116,7 +122,7 @@ export class ToastrService {
       new Provider('ToastrService', {useValue: this}),
     ]);
     let child = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
-    let component = new ComponentPortal(Toast, this.viewContainerRef, child);
+    let component = new ComponentPortal(optionsOverride.toastComponent, this.viewContainerRef, child);
     let inserted: any = {}
     return this.overlay.create(optionsOverride.positionClass)
       .then((ref) => {
@@ -199,16 +205,20 @@ export class Toast implements OnInit {
 
   ngOnInit() {
     this.timeout = setTimeout(() => {
-      this.state = 'inactive';
-      setTimeout(() => this.toastrService.remove(this.toastId), 300)
+      this.remove();
     }, this.options.timeOut);
     setTimeout(() => this.state = 'active');
   }
 
   tapToast() {
+    this.remove();
+  }
+
+  remove() {
+    if (this.state === 'inactive') {
+      return;
+    }
     this.state = 'inactive';
-    console.log(this.toastId)
-    console.log('clicked');
     setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
 }
