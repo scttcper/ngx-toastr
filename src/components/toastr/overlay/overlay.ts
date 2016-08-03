@@ -1,8 +1,8 @@
-import {ComponentResolver, Injectable} from '@angular/core';
-import {DomPortalHost} from '../portal/dom-portal-host';
-import {OverlayRef} from './overlay-ref';
+import { ComponentResolver, Injectable } from '@angular/core';
+import { DomPortalHost } from '../portal/dom-portal-host';
+import { OverlayRef } from './overlay-ref';
 
-import {OverlayContainer} from './overlay-container';
+import { OverlayContainer } from './overlay-container';
 
 /** Next overlay unique ID. */
 let nextUniqueId = 0;
@@ -18,10 +18,10 @@ let nextUniqueId = 0;
  */
  @Injectable()
 export class Overlay {
+  private _paneElement: HTMLElement;
+
   constructor(private _overlayContainer: OverlayContainer,
               private _componentResolver: ComponentResolver) {}
-
-  private _paneElement: HTMLElement;
   /**
    * Creates an overlay.
    * @param state State to apply to the overlay.

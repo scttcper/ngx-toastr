@@ -1,4 +1,4 @@
-import {PortalHost, Portal} from '../portal/portal';
+import { PortalHost, Portal } from '../portal/portal';
 
 /**
  * Reference to an overlay that has been created with the Overlay service.

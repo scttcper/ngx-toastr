@@ -1,6 +1,6 @@
-import {ComponentResolver, ComponentRef, EmbeddedViewRef} from '@angular/core';
-import {BasePortalHost, ComponentPortal, TemplatePortal} from './portal';
-import {MdComponentPortalAttachedToDomWithoutOriginError} from './portal-errors';
+import { ComponentResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
+import { BasePortalHost, ComponentPortal, TemplatePortal } from './portal';
+import { MdComponentPortalAttachedToDomWithoutOriginError } from './portal-errors';
 
 
 /**
@@ -43,7 +43,7 @@ export class DomPortalHost extends BasePortalHost {
 
     this.setDisposeFn((() => {
       let index = viewContainer.indexOf(viewRef);
-      if (index != -1) {
+      if (index !== -1) {
         viewContainer.remove(index);
       }
     }));

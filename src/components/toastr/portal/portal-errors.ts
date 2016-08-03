@@ -1,4 +1,4 @@
-import {MdError} from '../errors/error';
+import { MdError } from '../errors/error';
 
 /** Exception thrown when a ComponentPortal is attached to a DomPortalHost without an origin. */
 export class MdComponentPortalAttachedToDomWithoutOriginError extends MdError {

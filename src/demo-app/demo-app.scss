@@ -159,24 +159,6 @@ progress-bar {
   background-color: #000000;
   opacity: 0.4;
 }
-/*Animations*/
-div[toast] {
-  opacity: 1 !important;
-}
-div[toast].ng-enter {
-  opacity: 0 !important;
-  transition: opacity .3s linear;
-}
-div[toast].ng-enter.ng-enter-active {
-  opacity: 1 !important;
-}
-div[toast].ng-leave {
-  opacity: 1;
-  transition: opacity .3s linear;
-}
-div[toast].ng-leave.ng-leave-active {
-  opacity: 0 !important;
-}
 /*Responsive Design*/
 @media all and (max-width: 240px) {
   #toast-container .toast.div {

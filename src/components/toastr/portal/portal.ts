@@ -13,7 +13,7 @@ import {
     MdPortalHostAlreadyDisposedError,
     MdUnknownPortalTypeError
 } from './portal-errors';
-import {ComponentType} from '../overlay/generic-component-type';
+import { ComponentType } from '../overlay/generic-component-type';
 
 
 

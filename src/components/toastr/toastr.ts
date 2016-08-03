@@ -216,9 +216,11 @@ export class Toast implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.timeout = setTimeout(() => {
-      this.remove();
-    }, this.options.timeOut);
+    if (this.options.timeOut) {
+      this.timeout = setTimeout(() => {
+        this.remove();
+      }, this.options.timeOut);
+    }
     setTimeout(() => this.state = 'active');
   }
 
