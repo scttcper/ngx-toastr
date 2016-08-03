@@ -77,9 +77,12 @@ export class DemoApp {
     this.toastrService[this.type](this.message, this.title, this.options);
   }
   openRandomToast() {
-    
+
   }
   clearToasts() {
+    this.toastrService.clear();
+  }
+  clearLastToast() {
     this.toastrService.clear();
   }
 }
