@@ -30,6 +30,9 @@ export class Overlay {
   create(positionClass: string): Promise<OverlayRef> {
     return this.getPaneElement(positionClass).then(pane => this._createOverlayRef(pane));
   }
+  dispose() {
+    this._paneElement = null;
+  }
 
   getPaneElement(positionClass: string): Promise<HTMLElement> {
     // TODO: possible multiple panes for multiple positionClasses

@@ -1,15 +1,17 @@
 import {
   Component,
-  Output,
   Injectable,
   ViewContainerRef,
-  Inject,
   ReflectiveInjector,
-  Optional,
   provide,
   OnInit,
   Injector,
   Provider,
+  trigger,
+  state,
+  transition,
+  animate,
+  style,
 } from '@angular/core';
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
@@ -84,14 +86,19 @@ export class ToastrService {
     return this._buildNotification(type, message, title, optionsOverride);
   }
   public remove(toastId: number) {
-    let ref = this.findToast(toastId);
+    let { index, ref } = this.findToast(toastId);
     ref.OverlayRef.detach();
+    this.toasts.splice(index, 1);
+    if (!this.toasts.length) {
+      this.overlay.dispose();
+      ref.OverlayRef.dispose();
+    }
 
   }
   private findToast(toastId: number) {
     for (var i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
-        return this.toasts[i];
+        return {index: i, ref: this.toasts[i]};
       }
     }
   }
@@ -150,7 +157,7 @@ export const TOASTR_PROVIDERS: any = [
   selector: '[toast]',
   providers: [],
   template: `
-  <div class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
+  <div @flyInOut="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
     <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">{{message}}</div>
     <!--TODO: allow html
@@ -164,6 +171,17 @@ export const TOASTR_PROVIDERS: any = [
     -->
   </div>
   `,
+  animations: [
+    trigger('flyInOut', [
+      state('inactive', style({
+        opacity: 0
+      })),
+      state('active', style({
+        opacity: 1
+      })),
+      transition('inactive <=> active', animate('300ms ease-in')),
+    ]),
+  ],
 })
 export class Toast implements OnInit {
   toastId: number;
@@ -172,6 +190,8 @@ export class Toast implements OnInit {
   title: string;
   toastType: string;
   options: ToastrConfig;
+  // used to control animation
+  state: string = 'inactive';
 
   constructor(
     private toastrService: ToastrService
@@ -179,13 +199,16 @@ export class Toast implements OnInit {
 
   ngOnInit() {
     this.timeout = setTimeout(() => {
-      this.toastrService.remove(this.toastId)
-    }, this.options.timeOut)
+      this.state = 'inactive';
+      setTimeout(() => this.toastrService.remove(this.toastId), 300)
+    }, this.options.timeOut);
+    setTimeout(() => this.state = 'active');
   }
 
   tapToast() {
+    this.state = 'inactive';
     console.log(this.toastId)
     console.log('clicked');
-    this.toastrService.remove(this.toastId);
+    setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
 }
