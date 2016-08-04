@@ -8,7 +8,9 @@
     "url": "https://github.com/scttcper/toastr-ng2.git"
   },
   "scripts": {
-    "build": "ng build --prod",
+    "clean": "rimraf dist deploy",
+    "build": "npm run clean && ng build --prod",
+    "pages": "npm run build && node gh-pages",
     "demo-app": "ng serve",
     "start": "npm run demo-app",
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
@@ -50,6 +52,7 @@
     "ember-cli-inject-live-reload": "^1.4.1",
     "gh-pages": "^0.11.0",
     "node-sass": "^3.8.0",
+    "rimraf": "^2.5.4",
     "sass": "^0.5.0",
     "ts-node": "^1.2.2",
     "tslint": "^3.14.0",
