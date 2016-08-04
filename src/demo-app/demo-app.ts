@@ -69,17 +69,20 @@ export class DemoApp {
     private toastrService: ToastrService,
     private viewContainerRef: ViewContainerRef
   ) {
+    this.options = this.toastrService.toastrConfig;
     // necessary until we can accesses viewContainerRef in service
     toastrService.viewContainerRef = this.viewContainerRef;
 
     // setup
-    this.options = new ToastrConfig();
+    // this.options = new ToastrConfig();
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates
     let newConfig = _.cloneDeep(this.options);
     let ins = this.toastrService[this.type](this.message, this.title, newConfig);
-    this.lastInserted.push(ins.toastId);
+    if (ins) {
+      this.lastInserted.push(ins.toastId);
+    }
   }
   openRandomToast() {
 

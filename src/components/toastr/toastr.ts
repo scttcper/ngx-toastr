@@ -56,7 +56,7 @@ export class ToastrConfig extends ToastConfig {
   maxOpened: number = 0;
   newestOnTop: boolean = true;
   preventDuplicates: boolean = false;
-  preventOpenDuplicates: boolean = false;
+  // preventOpenDuplicates: boolean = false;
 }
 
 export interface ActiveToast {
@@ -68,10 +68,11 @@ export interface ActiveToast {
 @Injectable()
 export class ToastrService {
   // TODO: remove when we can access the global view ref from service
-  public viewContainerRef: ViewContainerRef;
-  public index: number = 0;
-  public toasts: any[] = [];
-  public container: OverlayRef;
+  viewContainerRef: ViewContainerRef;
+  private index: number = 0;
+  private toasts: any[] = [];
+  private container: OverlayRef;
+  private previousToastMessage: string = '';
 
   constructor(
     public toastrConfig: ToastrConfig,
@@ -145,6 +146,10 @@ export class ToastrService {
     optionsOverride: ToastConfig = this.toastrConfig
   ): ActiveToast {
     // max opened and auto dismiss = true
+    if (this.toastrConfig.preventDuplicates && this.previousToastMessage === message) {
+      return;
+    }
+    this.previousToastMessage = message;
     let keepInactive = false;
     if (+this.toastrConfig.maxOpened && this.toasts.length >= +this.toastrConfig.maxOpened) {
       keepInactive = true;
