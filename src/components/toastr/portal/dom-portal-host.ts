@@ -48,7 +48,6 @@ export class DomPortalHost extends BasePortalHost {
       }
     }));
 
-    // TODO(jelbourn): Return locals from view.
     return Promise.resolve(new Map<string, any>());
   }
 
