@@ -4,9 +4,6 @@ import { OverlayRef } from './overlay-ref';
 
 import { OverlayContainer } from './overlay-container';
 
-/** Next overlay unique ID. */
-let nextUniqueId = 0;
-
 
 /**
  * Service to create Overlays. Overlays are dynamically added pieces of floating UI, meant to be
