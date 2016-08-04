@@ -18,41 +18,45 @@ import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal, PortalHost } from './portal/portal';
 import { OverlayContainer } from './overlay/overlay-container';
 
-// TODO: split into toast config and global config
 @Injectable()
-export class ToastrConfig {
-  allowHtml: boolean = false;
-  autoDismiss: boolean = false;
+export class ToastConfig {
+  // TODO: might not be needed
+  // allowHtml: boolean = false;
   closeButton: boolean = false;
-  closeHtml: string = '<button>&times;</button>';
-  containerId: string = 'toast-container';
-  extendedTimeOut: number = 1000;
-  iconClasses: any = {
+  // closeHtml: string = '<button>&times;</button>';
+  // TODO: extended?
+  // extendedTimeOut: number = 1000;
+  // TODO: listeners for toast actions
+  // onHidden: null;
+  // onShown: null;
+  // onTap: null;
+  progressBar: boolean = false;
+  timeOut: number = 5000;
+
+  toastClass: string = 'toast';
+  positionClass: string = 'toast-top-right';
+  titleClass: string = 'toast-title';
+  messageClass: string = 'toast-message';
+  tapToDismiss: boolean = true;
+  toastComponent = Toast;
+}
+
+
+@Injectable()
+export class ToastrConfig extends ToastConfig {
+  autoDismiss: boolean = false;
+  // TODO:
+  // containerId: string = 'toast-container';
+  iconClasses = {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
     warning: 'toast-warning',
   };
   maxOpened: number = 0;
-  messageClass: string = 'toast-message';
   newestOnTop: boolean = true;
-  // onHidden: null;
-  // onShown: null;
-  // onTap: null;
-  positionClass: string = 'toast-top-right';
   preventDuplicates: boolean = false;
   preventOpenDuplicates: boolean = false;
-  progressBar: boolean = false;
-  tapToDismiss: boolean = true;
-  target: string = 'body';
-  // templates = {
-  //   toast: 'directives/toast/toast.html',
-  //   progressbar: 'directives/progressbar/progressbar.html',
-  // };
-  timeOut: number = 5000;
-  titleClass: string = 'toast-title';
-  toastClass: string = 'toast';
-  toastComponent = Toast;
 }
 
 export interface ActiveToast {
@@ -75,19 +79,19 @@ export class ToastrService {
     private injector: Injector
   ) {}
 
-  public success(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
+  public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.success;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public error(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
+  public error(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.error;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public info(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
+  public info(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.info;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public warning(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
+  public warning(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, optionsOverride);
   }
@@ -138,7 +142,7 @@ export class ToastrService {
     type: string,
     message: string,
     title?: string,
-    optionsOverride: ToastrConfig = this.toastrConfig
+    optionsOverride: ToastConfig = this.toastrConfig
   ): ActiveToast {
     // max opened and auto dismiss = true
     let keepInactive = false;
@@ -201,6 +205,7 @@ export const TOASTR_PROVIDERS: any = [
   providers: [],
   template: `
   <div @flyInOut="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
+    <button *ngIf="options.closeButton" class="toast-close-button" (click)="remove()">×</button>
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
     <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
       {{message}}
@@ -238,7 +243,7 @@ export class Toast {
   message: string;
   title: string;
   toastType: string;
-  options: ToastrConfig;
+  options: ToastConfig;
   // used to control animation
   state: string = 'inactive';
 
@@ -247,15 +252,17 @@ export class Toast {
   ) {}
   activateToast() {
     this.state = 'active';
-    if (this.options.timeOut) {
+    if (+this.options.timeOut !== 0) {
       this.timeout = setTimeout(() => {
         this.remove();
-      }, this.options.timeOut);
+      }, +this.options.timeOut);
     }
   }
 
   tapToast() {
-    this.remove();
+    if (this.options.tapToDismiss) {
+      this.remove();
+    }
   }
 
   remove() {

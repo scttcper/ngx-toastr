@@ -40,6 +40,7 @@ const barrels: string[] = [
 
   // Thirdparty barrels.
   'rxjs',
+  'lodash',
 
   // App specific barrels.
   'demo-app',
@@ -66,6 +67,7 @@ System.config({
     '@angular': 'vendor/@angular',
     '@angular2-material': 'vendor/@angular2-material',
     'rxjs': 'vendor/rxjs',
+    'lodash': 'vendor/lodash',
     'main': 'main.js'
   },
   packages: _cliSystemConfig

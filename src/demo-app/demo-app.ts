@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastrService, ToastrConfig, ActiveToast } from '../components/toastr/toastr';
+import * as _ from 'lodash';
 
 const quotes = [
   {
@@ -75,7 +76,9 @@ export class DemoApp {
     this.options = new ToastrConfig();
   }
   openToast() {
-    let ins = this.toastrService[this.type](this.message, this.title, this.options);
+    // Clone current config so it doesn't change when ngModel updates
+    let newConfig = _.cloneDeep(this.options);
+    let ins = this.toastrService[this.type](this.message, this.title, newConfig);
     this.lastInserted.push(ins.toastId);
   }
   openRandomToast() {

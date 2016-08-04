@@ -3,6 +3,7 @@ import { DemoApp } from './demo-app/demo-app';
 import { Renderer, provide, Injector, Provider } from '@angular/core';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import 'rxjs/Rx';
+import 'lodash';
 
 import { TOASTR_PROVIDERS, ToastrConfig, ToastrService } from './components/toastr/toastr';
 import { Overlay } from './components/toastr/overlay/overlay';

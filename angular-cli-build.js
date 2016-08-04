@@ -32,6 +32,7 @@ module.exports = function(defaults) {
       'core-js/client/core.js',
       'reflect-metadata/*.js',
       'rxjs/**/*.js',
+      'lodash/**/*.js',
       '@angular/**/*.js',
       '@angular2-material/**/*.js',
       '@types/**/*.js',

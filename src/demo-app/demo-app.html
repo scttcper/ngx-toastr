@@ -19,26 +19,30 @@
                 <input type="text" ng-model="options.closeHtml" class="form-control" id="toastbutton" ng-disabled="!options.closeButton">
               </div> -->
               <div class="form-group">
-                <!-- <div class="checkbox">
+
+                <div class="checkbox">
                   <label>
-                    <input type="checkbox" ng-model="options.newestOnTop"> New toasts on top?
+                    <input type="checkbox" [(ngModel)]="options.tapToDismiss"> Tap to dismiss
                   </label>
                 </div>
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" ng-model="options.tapToDismiss"> Tap to dismiss?
+                    <input type="checkbox" [(ngModel)]="options.closeButton"> Close button
                   </label>
                 </div>
+
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-model="options.newestOnTop"> New toasts on top?
+                  </label>
+                </div>
+
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" ng-model="options.progressBar"> Progress bar
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model="options.closeButton"> Close button?
-                  </label>
-                </div>
+
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" ng-model="options.html"> Allow html?
@@ -58,7 +62,7 @@
                   <label>
                     <input type="checkbox" ng-model="options.customTemplate"> Custom template
                   </label>
-                </div> -->
+                </div>
               </div>
             </div>
             <div class="col-md-4">
