@@ -27,6 +27,7 @@ export class ToastConfig {
 
 @Injectable()
 export class ToastrConfig extends ToastConfig {
+  maxOpened: number = 0;
   autoDismiss: boolean = false;
   // TODO:
   // containerId: string = 'toast-container';
@@ -36,8 +37,8 @@ export class ToastrConfig extends ToastConfig {
     success: 'toast-success',
     warning: 'toast-warning',
   };
-  maxOpened: number = 0;
-  newestOnTop: boolean = true;
+  // TODO
+  // newestOnTop: boolean = true;
   preventDuplicates: boolean = false;
   // TODO:
   // preventOpenDuplicates: boolean = false;
