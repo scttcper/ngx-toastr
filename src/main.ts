@@ -13,8 +13,7 @@ import { OverlayContainer } from './components/toastr/overlay/overlay-container'
 bootstrap(DemoApp, [
   disableDeprecatedForms(),
   provideForms(),
-  Renderer,
-  TOASTR_PROVIDERS
+  TOASTR_PROVIDERS,
   // OverlayContainer,
   // Overlay,
   // provide(ToastrService, {

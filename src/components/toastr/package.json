@@ -1,0 +1,26 @@
+{
+  "name": "toastr-ng2",
+  "version": "0.0.2",
+  "description": "Toastr for Angular 2",
+  "main": "./toastr.js",
+  "typings": "./toastr.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scttcper/toastr-ng2.git"
+  },
+  "keywords": [
+    "ng2",
+    "angular2",
+    "toastr",
+    "ng2-toastr",
+    "toastr-ng2"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scttcper/toastr-ng2/issues"
+  },
+  "homepage": "https://github.com/scttcper/toastr-ng2",
+  "peerDependencies": {
+    "@angular/core": "^2.0.0-rc.4"
+  }
+}
