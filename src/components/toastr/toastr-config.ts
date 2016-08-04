@@ -37,8 +37,7 @@ export class ToastrConfig extends ToastConfig {
     success: 'toast-success',
     warning: 'toast-warning',
   };
-  // TODO
-  // newestOnTop: boolean = true;
+  newestOnTop: boolean = true;
   preventDuplicates: boolean = false;
   // TODO:
   // preventOpenDuplicates: boolean = false;

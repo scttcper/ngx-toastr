@@ -17,7 +17,8 @@ export class DomPortalHost extends BasePortalHost {
   }
 
   /** Attach the given ComponentPortal to DOM element using the ComponentResolver. */
-  attachComponentPortal<T>(portal: ComponentPortal<T>): Promise<ComponentRef<T>> {
+  attachComponentPortal<T>(portal: ComponentPortal<T>,
+                          newestOnTop: boolean): Promise<ComponentRef<T>> {
     if (portal.viewContainerRef == null) {
       throw new MdComponentPortalAttachedToDomWithoutOriginError();
     }
@@ -29,7 +30,11 @@ export class DomPortalHost extends BasePortalHost {
           portal.injector || portal.viewContainerRef.parentInjector);
 
       let hostView = <EmbeddedViewRef<any>> ref.hostView;
-      this._hostDomElement.appendChild(hostView.rootNodes[0]);
+      if (newestOnTop) {
+        this._hostDomElement.insertBefore(hostView.rootNodes[0], this._hostDomElement.firstChild);
+      } else {
+        this._hostDomElement.appendChild(hostView.rootNodes[0]);
+      }
       this.setDisposeFn(() => ref.destroy());
       return ref;
     });

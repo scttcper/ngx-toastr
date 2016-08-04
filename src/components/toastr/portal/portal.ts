@@ -25,7 +25,7 @@ export abstract class Portal<T> {
   private _attachedHost: PortalHost;
 
   /** Attach this portal to a host. */
-  attach(host: PortalHost): Promise<T> {
+  attach(host: PortalHost, newestOnTop: boolean): Promise<T> {
     if (host == null) {
       throw new MdNullPortalHostError();
     }
@@ -35,7 +35,7 @@ export abstract class Portal<T> {
     }
 
     this._attachedHost = host;
-    return <Promise<T>> host.attach(this);
+    return <Promise<T>> host.attach(this, newestOnTop);
   }
 
   /** Detach this portal from its host */
@@ -121,9 +121,10 @@ export class TemplatePortal extends Portal<Map<string, any>> {
     return this.templateRef.elementRef;
   }
 
-  attach(host: PortalHost, locals?: Map<string, any>): Promise<Map<string, any>> {
+  attach(host: PortalHost, newestOnTop: boolean,
+         locals?: Map<string, any>): Promise<Map<string, any>> {
     this.locals = locals == null ? new Map<string, any>() : locals;
-    return super.attach(host);
+    return super.attach(host, newestOnTop);
   }
 
   detach(): Promise<void> {
@@ -137,7 +138,7 @@ export class TemplatePortal extends Portal<Map<string, any>> {
  * A `PortalHost` is an space that can contain a single `Portal`.
  */
 export interface PortalHost {
-  attach(portal: Portal<any>): Promise<any>;
+  attach(portal: Portal<any>, newestOnTop: boolean): Promise<any>;
 
   detach(): Promise<any>;
 
@@ -166,7 +167,7 @@ export abstract class BasePortalHost implements PortalHost {
     return this._attachedPortal != null;
   }
 
-  attach(portal: Portal<any>): Promise<any> {
+  attach(portal: Portal<any>, newestOnTop: boolean): Promise<any> {
     if (portal == null) {
       throw new MdNullPortalError();
     }
@@ -181,7 +182,7 @@ export abstract class BasePortalHost implements PortalHost {
 
     if (portal instanceof ComponentPortal) {
       this._attachedPortal = portal;
-      return this.attachComponentPortal(portal);
+      return this.attachComponentPortal(portal, newestOnTop);
     } else if (portal instanceof TemplatePortal) {
       this._attachedPortal = portal;
       return this.attachTemplatePortal(portal);
@@ -190,7 +191,8 @@ export abstract class BasePortalHost implements PortalHost {
     throw new MdUnknownPortalTypeError();
   }
 
-  abstract attachComponentPortal<T>(portal: ComponentPortal<T>): Promise<ComponentRef<T>>;
+  abstract attachComponentPortal<T>(portal: ComponentPortal<T>,
+    newestOnTop: boolean): Promise<ComponentRef<T>>;
 
   abstract attachTemplatePortal(portal: TemplatePortal): Promise<Map<string, any>>;
 

@@ -139,7 +139,7 @@ export class ToastrService {
     let overlayRef = this.overlay.create(optionsOverride.positionClass);
     inserted.overlayRef = overlayRef;
     overlayRef.then((ref) => {
-      let p = ref.attach(component);
+      let p = ref.attach(component, this.toastrConfig.newestOnTop);
       inserted.portal = p;
       p.then((portal) => {
         // TODO: explore injecting these values
