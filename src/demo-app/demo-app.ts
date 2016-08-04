@@ -1,7 +1,9 @@
-import { Component, ViewEncapsulation, OnInit, ViewContainerRef } from '@angular/core';
-import { ToastrService, ToastrConfig, ActiveToast } from '../components/toastr/toastr';
+import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { ToastrService, ToastrConfig } from '../components/toastr/toastr';
 import * as _ from 'lodash';
 
+
+// TODO: random quote when message/title are blank
 const quotes = [
   {
     title: 'Come to Freenode',
@@ -69,12 +71,10 @@ export class DemoApp {
     private toastrService: ToastrService,
     private viewContainerRef: ViewContainerRef
   ) {
+    // sync options to toastrservice
     this.options = this.toastrService.toastrConfig;
     // necessary until we can accesses viewContainerRef in service
     toastrService.viewContainerRef = this.viewContainerRef;
-
-    // setup
-    // this.options = new ToastrConfig();
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates

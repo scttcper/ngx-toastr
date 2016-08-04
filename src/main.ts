@@ -1,6 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
 import { DemoApp } from './demo-app/demo-app';
-import { Renderer, provide, Injector, Provider } from '@angular/core';
+import { provide, Injector } from '@angular/core';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import 'rxjs/Rx';
 import 'lodash';

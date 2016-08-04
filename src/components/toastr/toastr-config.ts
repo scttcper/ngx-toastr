@@ -1,0 +1,44 @@
+import { Injectable } from '@angular/core';
+
+import { Toast } from './toast-component';
+
+@Injectable()
+export class ToastConfig {
+  // TODO: might not be needed
+  // allowHtml: boolean = false;
+  closeButton: boolean = false;
+  // closeHtml: string = '<button>&times;</button>';
+  // TODO: extended?
+  // extendedTimeOut: number = 1000;
+  // TODO: listeners for toast actions
+  // onHidden: null;
+  // onShown: null;
+  // onTap: null;
+  progressBar: boolean = false;
+  timeOut: number = 5000;
+
+  toastClass: string = 'toast';
+  positionClass: string = 'toast-top-right';
+  titleClass: string = 'toast-title';
+  messageClass: string = 'toast-message';
+  tapToDismiss: boolean = true;
+  toastComponent = Toast;
+}
+
+@Injectable()
+export class ToastrConfig extends ToastConfig {
+  autoDismiss: boolean = false;
+  // TODO:
+  // containerId: string = 'toast-container';
+  iconClasses = {
+    error: 'toast-error',
+    info: 'toast-info',
+    success: 'toast-success',
+    warning: 'toast-warning',
+  };
+  maxOpened: number = 0;
+  newestOnTop: boolean = true;
+  preventDuplicates: boolean = false;
+  // TODO:
+  // preventOpenDuplicates: boolean = false;
+}
