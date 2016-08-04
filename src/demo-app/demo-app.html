@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-lg-10 offset-lg-1 col-xs-12">
       <h1>toastr-ng2</h1>
       <div class="card">
         <div class="card-block">
@@ -31,7 +31,7 @@
                   </label>
                 </div>
 
-                <div class="checkbox">
+                <!-- <div class="checkbox">
                   <label>
                     <input type="checkbox" ng-model="options.newestOnTop"> New toasts on top?
                   </label>
@@ -62,10 +62,31 @@
                   <label>
                     <input type="checkbox" ng-model="options.customTemplate"> Custom template
                   </label>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col-md-4">
+              <div class="form-group">
+                <label for="toastTimeout">Timeout</label>
+                <input [(ngModel)]="options.timeOut" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
+                <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
+              </div>
+              <div class="form-group">
+                <label for="maxNumberToasts">Maximum Toasts</label>
+                <input [(ngModel)]="toastrService.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+                <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
+              </div>
+              <!-- <div class="form-group">
+                <label for="toastExtendedTimeout">Extended timeout</label>
+                <input type="text" ng-model="options.extendedTimeout" class="form-control" id="toastExtendedTimeout">
+              </div> -->
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" [(ngModel)]="toastrService.toastrConfig.autoDismiss"> Auto dismiss on max
+                </label>
+              </div>
+            </div>
+            <div class="col-md-3">
               <fieldset class="form-group">
                 <label>Toast type</label>
                 <div class="radio">
@@ -144,27 +165,6 @@
                   </label>
                 </div>
               </fieldset>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <label for="toastTimeout">Timeout</label>
-                <input [(ngModel)]="options.timeOut" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
-                <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
-              </div>
-              <div class="form-group">
-                <label for="maxNumberToasts">Maximum Toasts</label>
-                <input [(ngModel)]="toastrService.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
-                <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
-              </div>
-              <!-- <div class="form-group">
-                <label for="toastExtendedTimeout">Extended timeout</label>
-                <input type="text" ng-model="options.extendedTimeout" class="form-control" id="toastExtendedTimeout">
-              </div> -->
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" [(ngModel)]="toastrService.toastrConfig.autoDismiss"> Auto dismiss?
-                </label>
-              </div>
             </div>
           </div>
           <!-- <div ng-if="options.customTemplate" class="row">
