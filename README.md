@@ -16,6 +16,9 @@ bootstrap(DemoApp, [
 ```
 pass viewContainerRef to ToastrService
 ```javascript
+import { ToastrService } from 'toastr-ng2';
+import { Component, ViewContainerRef } from '@angular/core';
+
 @Component({
   selector: 'demo-app',
 })
@@ -26,6 +29,7 @@ export class DemoApp {
   ) {
     toastrService.viewContainerRef = this.viewContainerRef;
   }
+}
 ```
 show simple toast
 ```javascript
@@ -35,6 +39,9 @@ this.toastrService.success('hello');
 ### custom default setup
 add to bootstrap and remove TOASTR_PROVIDERS
 ```javascript
+import { provide, Injector } from '@angular/core';
+import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-ng2';
+
 bootstrap(DemoApp, [
   OverlayContainer,
   Overlay,
