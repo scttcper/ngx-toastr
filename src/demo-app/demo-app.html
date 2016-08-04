@@ -149,7 +149,7 @@
               </div>
               <div class="form-group">
                 <label for="maxNumberToasts">Maximum Toasts</label>
-                <input [(ngModel)]="options.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+                <input [(ngModel)]="toastrService.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
               </div>
               <!-- <div class="form-group">
@@ -158,7 +158,7 @@
               </div> -->
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" ng-model="options.autoDismiss"> Auto dismiss?
+                  <input type="checkbox" [(ngModel)]="toastrService.toastrConfig.autoDismiss"> Auto dismiss?
                 </label>
               </div>
             </div>

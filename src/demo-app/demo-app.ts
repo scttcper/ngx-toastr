@@ -75,10 +75,8 @@ export class DemoApp {
     this.options = new ToastrConfig();
   }
   openToast() {
-    let inserted = this.toastrService[this.type](this.message, this.title, this.options);
-    inserted.then((activeToast: ActiveToast) => {
-      this.lastInserted.push(activeToast.toastId);
-    });
+    let ins = this.toastrService[this.type](this.message, this.title, this.options);
+    this.lastInserted.push(ins.toastId);
   }
   openRandomToast() {
 

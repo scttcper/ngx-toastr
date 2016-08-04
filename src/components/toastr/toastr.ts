@@ -18,6 +18,7 @@ import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal, PortalHost } from './portal/portal';
 import { OverlayContainer } from './overlay/overlay-container';
 
+// TODO: split into toast config and global config
 @Injectable()
 export class ToastrConfig {
   allowHtml: boolean = false;
@@ -56,8 +57,8 @@ export class ToastrConfig {
 
 export interface ActiveToast {
   toastId?: number;
-  portal?: PortalHost;
-  overlayRef?: OverlayRef;
+  portal?: Promise<PortalHost>;
+  overlayRef?: Promise<OverlayRef>;
 }
 
 @Injectable()
@@ -74,19 +75,19 @@ export class ToastrService {
     private injector: Injector
   ) {}
 
-  public success(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
+  public success(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.success;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public error(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
+  public error(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.error;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public info(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
+  public info(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.info;
     return this._buildNotification(type, message, title, optionsOverride);
   }
-  public warning(message: string, title?: string, optionsOverride?: ToastrConfig): Promise<any> {
+  public warning(message: string, title?: string, optionsOverride?: ToastrConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, optionsOverride);
   }
@@ -95,10 +96,11 @@ export class ToastrService {
     for (let i = 0; i < this.toasts.length; i++) {
       if (toastId !== undefined) {
         if (this.toasts[i].toastId === toastId) {
-          this.toasts[i].portal._hostElement.component.remove();
+          this.toasts[i].portal.then(portal => portal._hostElement.component.remove());
+          return;
         }
       } else {
-        this.toasts[i].portal._hostElement.component.remove();
+        this.toasts[i].portal.then(portal => portal._hostElement.component.remove());
       }
     }
   }
@@ -107,11 +109,19 @@ export class ToastrService {
     if (!activeToast) {
       return false;
     }
-    activeToast.overlayRef.detach();
+    activeToast.overlayRef.then(ref => ref.detach());
     this.toasts.splice(index, 1);
+    if (this.toastrConfig.maxOpened &&
+      this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
+      this.toasts[+this.toastrConfig.maxOpened - 1].portal.then((portal) => {
+        if (portal._hostElement.component.state === 'inactive') {
+          portal._hostElement.component.activateToast();
+        }
+      });
+    }
     if (!this.toasts.length) {
       this.overlay.dispose();
-      activeToast.overlayRef.dispose();
+      activeToast.overlayRef.then((ref) => ref.dispose());
     }
     return true;
   }
@@ -129,7 +139,16 @@ export class ToastrService {
     message: string,
     title?: string,
     optionsOverride: ToastrConfig = this.toastrConfig
-  ): Promise<ActiveToast> {
+  ): ActiveToast {
+    // max opened and auto dismiss = true
+    let keepInactive = false;
+    if (+this.toastrConfig.maxOpened && this.toasts.length >= +this.toastrConfig.maxOpened) {
+      keepInactive = true;
+      if (this.toastrConfig.autoDismiss) {
+        this.clear(this.toasts[this.toasts.length - 1].toastId);
+      }
+    }
+
     // pass current view to toast
     // this keeps the ToastrService as a singleton
     let resolvedProviders = ReflectiveInjector.resolve([
@@ -143,24 +162,26 @@ export class ToastrService {
       child
     );
     let inserted: ActiveToast = { toastId: this.index++ };
-    return this.overlay.create(optionsOverride.positionClass)
-      .then((ref) => {
-        let res = ref.attach(component);
-        // TODO: possible use this ref to detach() later
-        inserted.overlayRef = ref;
-        return res;
-      })
-      .then((portal) => {
+    let overlayRef = this.overlay.create(optionsOverride.positionClass);
+    inserted.overlayRef = overlayRef;
+    overlayRef.then((ref) => {
+      let p = ref.attach(component);
+      inserted.portal = p;
+      p.then((portal) => {
         // TODO: explore injecting these values
         portal._hostElement.component.toastId = inserted.toastId;
         portal._hostElement.component.message = message;
         portal._hostElement.component.title = title;
         portal._hostElement.component.toastType = type;
         portal._hostElement.component.options = optionsOverride;
-        inserted.portal = portal;
-        this.toasts.push(inserted);
-        return inserted;
+        if (!keepInactive) {
+          setTimeout(() => portal._hostElement.component.activateToast());
+        }
+        return portal;
       });
+    });
+    this.toasts.push(inserted);
+    return inserted;
   }
 }
 
@@ -203,11 +224,15 @@ export const TOASTR_PROVIDERS: any = [
       state('active', style({
         opacity: 1
       })),
+      state('removed', style({
+        opacity: 0
+      })),
       transition('inactive <=> active', animate('300ms ease-in')),
+      transition('active <=> removed', animate('300ms ease-in')),
     ]),
   ],
 })
-export class Toast implements OnInit {
+export class Toast {
   toastId: number;
   timeout: number;
   message: string;
@@ -220,14 +245,13 @@ export class Toast implements OnInit {
   constructor(
     private toastrService: ToastrService
   ) {}
-
-  ngOnInit() {
+  activateToast() {
+    this.state = 'active';
     if (this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();
       }, this.options.timeOut);
     }
-    setTimeout(() => this.state = 'active');
   }
 
   tapToast() {
@@ -235,10 +259,10 @@ export class Toast implements OnInit {
   }
 
   remove() {
-    if (this.state === 'inactive') {
+    if (this.state === 'removed') {
       return;
     }
-    this.state = 'inactive';
+    this.state = 'removed';
     setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
 }
