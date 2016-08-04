@@ -35,7 +35,6 @@ export class Overlay {
   }
 
   getPaneElement(positionClass: string): Promise<HTMLElement> {
-    // TODO: possible multiple panes for multiple positionClasses
     if (!this._paneElement) { this._createPaneElement(positionClass); }
     return Promise.resolve(this._paneElement);
   }
