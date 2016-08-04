@@ -60,7 +60,8 @@ export class ToastrConfig extends ToastConfig {
 }
 
 export interface ActiveToast {
-  toastId?: number;
+  toastId: number;
+  message: string;
   portal?: Promise<PortalHost>;
   overlayRef?: Promise<OverlayRef>;
 }
@@ -138,6 +139,14 @@ export class ToastrService {
     }
     return {index: null, activeToast: null};
   }
+  private isDuplicate(message: string): boolean {
+    for (let i = 0; i < this.toasts.length; i++) {
+      if (this.toasts[i].message === message) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   private _buildNotification(
     type: string,
@@ -146,7 +155,7 @@ export class ToastrService {
     optionsOverride: ToastConfig = this.toastrConfig
   ): ActiveToast {
     // max opened and auto dismiss = true
-    if (this.toastrConfig.preventDuplicates && this.previousToastMessage === message) {
+    if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
       return;
     }
     this.previousToastMessage = message;
@@ -170,7 +179,10 @@ export class ToastrService {
       this.viewContainerRef,
       child
     );
-    let inserted: ActiveToast = { toastId: this.index++ };
+    let inserted: ActiveToast = {
+      toastId: this.index++,
+      message,
+    };
     let overlayRef = this.overlay.create(optionsOverride.positionClass);
     inserted.overlayRef = overlayRef;
     overlayRef.then((ref) => {
