@@ -38,7 +38,7 @@ show simple toast
 this.toastrService.success('hello');
 ```
 
-### custom default setup
+### Override default settings
 add to bootstrap and remove TOASTR_PROVIDERS
 ```javascript
 import { provide, Injector } from '@angular/core';
@@ -50,6 +50,7 @@ bootstrap(DemoApp, [
   provide(ToastrService, {
     useFactory: (overlay: Overlay, injector: Injector) => {
       const customConfig = new ToastrConfig();
+      // override defaults here
       customConfig.timeOut = 500;
       return new ToastrService(customConfig, overlay, injector);
     },
@@ -60,6 +61,7 @@ bootstrap(DemoApp, [
 
 
 ### individual toast settings
+success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
 ```javascript
 import { ToastConfig } from 'toastr-ng2';
 
