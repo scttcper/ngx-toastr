@@ -1,5 +1,7 @@
 # toastr-ng2
-Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay
+Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay. The main difference between toastr-ng2 and other available angular 2 toastr ports is that it does not use *ngFor to display new toasts allowing for more customization and higher performance.  
+  
+Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
 
 ## simple setup
 ### install
@@ -54,4 +56,15 @@ bootstrap(DemoApp, [
     deps: [Overlay, Injector],
   }),
 ]);
+```
+
+
+### individual toast settings
+```javascript
+import { ToastConfig } from 'toastr-ng2';
+
+let errorConfig = new ToastConfig();
+// display until dismissed
+errorConfig.timeOut = 0;
+this.toastrService.error('everything is broken', 'title is optional', errorConfig);
 ```
