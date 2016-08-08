@@ -1,4 +1,5 @@
-// angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css
+// based on angular-toastr css
+// https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css
 .toast-title {
   font-weight: bold;
 }
@@ -151,31 +152,13 @@ button.toast-close-button {
 .toast-warning {
   background-color: #F89406;
 }
-progress-bar {
+.toast-progress {
   position: absolute;
   left: 0;
   bottom: 0;
   height: 4px;
   background-color: #000000;
   opacity: 0.4;
-}
-/*Animations*/
-div[toast] {
-  opacity: 1 !important;
-}
-div[toast].ng-enter {
-  opacity: 0 !important;
-  transition: opacity .3s linear;
-}
-div[toast].ng-enter.ng-enter-active {
-  opacity: 1 !important;
-}
-div[toast].ng-leave {
-  opacity: 1;
-  transition: opacity .3s linear;
-}
-div[toast].ng-leave.ng-leave-active {
-  opacity: 0 !important;
 }
 /*Responsive Design*/
 @media all and (max-width: 240px) {
