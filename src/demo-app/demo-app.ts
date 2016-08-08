@@ -3,15 +3,14 @@ import { ToastrService, ToastrConfig } from '../components/toastr/toastr';
 import * as _ from 'lodash';
 
 
-// TODO: random quote when message/title are blank
 const quotes = [
-  {
-    title: 'Come to Freenode',
-    message: 'We rock at <em>#angularjs</em>',
-    options: {
-      allowHtml: true
-    }
-  },
+  // {
+  //   title: 'Come to Freenode',
+  //   message: 'We rock at <em>#angularjs</em>',
+  //   options: {
+  //     allowHtml: true
+  //   }
+  // },
   {
     title: 'Looking for bootstrap?',
     message: 'Try ui-bootstrap out!'
@@ -33,12 +32,16 @@ const quotes = [
     message: 'Toastr rock!'
   },
   {
-    title: 'What about nice html?',
-    message: '<strong>Sure you <em>can!</em></strong>',
-    options: {
-      allowHtml: true
-    }
+    title: 'Title only',
+    message: null,
   },
+  // {
+  //   title: 'What about nice html?',
+  //   message: '<strong>Sure you <em>can!</em></strong>',
+  //   options: {
+  //     allowHtml: true
+  //   }
+  // },
   // {
   //   title: 'Ionic is <em>cool</em>',
   //   message: 'Best mobile framework ever',
@@ -79,7 +82,14 @@ export class DemoApp {
   openToast() {
     // Clone current config so it doesn't change when ngModel updates
     let newConfig = _.cloneDeep(this.options);
-    let ins = this.toastrService[this.type](this.message, this.title, newConfig);
+    let m = this.message;
+    let t = this.title;
+    if (!this.title.length && !this.message.length) {
+      let randomMessage = quotes[_.random(0, quotes.length - 1)];
+      m = randomMessage.message;
+      t = randomMessage.title;
+    }
+    let ins = this.toastrService[this.type](m, t, newConfig);
     if (ins) {
       this.lastInserted.push(ins.toastId);
     }
