@@ -1,6 +1,6 @@
 {
   "name": "toastr-ng2",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Toastr for Angular 2",
   "main": "./toastr.js",
   "typings": "./toastr.d.ts",
@@ -11,6 +11,10 @@
   "keywords": [
     "ng2",
     "angular2",
+    "alerts",
+    "component",
+    "alert",
+    "notify",
     "toastr",
     "ng2-toastr",
     "toastr-ng2"
