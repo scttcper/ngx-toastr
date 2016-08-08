@@ -1,7 +1,4 @@
-/***********************************************************************************************
- * User Configuration.
- **********************************************************************************************/
-
+// User Configuration
 const components = [
   'toastr',
 ];
@@ -21,21 +18,18 @@ const packages: any = {
 };
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-/***********************************************************************************************
- * Everything underneath this line is managed by the CLI.
- **********************************************************************************************/
+// Everything underneath this line is managed by the CLI
 const barrels: string[] = [
   // Angular specific barrels.
   '@angular/core',
   '@angular/common',
   '@angular/compiler',
-  '@angular/http',
+  // '@angular/http',
   '@angular/forms',
-  '@angular/router',
+  // '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
-  '@angular2-material/core',
+  // '@angular2-material/core',
   '@types/core-js',
 
   // Thirdparty barrels.
@@ -73,7 +67,7 @@ System.config({
   packages: _cliSystemConfig
 });
 
-const materialPkgs:string[] = [
+const materialPkgs: string[] = [
   'core',
 ];
 
