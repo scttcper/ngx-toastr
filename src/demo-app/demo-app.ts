@@ -16,7 +16,7 @@ const quotes = [
     message: 'Try ui-bootstrap out!'
   },
   {
-    title: 'Wants a better router?',
+    title: 'Want a better router?',
     message: 'We have you covered with ui-router'
   },
   {
