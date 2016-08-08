@@ -7,11 +7,13 @@ import {
   style,
 } from '@angular/core';
 
+import { ToastProgress } from './progress-component';
 import { ToastConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 
 @Component({
   selector: '[toast]',
+  directives: [ToastProgress],
   providers: [],
   template: `
   <div @flyInOut="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
@@ -26,9 +28,9 @@ import { ToastrService } from './toastr-service';
       <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
     </div>
     -->
-    <!-- TODO: progressbar
-    <progress-bar *ngIf="progressBar"></progress-bar>
-    -->
+    <div *ngIf="options.progressBar">
+      <toast-progress [ttl]="options.timeOut"></toast-progress>
+    </div>
   </div>
   `,
   animations: [
