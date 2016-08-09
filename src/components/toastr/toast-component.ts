@@ -16,7 +16,7 @@ import { ToastrService } from './toastr-service';
   directives: [ToastProgress],
   providers: [],
   template: `
-  <div @flyInOut="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
+  <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <button *ngIf="options.closeButton" class="toast-close-button" (click)="remove()">×</button>
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
     <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
