@@ -12,12 +12,11 @@
     "ng2",
     "angular2",
     "alerts",
-    "component",
     "alert",
-    "notify",
     "toastr",
     "ng2-toastr",
-    "toastr-ng2"
+    "toastr-ng2",
+    "ngModule"
   ],
   "license": "MIT",
   "bugs": {
