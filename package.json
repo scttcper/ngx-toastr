@@ -8,7 +8,7 @@
     "url": "https://github.com/scttcper/toastr-ng2.git"
   },
   "scripts": {
-    "clean": "rimraf dist deploy",
+    "clean": "rimraf dist deploy tmp",
     "build": "npm run clean && ng build --prod",
     "pages": "npm run build && node gh-pages",
     "demo-app": "ng serve",
