@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FormsModule } from '@angular/forms';
 import 'rxjs/Rx';
 import 'lodash';
@@ -24,6 +25,4 @@ import { ToastrModule } from './components/toastr/toastr';
 })
 class MainModule {}
 
-
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 platformBrowserDynamic().bootstrapModule(MainModule);
