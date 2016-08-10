@@ -14,6 +14,7 @@ export { ToastProgress } from './progress-component';
 export {
   ToastrService,
   TOASTR_PROVIDERS,
-  ActiveToast
+  ActiveToast,
+  ToastrModule
 } from './toastr-service';
 export { ToastrConfig, ToastConfig } from './toastr-config';

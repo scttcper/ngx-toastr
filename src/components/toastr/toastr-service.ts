@@ -5,6 +5,7 @@ import {
   provide,
   Injector,
   Provider,
+  NgModule,
 } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
@@ -169,3 +170,12 @@ export const TOASTR_PROVIDERS: any = [
     deps: [Overlay, Injector]
   })
 ];
+
+@NgModule({
+  imports: [],
+  exports: [],
+  declarations: [],
+  entryComponents: [],
+  providers: [ToastrConfig, ToastConfig, OverlayContainer, Overlay, ToastrService],
+})
+export class ToastrModule { }
