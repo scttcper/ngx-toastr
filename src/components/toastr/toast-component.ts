@@ -5,16 +5,14 @@ import {
   transition,
   animate,
   style,
+  OnDestroy,
 } from '@angular/core';
 
-import { ToastProgress } from './progress-component';
 import { ToastConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 
 @Component({
   selector: '[toast]',
-  directives: [ToastProgress],
-  providers: [],
   template: `
   <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
     <button *ngIf="options.closeButton" class="toast-close-button" (click)="remove()">×</button>
@@ -29,7 +27,7 @@ import { ToastrService } from './toastr-service';
     </div>
     -->
     <div *ngIf="options.progressBar">
-      <toast-progress [ttl]="options.timeOut"></toast-progress>
+      <div class="toast-progress" [style.width.%]="width">hello</div>
     </div>
   </div>
   `,
@@ -49,7 +47,7 @@ import { ToastrService } from './toastr-service';
     ]),
   ],
 })
-export class Toast {
+export class Toast implements OnDestroy {
   toastId: number;
   timeout: number;
   message: string;
@@ -58,17 +56,31 @@ export class Toast {
   options: ToastConfig;
   // used to control animation
   state: string = 'inactive';
+  // progressBar
+  private hideTime: number;
+  private intervalId: number;
+  private width: number;
 
   constructor(
     private toastrService: ToastrService
   ) {}
+  ngOnDestroy() {
+    clearInterval(this.intervalId);
+  }
   activateToast() {
     this.state = 'active';
     if (+this.options.timeOut !== 0) {
       this.timeout = setTimeout(() => {
         this.remove();
       }, +this.options.timeOut);
+      this.hideTime = new Date().getTime() + this.options.timeOut;
+      this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
+  }
+  updateProgress() {
+    let now = new Date().getTime();
+    let remaining = this.hideTime - now;
+    this.width = (remaining / this.options.timeOut) * 100;
   }
 
   tapToast() {

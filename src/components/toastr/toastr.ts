@@ -10,7 +10,6 @@ export { OverlayContainer } from './overlay/overlay-container';
 export { OverlayRef } from './overlay/overlay-ref';
 
 export { Toast } from './toast-component';
-export { ToastProgress } from './progress-component';
 export {
   ToastrService,
   TOASTR_PROVIDERS,
