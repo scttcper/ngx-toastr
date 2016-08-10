@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
-import { ToastrService, ToastrConfig } from '../components/toastr/toastr';
+import { ToastrConfig, ToastrService } from '../components/toastr/toastr';
 import * as _ from 'lodash';
 
 
@@ -55,12 +55,9 @@ const types: string[] = ['success', 'error', 'info', 'warning'];
 
 @Component({
   selector: 'demo-app',
-  providers: [],
   templateUrl: 'demo-app/demo-app.html',
   styleUrls: ['demo-app/demo-app.css'],
-  directives: [],
   encapsulation: ViewEncapsulation.None,
-  pipes: [],
 })
 export class DemoApp {
   options: ToastrConfig;

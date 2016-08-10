@@ -1,31 +1,63 @@
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { DemoApp } from './demo-app/demo-app';
-import { disableDeprecatedForms, provideForms } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { FormsModule } from '@angular/forms';
 import 'rxjs/Rx';
 import 'lodash';
 
-import { TOASTR_PROVIDERS } from './components/toastr/toastr';
+import { DemoApp } from './demo-app/demo-app';
+import { ToastrModule } from './components/toastr/toastr';
+
+@NgModule({
+  bootstrap: [
+    DemoApp
+  ],
+  declarations: [
+    DemoApp
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ToastrModule,
+  ],
+})
+class MainModule {}
 
 
-// Used to test the default override
-// import { TOASTR_PROVIDERS, ToastrConfig, ToastrService } from './components/toastr/toastr';
-// import { provide, Injector } from '@angular/core';
-// import { Overlay } from './components/toastr/overlay/overlay';
-// import { OverlayContainer } from './components/toastr/overlay/overlay-container';
+// for testing a custom setup
+// import { NgModule, provide, Injector } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// import { FormsModule } from '@angular/forms';
+// import 'rxjs/Rx';
+// import 'lodash';
+//
+// import { DemoApp } from './demo-app/demo-app';
+// import { ToastrModule, Overlay, ToastrConfig, ToastrService } from './components/toastr/toastr';
+//
+// @NgModule({
+//   bootstrap: [
+//     DemoApp
+//   ],
+//   declarations: [
+//     DemoApp
+//   ],
+//   imports: [
+//     BrowserModule,
+//     FormsModule,
+//     ToastrModule
+//   ],
+//   providers: [
+//     provide(ToastrService, {
+//       useFactory: (overlay: Overlay, injector: Injector) => {
+//         const customConfig = new ToastrConfig();
+//         customConfig.timeOut = 500;
+//         return new ToastrService(customConfig, overlay, injector);
+//       },
+//       deps: [Overlay, Injector],
+//     }),
+//   ]
+// })
+// class MainModule {}
 
-
-bootstrap(DemoApp, [
-  disableDeprecatedForms(),
-  provideForms(),
-  TOASTR_PROVIDERS,
-  // OverlayContainer,
-  // Overlay,
-  // provide(ToastrService, {
-  //   useFactory: (overlay: Overlay, injector: Injector) => {
-  //     const customConfig = new ToastrConfig();
-  //     customConfig.timeOut = 500;
-  //     return new ToastrService(customConfig, overlay, injector);
-  //   },
-  //   deps: [Overlay, Injector],
-  // }),
-]);
+platformBrowserDynamic().bootstrapModule(MainModule);
