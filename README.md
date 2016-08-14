@@ -1,12 +1,15 @@
 # toastr-ng2
-Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay. The main difference between toastr-ng2 and other available angular 2 toastr ports is that it does not use `*ngFor` to display new toasts allowing for more customization and higher performance.  
+Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay. 
+##### Why another toastr?
+- no use of `*ngFor`. Higher performance and greater flexibility.
+- Toasts are components injected into the main view.
+- Toast component can be overwritten for custom style or html
 
 Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
 
-## simple setup
 ### install  
 ```bash
-npm i toastr-ng2 -s
+npm install toastr-ng2 --save
 ```  
 ### setup  
 __step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/demo-app/demo-app.scss) to your project. You can also import the css file from the npm module. It is not included with the toast component so it can be more easily overwritten. Is this a good choice? You decide.
