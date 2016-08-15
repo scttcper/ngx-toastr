@@ -76,10 +76,10 @@
                 <input [(ngModel)]="toastrService.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
               </div>
-              <!-- <div class="form-group">
-                <label for="toastExtendedTimeout">Extended timeout</label>
-                <input type="text" ng-model="options.extendedTimeout" class="form-control" id="toastExtendedTimeout">
-              </div> -->
+              <div class="form-group">
+                <label for="toastExtendedTimeout">Extended Timeout</label>
+                <input type="text" [(ngModel)]="toastrService.toastrConfig.extendedTimeOut" class="form-control" id="toastExtendedTimeout">
+              </div>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" [(ngModel)]="toastrService.toastrConfig.autoDismiss"> Auto dismiss on max
