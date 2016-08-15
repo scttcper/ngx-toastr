@@ -15,7 +15,10 @@ import { ToastrService } from './toastr-service';
   selector: '[toast]',
   template: `
   <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
-    <button *ngIf="options.closeButton" class="toast-close-button" (click)="remove()">×</button>
+    <!-- button html -->
+    <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
+      &times;
+    </button>
     <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
     <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
       {{message}}
@@ -61,9 +64,7 @@ export class Toast implements OnDestroy {
   private intervalId: number;
   private width: number;
 
-  constructor(
-    private toastrService: ToastrService
-  ) {}
+  constructor(private toastrService: ToastrService) {}
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
@@ -82,13 +83,11 @@ export class Toast implements OnDestroy {
     let remaining = this.hideTime - now;
     this.width = (remaining / this.options.timeOut) * 100;
   }
-
   tapToast() {
     if (this.options.tapToDismiss) {
       this.remove();
     }
   }
-
   remove() {
     if (this.state === 'removed') {
       return;

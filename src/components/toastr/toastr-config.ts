@@ -4,10 +4,7 @@ import { Toast } from './toast-component';
 
 @Injectable()
 export class ToastConfig {
-  // TODO: might not be needed
-  // allowHtml: boolean = false;
   closeButton: boolean = false;
-  // closeHtml: string = '<button>&times;</button>';
   // TODO: extended?
   // extendedTimeOut: number = 1000;
   // TODO: listeners for toast actions
