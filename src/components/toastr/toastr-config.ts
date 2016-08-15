@@ -4,7 +4,9 @@ import { Toast } from './toast-component';
 
 @Injectable()
 export class ToastConfig {
+  // shows close button
   closeButton: boolean = false;
+  // extendedTimeOut: how long the toast will display after a user hovers
   extendedTimeOut: number = 1000;
   // TODO: listeners for toast actions
   // onHidden: null;
