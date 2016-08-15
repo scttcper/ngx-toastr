@@ -2,16 +2,13 @@ import {
   Injectable,
   ViewContainerRef,
   ReflectiveInjector,
-  provide,
   Injector,
   Provider,
-  NgModule,
 } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal, PortalHost } from './portal/portal';
-import { OverlayContainer } from './overlay/overlay-container';
 import { ToastConfig, ToastrConfig } from './toastr-config';
 
 export interface ActiveToast {
@@ -159,23 +156,3 @@ export class ToastrService {
     return inserted;
   }
 }
-
-export const TOASTR_PROVIDERS: any = [
-  OverlayContainer,
-  Overlay,
-  provide(ToastrService, {
-    useFactory: (overlay: Overlay, injector: Injector) => {
-      return new ToastrService(new ToastrConfig(), overlay, injector);
-    },
-    deps: [Overlay, Injector]
-  })
-];
-
-@NgModule({
-  imports: [],
-  exports: [],
-  declarations: [],
-  entryComponents: [],
-  providers: [ToastrConfig, ToastConfig, OverlayContainer, Overlay, ToastrService],
-})
-export class ToastrModule { }

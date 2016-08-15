@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/scttcper/toastr-ng2",
   "peerDependencies": {
-    "@angular/core": "^2.0.0-rc.5"
+    "@angular/core": "^2.0.0-rc.5",
+    "@angular/platform-browser": "^2.0.0-rc.5"
   }
 }

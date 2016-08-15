@@ -1,4 +1,4 @@
-import { ComponentResolver, Injectable } from '@angular/core';
+import { ComponentFactoryResolver, Injectable } from '@angular/core';
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
@@ -18,7 +18,7 @@ export class Overlay {
   private _paneElement: HTMLElement;
 
   constructor(private _overlayContainer: OverlayContainer,
-              private _componentResolver: ComponentResolver) {}
+              private _componentFactoryResolver: ComponentFactoryResolver) {}
   /**
    * Creates an overlay.
    * @param state State to apply to the overlay.
@@ -56,7 +56,7 @@ export class Overlay {
    * @returns A portal host for the given DOM element.
    */
   private _createPortalHost(pane: HTMLElement): DomPortalHost {
-    return new DomPortalHost(pane, this._componentResolver);
+    return new DomPortalHost(pane, this._componentFactoryResolver);
   }
 
   /**

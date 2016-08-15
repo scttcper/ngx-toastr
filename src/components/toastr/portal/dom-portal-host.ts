@@ -1,4 +1,4 @@
-import { ComponentResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, EmbeddedViewRef } from '@angular/core';
 import { BasePortalHost, ComponentPortal, TemplatePortal } from './portal';
 import { MdComponentPortalAttachedToDomWithoutOriginError } from './portal-errors';
 
@@ -12,7 +12,7 @@ import { MdComponentPortalAttachedToDomWithoutOriginError } from './portal-error
 export class DomPortalHost extends BasePortalHost {
   constructor(
       private _hostDomElement: Element,
-      private _componentResolver: ComponentResolver) {
+      private _componentFactoryResolver: ComponentFactoryResolver) {
     super();
   }
 
@@ -23,21 +23,20 @@ export class DomPortalHost extends BasePortalHost {
       throw new MdComponentPortalAttachedToDomWithoutOriginError();
     }
 
-    return this._componentResolver.resolveComponent(portal.component).then(componentFactory => {
-      let ref = portal.viewContainerRef.createComponent(
-          componentFactory,
-          portal.viewContainerRef.length,
-          portal.injector || portal.viewContainerRef.parentInjector);
+    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
+    let ref = portal.viewContainerRef.createComponent(
+        componentFactory,
+        portal.viewContainerRef.length,
+        portal.injector || portal.viewContainerRef.parentInjector);
 
-      let hostView = <EmbeddedViewRef<any>> ref.hostView;
-      if (newestOnTop) {
-        this._hostDomElement.insertBefore(hostView.rootNodes[0], this._hostDomElement.firstChild);
-      } else {
-        this._hostDomElement.appendChild(hostView.rootNodes[0]);
-      }
-      this.setDisposeFn(() => ref.destroy());
-      return ref;
-    });
+    let hostView = <EmbeddedViewRef<any>> ref.hostView;
+    if (newestOnTop) {
+      this._hostDomElement.insertBefore(hostView.rootNodes[0], this._hostDomElement.firstChild);
+    } else {
+      this._hostDomElement.appendChild(hostView.rootNodes[0]);
+    }
+    this.setDisposeFn(() => ref.destroy());
+    return Promise.resolve(ref);
   }
 
   attachTemplatePortal(portal: TemplatePortal): Promise<Map<string, any>> {
