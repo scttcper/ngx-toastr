@@ -14,7 +14,7 @@ import { ToastrService } from './toastr-service';
 @Component({
   selector: '[toast]',
   template: `
-  <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}" (click)="tapToast()">
+  <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}">
     <!-- button html -->
     <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
       &times;
@@ -34,6 +34,11 @@ import { ToastrService } from './toastr-service';
     </div>
   </div>
   `,
+  host: {
+    '(click)': 'tapToast()',
+    '(mouseover)': 'stickAround()',
+    '(mouseout)': 'delayedHideToast()',
+  },
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
@@ -53,6 +58,7 @@ import { ToastrService } from './toastr-service';
 export class Toast implements OnDestroy {
   toastId: number;
   timeout: number;
+  removealTimeout: number;
   message: string;
   title: string;
   toastType: string;
@@ -64,9 +70,11 @@ export class Toast implements OnDestroy {
   private intervalId: number;
   private width: number;
 
-  constructor(private toastrService: ToastrService) {}
+  constructor(private toastrService: ToastrService) { }
   ngOnDestroy() {
     clearInterval(this.intervalId);
+    clearTimeout(this.timeout);
+    clearTimeout(this.removealTimeout);
   }
   activateToast() {
     this.state = 'active';
@@ -93,6 +101,20 @@ export class Toast implements OnDestroy {
       return;
     }
     this.state = 'removed';
-    setTimeout(() => this.toastrService.remove(this.toastId), 300);
+    this.removealTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
+  }
+  delayedHideToast() {
+    if (this.options.timeOut > 0 || this.options.extendedTimeOut > 0) {
+      this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
+      this.options.timeOut = +this.options.extendedTimeOut;
+      this.hideTime = new Date().getTime() + this.options.timeOut;
+    }
+  }
+  stickAround() {
+    clearTimeout(this.timeout);
+    this.hideTime = 0;
+    // todo: stop hiding?
+    // clearTimeout(this.removealTimeout);
+    // this.state = 'active';
   }
 }

@@ -5,8 +5,7 @@ import { Toast } from './toast-component';
 @Injectable()
 export class ToastConfig {
   closeButton: boolean = false;
-  // TODO: extended?
-  // extendedTimeOut: number = 1000;
+  extendedTimeOut: number = 1000;
   // TODO: listeners for toast actions
   // onHidden: null;
   // onShown: null;
