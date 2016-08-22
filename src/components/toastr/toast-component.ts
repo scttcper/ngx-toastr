@@ -68,9 +68,11 @@ export class Toast implements OnDestroy {
   // progressBar
   private hideTime: number;
   private intervalId: number;
-  private width: number;
+  private width: number = 100;
 
-  constructor(private toastrService: ToastrService) { }
+  constructor(
+    private toastrService: ToastrService
+  ) { }
   ngOnDestroy() {
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
@@ -78,18 +80,27 @@ export class Toast implements OnDestroy {
   }
   activateToast() {
     this.state = 'active';
-    if (+this.options.timeOut !== 0) {
+    this.options.timeOut = +this.options.timeOut;
+    if (this.options.timeOut !== 0) {
       this.timeout = setTimeout(() => {
         this.remove();
-      }, +this.options.timeOut);
+      }, this.options.timeOut);
       this.hideTime = new Date().getTime() + this.options.timeOut;
-      this.intervalId = setInterval(() => this.updateProgress(), 10);
+      if (this.options.progressBar) {
+        this.intervalId = setInterval(() => this.updateProgress(), 10);
+      }
     }
   }
   updateProgress() {
+    if (this.width === 0) {
+      return;
+    }
     let now = new Date().getTime();
     let remaining = this.hideTime - now;
     this.width = (remaining / this.options.timeOut) * 100;
+    if (this.width <= 0) {
+      this.width = 0;
+    }
   }
   tapToast() {
     if (this.options.tapToDismiss) {
@@ -105,6 +116,7 @@ export class Toast implements OnDestroy {
   }
   delayedHideToast() {
     if (this.options.timeOut > 0 || this.options.extendedTimeOut > 0) {
+      this.width = 100;
       this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
       this.options.timeOut = +this.options.extendedTimeOut;
       this.hideTime = new Date().getTime() + this.options.timeOut;
