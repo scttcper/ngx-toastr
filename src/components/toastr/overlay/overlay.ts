@@ -15,7 +15,7 @@ import { OverlayContainer } from './overlay-container';
  */
  @Injectable()
 export class Overlay {
-  private _paneElement: HTMLElement;
+  private _paneElement: {string?: HTMLElement} = {};
   constructor(private _overlayContainer: OverlayContainer,
               private _componentFactoryResolver: ComponentFactoryResolver) {}
   /**
@@ -28,14 +28,10 @@ export class Overlay {
   }
 
   getPaneElement(positionClass: string): HTMLElement {
-    if (!this._paneElement) {
+    if (!this._paneElement[positionClass]) {
       this._createPaneElement(positionClass);
     }
-    return this._paneElement;
-  }
-
-  dispose() {
-    this._paneElement = null;
+    return this._paneElement[positionClass];
   }
 
   /**
@@ -47,7 +43,7 @@ export class Overlay {
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
     this._overlayContainer.getContainerElement().appendChild(pane);
-    this._paneElement = pane;
+    this._paneElement[positionClass] = pane;
     return pane;
   }
 

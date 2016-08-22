@@ -70,7 +70,7 @@ export class ToastrService {
       });
     }
     if (!this.toasts.length) {
-      this.overlay.dispose();
+      // this.overlay.dispose();
       activeToast.overlayRef.dispose();
     }
     return true;
