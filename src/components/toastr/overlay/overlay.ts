@@ -16,7 +16,6 @@ import { OverlayContainer } from './overlay-container';
  @Injectable()
 export class Overlay {
   private _paneElement: HTMLElement;
-
   constructor(private _overlayContainer: OverlayContainer,
               private _componentFactoryResolver: ComponentFactoryResolver) {}
   /**
@@ -24,30 +23,32 @@ export class Overlay {
    * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
-  create(positionClass: string): Promise<OverlayRef> {
-    return this.getPaneElement(positionClass).then(pane => this._createOverlayRef(pane));
-  }
-  dispose() {
-    this._paneElement = null;
+  create(positionClass: string): OverlayRef {
+    return this._createOverlayRef(this.getPaneElement(positionClass));
   }
 
-  getPaneElement(positionClass: string): Promise<HTMLElement> {
-    if (!this._paneElement) { this._createPaneElement(positionClass); }
-    return Promise.resolve(this._paneElement);
+  getPaneElement(positionClass: string): HTMLElement {
+    if (!this._paneElement) {
+      this._createPaneElement(positionClass);
+    }
+    return this._paneElement;
+  }
+
+  dispose() {
+    this._paneElement = null;
   }
 
   /**
    * Creates the DOM element for an overlay and appends it to the overlay container.
    * @returns Promise resolving to the created element.
    */
-  private _createPaneElement(positionClass: string): Promise<HTMLElement> {
-    let pane = document.createElement('div');
+  private _createPaneElement(positionClass: string): HTMLElement {
+    const pane = document.createElement('div');
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
     this._overlayContainer.getContainerElement().appendChild(pane);
     this._paneElement = pane;
-    return Promise.resolve(pane);
-    // return Promise.resolve(this._overlayContainer.getContainerElement(positionClass));
+    return pane;
   }
 
   /**
@@ -69,3 +70,10 @@ export class Overlay {
     return new OverlayRef(this._createPortalHost(pane), pane);
   }
 }
+
+
+/** Providers for Overlay and its related injectables. */
+export const OVERLAY_PROVIDERS = [
+  Overlay,
+  OverlayContainer,
+];

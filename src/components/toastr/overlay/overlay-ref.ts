@@ -9,8 +9,10 @@ export class OverlayRef implements PortalHost {
       private _portalHost: PortalHost,
       private _pane: HTMLElement) { }
 
-  attach(portal: Portal<any>, newestOnTop: boolean): Promise<any> {
-    return this._portalHost.attach(portal, newestOnTop);
+  attach(portal: Portal<any>, newestOnTop: boolean): any {
+    let attachResult = this._portalHost.attach(portal, newestOnTop);
+
+    return attachResult;
   }
 
   detach(): Promise<any> {

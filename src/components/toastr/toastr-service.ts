@@ -1,21 +1,15 @@
-import {
-  Injectable,
-  ViewContainerRef,
-  ReflectiveInjector,
-  Injector,
-  Provider,
-} from '@angular/core';
+import { Injectable, ViewContainerRef, Injector } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
-import { ComponentPortal, PortalHost } from './portal/portal';
+import { ComponentPortal } from './portal/portal';
 import { ToastConfig, ToastrConfig } from './toastr-config';
 
 export interface ActiveToast {
   toastId: number;
   message: string;
-  portal?: Promise<PortalHost>;
-  overlayRef?: Promise<OverlayRef>;
+  portal?: any;
+  overlayRef?: OverlayRef;
 }
 
 @Injectable()
@@ -53,11 +47,11 @@ export class ToastrService {
     for (let i = 0; i < this.toasts.length; i++) {
       if (toastId !== undefined) {
         if (this.toasts[i].toastId === toastId) {
-          this.toasts[i].portal.then(portal => portal._hostElement.component.remove());
+          this.toasts[i].portal._hostElement.component.remove();
           return;
         }
       } else {
-        this.toasts[i].portal.then(portal => portal._hostElement.component.remove());
+        this.toasts[i].portal._hostElement.component.remove();
       }
     }
   }
@@ -66,7 +60,7 @@ export class ToastrService {
     if (!activeToast) {
       return false;
     }
-    activeToast.overlayRef.then(ref => ref.detach());
+    activeToast.overlayRef.detach();
     this.toasts.splice(index, 1);
     if (this.toastrConfig.maxOpened &&
       this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
@@ -78,7 +72,7 @@ export class ToastrService {
     }
     if (!this.toasts.length) {
       this.overlay.dispose();
-      activeToast.overlayRef.then((ref) => ref.dispose());
+      activeToast.overlayRef.dispose();
     }
     return true;
   }
@@ -117,42 +111,25 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
-
-    // pass current view to toast
-    // this keeps the ToastrService as a singleton
-    let resolvedProviders = ReflectiveInjector.resolve([
-      new Provider('view', { useValue: this.viewContainerRef }),
-      new Provider('ToastrService', {useValue: this}),
-    ]);
-    let toastInjector = ReflectiveInjector.fromResolvedProviders(resolvedProviders, this.injector);
-    let component = new ComponentPortal(
+    const component = new ComponentPortal(
       optionsOverride.toastComponent,
-      this.viewContainerRef,
-      toastInjector
+      this.viewContainerRef
     );
-    let inserted: ActiveToast = {
+    const ins: ActiveToast = {
       toastId: this.index++,
       message,
+      overlayRef: this.overlay.create(optionsOverride.positionClass),
     };
-    let overlayRef = this.overlay.create(optionsOverride.positionClass);
-    inserted.overlayRef = overlayRef;
-    overlayRef.then((ref) => {
-      let p = ref.attach(component, this.toastrConfig.newestOnTop);
-      inserted.portal = p;
-      p.then((portal) => {
-        // TODO: explore injecting these values
-        portal._hostElement.component.toastId = inserted.toastId;
-        portal._hostElement.component.message = message;
-        portal._hostElement.component.title = title;
-        portal._hostElement.component.toastType = type;
-        portal._hostElement.component.options = optionsOverride;
-        if (!keepInactive) {
-          setTimeout(() => portal._hostElement.component.activateToast());
-        }
-        return portal;
-      });
-    });
-    this.toasts.push(inserted);
-    return inserted;
+    ins.portal = ins.overlayRef.attach(component, this.toastrConfig.newestOnTop);
+    ins.portal._hostElement.component.toastId = ins.toastId;
+    ins.portal._hostElement.component.message = message;
+    ins.portal._hostElement.component.title = title;
+    ins.portal._hostElement.component.toastType = type;
+    ins.portal._hostElement.component.options = optionsOverride;
+    if (!keepInactive) {
+      setTimeout(() => ins.portal._hostElement.component.activateToast());
+    }
+    this.toasts.push(ins);
+    return ins;
   }
 }
