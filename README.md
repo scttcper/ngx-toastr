@@ -1,5 +1,5 @@
 # toastr-ng2
-Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay. 
+Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay.
 ##### Why another toastr?
 - no use of `*ngFor`. Higher performance and greater flexibility.
 - Toasts are components injected into the main view.
@@ -53,7 +53,7 @@ this.toastrService.success('hello');
 ### Override default settings
 add to bootstrap and remove TOASTR_PROVIDERS
 ```javascript
-import { provide, Injector } from '@angular/core';
+import { provide } from '@angular/core';
 import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-ng2';
 
 @NgModule({
@@ -63,14 +63,14 @@ import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-n
   imports: [ ToastrModule ],
   providers: [
     provide(ToastrService, {
-      useFactory: (overlay: Overlay, injector: Injector) => {
+      useFactory: (overlay: Overlay) => {
         // override the config defaults here
         const customConfig = new ToastrConfig();
         // shorter timeOut
         customConfig.timeOut = 500;
-        return new ToastrService(customConfig, overlay, injector);
+        return new ToastrService(customConfig, overlay);
       },
-      deps: [Overlay, Injector],
+      deps: [Overlay],
     }),
   ]
 })

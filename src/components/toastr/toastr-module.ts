@@ -1,4 +1,4 @@
-import { provide, Injector, NgModule } from '@angular/core';
+import { provide, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { Toast } from './toast-component';
@@ -11,10 +11,10 @@ export const TOASTR_PROVIDERS: any = [
   OverlayContainer,
   Overlay,
   provide(ToastrService, {
-    useFactory: (overlay: Overlay, injector: Injector) => {
-      return new ToastrService(new ToastrConfig(), overlay, injector);
+    useFactory: (overlay: Overlay) => {
+      return new ToastrService(new ToastrConfig(), overlay);
     },
-    deps: [Overlay, Injector]
+    deps: [Overlay]
   })
 ];
 
