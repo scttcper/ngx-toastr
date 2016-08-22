@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef, Injector } from '@angular/core';
+import { Injectable, ViewContainerRef } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
@@ -22,8 +22,7 @@ export class ToastrService {
 
   constructor(
     public toastrConfig: ToastrConfig,
-    private overlay: Overlay,
-    private injector: Injector
+    private overlay: Overlay
   ) {}
 
   public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
