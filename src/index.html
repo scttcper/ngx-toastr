@@ -4,11 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>toastr-ng2</title>
+  <meta name="description" content="Fast angular 2 toastr">
   <base href=".">
   {{content-for 'head'}}
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="main.css" rel="stylesheet">
 
+  <!-- animations polyfill for demo -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.2.2/web-animations.min.js"></script>
   {{#unless environment.production}}
   <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
   {{/unless}}
