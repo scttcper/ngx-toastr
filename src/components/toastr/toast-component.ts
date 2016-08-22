@@ -80,6 +80,7 @@ export class Toast implements OnDestroy {
   }
   activateToast() {
     this.state = 'active';
+    this.options.onShown.emit(null);
     this.options.timeOut = +this.options.timeOut;
     if (this.options.timeOut !== 0) {
       this.timeout = setTimeout(() => {
@@ -103,6 +104,7 @@ export class Toast implements OnDestroy {
     }
   }
   tapToast() {
+    this.options.onTap.emit(null);
     if (this.options.tapToDismiss) {
       this.remove();
     }
@@ -111,6 +113,7 @@ export class Toast implements OnDestroy {
     if (this.state === 'removed') {
       return;
     }
+    this.options.onHidden.emit(null);
     this.state = 'removed';
     this.removealTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }

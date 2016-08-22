@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 import { Toast } from './toast-component';
 
@@ -8,10 +8,9 @@ export class ToastConfig {
   closeButton: boolean = false;
   // extendedTimeOut: how long the toast will display after a user hovers
   extendedTimeOut: number = 1000;
-  // TODO: listeners for toast actions
-  // onHidden: null;
-  // onShown: null;
-  // onTap: null;
+  onHidden: EventEmitter<any> = new EventEmitter();
+  onShown: EventEmitter<any> = new EventEmitter();
+  onTap: EventEmitter<any> = new EventEmitter();
   progressBar: boolean = false;
   timeOut: number = 5000;
 
