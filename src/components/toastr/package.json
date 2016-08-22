@@ -1,6 +1,6 @@
 {
   "name": "toastr-ng2",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Toastr for Angular 2",
   "main": "./toastr.js",
   "typings": "./toastr.d.ts",
