@@ -1,6 +1,8 @@
-# toastr-ng2
+# toastr-ng2 
+[![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=2592000)](https://www.npmjs.com/package/toastr-ng2)
 
-Tested with Angular 2.0.0-rc.5 and NgModule. Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
+
+Tested with __Angular 2.0.0-rc.5__ and NgModule. Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
 
 ##### Why another toastr?
 - Toast component injection based on [@angular2-material/core/overlay](https://github.com/angular/material2)
