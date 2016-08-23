@@ -1,17 +1,17 @@
 import {
-    TemplateRef,
-    ViewContainerRef,
-    ElementRef,
-    ComponentRef,
-    Injector
+  TemplateRef,
+  ViewContainerRef,
+  ElementRef,
+  ComponentRef,
+  Injector
 } from '@angular/core';
 import {
-    MdNullPortalHostError,
-    MdPortalAlreadyAttachedError,
-    MdNoPortalAttachedError,
-    MdNullPortalError,
-    MdPortalHostAlreadyDisposedError,
-    MdUnknownPortalTypeError
+  MdNullPortalHostError,
+  MdPortalAlreadyAttachedError,
+  MdNoPortalAttachedError,
+  MdNullPortalError,
+  MdPortalHostAlreadyDisposedError,
+  MdUnknownPortalTypeError
 } from './portal-errors';
 import { ComponentType } from '../overlay/generic-component-type';
 
