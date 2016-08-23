@@ -1,9 +1,9 @@
 # toastr-ng2
-Angular 2 toastr with toast component injection based on [@angular2-material/core](https://github.com/angular/material2) overlay.
 Tested with Angular 2.0.0-rc.5 and NgModule. Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
 
 ##### Why another toastr?
-- no use of `*ngFor`. Fewer dirty checks and higher performance.
+- Toast component injection based on [@angular2-material/core/overlay](https://github.com/angular/material2)
+- No use of `*ngFor`. Fewer dirty checks and higher performance.
 - Toast component can be overwritten for custom style or html.
 - Animations using angular 2's annimation library
 
