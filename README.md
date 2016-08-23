@@ -50,7 +50,6 @@ this.toastrService.success('Hello world!', 'Toastr fun!');
 ![success](http://i.imgur.com/ZTVc9vg.png)
 
 ### Override default settings
-add to bootstrap and remove TOASTR_PROVIDERS
 ```javascript
 import { provide } from '@angular/core';
 import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-ng2';
