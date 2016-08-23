@@ -43,10 +43,11 @@ export class DemoApp {
 }
 ```
 ## Use
-##### show simple success toast
+Success:
 ```javascript
 this.toastrService.success('Hello world!', 'Toastr fun!');
 ```
+![success](http://i.imgur.com/ZTVc9vg.png)
 
 ### Override default settings
 add to bootstrap and remove TOASTR_PROVIDERS
