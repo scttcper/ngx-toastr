@@ -12,7 +12,7 @@ import { ToastConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 
 @Component({
-  selector: '[toast]',
+  selector: 'toast-component',
   template: `
   <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}">
     <!-- button html -->
@@ -42,6 +42,7 @@ import { ToastrService } from './toastr-service';
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
+        display: 'none',
         opacity: 0
       })),
       state('active', style({

@@ -63,11 +63,10 @@ export class ToastrService {
     this.toasts.splice(index, 1);
     if (this.toastrConfig.maxOpened &&
       this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
-      this.toasts[+this.toastrConfig.maxOpened - 1].portal.then((portal) => {
-        if (portal._hostElement.component.state === 'inactive') {
-          portal._hostElement.component.activateToast();
-        }
-      });
+      let p = this.toasts[0].portal;
+      if (p._hostElement.component.state === 'inactive') {
+        p._hostElement.component.activateToast();
+      }
     }
     return true;
   }
