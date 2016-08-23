@@ -69,10 +69,6 @@ export class ToastrService {
         }
       });
     }
-    if (!this.toasts.length) {
-      // this.overlay.dispose();
-      activeToast.overlayRef.dispose();
-    }
     return true;
   }
   private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
