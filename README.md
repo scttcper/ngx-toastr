@@ -1,33 +1,31 @@
 # toastr-ng2
-Angular 2 toastr with toast creation based on [@angular2-material/core](https://github.com/angular/material2) overlay.
+Angular 2 toastr with toast component injection based on [@angular2-material/core](https://github.com/angular/material2) overlay.
+Tested with Angular 2.0.0-rc.5 and NgModule. Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
+
 ##### Why another toastr?
-- no use of `*ngFor`. Higher performance and greater flexibility.
-- Toasts are components injected into the main view.
-- Toast component can be overwritten for custom style or html
+- no use of `*ngFor`. Fewer dirty checks and higher performance.
+- Toast component can be overwritten for custom style or html.
+- Animations using angular 2's annimation library
 
-Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
-
-### install  
+## Install  
 ```bash
 npm install toastr-ng2 --save
 ```  
-### setup  
+## Setup  
 __step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/demo-app/demo-app.scss) to your project. You can also import the css file from the npm module. It is not included with the toast component so it can be more easily overwritten. Is this a good choice? You decide.
 
-__step 2:__ add ToastrModule to your @NgModule imports
+__step 2:__ add ToastrModule to app NgModule
 ```javascript
 import { ToastrModule } from 'toastr-ng2';
 
 @NgModule({
+  imports: [ToastrModule],
   bootstrap: [App],
   declarations: [App],
-  // Import Toastr!
-  imports: [ ToastrModule ]
 })
-class ExampleMainModule {}
+class MainModule {}
 ```  
-
-__step 3:__ pass viewContainerRef to ToastrService. This is a hack needed currently as the viewContainerRef is not available to services, but I've heard it will be eventually.  
+__step 3:__ pass viewContainerRef to ToastrService. This is needed currently as the viewContainerRef is not available to services, but should be soon.  
 ```javascript
 import { ToastrService } from 'toastr-ng2';
 import { Component, ViewContainerRef } from '@angular/core';
@@ -40,14 +38,14 @@ export class DemoApp {
     private toastrService: ToastrService,
     private viewContainerRef: ViewContainerRef
   ) {
-    toastrService.viewContainerRef = this.viewContainerRef;
+    this.toastrService.viewContainerRef = this.viewContainerRef;
   }
 }
 ```
-
-__step 4:__ show simple toast
+## Use
+##### show simple success toast
 ```javascript
-this.toastrService.success('hello');
+this.toastrService.success('Hello world!', 'Toastr fun!');
 ```
 
 ### Override default settings
