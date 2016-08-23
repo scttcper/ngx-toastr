@@ -1,4 +1,5 @@
 # toastr-ng2
+
 Tested with Angular 2.0.0-rc.5 and NgModule. Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and [toastr](https://github.com/CodeSeven/toastr).
 
 ##### Why another toastr?
