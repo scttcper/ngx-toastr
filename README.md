@@ -8,7 +8,7 @@ Tested with __Angular 2.0.0-rc.5__ and NgModule. Inspired by [angular-toastr](ht
 - Toast component injection based on [@angular2-material/core/overlay](https://github.com/angular/material2)
 - No use of `*ngFor`. Fewer dirty checks and higher performance.
 - Toast component can be overwritten for custom style or html.
-- Animations using angular 2's annimation library
+- Animations using angular 2's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
 
 ## Install  
 ```bash
