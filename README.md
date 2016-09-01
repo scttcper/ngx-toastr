@@ -1,4 +1,4 @@
-# toastr-ng2 
+# toastr-ng2
 [![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=2592000)](https://www.npmjs.com/package/toastr-ng2)
 
 
@@ -54,8 +54,8 @@ this.toastrService.success('Hello world!', 'Toastr fun!');
 
 ### Override default settings
 ```javascript
-import { provide } from '@angular/core';
-import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-ng2';
+import { NgModule } from '@angular/core';
+import { ToastrModule, provideToastr } from 'toastr-ng2';
 
 @NgModule({
   bootstrap: [App],
@@ -63,16 +63,10 @@ import { ToastrConfig, ToastrService, Overlay, OverlayContainer } from 'toastr-n
   // Import Toastr!
   imports: [ ToastrModule ],
   providers: [
-    provide(ToastrService, {
-      useFactory: (overlay: Overlay) => {
-        // override the config defaults here
-        const customConfig = new ToastrConfig();
-        // shorter timeOut
-        customConfig.timeOut = 500;
-        return new ToastrService(customConfig, overlay);
-      },
-      deps: [Overlay],
-    }),
+    // Override options here
+    provideToastr({
+      timeOut: 500,
+    })
   ]
 })
 class ExampleMainModule {}
