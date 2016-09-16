@@ -90,8 +90,8 @@ export class ToastrService {
   private _buildNotification(
     type: string,
     message: string,
-    title?: string,
-    optionsOverride: ToastConfig = this.toastrConfig
+    title: string,
+    optionsOverride: ToastConfig = Object.create(this.toastrConfig)
   ): ActiveToast {
     // max opened and auto dismiss = true
     if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
