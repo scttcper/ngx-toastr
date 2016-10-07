@@ -1,23 +1,16 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
-import { ToastrConfig, ToastrService } from '../components/toastr/toastr';
+import { ToastrConfig, ToastrService } from '../lib/toastr';
 import * as _ from 'lodash';
 
 
 const quotes = [
-  // {
-  //   title: 'Come to Freenode',
-  //   message: 'We rock at <em>#angularjs</em>',
-  //   options: {
-  //     allowHtml: true
-  //   }
-  // },
   {
-    title: 'Looking for bootstrap?',
-    message: 'Try ui-bootstrap out!'
+    title: 'Title',
+    message: 'Message'
   },
   {
-    title: 'Want a better router?',
-    message: 'We have you covered with ui-router'
+    title: '🍚',
+    message: 'Rice bowls'
   },
   {
     title: null,
@@ -29,37 +22,22 @@ const quotes = [
   },
   {
     title: null,
-    message: 'Toastr rock!'
+    message: 'No title here'
   },
   {
-    title: 'Title only',
+    title: 'Title only 👊',
     message: null,
   },
-  // {
-  //   title: 'What about nice html?',
-  //   message: '<strong>Sure you <em>can!</em></strong>',
-  //   options: {
-  //     allowHtml: true
-  //   }
-  // },
-  // {
-  //   title: 'Ionic is <em>cool</em>',
-  //   message: 'Best mobile framework ever',
-  //   options: {
-  //     allowHtml: true
-  //   }
-  // }
 ];
 const types: string[] = ['success', 'error', 'info', 'warning'];
 
-
 @Component({
-  selector: 'demo-app',
-  templateUrl: 'demo-app/demo-app.html',
-  styleUrls: ['demo-app/demo-app.css'],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class DemoApp {
+export class AppComponent {
   options: ToastrConfig;
 
   title: string = '';

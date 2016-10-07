@@ -1,28 +1,12 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import './polyfills.ts';
+
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { FormsModule } from '@angular/forms';
-import 'rxjs/Rx';
-import 'lodash';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModule } from './app/';
 
-import { DemoApp } from './demo-app/demo-app';
-import { ToastrModule, provideToastr } from './components/toastr/toastr';
+if (environment.production) {
+  enableProdMode();
+}
 
-@NgModule({
-  bootstrap: [ DemoApp ],
-  declarations: [ DemoApp ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ToastrModule,
-  ],
-  providers: [
-    // for testing a custom setup
-    // provideToastr({
-    //   timeOut: 500,
-    // })
-  ],
-})
-class MainModule {}
-
-platformBrowserDynamic().bootstrapModule(MainModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

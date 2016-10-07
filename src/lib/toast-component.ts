@@ -58,17 +58,16 @@ import { ToastrService } from './toastr-service';
 })
 export class Toast implements OnDestroy {
   toastId: number;
-  timeout: number;
-  removealTimeout: number;
   message: string;
   title: string;
   toastType: string;
   options: ToastConfig;
   // used to control animation
   state: string = 'inactive';
-  // progressBar
+  timeout: any;
+  removealTimeout: any;
+  private intervalId: any;
   private hideTime: number;
-  private intervalId: number;
   private width: number = 100;
 
   constructor(
