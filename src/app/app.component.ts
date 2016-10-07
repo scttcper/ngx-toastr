@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { ToastrConfig, ToastrService } from '../lib/toastr';
-import * as _ from 'lodash';
 
 
 const quotes = [
@@ -31,6 +30,12 @@ const quotes = [
 ];
 const types: string[] = ['success', 'error', 'info', 'warning'];
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -56,11 +61,11 @@ export class AppComponent {
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates
-    let newConfig = _.cloneDeep(this.options);
+    let newConfig = Object.assign(this.options);
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      let randomMessage = quotes[_.random(0, quotes.length - 1)];
+      let randomMessage = quotes[getRandomInt(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
