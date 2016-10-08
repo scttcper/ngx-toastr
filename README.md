@@ -1,6 +1,8 @@
 # toastr-ng2
 [![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=2592000)](https://www.npmjs.com/package/toastr-ng2)
 
+DEMO: https://scttcper.github.io/toastr-ng2/
+
 Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
 
 ##### Why another toastr?
