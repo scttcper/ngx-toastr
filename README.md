@@ -1,5 +1,6 @@
 # toastr-ng2
-[![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=2592000)](https://www.npmjs.com/package/toastr-ng2)
+[![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=3600)](https://www.npmjs.com/package/toastr-ng2)
+https://img.shields.io/badge/npm-v1.2.0-brightgreen.svg
 
 DEMO: https://scttcper.github.io/toastr-ng2/
 
