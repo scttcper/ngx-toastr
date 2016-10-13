@@ -12,32 +12,32 @@ import { ToastConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 
 @Component({
-  selector: 'toast-component',
+  selector: '[toastComponent]',
   template: `
-  <div [@flyInOut]="state" class="{{options.toastClass}} {{toastType}}">
-    <!-- button html -->
-    <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-      &times;
-    </button>
-    <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
-    <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
-      {{message}}
-    </div>
-    <!--TODO: allow html
-    <div ng-switch on="allowHtml">
-      <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
-      <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
-    </div>
-    -->
-    <div *ngIf="options.progressBar">
-      <div class="toast-progress" [style.width.%]="width"></div>
-    </div>
+  <!-- button html -->
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
+    &times;
+  </button>
+  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
+  <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
+    {{message}}
+  </div>
+  <!--TODO: allow html
+  <div ng-switch on="allowHtml">
+    <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
+    <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
+  </div>
+  -->
+  <div *ngIf="options.progressBar">
+    <div class="toast-progress" [style.width.%]="width"></div>
   </div>
   `,
   host: {
     '(click)': 'tapToast()',
     '(mouseover)': 'stickAround()',
     '(mouseout)': 'delayedHideToast()',
+    '[@flyInOut]': 'state',
+    '[class]': 'toastClasses',
   },
   animations: [
     trigger('flyInOut', [
@@ -69,6 +69,7 @@ export class Toast implements OnDestroy {
   private intervalId: any;
   private hideTime: number;
   private width: number = 100;
+  private toastClasses: string = '';
 
   constructor(
     private toastrService: ToastrService
@@ -82,6 +83,7 @@ export class Toast implements OnDestroy {
     this.state = 'active';
     this.options.onShown.emit(null);
     this.options.timeOut = +this.options.timeOut;
+    this.toastClasses = `${this.toastType} ${this.options.toastClass}`;
     if (this.options.timeOut !== 0) {
       this.timeout = setTimeout(() => {
         this.remove();
