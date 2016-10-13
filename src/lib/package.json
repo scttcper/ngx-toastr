@@ -1,6 +1,6 @@
 {
   "name": "toastr-ng2",
-  "version": "1.3.5",
+  "version": "1.4.0",
   "description": "Toastr for Angular 2",
   "main": "./toastr.js",
   "typings": "./toastr.d.ts",
@@ -16,6 +16,7 @@
     "toastr",
     "ng2-toastr",
     "toastr-ng2",
+    "notifications",
     "ngModule"
   ],
   "license": "MIT",
