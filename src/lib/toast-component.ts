@@ -12,7 +12,7 @@ import { ToastConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 
 @Component({
-  selector: '[toastComponent]',
+  selector: '[toast-component]',
   template: `
   <!-- button html -->
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
