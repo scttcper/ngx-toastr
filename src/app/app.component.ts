@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { ToastrConfig, ToastrService } from '../lib/toastr';
-import { cloneDeep } from 'lodash/fp';
+import { cloneDeep } from 'lodash';
 
+import { PinkToast } from './pink.toast';
 
 const quotes = [
   {
@@ -70,12 +71,17 @@ export class AppComponent {
       t = randomMessage.title;
     }
     let ins = this.toastrService[this.type](m, t, cloneDeep(this.options));
-    if (ins) {
-      this.lastInserted.push(ins.toastId);
-    }
+    this.lastInserted.push(ins.toastId);
   }
   openRandomToast() {
 
+  }
+  openPinkToast() {
+    const opt = cloneDeep(this.options);
+    opt.toastComponent = PinkToast;
+    opt.toastClass = 'toast toast-pink';
+    let ins = this.toastrService.success('Pink Title', 'Pink Message', opt);
+    this.lastInserted.push(ins.toastId);
   }
   clearToasts() {
     this.toastrService.clear();

@@ -55,7 +55,7 @@ export class ToastrService {
     }
   }
   public remove(toastId: number): boolean {
-    let { index, activeToast } = this._findToast(toastId);
+    const { index, activeToast } = this._findToast(toastId);
     if (!activeToast) {
       return false;
     }
@@ -63,7 +63,7 @@ export class ToastrService {
     this.toasts.splice(index, 1);
     if (this.toastrConfig.maxOpened &&
       this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
-      let p = this.toasts[0].portal;
+      const p = this.toasts[0].portal;
       if (p._hostElement.component.state === 'inactive') {
         p._hostElement.component.activateToast();
       }

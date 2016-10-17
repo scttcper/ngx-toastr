@@ -14,7 +14,6 @@ import { ToastrService } from './toastr-service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <!-- button html -->
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
     &times;
   </button>
@@ -22,12 +21,6 @@ import { ToastrService } from './toastr-service';
   <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
     {{message}}
   </div>
-  <!--TODO: allow html
-  <div ng-switch on="allowHtml">
-    <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
-    <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
-  </div>
-  -->
   <div *ngIf="options.progressBar">
     <div class="toast-progress" [style.width.%]="width"></div>
   </div>

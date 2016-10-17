@@ -4,16 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ToastrModule } from '../lib/toastr';
+import { PinkToast } from './pink.toast';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PinkToast,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ToastrModule,
   ],
+  entryComponents: [PinkToast],
   providers: [],
   bootstrap: [AppComponent]
 })
