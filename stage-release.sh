@@ -9,13 +9,7 @@ rm -rf ./dist/out-tsc
 rm -rf ./deploy
 
 # compile src directory and create d.ts files
-./node_modules/.bin/tsc -p src -d --module commonjs
-
-# deploy/ serves as a working directory to stage the release.
-mkdir deploy
-
-# Copy all lib/ to deploy/
-cp -R ./dist/out-tsc/lib/* ./deploy/
+./node_modules/.bin/tsc -p ./src/lib -d
 
 # copy root readme and license to deployment folder
 # for multiple
