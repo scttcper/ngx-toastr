@@ -44,12 +44,11 @@ function getRandomInt(min, max) {
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  options: ToastrConfig;
-
-  title: string = '';
-  type: string = types[0];
-  message: string = '';
-  lastInserted: number[] = [];
+  private options: ToastrConfig;
+  private title: string = '';
+  private type: string = types[0];
+  private message: string = '';
+  private lastInserted: number[] = [];
 
   constructor(
     private toastrService: ToastrService,
@@ -69,18 +68,27 @@ export class AppComponent {
       m = randomMessage.message;
       t = randomMessage.title;
     }
-    let ins = this.toastrService[this.type](m, t, cloneDeep(this.options));
-    this.lastInserted.push(ins.toastId);
-  }
-  openRandomToast() {
-
+    const opt = cloneDeep(this.options);
+    const inserted = this.toastrService[this.type](m, t, opt);
+    if (inserted) {
+      this.lastInserted.push(inserted.toastId);
+    }
   }
   openPinkToast() {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'toast toast-pink';
-    let ins = this.toastrService.success('Pink Title', 'Pink Message', opt);
-    this.lastInserted.push(ins.toastId);
+    let m = this.message;
+    let t = this.title;
+    if (!this.title.length && !this.message.length) {
+      let randomMessage = quotes[getRandomInt(0, quotes.length - 1)];
+      m = randomMessage.message;
+      t = randomMessage.title;
+    }
+    const inserted = this.toastrService.success(m, t, opt);
+    if (inserted) {
+      this.lastInserted.push(inserted.toastId);
+    }
   }
   clearToasts() {
     this.toastrService.clear();
