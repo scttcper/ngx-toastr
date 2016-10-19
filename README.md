@@ -27,7 +27,7 @@ __step 2:__ add ToastrModule to app NgModule
 import { ToastrModule } from 'toastr-ng2';
 
 @NgModule({
-  imports: [ToastrModule],
+  imports: [ToastrModule], // ToastrModule added
   bootstrap: [App],
   declarations: [App],
 })
@@ -55,7 +55,42 @@ Success:
 ```javascript
 this.toastrService.success('Hello world!', 'Toastr fun!');
 ```
-![success](http://i.imgur.com/ZTVc9vg.png)
+![success](http://i.imgur.com/ZTVc9vg.png)  
+
+
+## Options
+There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be overridden with your own angular 2 component. See the custom pink toast in the demo.
+
+### ToastrConfig (Global Options)
+```typescript
+maxOpened: number = 0; // max toasts opened. Toasts will be queued
+autoDismiss: boolean = false; // dismiss current toast when max is reached
+iconClasses = { // classes used on toastr service methods
+  error: 'toast-error',
+  info: 'toast-info',
+  success: 'toast-success',
+  warning: 'toast-warning',
+};
+newestOnTop: boolean = true; // new toast placement
+preventDuplicates: boolean = false; // block duplicate messages
+```
+
+### ToastConfig (Individual Toast options)
+```typescript
+toastComponent = Toast; // the angular 2 component that will be used
+closeButton: boolean = false; // show close button
+timeOut: number = 5000; // time to live
+extendedTimeOut: number = 1000; // time to close after a user hovers over toast
+onHidden: EventEmitter<any> = new EventEmitter(); // fired on event
+onShown: EventEmitter<any> = new EventEmitter(); // fired on event
+onTap: EventEmitter<any> = new EventEmitter(); // fired on event
+progressBar: boolean = false; // show progress bar
+toastClass: string = 'toast'; // class on toast
+positionClass: string = 'toast-top-right'; // class on toast
+titleClass: string = 'toast-title'; // class inside toast on title
+messageClass: string = 'toast-message'; // class inside toast on message
+tapToDismiss: boolean = true; // close on click
+```
 
 ### Override default settings
 ```javascript
@@ -77,7 +112,6 @@ import { ToastrModule, provideToastr } from 'toastr-ng2';
 class ExampleMainModule {}
 ```
 
-
 ### individual toast settings
 success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
 ```javascript
@@ -88,3 +122,14 @@ let errorConfig = new ToastConfig();
 errorConfig.timeOut = 0;
 this.toastrService.error('everything is broken', 'title is optional', errorConfig);
 ```
+
+### Toastr Service methods return:
+```typescript
+export interface ActiveToast {
+  toastId: number; // Your Toast ID. Use this to close it individually
+  message: string; // the message of your toast. Stored for prevent duplicate reasons
+  portal?: any; // a reference to the component see portal.ts
+  overlayRef?: OverlayRef; // a wrapper that attaches and detaches portals see overlay-ref.ts
+}
+```
+Toastr Service will return undefined if prevent duplicates is on.
