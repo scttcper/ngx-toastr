@@ -20,4 +20,6 @@ cp README.md ./deploy
 cp LICENSE ./deploy
 
 # copy package.json files that are in lib folders
-find src/lib -name 'package.json' -type f -exec cp {} ./deploy \;
+# find src/lib -name 'package.json' -type f -exec cp {} ./deploy \;
+cp ./src/lib/package.json ./deploy
+cp ./src/lib/toastr.scss ./deploy

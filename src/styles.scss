@@ -1,6 +1,8 @@
 $font-size-root: 14px;
 @import 'node_modules/bootstrap/scss/bootstrap';
 
+@import './lib/toastr';
+
 .card {
   margin-top: 15px;
 }
