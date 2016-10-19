@@ -6,7 +6,6 @@ import { Toast } from './toast-component';
 export class ToastConfig {
   // shows close button
   public closeButton: boolean = false;
-  // extendedTimeOut: how long the toast will display after a user hovers
   public extendedTimeOut: number = 1000;
   public onHidden: EventEmitter<any> = new EventEmitter();
   public onShown: EventEmitter<any> = new EventEmitter();
@@ -42,8 +41,6 @@ export class ToastConfig {
 export class ToastrConfig extends ToastConfig {
   public maxOpened: number = 0;
   public autoDismiss: boolean = false;
-  // TODO:
-  // containerId: string = 'toast-container';
   public iconClasses = {
     error: 'toast-error',
     info: 'toast-info',
@@ -52,8 +49,6 @@ export class ToastrConfig extends ToastConfig {
   };
   public newestOnTop: boolean = true;
   public preventDuplicates: boolean = false;
-  // TODO:
-  // preventOpenDuplicates: boolean = false;
   constructor(config: any = {}) {
     super(config);
     this.maxOpened = config.maxOpened || this.maxOpened;
