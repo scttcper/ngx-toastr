@@ -19,7 +19,7 @@ npm install toastr-ng2 --save
 __step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/app/app.component.css) to your project.
 If you are using sass you can import the css.
 ```sass
-@import 'node_modules/toastr/toastr';
+@import 'node_modules/toastr-ng2/toastr';
 ```
 
 __step 2:__ add ToastrModule to app NgModule
