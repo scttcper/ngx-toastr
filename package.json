@@ -19,7 +19,7 @@
   },
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.4",
+    "bootstrap": "^4.0.0-alpha.5",
     "@angular/common": "~2.1.0",
     "@angular/compiler": "~2.1.0",
     "@angular/core": "~2.1.0",
@@ -35,6 +35,7 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "portfinder": "1.0.7",
     "@types/jasmine": "^2.5.35",
     "@types/lodash": "^4.14.37",
     "@types/node": "^6.0.45",

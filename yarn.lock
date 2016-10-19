@@ -825,12 +825,12 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
-bootstrap@^4.0.0-alpha.4:
-  version "4.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.4.tgz#823cb353d6c50a38df98aa18ec4df56ef0355e7a"
+bootstrap@^4.0.0-alpha.5:
+  version "4.0.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0-alpha.5.tgz#a126b648c3bd2f52b8fad4bbc5e2d0ad2abf7064"
   dependencies:
     jquery "1.9.1 - 3"
-    tether "^1.1.1"
+    tether "^1.3.7"
 
 bower-config@^1.3.0:
   version "1.4.0"
@@ -5462,7 +5462,7 @@ pinkie@^2.0.0, pinkie@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
 
-portfinder@^1.0.3:
+portfinder@^1.0.3, portfinder@1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.7.tgz#d486d2553c85ad22667f5c7841f477c64c7c1b38"
   dependencies:
@@ -7120,7 +7120,7 @@ testem@^1.6.0:
     tap-parser "^1.1.3"
     xmldom "^0.1.19"
 
-tether@^1.1.1:
+tether@^1.3.7:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/tether/-/tether-1.3.7.tgz#65578104741694f9672c808eae04a9adae7b0304"
 
