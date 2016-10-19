@@ -16,7 +16,11 @@ Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and th
 npm install toastr-ng2 --save
 ```  
 ## Setup  
-__step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/app/app.component.css) to your project. You can also import the css file from the npm module. It is not included with the toast component so it can be more easily overwritten. Is this a good choice? You decide.
+__step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/app/app.component.css) to your project.
+If you are using sass you can import the css.
+```sass
+@import 'node_modules/toastr/toastr';
+```
 
 __step 2:__ add ToastrModule to app NgModule
 ```javascript
