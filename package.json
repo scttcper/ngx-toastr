@@ -35,8 +35,10 @@
     "zone.js": "^0.6.23"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.37",
+    "@angular/compiler-cli": "^2.1.2",
+    "@angular/platform-server": "^2.1.2",
     "@types/jasmine": "^2.2.30",
+    "@types/lodash": "^4.14.37",
     "@types/node": "^6.0.42",
     "angular-cli": "1.0.0-beta.19-3",
     "codelyzer": "1.0.0-beta.1",

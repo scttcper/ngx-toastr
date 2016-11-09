@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { Toast } from './toast-component';
@@ -8,7 +9,7 @@ import { OverlayContainer } from './overlay/overlay-container';
 import { Overlay } from './overlay/overlay';
 
 @NgModule({
-  imports: [BrowserModule],
+  imports: [BrowserModule, CommonModule],
   exports: [Toast],
   declarations: [Toast],
   entryComponents: [Toast],
