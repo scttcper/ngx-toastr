@@ -11,10 +11,10 @@
   "keywords": [
     "ng2",
     "angular2",
-    "alerts",
     "alert",
+    "toast",
     "toastr",
-    "ng2-toastr",
+    "toasts",
     "toastr-ng2",
     "notifications",
     "ngModule"

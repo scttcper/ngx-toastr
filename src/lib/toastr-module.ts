@@ -14,13 +14,21 @@ import { Overlay } from './overlay/overlay';
   entryComponents: [Toast],
   providers: [
     OverlayContainer,
-    {provide: ToastConfig, useFactory: () => new ToastConfig()},
-    {provide: ToastrConfig, useFactory: () => new ToastrConfig()},
+    {provide: ToastConfig, useFactory: ToastConfigFactory},
+    {provide: ToastrConfig, useFactory: ToastrConfigFactory},
     Overlay,
     ToastrService,
   ],
 })
 export class ToastrModule { }
+
+export function ToastConfigFactory () {
+  return new ToastConfig();
+}
+
+export function ToastrConfigFactory () {
+  return new ToastrConfig();
+}
 
 export function provideToastr(config = {}): any {
   return {
