@@ -1,25 +1,20 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "target": "es5",
-    "module": "commonjs",
-    "lib": ["es6", "dom"],
-    "moduleResolution": "node",
-    "outDir": "../../deploy",
-    "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
+    "lib": ["es6", "dom"],
+    "mapRoot": "./",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": [
-      "../../node_modules/@types/"
-    ]
+    "outDir": "../../deploy",
+    "sourceMap": true,
+    "target": "es5",
+    "types": []
   },
   "angularCompilerOptions": {
     "genDir": "../../deploy"
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  }
 }
