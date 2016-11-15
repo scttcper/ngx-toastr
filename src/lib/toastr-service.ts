@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
@@ -14,8 +14,6 @@ export interface ActiveToast {
 
 @Injectable()
 export class ToastrService {
-  // TODO: remove when we can access the global view ref from service
-  viewContainerRef: ViewContainerRef;
   private index: number = 0;
   private toasts: any[] = [];
   private previousToastMessage: string = '';
@@ -105,23 +103,20 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
-    const component = new ComponentPortal(
-      optionsOverride.toastComponent,
-      this.viewContainerRef
-    );
+    const component = new ComponentPortal(optionsOverride.toastComponent);
     const ins: ActiveToast = {
       toastId: this.index++,
       message,
       overlayRef: this.overlay.create(optionsOverride.positionClass),
     };
     ins.portal = ins.overlayRef.attach(component, this.toastrConfig.newestOnTop);
-    ins.portal._hostElement.component.toastId = ins.toastId;
-    ins.portal._hostElement.component.message = message;
-    ins.portal._hostElement.component.title = title;
-    ins.portal._hostElement.component.toastType = type;
-    ins.portal._hostElement.component.options = optionsOverride;
+    ins.portal._component.toastId = ins.toastId;
+    ins.portal._component.message = message;
+    ins.portal._component.title = title;
+    ins.portal._component.toastType = type;
+    ins.portal._component.options = optionsOverride;
     if (!keepInactive) {
-      setTimeout(() => ins.portal._hostElement.component.activateToast());
+      setTimeout(() => ins.portal._component.activateToast());
     }
     this.toasts.push(ins);
     return ins;

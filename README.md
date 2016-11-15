@@ -33,23 +33,7 @@ import { ToastrModule } from 'toastr-ng2';
 })
 class MainModule {}
 ```  
-__step 3:__ pass viewContainerRef to ToastrService. This is needed currently as the viewContainerRef is not available to services, but should be soon.  
-```javascript
-import { ToastrService } from 'toastr-ng2';
-import { Component, ViewContainerRef } from '@angular/core';
 
-@Component({
-  selector: 'demo-app',
-})
-export class DemoApp {
-  constructor(
-    private toastrService: ToastrService,
-    private viewContainerRef: ViewContainerRef
-  ) {
-    this.toastrService.viewContainerRef = this.viewContainerRef;
-  }
-}
-```
 ## Use
 Success:
 ```javascript

@@ -17,6 +17,18 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.1.2.tgz#5c5b37c21d6e573def1670f43962c262bc9be82e"
 
+"@angular/common@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.2.0.tgz#b52686eafd71e053169ac0257f9135f9583247b6"
+
+"@angular/compiler-cli@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.2.0.tgz#8a06f2d38bfa7f9cb80f129dc81449ec101daa41"
+  dependencies:
+    "@angular/tsc-wrapped" "^0.4.0"
+    minimist "^1.2.0"
+    reflect-metadata "^0.1.2"
+
 "@angular/compiler-cli@~2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.1.2.tgz#9c34433af2183f294b9c63a035c785e002edc792"
@@ -29,25 +41,43 @@
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.1.2.tgz#bd2a6c558de5350bdd43aa8e8de757943ac01d2a"
 
+"@angular/compiler@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.2.0.tgz#154dfba521f2cce2655610f7d2e5065b04ea86b9"
+
 "@angular/core@~2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.1.2.tgz#ce39521643f3d97bc5923d5a7aa76604e973dac8"
 
-"@angular/forms@~2.1.0":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.1.2.tgz#c55539ea5da6d60f64475f39392ae5dd76a7e990"
+"@angular/core@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.2.0.tgz#7a3a8592b6731a65e5a9746ce45419d86d15fe56"
 
-"@angular/http@~2.1.0":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.1.2.tgz#50aa96c3b68a44b98e3f837886c96e5930eb543a"
+"@angular/forms@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.2.0.tgz#1e11781c740445ab5d08fd54f3b0d6f25d4ba34d"
 
-"@angular/platform-browser-dynamic@~2.1.0":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.1.2.tgz#3d51b494cfe0a29354c8c1f28369883679982af4"
+"@angular/http@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-2.2.0.tgz#7e44c820692be03b8c882531dbd697ee04a4e993"
+
+"@angular/platform-browser-dynamic@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.2.0.tgz#db044fbdf8caeb8c4cb3eb5f5a7a57bbcf2eb9eb"
 
 "@angular/platform-browser@~2.1.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.1.2.tgz#1f07c3a5668ac2381a7324f9001521deede159bc"
+
+"@angular/platform-browser@~2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.2.0.tgz#6c39651ee861be9ca86ef6b7a21a160415b2ce8e"
+
+"@angular/platform-server@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/platform-server/-/platform-server-2.2.0.tgz#3e0b5f69d36ce892395533beb296bcbf0006c7d5"
+  dependencies:
+    parse5 "^2.2.1"
 
 "@angular/platform-server@~2.1.0":
   version "2.1.2"
@@ -55,13 +85,19 @@
   dependencies:
     parse5 "^2.2.1"
 
-"@angular/router@~3.1.0":
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.1.2.tgz#1046c943ace795027e2e5057df8c897da968fcd6"
+"@angular/router@~3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.0.tgz#522585357ff9216e3ffae47e9045b3c150d00c7f"
 
 "@angular/tsc-wrapped@^0.3.0", "@angular/tsc-wrapped@~0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.3.0.tgz#98cdeb5c38d145b187c0ad0397a8d98b217f33f2"
+  dependencies:
+    tsickle "^0.1.7"
+
+"@angular/tsc-wrapped@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.4.0.tgz#78cacfd865b11366811baa1f2eec2ef0b63468e6"
   dependencies:
     tsickle "^0.1.7"
 
@@ -75,13 +111,17 @@
   version "2.5.37"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.37.tgz#15f16040b1106941ec4aeefa3cd9c55342a0dcbb"
 
-"@types/lodash@^4.14.37":
-  version "4.14.38"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.38.tgz#fcbd51e740c5e260652cad975dd26c5c4151cb11"
+"@types/lodash@^4.14.39":
+  version "4.14.39"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.39.tgz#99e2180351609e4466abde8952d153a63a03eb14"
 
-"@types/node@^6.0.35", "@types/node@^6.0.42":
+"@types/node@^6.0.35":
   version "6.0.46"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.46.tgz#8d9e48572831f05b11cc4c793754d43437219d62"
+
+"@types/node@^6.0.48":
+  version "6.0.48"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.48.tgz#86ccc15f66b73cbbc5eb3483398936c585122b3c"
 
 "@types/q@^0.0.30":
   version "0.0.30"
@@ -259,10 +299,6 @@ ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
 
-ansi-regex@*, ansi-regex@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.0.0.tgz#c5061b6e0ef8a81775e50f5d66151bf6bf371107"
-
 ansi-regex@^0.2.0, ansi-regex@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-0.2.1.tgz#0d8e946967a3d8143f93e24e298525fc1b2235f9"
@@ -270,6 +306,10 @@ ansi-regex@^0.2.0, ansi-regex@^0.2.1:
 ansi-regex@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-1.1.1.tgz#41c847194646375e6a1a5d10c3ca054ef9fc980d"
+
+ansi-regex@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.0.0.tgz#c5061b6e0ef8a81775e50f5d66151bf6bf371107"
 
 ansi-styles@^1.1.0:
   version "1.1.0"
@@ -3470,7 +3510,7 @@ image-size@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.0.tgz#be7aed1c37b5ac3d9ba1d66a24b4c47ff8397651"
 
-imurmurhash@*, imurmurhash@^0.1.4:
+imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
 
@@ -4473,6 +4513,10 @@ lodash@^3.10.0, lodash@^3.10.1, lodash@^3.8.0, lodash@^3.9.3:
 lodash@^4.0.0, lodash@^4.11.1, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.2, lodash@^4.16.4, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1, lodash@~4.16.4:
   version "4.16.6"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.6.tgz#d22c9ac660288f3843e16ba7d2b5d06cca27d777"
+
+lodash@^4.17.1:
+  version "4.17.1"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.1.tgz#e75eaf17a34730c6491d9956f4d81f3a044f01bf"
 
 lodash@~2.4.1:
   version "2.4.2"
@@ -7030,12 +7074,6 @@ stringstream@~0.0.4:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
 
-strip-ansi@*, strip-ansi@^3.0.0, strip-ansi@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
-  dependencies:
-    ansi-regex "^2.0.0"
-
 strip-ansi@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-0.3.0.tgz#25f48ea22ca79187f3174a4db8759347bb126220"
@@ -7047,6 +7085,12 @@ strip-ansi@^2.0.1:
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-2.0.1.tgz#df62c1aa94ed2f114e1d0f21fd1d50482b79a60e"
   dependencies:
     ansi-regex "^1.0.0"
+
+strip-ansi@^3.0.0, strip-ansi@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
+  dependencies:
+    ansi-regex "^2.0.0"
 
 strip-bom@^2.0.0:
   version "2.0.0"
