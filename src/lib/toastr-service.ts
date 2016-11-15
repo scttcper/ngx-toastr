@@ -115,13 +115,13 @@ export class ToastrService {
       overlayRef: this.overlay.create(optionsOverride.positionClass),
     };
     ins.portal = ins.overlayRef.attach(component, this.toastrConfig.newestOnTop);
-    ins.portal._hostElement.component.toastId = ins.toastId;
-    ins.portal._hostElement.component.message = message;
-    ins.portal._hostElement.component.title = title;
-    ins.portal._hostElement.component.toastType = type;
-    ins.portal._hostElement.component.options = optionsOverride;
+    ins.portal._component.toastId = ins.toastId;
+    ins.portal._component.message = message;
+    ins.portal._component.title = title;
+    ins.portal._component.toastType = type;
+    ins.portal._component.options = optionsOverride;
     if (!keepInactive) {
-      setTimeout(() => ins.portal._hostElement.component.activateToast());
+      setTimeout(() => ins.portal._component.activateToast());
     }
     this.toasts.push(ins);
     return ins;
