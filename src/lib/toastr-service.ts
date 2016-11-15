@@ -44,11 +44,11 @@ export class ToastrService {
     for (let i = 0; i < this.toasts.length; i++) {
       if (toastId !== undefined) {
         if (this.toasts[i].toastId === toastId) {
-          this.toasts[i].portal._hostElement.component.remove();
+          this.toasts[i].portal._component.remove();
           return;
         }
       } else {
-        this.toasts[i].portal._hostElement.component.remove();
+        this.toasts[i].portal._component.remove();
       }
     }
   }
@@ -62,8 +62,8 @@ export class ToastrService {
     if (this.toastrConfig.maxOpened &&
       this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
       const p = this.toasts[0].portal;
-      if (p._hostElement.component.state === 'inactive') {
-        p._hostElement.component.activateToast();
+      if (p._component.state === 'inactive') {
+        p._component.activateToast();
       }
     }
     return true;
