@@ -11,7 +11,6 @@ import {
   MdNoPortalAttachedError,
   MdNullPortalError,
   MdPortalHostAlreadyDisposedError,
-  MdUnknownPortalTypeError
 } from './portal-errors';
 import { ComponentType } from '../overlay/generic-component-type';
 
@@ -149,7 +148,7 @@ export interface PortalHost {
 
 /**
  * Partial implementation of PortalHost that only deals with attaching either a
- * ComponentPortal or a TemplatePortal.
+ * ComponentPortal
  */
 export abstract class BasePortalHost implements PortalHost {
   /** The portal currently attached to the host. */
@@ -163,10 +162,10 @@ export abstract class BasePortalHost implements PortalHost {
 
   /** Whether this host has an attached portal. */
   hasAttached() {
-    return this._attachedPortal != null;
+    return this._attachedPortal !== undefined;
   }
 
-  attach(portal: Portal<any>, newestOnTop: boolean): any {
+  attach(portal: ComponentPortal<any>, newestOnTop: boolean): any {
     if (portal == null) {
       throw new MdNullPortalError();
     }
@@ -178,28 +177,20 @@ export abstract class BasePortalHost implements PortalHost {
     if (this._isDisposed) {
       throw new MdPortalHostAlreadyDisposedError();
     }
-
-    if (portal instanceof ComponentPortal) {
-      this._attachedPortal = portal;
-      return this.attachComponentPortal(portal, newestOnTop);
-    } else if (portal instanceof TemplatePortal) {
-      this._attachedPortal = portal;
-      return this.attachTemplatePortal(portal);
-    }
-
-    throw new MdUnknownPortalTypeError();
+    this._attachedPortal = portal;
+    return this.attachComponentPortal(portal, newestOnTop);
   }
 
-  abstract attachComponentPortal<T>(portal: ComponentPortal<T>,
-    newestOnTop: boolean): ComponentRef<T>;
-
-  abstract attachTemplatePortal(portal: TemplatePortal): Map<string, any>;
+  abstract attachComponentPortal<T>(
+    portal: ComponentPortal<T>,
+    newestOnTop: boolean
+  ): ComponentRef<T>;
 
   detach(): void {
     if (this._attachedPortal) { this._attachedPortal.setAttachedHost(null); }
 
     this._attachedPortal = null;
-    if (this._disposeFn != null) {
+    if (this._disposeFn) {
       this._disposeFn();
       this._disposeFn = null;
     }

@@ -5,7 +5,7 @@ import {
   ApplicationRef,
   Injector,
 } from '@angular/core';
-import {BasePortalHost, ComponentPortal, TemplatePortal} from './portal';
+import {BasePortalHost, ComponentPortal} from './portal';
 
 
 /**
@@ -62,23 +62,6 @@ export class DomPortalHost extends BasePortalHost {
     this._hostDomElement.appendChild(this._getComponentRootNode(componentRef));
 
     return componentRef;
-  }
-
-  attachTemplatePortal(portal: TemplatePortal): Map<string, any> {
-    let viewContainer = portal.viewContainerRef;
-    let viewRef = viewContainer.createEmbeddedView(portal.templateRef);
-
-    viewRef.rootNodes.forEach(rootNode => this._hostDomElement.appendChild(rootNode));
-
-    this.setDisposeFn((() => {
-      let index = viewContainer.indexOf(viewRef);
-      if (index !== -1) {
-        viewContainer.remove(index);
-      }
-    }));
-
-    // TODO(jelbourn): Return locals from view.
-    return new Map<string, any>();
   }
 
   dispose(): void {

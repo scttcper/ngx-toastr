@@ -30,15 +30,6 @@ export class MdPortalHostAlreadyDisposedError extends MdError {
   }
 }
 
-/** Exception thrown when attempting to attach an unknown portal type. */
-export class MdUnknownPortalTypeError extends MdError {
-  constructor() {
-      super(
-        'Attempting to attach an unknown Portal type. ' +
-        'BasePortalHost accepts either a ComponentPortal or a TemplatePortal.');
-  }
-}
-
 /** Exception thrown when attempting to attach a portal to a null host. */
 export class MdNullPortalHostError extends MdError {
   constructor() {
