@@ -55,9 +55,8 @@ export class AppComponent {
     private viewContainerRef: ViewContainerRef
   ) {
     // sync options to toastrservice
+    // this sets the options in the demo
     this.options = this.toastrService.toastrConfig;
-    // necessary until we can accesses viewContainerRef in service
-    toastrService.viewContainerRef = this.viewContainerRef;
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates

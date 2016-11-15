@@ -1,4 +1,4 @@
-import { Injectable, ViewContainerRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
@@ -14,8 +14,6 @@ export interface ActiveToast {
 
 @Injectable()
 export class ToastrService {
-  // TODO: remove when we can access the global view ref from service
-  viewContainerRef: ViewContainerRef;
   private index: number = 0;
   private toasts: any[] = [];
   private previousToastMessage: string = '';
@@ -105,10 +103,7 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
-    const component = new ComponentPortal(
-      optionsOverride.toastComponent,
-      this.viewContainerRef
-    );
+    const component = new ComponentPortal(optionsOverride.toastComponent);
     const ins: ActiveToast = {
       toastId: this.index++,
       message,
