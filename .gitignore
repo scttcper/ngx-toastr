@@ -13,6 +13,7 @@
 /.vscode
 .project
 .classpath
+.c9/
 *.launch
 .settings/
 
@@ -25,6 +26,7 @@ npm-debug.log
 testem.log
 /typings
 /deploy
+/waste
 
 # e2e
 /e2e/*.js
