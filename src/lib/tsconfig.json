@@ -4,17 +4,19 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "lib": ["es6", "dom"],
-    "mapRoot": "./",
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "../../deploy",
-    "sourceMap": true,
+    "sourceMap": false,
     "target": "es5",
     "types": []
   },
   "angularCompilerOptions": {
-    "genDir": "../../deploy"
-  }
+    "genDir": "../../waste"
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
