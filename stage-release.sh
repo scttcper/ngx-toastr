@@ -7,6 +7,7 @@ set -exu
 # Clear dist/ and deploy/ so that we guarantee there are no stale artifacts.
 rm -rf dist
 rm -rf deploy
+rm -rf waste
 
 # compile src directory and create d.ts files
 ./node_modules/.bin/ngc -p ./src/lib/tsconfig.json -d
