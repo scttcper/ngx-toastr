@@ -12,9 +12,11 @@ import {
   MdNullPortalError,
   MdPortalHostAlreadyDisposedError,
 } from './portal-errors';
-import { ComponentType } from '../overlay/generic-component-type';
 
 
+export interface ComponentType<T> {
+  new (...args: any[]): T;
+}
 
 /**
  * A `Portal` is something that you want to render somewhere else.
