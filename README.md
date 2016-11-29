@@ -23,7 +23,7 @@ If you are using sass you can import the css.
 ```
 
 __step 2:__ add ToastrModule to app NgModule
-```javascript
+```typescript
 import { ToastrModule } from 'toastr-ng2';
 
 @NgModule({
@@ -36,8 +36,18 @@ class MainModule {}
 
 ## Use
 Success:
-```javascript
-this.toastrService.success('Hello world!', 'Toastr fun!');
+```typescript
+import { ToastrService } from 'toastr-ng2';
+@Component({
+  ...
+})
+export class YourComponent {
+  constructor(private toastrService: ToastrService) {}
+  
+  showSuccess() {
+    this.toastrService.success('Hello world!', 'Toastr fun!');
+  }
+}
 ```
 ![success](http://i.imgur.com/ZTVc9vg.png)  
 
