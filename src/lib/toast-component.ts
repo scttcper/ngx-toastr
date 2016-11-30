@@ -19,7 +19,9 @@ import { ToastrService } from './toastr-service';
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
     &times;
   </button>
-  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
+  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
+    {{title}}
+  </div>
   <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
     {{message}}
   </div>
