@@ -29,9 +29,6 @@ import { ToastrService } from './toastr-service';
     <div class="toast-progress" [style.width.%]="width"></div>
   </div>
   `,
-  host: {
-    '[@flyInOut]': 'state',
-  },
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
@@ -56,7 +53,7 @@ export class Toast implements OnDestroy {
   toastType: string;
   options: ToastConfig;
   // used to control animation
-  state: string = 'inactive';
+
   timeout: any;
   removealTimeout: any;
   // used to control width of progress bar
@@ -65,6 +62,8 @@ export class Toast implements OnDestroy {
   private hideTime: number;
   @HostBinding('class')
   private toastClasses: string = '';
+  @HostBinding('@flyInOut')
+  state: string = 'inactive';
 
   constructor(
     private toastrService: ToastrService
