@@ -6,6 +6,8 @@ import {
   animate,
   style,
   OnDestroy,
+  HostBinding,
+  HostListener,
 } from '@angular/core';
 
 import { ToastConfig } from './toastr-config';
@@ -26,11 +28,7 @@ import { ToastrService } from './toastr-service';
   </div>
   `,
   host: {
-    '(click)': 'tapToast()',
-    '(mouseover)': 'stickAround()',
-    '(mouseout)': 'delayedHideToast()',
     '[@flyInOut]': 'state',
-    '[class]': 'toastClasses',
   },
   animations: [
     trigger('flyInOut', [
@@ -59,9 +57,11 @@ export class Toast implements OnDestroy {
   state: string = 'inactive';
   timeout: any;
   removealTimeout: any;
+  // used to control width of progress bar
+  width: number = 100;
   private intervalId: any;
   private hideTime: number;
-  private width: number = 100;
+  @HostBinding('class')
   private toastClasses: string = '';
 
   constructor(
@@ -98,6 +98,7 @@ export class Toast implements OnDestroy {
       this.width = 0;
     }
   }
+  @HostListener('click')
   tapToast() {
     this.options.onTap.emit(null);
     if (this.options.tapToDismiss) {
@@ -112,6 +113,7 @@ export class Toast implements OnDestroy {
     this.state = 'removed';
     this.removealTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
+  @HostListener('mouseout')
   delayedHideToast() {
     if (this.options.timeOut > 0 || this.options.extendedTimeOut > 0) {
       this.width = 100;
@@ -120,6 +122,7 @@ export class Toast implements OnDestroy {
       this.hideTime = new Date().getTime() + this.options.timeOut;
     }
   }
+  @HostListener('mouseover')
   stickAround() {
     clearTimeout(this.timeout);
     this.hideTime = 0;
