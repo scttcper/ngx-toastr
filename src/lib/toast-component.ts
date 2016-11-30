@@ -55,7 +55,7 @@ export class Toast implements OnDestroy {
   // used to control animation
 
   timeout: any;
-  removealTimeout: any;
+  removalTimeout: any;
   // used to control width of progress bar
   width: number = 100;
   private intervalId: any;
@@ -71,7 +71,7 @@ export class Toast implements OnDestroy {
   ngOnDestroy() {
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
-    clearTimeout(this.removealTimeout);
+    clearTimeout(this.removalTimeout);
   }
   activateToast() {
     this.state = 'active';
@@ -112,7 +112,7 @@ export class Toast implements OnDestroy {
     }
     this.options.onHidden.emit(null);
     this.state = 'removed';
-    this.removealTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
+    this.removalTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
   @HostListener('mouseout')
   delayedHideToast() {
@@ -128,7 +128,7 @@ export class Toast implements OnDestroy {
     clearTimeout(this.timeout);
     this.hideTime = 0;
     // todo: stop hiding?
-    // clearTimeout(this.removealTimeout);
+    // clearTimeout(this.removalTimeout);
     // this.state = 'active';
   }
 }
