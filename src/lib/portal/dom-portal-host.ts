@@ -24,7 +24,7 @@ export class DomPortalHost extends BasePortalHost {
   }
 
   /** Attach the given ComponentPortal to DOM element using the ComponentFactoryResolver. */
-  attachComponentPortal<T>(portal: ComponentPortal<T>): ComponentRef<T> {
+  attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T> {
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
     let componentRef: ComponentRef<T>;
 
@@ -59,7 +59,11 @@ export class DomPortalHost extends BasePortalHost {
 
     // At this point the component has been instantiated, so we move it to the location in the DOM
     // where we want it to be rendered.
-    this._hostDomElement.appendChild(this._getComponentRootNode(componentRef));
+    if (newestOnTop) {
+      this._hostDomElement.insertBefore(this._getComponentRootNode(componentRef), this._hostDomElement.firstChild);
+    } else {
+      this._hostDomElement.appendChild(this._getComponentRootNode(componentRef));
+    }
 
     return componentRef;
   }
