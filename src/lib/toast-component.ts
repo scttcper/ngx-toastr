@@ -114,21 +114,24 @@ export class Toast implements OnDestroy {
     this.state = 'removed';
     this.removalTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
-  @HostListener('mouseout')
+  @HostListener('mouseleave')
   delayedHideToast() {
-    if (this.options.timeOut > 0 || this.options.extendedTimeOut > 0) {
-      this.width = 100;
-      this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
-      this.options.timeOut = +this.options.extendedTimeOut;
-      this.hideTime = new Date().getTime() + this.options.timeOut;
+    if (+this.options.extendedTimeOut === 0) {
+      return;
     }
+    this.width = 100;
+    this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
+    this.options.timeOut = +this.options.extendedTimeOut;
+    this.hideTime = new Date().getTime() + this.options.timeOut;
   }
-  @HostListener('mouseover')
+  @HostListener('mouseenter')
   stickAround() {
     clearTimeout(this.timeout);
+    this.options.timeOut = 0;
     this.hideTime = 0;
-    // todo: stop hiding?
-    // clearTimeout(this.removalTimeout);
-    // this.state = 'active';
+
+    // disable progressBar
+    clearInterval(this.intervalId);
+    this.options.progressBar = false;
   }
 }
