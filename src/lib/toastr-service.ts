@@ -17,6 +17,7 @@ export class ToastrService {
   private index: number = 0;
   private toasts: any[] = [];
   private previousToastMessage: string = '';
+  private currentlyActive = 0;
 
   constructor(
     public toastrConfig: ToastrConfig,
@@ -59,10 +60,14 @@ export class ToastrService {
     }
     activeToast.overlayRef.detach();
     this.toasts.splice(index, 1);
-    if (this.toastrConfig.maxOpened &&
-      this.toasts.length && this.toasts.length >= this.toastrConfig.maxOpened) {
-      const p = this.toasts[0].portal;
+    this.currentlyActive = this.currentlyActive - 1;
+    if (!this.toastrConfig.maxOpened || !this.toasts.length) {
+      return;
+    }
+    if (this.currentlyActive <= this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
+      const p = this.toasts[this.currentlyActive].portal;
       if (p._component.state === 'inactive') {
+        this.currentlyActive = this.currentlyActive + 1;
         p._component.activateToast();
       }
     }
@@ -97,7 +102,7 @@ export class ToastrService {
     }
     this.previousToastMessage = message;
     let keepInactive = false;
-    if (+this.toastrConfig.maxOpened && this.toasts.length >= +this.toastrConfig.maxOpened) {
+    if (this.toastrConfig.maxOpened && this.currentlyActive >= this.toastrConfig.maxOpened) {
       keepInactive = true;
       if (this.toastrConfig.autoDismiss) {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
@@ -116,7 +121,10 @@ export class ToastrService {
     ins.portal._component.toastType = type;
     ins.portal._component.options = optionsOverride;
     if (!keepInactive) {
-      setTimeout(() => ins.portal._component.activateToast());
+      setTimeout(() => {
+        ins.portal._component.activateToast();
+        this.currentlyActive = this.currentlyActive + 1;
+      });
     }
     this.toasts.push(ins);
     return ins;
