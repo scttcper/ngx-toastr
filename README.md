@@ -18,7 +18,7 @@ npm install toastr-ng2 --save
 ## Setup  
 __step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/app/app.component.css) to your project.
 If you are using sass you can import the css.
-```sass
+```scss
 @import 'node_modules/toastr-ng2/toastr';
 ```
 
@@ -93,7 +93,7 @@ tapToDismiss: boolean = true; // close on click
 ### Override default settings
 NEW FOR VERSION > 3 global overrides must be done inside a component.
 Inject ToastrConfig, typically in your root component, and customize the values of its properties in order to provide default values for all the toasts in the application.
-```javascript
+```typescript
 import { ToastrConfig } from 'toastr-ng2';
 import { Component } from '@angular/core';
 
@@ -111,7 +111,7 @@ export class AppComponent {
 
 ### individual toast settings
 success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
-```javascript
+```typescript
 import { ToastConfig } from 'toastr-ng2';
 
 let errorConfig = new ToastConfig();
