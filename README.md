@@ -3,13 +3,12 @@
 
 DEMO: https://scttcper.github.io/toastr-ng2/
 
-Inspired by [angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
-
-##### Why another toastr?
+## Features
 - Toast component injection based on [@angular2-material/core/overlay](https://github.com/angular/material2)
 - No use of `*ngFor`. Fewer dirty checks and higher performance.
-- Toast component can be overwritten for custom style or html.
+- Toast component can be extended for custom style or html.
 - Animations using angular 2's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
+- AoT compilation
 
 ## Install  
 ```bash
@@ -20,6 +19,13 @@ __step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/
 If you are using sass you can import the css.
 ```scss
 @import 'node_modules/toastr-ng2/toastr';
+```
+If you are using angular-cli you can add it to your angular-cli.json
+```
+"styles": [
+  "styles.scss",
+  "node_modules/toastr-ng2/toastr.css"
+]
 ```
 
 __step 2:__ add ToastrModule to app NgModule
@@ -134,3 +140,9 @@ export interface ActiveToast {
 }
 ```
 Toastr Service will return undefined if prevent duplicates is on.
+
+## Previous Works
+[angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
+
+## License
+MIT
