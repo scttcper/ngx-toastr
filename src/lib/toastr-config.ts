@@ -49,6 +49,6 @@ export class ToastrConfig extends ToastConfig {
   newestOnTop: boolean = true;
   preventDuplicates: boolean = false;
   constructor() {
-    super({});
+    super();
   }
 }
