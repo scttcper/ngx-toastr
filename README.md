@@ -25,9 +25,13 @@ If you are using sass you can import the css.
 __step 2:__ add ToastrModule to app NgModule
 ```typescript
 import { ToastrModule } from 'toastr-ng2';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [ToastrModule], // ToastrModule added
+  imports: [
+    CommonModule,
+    ToastrModule.forRoot(), // ToastrModule added
+  ], 
   bootstrap: [App],
   declarations: [App],
 })
@@ -87,23 +91,22 @@ tapToDismiss: boolean = true; // close on click
 ```
 
 ### Override default settings
+NEW FOR VERSION > 3 global overrides must be done inside a component.
+Inject ToastrConfig, typically in your root component, and customize the values of its properties in order to provide default values for all the timepickers used in the application.
 ```javascript
-import { NgModule } from '@angular/core';
-import { ToastrModule, provideToastr } from 'toastr-ng2';
+import { ToastrConfig } from 'toastr-ng2';
+import { Component } from '@angular/core';
 
-@NgModule({
-  bootstrap: [App],
-  declarations: [App],
-  // Import Toastr!
-  imports: [ ToastrModule ],
-  providers: [
-    // Override options here
-    provideToastr({
-      timeOut: 500,
-    })
-  ]
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-class ExampleMainModule {}
+export class AppComponent {
+  constructor(config: ToastrConfig) {
+    config.timeOut = 100;
+  }
+}
 ```
 
 ### individual toast settings
@@ -114,6 +117,10 @@ import { ToastConfig } from 'toastr-ng2';
 let errorConfig = new ToastConfig();
 // display until dismissed
 errorConfig.timeOut = 0;
+
+// OR pass config as an object
+errorConfig = new ToastConfig({timeOut: 10000});
+
 this.toastrService.error('everything is broken', 'title is optional', errorConfig);
 ```
 

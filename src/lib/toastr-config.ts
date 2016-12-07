@@ -2,23 +2,25 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Toast } from './toast-component';
 
-@Injectable()
+/**
+ * Configuration for an individual toast.
+ */
 export class ToastConfig {
   // shows close button
-  public closeButton: boolean = false;
-  public extendedTimeOut: number = 1000;
-  public onHidden: EventEmitter<any> = new EventEmitter();
-  public onShown: EventEmitter<any> = new EventEmitter();
-  public onTap: EventEmitter<any> = new EventEmitter();
-  public progressBar: boolean = false;
-  public timeOut: number = 5000;
+  closeButton: boolean = false;
+  extendedTimeOut: number = 1000;
+  onHidden: EventEmitter<any> = new EventEmitter();
+  onShown: EventEmitter<any> = new EventEmitter();
+  onTap: EventEmitter<any> = new EventEmitter();
+  progressBar: boolean = false;
+  timeOut: number = 5000;
 
-  public toastClass: string = 'toast';
-  public positionClass: string = 'toast-top-right';
-  public titleClass: string = 'toast-title';
-  public messageClass: string = 'toast-message';
-  public tapToDismiss: boolean = true;
-  public toastComponent = Toast;
+  toastClass: string = 'toast';
+  positionClass: string = 'toast-top-right';
+  titleClass: string = 'toast-title';
+  messageClass: string = 'toast-message';
+  tapToDismiss: boolean = true;
+  toastComponent = Toast;
   constructor(config: any = {}) {
     this.closeButton = config.closeButton || this.closeButton;
     this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
@@ -37,29 +39,24 @@ export class ToastConfig {
   }
 }
 
+/**
+ * Global Toast configuration
+ * You can inject this service, typically in your root component, and customize the values of its properties in
+ * order to provide default values for all the timepickers used in the application.
+ */
 @Injectable()
 export class ToastrConfig extends ToastConfig {
-  public maxOpened: number = 0;
-  public autoDismiss: boolean = false;
-  public iconClasses = {
+  maxOpened: number = 0;
+  autoDismiss: boolean = false;
+  iconClasses = {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
     warning: 'toast-warning',
   };
-  public newestOnTop: boolean = true;
-  public preventDuplicates: boolean = false;
-  constructor(config: any = {}) {
-    super(config);
-    this.maxOpened = config.maxOpened || this.maxOpened;
-    this.autoDismiss = config.autoDismiss || this.autoDismiss;
-    if (config.iconClasses) {
-      this.iconClasses.error = config.iconClasses.error || this.iconClasses.error;
-      this.iconClasses.info = config.iconClasses.info || this.iconClasses.info;
-      this.iconClasses.success = config.iconClasses.success || this.iconClasses.success;
-      this.iconClasses.warning = config.iconClasses.warning || this.iconClasses.warning;
-    }
-    this.newestOnTop = config.newestOnTop || this.newestOnTop;
-    this.preventDuplicates = config.preventDuplicates || this.preventDuplicates;
+  newestOnTop: boolean = true;
+  preventDuplicates: boolean = false;
+  constructor() {
+    super();
   }
 }
