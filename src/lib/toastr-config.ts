@@ -2,7 +2,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Toast } from './toast-component';
 
-@Injectable()
 export class ToastConfig {
   // shows close button
   public closeButton: boolean = false;
