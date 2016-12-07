@@ -15,9 +15,9 @@
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@angular-cli/base-href-webpack/-/base-href-webpack-1.0.9.tgz#b2e15e6eeb7784f81e42c1c725bc444e184b6092"
 
-"@angular/common@2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.2.3.tgz#0d26bdfdea362ed32e436ced4f31bb69a9d7b9e4"
+"@angular/common@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.2.4.tgz#0e798cce826ba304d3b29556527a1a531f407159"
 
 "@angular/compiler-cli@2.2.3":
   version "2.2.3"
@@ -27,29 +27,45 @@
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
+"@angular/compiler-cli@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.2.4.tgz#3828a9b4b47f6f1d21aa1c80a5a63ec9a6fc7740"
+  dependencies:
+    "@angular/tsc-wrapped" "^0.3.0"
+    minimist "^1.2.0"
+    reflect-metadata "^0.1.2"
+
 "@angular/compiler@2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.2.3.tgz#5a96b8b6c620ffe0c3b87b2f254e588abeb77a12"
+
+"@angular/compiler@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.2.4.tgz#40e8db5f801939ddc1a163079dc71b3be81a06ae"
 
 "@angular/core@2.2.3":
   version "2.2.3"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.2.3.tgz#18b09740bf51bdeb906153704e771bce53fecdf6"
 
-"@angular/forms@2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.2.3.tgz#361489605b5df4fa20f26e184a0b0d775b11fe1e"
+"@angular/core@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.2.4.tgz#d00d5cfc734fd610cbafc14eb0749c957f004aa9"
 
-"@angular/platform-browser-dynamic@2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.2.3.tgz#80f68c13c0b51bac890beed05548bc7597b9ff6d"
+"@angular/forms@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.2.4.tgz#95f15ca1938879298ccc0ef8a3e9ef5e750e31ef"
 
-"@angular/platform-browser@2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.2.3.tgz#f48d2452a6dfebc0d41274f0e3a02ba89c01b2b6"
+"@angular/platform-browser-dynamic@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-2.2.4.tgz#4895cc035ab393ec9e74e7684211a9209ea86825"
 
-"@angular/router@3.2.3":
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.3.tgz#07cd0e978abc53abb71be9d17353d7ff93f05083"
+"@angular/platform-browser@2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-2.2.4.tgz#6041e02c7ed62622c926060869506705f79fb5fb"
+
+"@angular/router@3.2.4":
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-3.2.4.tgz#dfec71ad072ec031364ba5d08bd6fe03fd5beadc"
 
 "@angular/tsc-wrapped@^0.3.0":
   version "0.3.0"
@@ -145,13 +161,9 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-amdefine@1.0.0:
+amdefine@1.0.0, amdefine@>=0.0.4:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.0.tgz#fd17474700cb5cc9c2b709f0be9d23ce3c198c33"
-
-amdefine@>=0.0.4:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
 angular-cli@1.0.0-beta.22:
   version "1.0.0-beta.22"
@@ -3538,11 +3550,7 @@ lowercase-keys@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-1.0.0.tgz#4e3366b39e7f5457e35f1324bdf6f88d0bfc7306"
 
-lru-cache@2:
-  version "2.7.3"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
-
-lru-cache@2.2.x:
+lru-cache@2, lru-cache@2.2.x:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.2.4.tgz#6c658619becf14031d0d0b594b16042ce4dc063d"
 
