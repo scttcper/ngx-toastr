@@ -2,6 +2,9 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Toast } from './toast-component';
 
+/**
+ * Configuration for an individual toast.
+ */
 export class ToastConfig {
   // shows close button
   closeButton: boolean = false;
@@ -36,6 +39,11 @@ export class ToastConfig {
   }
 }
 
+/**
+ * Global Toast configuration
+ * You can inject this service, typically in your root component, and customize the values of its properties in
+ * order to provide default values for all the timepickers used in the application.
+ */
 @Injectable()
 export class ToastrConfig extends ToastConfig {
   maxOpened: number = 0;
