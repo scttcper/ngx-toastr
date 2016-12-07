@@ -92,7 +92,7 @@ tapToDismiss: boolean = true; // close on click
 
 ### Override default settings
 NEW FOR VERSION > 3 global overrides must be done inside a component.
-Inject ToastrConfig, typically in your root component, and customize the values of its properties in order to provide default values for all the timepickers used in the application.
+Inject ToastrConfig, typically in your root component, and customize the values of its properties in order to provide default values for all the toasts in the application.
 ```javascript
 import { ToastrConfig } from 'toastr-ng2';
 import { Component } from '@angular/core';
