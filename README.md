@@ -103,8 +103,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(config: ToastrConfig) {
-    config.timeOut = 100;
+  constructor(toastrConfig: ToastrConfig) {
+    toastrConfig.timeOut = 100;
   }
 }
 ```
