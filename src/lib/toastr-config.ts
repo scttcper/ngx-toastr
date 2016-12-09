@@ -2,7 +2,9 @@ import { Injectable, EventEmitter } from '@angular/core';
 
 import { Toast } from './toast-component';
 
-
+/**
+ * Individual Toast Config
+ */
 export interface ToastConfig {
   closeButton?: boolean;
   extendedTimeOut?: number;
@@ -22,8 +24,6 @@ export interface ToastConfig {
 
 /**
  * Global Toast configuration
- * You can inject this service, typically in your root component, and customize the values of its properties in
- * order to provide default values for all the timepickers used in the application.
  */
 @Injectable()
 export class ToastrConfig implements ToastConfig {
