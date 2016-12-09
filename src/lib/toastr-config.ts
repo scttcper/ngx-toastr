@@ -54,6 +54,11 @@ export class ToastrConfig implements ToastConfig {
   preventDuplicates: boolean = false;
 
   constructor(config: ToastConfig = {}) {
+    this.overrideDefaultValues(config);
+  }
+
+
+  private overrideDefaultValues(config: ToastConfig) {
     this.closeButton = config.closeButton || this.closeButton;
     this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
     this.onHidden = config.onHidden || this.onHidden;
@@ -68,5 +73,12 @@ export class ToastrConfig implements ToastConfig {
     this.messageClass = config.messageClass || this.messageClass;
     this.tapToDismiss = config.tapToDismiss || this.tapToDismiss;
     this.toastComponent = config.toastComponent || this.toastComponent;
+  }
+
+  public override(config: ToastConfig = {}) {
+    let toastrConfig = Object.create(this);
+    toastrConfig.overrideDefaultValues(config);
+
+    return toastrConfig;
   }
 }

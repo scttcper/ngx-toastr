@@ -89,6 +89,11 @@ export class AppComponent {
       this.lastInserted.push(inserted.toastId);
     }
   }
+  openToastWithCustomConfig() {
+    this.toastrService.success('Toast with a custom config', '', { timeOut: 7500, progressBar: true, closeButton: true });
+    this.toastrService.warning('Another toast with a custom config', '', { timeOut: 3500, closeButton: true });
+    this.toastrService.error('Another toast with a custom config', '', { extendedTimeOut: 2000, progressBar: true });
+  }
   clearToasts() {
     this.toastrService.clear();
   }
