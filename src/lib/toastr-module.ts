@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, OpaqueToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,6 +7,12 @@ import { ToastrService } from './toastr-service';
 import { ToastConfig, ToastrConfig } from './toastr-config';
 import { OverlayContainer } from './overlay/overlay-container';
 import { Overlay } from './overlay/overlay';
+
+export const TOAST_CONFIG = new OpaqueToken('ToastConfig');
+
+export function provideToastrConfig(config: ToastConfig) {
+  return new ToastrConfig(config);
+}
 
 @NgModule({
   imports: [BrowserModule, CommonModule],
@@ -19,7 +25,8 @@ export class ToastrModule {
     return {
       ngModule: ToastrModule,
       providers: [
-        { provide: ToastrConfig, useFactory: () => new ToastrConfig(config) },
+        { provide: TOAST_CONFIG, useValue: config },
+        { provide: ToastrConfig, useFactory: provideToastrConfig, deps: [TOAST_CONFIG] },
         OverlayContainer,
         Overlay,
         ToastrService
