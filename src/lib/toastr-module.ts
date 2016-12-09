@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, Inject, Optional } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
