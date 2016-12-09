@@ -3,10 +3,30 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Toast } from './toast-component';
 
 /**
- * Configuration for an individual toast.
+ * Individual Toast Config
  */
-export class ToastConfig {
-  // shows close button
+export interface ToastConfig {
+  closeButton?: boolean;
+  extendedTimeOut?: number;
+  onHidden?: EventEmitter<any>;
+  onShown?: EventEmitter<any>;
+  onTap?: EventEmitter<any>;
+  progressBar?: boolean;
+  timeOut?: number;
+
+  toastClass?: string;
+  positionClass?: string;
+  titleClass?: string;
+  messageClass?: string;
+  tapToDismiss?: boolean;
+  toastComponent?: any;
+}
+
+/**
+ * Global Toast configuration
+ */
+@Injectable()
+export class ToastrConfig implements ToastConfig {
   closeButton: boolean = false;
   extendedTimeOut: number = 1000;
   onHidden: EventEmitter<any> = new EventEmitter();
@@ -20,8 +40,25 @@ export class ToastConfig {
   titleClass: string = 'toast-title';
   messageClass: string = 'toast-message';
   tapToDismiss: boolean = true;
-  toastComponent = Toast;
-  constructor(config: any = {}) {
+  toastComponent: any = Toast;
+
+  maxOpened: number = 0;
+  autoDismiss: boolean = false;
+  iconClasses = {
+    error: 'toast-error',
+    info: 'toast-info',
+    success: 'toast-success',
+    warning: 'toast-warning',
+  };
+  newestOnTop: boolean = true;
+  preventDuplicates: boolean = false;
+
+  constructor(config: ToastConfig = {}) {
+    this.overrideDefaultValues(config);
+  }
+
+
+  private overrideDefaultValues(config: ToastConfig) {
     this.closeButton = config.closeButton || this.closeButton;
     this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
     this.onHidden = config.onHidden || this.onHidden;
@@ -37,26 +74,11 @@ export class ToastConfig {
     this.tapToDismiss = config.tapToDismiss || this.tapToDismiss;
     this.toastComponent = config.toastComponent || this.toastComponent;
   }
-}
 
-/**
- * Global Toast configuration
- * You can inject this service, typically in your root component, and customize the values of its properties in
- * order to provide default values for all the timepickers used in the application.
- */
-@Injectable()
-export class ToastrConfig extends ToastConfig {
-  maxOpened: number = 0;
-  autoDismiss: boolean = false;
-  iconClasses = {
-    error: 'toast-error',
-    info: 'toast-info',
-    success: 'toast-success',
-    warning: 'toast-warning',
-  };
-  newestOnTop: boolean = true;
-  preventDuplicates: boolean = false;
-  constructor() {
-    super();
+  public override(config: ToastConfig = {}) {
+    let toastrConfig = Object.create(this);
+    toastrConfig.overrideDefaultValues(config);
+
+    return toastrConfig;
   }
 }

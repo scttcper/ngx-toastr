@@ -3,8 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ToastrModule } from '../lib/toastr';
+import { ToastrModule, ToastConfig } from '../lib/toastr';
 import { PinkToast } from './pink.toast';
+
+// const toastConfig: ToastConfig = {
+//   timeOut: 10000
+// }
 
 @NgModule({
   declarations: [
@@ -14,7 +18,7 @@ import { PinkToast } from './pink.toast';
   imports: [
     BrowserModule,
     FormsModule,
-    ToastrModule,
+    ToastrModule.forRoot(),
   ],
   entryComponents: [PinkToast],
   providers: [],

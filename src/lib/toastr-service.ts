@@ -22,7 +22,7 @@ export class ToastrService {
   constructor(
     public toastrConfig: ToastrConfig,
     private overlay: Overlay
-  ) {}
+  ) { }
 
   public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.success;
@@ -73,13 +73,13 @@ export class ToastrService {
     }
     return true;
   }
-  private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
+  private _findToast(toastId: number): { index: number, activeToast: ActiveToast } {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
-        return {index: i, activeToast: this.toasts[i]};
+        return { index: i, activeToast: this.toasts[i] };
       }
     }
-    return {index: null, activeToast: null};
+    return { index: null, activeToast: null };
   }
   private isDuplicate(message: string): boolean {
     for (let i = 0; i < this.toasts.length; i++) {
@@ -94,8 +94,10 @@ export class ToastrService {
     type: string,
     message: string,
     title: string,
-    optionsOverride: ToastConfig = Object.create(this.toastrConfig)
+    optionsOverride?: ToastConfig
   ): ActiveToast {
+    optionsOverride = this.toastrConfig.override(optionsOverride);
+
     // max opened and auto dismiss = true
     if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
       return;
