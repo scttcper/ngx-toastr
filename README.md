@@ -97,8 +97,16 @@ tapToDismiss: boolean = true; // close on click
 ```
 
 ### Override default settings
-NEW FOR VERSION > 3 global overrides must be done inside a component.
-Inject ToastrConfig, typically in your root component, and customize the values of its properties in order to provide default values for all the toasts in the application.
+NEW FOR VERSION > 3
+Option 1: Pass values to ToastrModule.forRoot
+```typescript
+// your NgModule
+imports: [
+  ToastrModule.forRoot({timeOut: 0}),
+], 
+```
+
+Option 2: Inject ToastrConfig, typically in your root component, and customize the values.
 ```typescript
 import { ToastrConfig } from 'toastr-ng2';
 import { Component } from '@angular/core';
@@ -118,15 +126,10 @@ export class AppComponent {
 ### individual toast settings
 success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
 ```typescript
+// OPTIONAL: import the ToastConfig interface
 import { ToastConfig } from 'toastr-ng2';
 
-let errorConfig = new ToastConfig();
-// display until dismissed
-errorConfig.timeOut = 0;
-
-// OR pass config as an object
-errorConfig = new ToastConfig({timeOut: 10000});
-
+const errorConfig: ToastConfig = {timeOut: 10000};
 this.toastrService.error('everything is broken', 'title is optional', errorConfig);
 ```
 

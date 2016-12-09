@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { Toast } from './toast-component';
 import { ToastrService } from './toastr-service';
-import { ToastConfig, ToastrConfig } from './toastr-config';
+import { ToastConfig, ToastrConfig, GlobalToastConfig } from './toastr-config';
 import { OverlayContainer } from './overlay/overlay-container';
 import { Overlay } from './overlay/overlay';
 
@@ -15,10 +15,15 @@ import { Overlay } from './overlay/overlay';
   entryComponents: [Toast],
 })
 export class ToastrModule {
-  static forRoot(): ModuleWithProviders { return {ngModule: ToastrModule, providers: [
-    ToastrConfig,
-    OverlayContainer,
-    Overlay,
-    ToastrService,
-  ]}; }
+  static forRoot(config?: GlobalToastConfig): ModuleWithProviders {
+    return {
+      ngModule: ToastrModule,
+      providers: [
+        { provide: ToastrConfig, useFactory: () => new ToastrConfig(config) },
+        OverlayContainer,
+        Overlay,
+        ToastrService
+      ]
+    };
+  }
 }
