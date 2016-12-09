@@ -93,7 +93,7 @@ export class ToastrConfig extends ToastConfig implements GlobalToastConfig {
   };
   newestOnTop = true;
   preventDuplicates = false;
-  constructor(config?: GlobalToastConfig) {
+  constructor(config: GlobalToastConfig = {}) {
     super(config);
     this.maxOpened = config.maxOpened || this.maxOpened;
     this.autoDismiss = config.autoDismiss || this.autoDismiss;
