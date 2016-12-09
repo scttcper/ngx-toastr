@@ -1,34 +1,60 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
+import { ComponentType } from './portal/portal';
 import { Toast } from './toast-component';
+
+export interface SingleToastConfig {
+  closeButton?: boolean
+  extendedTimeOut?: number
+  onHidden?: EventEmitter<any>
+  onShown?: EventEmitter<any>
+  onTap?: EventEmitter<any>
+  progressBar?: boolean
+  timeOut?: number
+
+  toastClass?: string
+  positionClass?: string
+  titleClass?: string
+  messageClass?: string
+  tapToDismiss?: boolean
+  toastComponent?: ComponentType<any>;
+}
 
 /**
  * Configuration for an individual toast.
  */
-export class ToastConfig {
+export class ToastConfig implements SingleToastConfig {
   // shows close button
-  closeButton: boolean = false;
-  extendedTimeOut: number = 1000;
-  onHidden: EventEmitter<any> = new EventEmitter();
-  onShown: EventEmitter<any> = new EventEmitter();
-  onTap: EventEmitter<any> = new EventEmitter();
-  progressBar: boolean = false;
-  timeOut: number = 5000;
+  closeButton = false;
+  extendedTimeOut = 1000;
+  onHidden = new EventEmitter();
+  onShown = new EventEmitter();
+  onTap = new EventEmitter();
+  progressBar = false;
+  timeOut = 5000;
 
-  toastClass: string = 'toast';
-  positionClass: string = 'toast-top-right';
-  titleClass: string = 'toast-title';
-  messageClass: string = 'toast-message';
-  tapToDismiss: boolean = true;
+  toastClass = 'toast';
+  positionClass = 'toast-top-right';
+  titleClass = 'toast-title';
+  messageClass = 'toast-message';
+  tapToDismiss = true;
   toastComponent = Toast;
-  constructor(config: any = {}) {
+  constructor(config: GlobalToastConfig = {}) {
     this.closeButton = config.closeButton || this.closeButton;
-    this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
+    if (config.extendedTimeOut === 0) {
+      this.extendedTimeOut = config.extendedTimeOut;
+    } else {
+      this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
+    }
     this.onHidden = config.onHidden || this.onHidden;
     this.onShown = config.onShown || this.onShown;
     this.onTap = config.onTap || this.onTap;
     this.progressBar = config.progressBar || this.progressBar;
-    this.timeOut = config.timeOut || this.timeOut;
+    if (config.timeOut === 0) {
+      this.timeOut = config.timeOut;
+    } else {
+      this.timeOut = config.timeOut || this.timeOut;
+    }
 
     this.toastClass = config.toastClass || this.toastClass;
     this.positionClass = config.positionClass || this.positionClass;
@@ -39,24 +65,45 @@ export class ToastConfig {
   }
 }
 
+export interface GlobalToastConfig extends SingleToastConfig {
+  maxOpened?: number;
+  autoDismiss?: boolean;
+  iconClasses?: {
+    error?: string,
+    info?: string,
+    success?: string,
+    warning?: string,
+  };
+  newestOnTop?: boolean;
+  preventDuplicates?: boolean;
+}
+
 /**
  * Global Toast configuration
- * You can inject this service, typically in your root component, and customize the values of its properties in
- * order to provide default values for all the timepickers used in the application.
  */
 @Injectable()
-export class ToastrConfig extends ToastConfig {
-  maxOpened: number = 0;
-  autoDismiss: boolean = false;
+export class ToastrConfig extends ToastConfig implements GlobalToastConfig {
+  maxOpened = 0;
+  autoDismiss = false;
   iconClasses = {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
     warning: 'toast-warning',
   };
-  newestOnTop: boolean = true;
-  preventDuplicates: boolean = false;
-  constructor() {
-    super();
+  newestOnTop = true;
+  preventDuplicates = false;
+  constructor(config?: GlobalToastConfig) {
+    super(config);
+    this.maxOpened = config.maxOpened || this.maxOpened;
+    this.autoDismiss = config.autoDismiss || this.autoDismiss;
+    if (config.iconClasses) {
+      this.iconClasses.error = this.iconClasses.error || config.iconClasses.error;
+      this.iconClasses.info = this.iconClasses.info || config.iconClasses.info;
+      this.iconClasses.success = this.iconClasses.success || config.iconClasses.success;
+      this.iconClasses.warning = this.iconClasses.warning || config.iconClasses.warning;
+    }
+    this.newestOnTop = config.newestOnTop || this.newestOnTop;
+    this.preventDuplicates = config.preventDuplicates || this.preventDuplicates;
   }
 }
