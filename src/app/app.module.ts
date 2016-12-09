@@ -14,7 +14,7 @@ import { PinkToast } from './pink.toast';
   imports: [
     BrowserModule,
     FormsModule,
-    ToastrModule,
+    ToastrModule.forRoot(),
   ],
   entryComponents: [PinkToast],
   providers: [],
