@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { ToastrModule, ToastConfig } from '../lib/toastr';
 import { PinkToast } from './pink.toast';
 
+// const toastConfig: ToastConfig = {
+//   timeOut: 10000
+// }
 
 @NgModule({
   declarations: [
@@ -15,6 +18,7 @@ import { PinkToast } from './pink.toast';
   imports: [
     BrowserModule,
     FormsModule,
+    ToastrModule.forRoot(),
   ],
   entryComponents: [PinkToast],
   providers: [],
