@@ -61,7 +61,7 @@ export class Toast implements OnDestroy {
   private intervalId: any;
   private hideTime: number;
   @HostBinding('class')
-  private toastClasses: string = '';
+  toastClasses: string = '';
   @HostBinding('@flyInOut')
   state: string = 'inactive';
 
