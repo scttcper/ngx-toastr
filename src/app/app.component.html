@@ -13,12 +13,8 @@
                 <label for="toastMessage">Message</label>
                 <textarea [(ngModel)]="message" rows="3" class="form-control" id="toastMessage" placeholder="Toast message"></textarea>
               </div>
-              <!-- <div class="form-group">
-                <label for="toastButton">Close button html</label>
-                <input type="text" ng-model="options.closeHtml" class="form-control" id="toastbutton" ng-disabled="!options.closeButton">
-              </div> -->
-              <div class="form-group">
 
+              <div class="form-group">
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" [(ngModel)]="options.tapToDismiss"> Tap to dismiss
@@ -44,22 +40,6 @@
                     <input type="checkbox" [(ngModel)]="options.progressBar"> Progress bar
                   </label>
                 </div>
-
-                <!-- <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model="options.html"> Allow html?
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model="options.preventOpenDuplicates"> Prevent open duplicates
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-model="options.customTemplate"> Custom template
-                  </label>
-                </div> -->
               </div>
             </div>
             <div class="col-md-4">
@@ -164,18 +144,10 @@
               </fieldset>
             </div>
           </div>
-          <!-- <div ng-if="options.customTemplate" class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="toastMessage">Custom template</label>
-                <textarea class="form-control" ng-model="toast.customTemplate" id="custom-template" placeholder="Custom template"></textarea>
-              </div>
-            </div>
-          </div> -->
+
           <div class="row">
             <div class="col-md-12">
               <button (click)="openToast()" class="btn btn-primary">Open Toast</button>
-              <!-- <button (click)="openRandomToast()" class="btn btn-primary">Open Random Toast</button> -->
               <button (click)="clearLastToast()" class="btn btn-secondary">Clear Last Toast</button>
               <button (click)="clearToasts()" class="btn btn-secondary">Clear All Toasts</button>
               <button (click)="openPinkToast()" class="btn btn-pink">Custom Pink Toast</button>
@@ -183,6 +155,14 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-xs-center">
+      Demo running on Angular {{ version.full }}
     </div>
   </div>
 </div>

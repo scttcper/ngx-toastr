@@ -1,8 +1,8 @@
-import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
-import { ToastrConfig, ToastrService } from '../lib/toastr';
-import { cloneDeep } from 'lodash';
+import { Component, ViewEncapsulation, VERSION } from '@angular/core';
+import * as _ from 'lodash';
 
 import { PinkToast } from './pink.toast';
+import { ToastrConfig, ToastrService } from '../lib/toastr';
 
 const quotes = [
   {
@@ -10,8 +10,8 @@ const quotes = [
     message: 'Message'
   },
   {
-    title: '🍚',
-    message: 'Rice bowls'
+    title: '😃',
+    message: 'Supports Emoji'
   },
   {
     title: null,
@@ -22,38 +22,29 @@ const quotes = [
     message: 'Titles are not always needed'
   },
   {
-    title: null,
-    message: 'No title here'
-  },
-  {
     title: 'Title only 👊',
     message: null,
   },
+  {
+    title: '',
+    message: `Supports Angular ${VERSION.full}`,
+  },
 ];
-const types: string[] = ['success', 'error', 'info', 'warning'];
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+const types = ['success', 'error', 'info', 'warning'];
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  private options: ToastrConfig;
-  private title: string = '';
-  private type: string = types[0];
-  private message: string = '';
+  options: ToastrConfig;
+  title = '';
+  type = types[0];
+  message = '';
+  version = VERSION;
   private lastInserted: number[] = [];
 
-  constructor(
-    private toastrService: ToastrService,
-    private viewContainerRef: ViewContainerRef
-  ) {
+  constructor(public toastrService: ToastrService) {
     // sync options to toastrservice
     // this sets the options in the demo
     this.options = this.toastrService.toastrConfig;
@@ -63,24 +54,24 @@ export class AppComponent {
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      let randomMessage = quotes[getRandomInt(0, quotes.length - 1)];
+      let randomMessage = quotes[_.random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
-    const opt = cloneDeep(this.options);
+    const opt = _.cloneDeep(this.options);
     const inserted = this.toastrService[this.type](m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
   }
   openPinkToast() {
-    const opt = cloneDeep(this.options);
+    const opt = _.cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'toast toast-pink';
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      let randomMessage = quotes[getRandomInt(0, quotes.length - 1)];
+      let randomMessage = quotes[_.random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
