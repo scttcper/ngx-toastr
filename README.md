@@ -144,6 +144,16 @@ export interface ActiveToast {
 ```
 Toastr Service will return undefined if prevent duplicates is on.
 
+### SystemJS
+If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
+
+In your systemjs config file, `map` needs to tell the System loader where to look for `ng-bootstrap`:
+```js
+map: {
+  'toastr-ng2': 'node_modules/toastr-ng2/toastr.umd.js',
+}
+```
+
 ## Previous Works
 [angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
 
