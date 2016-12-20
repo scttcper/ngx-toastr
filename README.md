@@ -147,7 +147,7 @@ Toastr Service will return undefined if prevent duplicates is on.
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
-In your systemjs config file, `map` needs to tell the System loader where to look for `ng-bootstrap`:
+In your systemjs config file, `map` needs to tell the System loader where to look for `toastr-ng2`:
 ```js
 map: {
   'toastr-ng2': 'node_modules/toastr-ng2/toastr.umd.js',
