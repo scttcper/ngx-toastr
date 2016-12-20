@@ -4,19 +4,19 @@ import { ComponentType } from './portal/portal';
 import { Toast } from './toast-component';
 
 export interface SingleToastConfig {
-  closeButton?: boolean
-  extendedTimeOut?: number
-  onHidden?: EventEmitter<any>
-  onShown?: EventEmitter<any>
-  onTap?: EventEmitter<any>
-  progressBar?: boolean
-  timeOut?: number
+  closeButton?: boolean;
+  extendedTimeOut?: number;
+  onHidden?: EventEmitter<any>;
+  onShown?: EventEmitter<any>;
+  onTap?: EventEmitter<any>;
+  progressBar?: boolean;
+  timeOut?: number;
 
-  toastClass?: string
-  positionClass?: string
-  titleClass?: string
-  messageClass?: string
-  tapToDismiss?: boolean
+  toastClass?: string;
+  positionClass?: string;
+  titleClass?: string;
+  messageClass?: string;
+  tapToDismiss?: boolean;
   toastComponent?: ComponentType<any>;
 }
 
