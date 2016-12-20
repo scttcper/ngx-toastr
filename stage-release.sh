@@ -11,6 +11,8 @@ rm -rf waste
 
 # compile src directory and create d.ts files
 ./node_modules/.bin/ngc -p ./src/lib/tsconfig.json -d
+# create umd
+node ./rollup.js
 
 # copy root readme and license to deployment folder
 # for multiple
