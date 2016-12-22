@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
-import { ToastConfig, ToastrConfig, SingleToastConfig } from './toastr-config';
+import { ToastConfig, ToastrConfig } from './toastr-config';
 
 export interface ActiveToast {
   toastId: number;
@@ -22,26 +22,26 @@ export class ToastrService {
   constructor(
     public toastrConfig: ToastrConfig,
     private overlay: Overlay
-  ) {}
+  ) { }
 
-  public success(message: string, title?: string, optionsOverride?: SingleToastConfig |  ToastConfig): ActiveToast {
+  public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.success;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public error(message: string, title?: string, optionsOverride?: SingleToastConfig |  ToastConfig): ActiveToast {
+  public error(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.error;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public info(message: string, title?: string, optionsOverride?: SingleToastConfig |  ToastConfig): ActiveToast {
+  public info(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.info;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public warning(message: string, title?: string, optionsOverride?: SingleToastConfig |  ToastConfig): ActiveToast {
+  public warning(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  createToastConfig(optionsOverride: SingleToastConfig |  ToastConfig): ToastConfig {
-    if (!optionsOverride)  {
+  createToastConfig(optionsOverride: ToastConfig): ToastConfig {
+    if (!optionsOverride) {
       return Object.create(this.toastrConfig);
     }
     if (optionsOverride instanceof ToastConfig) {
@@ -82,7 +82,7 @@ export class ToastrService {
     }
     return true;
   }
-  private _findToast(toastId: number): {index: number, activeToast: ActiveToast} {
+  private _findToast(toastId: number): { index: number, activeToast: ActiveToast } {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return { index: i, activeToast: this.toasts[i] };
