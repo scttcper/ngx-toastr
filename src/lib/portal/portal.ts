@@ -6,13 +6,13 @@ import {
   Injector
 } from '@angular/core';
 import {
-  MdNullPortalHostError,
-  MdPortalAlreadyAttachedError,
-  MdNoPortalAttachedError,
-  MdNullPortalError,
-  MdPortalHostAlreadyDisposedError,
+  NullPortalHostError,
+  PortalAlreadyAttachedError,
+  NoPortalAttachedError,
+  NullPortalError,
+  PortalHostAlreadyDisposedError,
+  UnknownPortalTypeError
 } from './portal-errors';
-
 
 export interface ComponentType<T> {
   new (...args: any[]): T;
@@ -28,11 +28,11 @@ export abstract class Portal<T> {
   /** Attach this portal to a host. */
   attach(host: PortalHost, newestOnTop: boolean): T {
     if (host == null) {
-      throw new MdNullPortalHostError();
+      throw new NullPortalHostError();
     }
 
     if (host.hasAttached()) {
-      throw new MdPortalAlreadyAttachedError();
+      throw new PortalAlreadyAttachedError();
     }
 
     this._attachedHost = host;
@@ -43,7 +43,7 @@ export abstract class Portal<T> {
   detach(): void {
     let host = this._attachedHost;
     if (host == null) {
-      throw new MdNoPortalAttachedError();
+      throw new NoPortalAttachedError();
     }
 
     this._attachedHost = null;
@@ -57,7 +57,7 @@ export abstract class Portal<T> {
 
   /**
    * Sets the PortalHost reference without performing `attach()`. This is used directly by
-   * the PortalHost when it is performing an `attach()` or `detatch()`.
+   * the PortalHost when it is performing an `attach()` or `detach()`.
    */
   setAttachedHost(host: PortalHost) {
     this._attachedHost = host;
@@ -150,7 +150,7 @@ export interface PortalHost {
 
 /**
  * Partial implementation of PortalHost that only deals with attaching either a
- * ComponentPortal
+ * ComponentPortal or a TemplatePortal.
  */
 export abstract class BasePortalHost implements PortalHost {
   /** The portal currently attached to the host. */
@@ -164,35 +164,42 @@ export abstract class BasePortalHost implements PortalHost {
 
   /** Whether this host has an attached portal. */
   hasAttached() {
-    return this._attachedPortal !== undefined;
+    return this._attachedPortal != null;
   }
 
-  attach(portal: ComponentPortal<any>, newestOnTop: boolean): any {
+  attach(portal: Portal<any>, newestOnTop: boolean): any {
     if (portal == null) {
-      throw new MdNullPortalError();
+      throw new NullPortalError();
     }
 
     if (this.hasAttached()) {
-      throw new MdPortalAlreadyAttachedError();
+      throw new PortalAlreadyAttachedError();
     }
 
     if (this._isDisposed) {
-      throw new MdPortalHostAlreadyDisposedError();
+      throw new PortalHostAlreadyDisposedError();
     }
-    this._attachedPortal = portal;
-    return this.attachComponentPortal(portal, newestOnTop);
+
+    if (portal instanceof ComponentPortal) {
+      this._attachedPortal = portal;
+      return this.attachComponentPortal(portal, newestOnTop);
+    } else if (portal instanceof TemplatePortal) {
+      this._attachedPortal = portal;
+      return this.attachTemplatePortal(portal, newestOnTop);
+    }
+
+    throw new UnknownPortalTypeError();
   }
 
-  abstract attachComponentPortal<T>(
-    portal: ComponentPortal<T>,
-    newestOnTop: boolean
-  ): ComponentRef<T>;
+  abstract attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T>;
+
+  abstract attachTemplatePortal(portal: TemplatePortal, newestOnTop: boolean): Map<string, any>;
 
   detach(): void {
     if (this._attachedPortal) { this._attachedPortal.setAttachedHost(null); }
 
     this._attachedPortal = null;
-    if (this._disposeFn) {
+    if (this._disposeFn != null) {
       this._disposeFn();
       this._disposeFn = null;
     }

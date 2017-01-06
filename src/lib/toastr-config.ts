@@ -85,3 +85,11 @@ export class ToastrConfig extends ToastConfig {
     this.preventDuplicates = config.preventDuplicates || this.preventDuplicates;
   }
 }
+
+export class ToastData {
+  toastId: number;
+  optionsOverride: ToastConfig;
+  message: string;
+  title: string;
+  toastType: string;
+}

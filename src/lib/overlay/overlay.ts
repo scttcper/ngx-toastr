@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Injectable, ApplicationRef, Injector } from '@angular/core';
+import { ComponentFactoryResolver, Injectable, ApplicationRef, Injector, NgZone } from '@angular/core';
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
@@ -14,38 +14,40 @@ import { OverlayContainer } from './overlay-container';
  * An overlay *is* a PortalHost, so any kind of Portal can be loaded into one.
  */
  @Injectable()
-export class Overlay {
-  private _paneElement: {string?: HTMLElement} = {};
-  constructor(private _overlayContainer: OverlayContainer,
-              private _componentFactoryResolver: ComponentFactoryResolver,
-              private _appRef: ApplicationRef,
-              private _injector: Injector) {}
+  export class Overlay {
+    private _paneElements: {string?: HTMLElement} = {};
+    constructor(private _overlayContainer: OverlayContainer,
+                private _componentFactoryResolver: ComponentFactoryResolver,
+                private _appRef: ApplicationRef,
+                private _injector: Injector,
+                private _ngZone: NgZone) {}
   /**
    * Creates an overlay.
    * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
   create(positionClass: string): OverlayRef {
+    // get existing pane if possible
     return this._createOverlayRef(this.getPaneElement(positionClass));
   }
 
   getPaneElement(positionClass: string): HTMLElement {
-    if (!this._paneElement[positionClass]) {
-      this._createPaneElement(positionClass);
+    if (!this._paneElements[positionClass]) {
+      this._paneElements[positionClass] = this._createPaneElement(positionClass);
     }
-    return this._paneElement[positionClass];
+    return this._paneElements[positionClass];
   }
 
   /**
    * Creates the DOM element for an overlay and appends it to the overlay container.
-   * @returns Promise resolving to the created element.
+   * @returns Newly-created pane element
    */
   private _createPaneElement(positionClass: string): HTMLElement {
-    const pane = document.createElement('div');
+    let pane = document.createElement('div');
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
+
     this._overlayContainer.getContainerElement().appendChild(pane);
-    this._paneElement[positionClass] = pane;
     return pane;
   }
 
@@ -62,10 +64,9 @@ export class Overlay {
    * Creates an OverlayRef for an overlay in the given DOM element.
    * @param pane DOM element for the overlay
    * @param state
-   * @returns {OverlayRef}
    */
   private _createOverlayRef(pane: HTMLElement): OverlayRef {
-    return new OverlayRef(this._createPortalHost(pane), pane);
+    return new OverlayRef(this._createPortalHost(pane), pane, this._ngZone);
   }
 }
 

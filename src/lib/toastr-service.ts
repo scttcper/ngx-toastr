@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 import { Overlay } from './overlay/overlay';
 import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
-import { ToastConfig, ToastrConfig } from './toastr-config';
+import { ToastConfig, ToastrConfig, ToastData } from './toastr-config';
+import { ToastInjector, ToastRef } from './toast-injector';
 
 export interface ActiveToast {
-  toastId: number;
-  message: string;
+  toastId?: number;
+  message?: string;
   portal?: any;
-  overlayRef?: OverlayRef;
+  toastRef?: ToastRef<any>;
 }
 
 @Injectable()
@@ -21,7 +23,8 @@ export class ToastrService {
 
   constructor(
     public toastrConfig: ToastrConfig,
-    private overlay: Overlay
+    private overlay: Overlay,
+    private _injector: Injector
   ) { }
 
   public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
@@ -67,7 +70,7 @@ export class ToastrService {
     if (!activeToast) {
       return false;
     }
-    activeToast.overlayRef.detach();
+    activeToast.toastRef.close();
     this.toasts.splice(index, 1);
     this.currentlyActive = this.currentlyActive - 1;
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
@@ -100,7 +103,7 @@ export class ToastrService {
   }
 
   private _buildNotification(
-    type: string,
+    toastType: string,
     message: string,
     title: string,
     optionsOverride: ToastConfig = Object.create(this.toastrConfig)
@@ -117,21 +120,24 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
-    const component = new ComponentPortal(optionsOverride.toastComponent);
     const ins: ActiveToast = {
       toastId: this.index++,
       message,
-      overlayRef: this.overlay.create(optionsOverride.positionClass),
     };
-    ins.portal = ins.overlayRef.attach(component, this.toastrConfig.newestOnTop);
-    ins.portal._component.toastId = ins.toastId;
-    ins.portal._component.message = message;
-    ins.portal._component.title = title;
-    ins.portal._component.toastType = type;
-    ins.portal._component.options = optionsOverride;
+    const overlayRef = this.overlay.create(optionsOverride.positionClass);
+    ins.toastRef = new ToastRef(overlayRef);
+    const data = new ToastData();
+    data.toastId = ins.toastId;
+    data.optionsOverride = optionsOverride;
+    data.message = message;
+    data.title = title;
+    data.toastType = toastType;
+    const toastInjector = new ToastInjector(ins.toastRef, data, this._injector);
+    const component = new ComponentPortal(optionsOverride.toastComponent, null, toastInjector);
+    ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
     if (!keepInactive) {
       setTimeout(() => {
-        ins.portal._component.activateToast();
+        ins.toastRef.activate();
         this.currentlyActive = this.currentlyActive + 1;
       });
     }

@@ -9,9 +9,11 @@ import {
   HostBinding,
   HostListener,
 } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
-import { ToastConfig } from './toastr-config';
+import { ToastConfig, ToastData } from './toastr-config';
 import { ToastrService } from './toastr-service';
+import { ToastRef } from './toast-injector';
 
 @Component({
   selector: '[toast-component]',
@@ -53,7 +55,6 @@ export class Toast implements OnDestroy {
   toastType: string;
   options: ToastConfig;
   // used to control animation
-
   timeout: any;
   removalTimeout: any;
   // used to control width of progress bar
@@ -64,11 +65,24 @@ export class Toast implements OnDestroy {
   toastClasses: string = '';
   @HostBinding('@flyInOut')
   state: string = 'inactive';
+  sub: Subscription;
 
   constructor(
-    private toastrService: ToastrService
-  ) { }
+    private toastrService: ToastrService,
+    public data: ToastData,
+    private toastRef: ToastRef<any>
+  ) {
+    this.options = data.optionsOverride;
+    this.toastId = data.toastId;
+    this.message = data.message;
+    this.title = data.title;
+    this.toastType = data.toastType;
+    this.sub = toastRef.afterActive().subscribe((n) => {
+      this.activateToast();
+    });
+  }
   ngOnDestroy() {
+    this.sub.unsubscribe();
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
     clearTimeout(this.removalTimeout);
@@ -110,7 +124,6 @@ export class Toast implements OnDestroy {
     if (this.state === 'removed') {
       return;
     }
-    this.options.onHidden.emit(null);
     this.state = 'removed';
     this.removalTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }
