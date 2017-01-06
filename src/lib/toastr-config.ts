@@ -15,6 +15,7 @@ export class ToastConfig {
   onTap?: EventEmitter<any> = new EventEmitter();
   progressBar?: boolean = false;
   timeOut?: number = 5000;
+  enableHtml?: boolean = false;
 
   toastClass?: string = 'toast';
   positionClass?: string = 'toast-top-right';
@@ -38,6 +39,7 @@ export class ToastConfig {
     } else {
       this.timeOut = config.timeOut || this.timeOut;
     }
+    this.enableHtml = config.enableHtml || this.enableHtml;
 
     this.toastClass = config.toastClass || this.toastClass;
     this.positionClass = config.positionClass || this.positionClass;

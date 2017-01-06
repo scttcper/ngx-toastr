@@ -9,6 +9,7 @@ import {
   HostBinding,
   HostListener,
 } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ToastConfig, ToastData } from './toastr-config';
@@ -24,7 +25,11 @@ import { ToastRef } from './toast-injector';
   <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
     {{title}}
   </div>
-  <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
+  <div *ngIf="message && options.enableHtml"
+    class="{{options.messageClass}}"
+    [innerHTML]="message">
+  </div>
+  <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
     {{message}}
   </div>
   <div *ngIf="options.progressBar">
@@ -50,7 +55,7 @@ import { ToastRef } from './toast-injector';
 })
 export class Toast implements OnDestroy {
   toastId: number;
-  message: string;
+  message: string | SafeHtml;
   title: string;
   toastType: string;
   options: ToastConfig;
@@ -70,11 +75,15 @@ export class Toast implements OnDestroy {
   constructor(
     private toastrService: ToastrService,
     public data: ToastData,
-    private toastRef: ToastRef<any>
+    private toastRef: ToastRef<any>,
+    sanitizer: DomSanitizer
   ) {
     this.options = data.optionsOverride;
     this.toastId = data.toastId;
     this.message = data.message;
+    if (this.message && this.options.enableHtml) {
+      this.message = sanitizer.bypassSecurityTrustHtml(data.message);
+    }
     this.title = data.title;
     this.toastType = data.toastType;
     this.sub = toastRef.afterActive().subscribe((n) => {
