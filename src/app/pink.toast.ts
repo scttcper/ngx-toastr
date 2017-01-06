@@ -23,7 +23,9 @@ import { Toast, ToastrService } from '../lib/toastr';
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
     &times;
   </button>
-  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">{{title}}</div>
+  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
+    {{title}}
+  </div>
   <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
     {{message}}
   </div>
@@ -31,13 +33,6 @@ import { Toast, ToastrService } from '../lib/toastr';
     <div class="toast-progress" [style.width.%]="width"></div>
   </div>
   `,
-  host: {
-    '(click)': 'tapToast()',
-    '(mouseover)': 'stickAround()',
-    '(mouseout)': 'delayedHideToast()',
-    '[@flyInOut]': 'state',
-    '[class]': 'toastClasses',
-  },
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
@@ -56,7 +51,5 @@ import { Toast, ToastrService } from '../lib/toastr';
   ],
 })
 export class PinkToast extends Toast {
-  constructor(toastrService: ToastrService) {
-    super(toastrService);
-  }
+
 }
