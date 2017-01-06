@@ -20,7 +20,6 @@
   },
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.5",
     "@angular/common": "^2.4.1",
     "@angular/compiler": "^2.4.1",
     "@angular/core": "^2.4.1",
@@ -29,17 +28,18 @@
     "@angular/platform-browser": "^2.4.1",
     "@angular/platform-browser-dynamic": "^2.4.1",
     "@angular/router": "^3.4.1",
+    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
-    "lodash": "^4.17.2",
-    "rxjs": "^5.0.1",
+    "lodash": "^4.17.4",
+    "rxjs": "^5.0.3",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.38",
-    "@types/lodash": "^4.14.44",
-    "@types/node": "^6.0.42",
+    "@types/lodash": "^4.14.46",
+    "@types/node": "^6.0.58",
     "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~2.0.0-beta.4",
     "jasmine-core": "2.5.2",
@@ -50,8 +50,8 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
+    "rollup": "^0.40.2",
     "ts-node": "1.2.1",
-    "rollup": "^0.38.0",
     "tslint": "^4.0.2",
     "typescript": "~2.0.3"
   }
