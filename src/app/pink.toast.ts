@@ -5,10 +5,9 @@ import {
   transition,
   animate,
   style,
-  OnDestroy,
 } from '@angular/core';
 
-import { Toast, ToastrService } from '../lib/toastr';
+import { Toast } from '../lib/toastr';
 
 
 @Component({
