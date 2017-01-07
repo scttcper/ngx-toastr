@@ -84,6 +84,7 @@ preventDuplicates: boolean = false; // block duplicate messages
 toastComponent = Toast; // the angular 2 component that will be used
 closeButton: boolean = false; // show close button
 timeOut: number = 5000; // time to live
+enableHtml: boolean = false; // allow html in message. (UNSAFE)
 extendedTimeOut: number = 1000; // time to close after a user hovers over toast
 onHidden: EventEmitter<any> = new EventEmitter(); // fired on event
 onShown: EventEmitter<any> = new EventEmitter(); // fired on event
@@ -145,7 +146,7 @@ export interface ActiveToast {
 Toastr Service will return undefined if prevent duplicates is on.
 
 ### Put toasts in your own container
-In case you want to put toasts in a specific div.
+Put toasts in a specific div inside your application. This should probably be somewhere that doesn't get deleted.
 Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
 Add a div with `toastContainer` directive on it.
 ```
