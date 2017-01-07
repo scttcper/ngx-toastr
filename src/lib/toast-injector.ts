@@ -21,9 +21,10 @@ export class ToastRef<T> {
    * Close the dialog.
    * @param dialogResult Optional result to return to the dialog opener.
    */
-  close(dialogResult?: any): void {
+  close(): void {
+    console.log('closed')
     this._overlayRef.detach();
-    this._afterClosed.next(dialogResult);
+    this._afterClosed.next();
     this._afterClosed.complete();
   }
 
@@ -38,7 +39,7 @@ export class ToastRef<T> {
   }
 
   /** Gets an observable that is notified when the dialog has started opening. */
-  afterActive(): Observable<any> {
+  afterActivate(): Observable<any> {
     return this._activate.asObservable();
   }
 }

@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 
 import { ToastConfig, ToastData } from './toastr-config';
 import { ToastrService } from './toastr-service';
@@ -68,7 +69,8 @@ export class Toast implements OnDestroy {
   toastClasses: string = '';
   @HostBinding('@flyInOut')
   state: string = 'inactive';
-  sub: Subscription;
+  private onTap: Subject<any>;
+  private sub: Subscription;
 
   constructor(
     private toastrService: ToastrService,
@@ -84,7 +86,8 @@ export class Toast implements OnDestroy {
     }
     this.title = data.title;
     this.toastType = data.toastType;
-    this.sub = toastRef.afterActive().subscribe((n) => {
+    this.onTap = data.onTap;
+    this.sub = toastRef.afterActivate().subscribe((n) => {
       this.activateToast();
     });
   }
@@ -96,7 +99,6 @@ export class Toast implements OnDestroy {
   }
   activateToast() {
     this.state = 'active';
-    this.options.onShown.emit(null);
     this.options.timeOut = +this.options.timeOut;
     this.toastClasses = `${this.toastType} ${this.options.toastClass}`;
     if (this.options.timeOut !== 0) {
@@ -122,7 +124,8 @@ export class Toast implements OnDestroy {
   }
   @HostListener('click')
   tapToast() {
-    this.options.onTap.emit(null);
+    this.onTap.next();
+    this.onTap.complete();
     if (this.options.tapToDismiss) {
       this.remove();
     }

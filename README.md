@@ -63,7 +63,7 @@ export class YourComponent {
 
 
 ## Options
-There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be overridden with your own angular 2 component. See the custom pink toast in the demo.
+There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be inherited and modified. See the pink toast in the demo. It has a different animation and inline style.
 
 ### ToastrConfig (Global Options)
 ```typescript
@@ -86,9 +86,6 @@ closeButton: boolean = false; // show close button
 timeOut: number = 5000; // time to live
 enableHtml: boolean = false; // allow html in message. (UNSAFE)
 extendedTimeOut: number = 1000; // time to close after a user hovers over toast
-onHidden: EventEmitter<any> = new EventEmitter(); // fired on event
-onShown: EventEmitter<any> = new EventEmitter(); // fired on event
-onTap: EventEmitter<any> = new EventEmitter(); // fired on event
 progressBar: boolean = false; // show progress bar
 toastClass: string = 'toast'; // class on toast
 positionClass: string = 'toast-top-right'; // class on toast
@@ -140,7 +137,10 @@ export interface ActiveToast {
   toastId: number; // Your Toast ID. Use this to close it individually
   message: string; // the message of your toast. Stored for prevent duplicate reasons
   portal?: any; // a reference to the component see portal.ts
-  overlayRef?: OverlayRef; // a wrapper that attaches and detaches portals see overlay-ref.ts
+  toastRef?: ToastRef<any>;  // a reference to your toast
+  onShown?: Observable<any>; // triggered when toast is active
+  onHidden?: Observable<any>; // triggered when toast is destroyed
+  onTap?: Observable<any>; // triggered on click
 }
 ```
 Toastr Service will return undefined if prevent duplicates is on.

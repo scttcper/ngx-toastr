@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 import { ComponentType } from './portal/portal';
 import { Toast } from './toast-component';
@@ -10,9 +11,6 @@ export class ToastConfig {
   // shows close button
   closeButton?: boolean = false;
   extendedTimeOut?: number = 1000;
-  onHidden?: EventEmitter<any> = new EventEmitter();
-  onShown?: EventEmitter<any> = new EventEmitter();
-  onTap?: EventEmitter<any> = new EventEmitter();
   progressBar?: boolean = false;
   timeOut?: number = 5000;
   enableHtml?: boolean = false;
@@ -30,9 +28,6 @@ export class ToastConfig {
     } else {
       this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
     }
-    this.onHidden = config.onHidden || this.onHidden;
-    this.onShown = config.onShown || this.onShown;
-    this.onTap = config.onTap || this.onTap;
     this.progressBar = config.progressBar || this.progressBar;
     if (config.timeOut === 0) {
       this.timeOut = config.timeOut;
@@ -94,4 +89,5 @@ export class ToastData {
   message: string;
   title: string;
   toastType: string;
+  onTap: Subject<any>;
 }

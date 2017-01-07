@@ -1,4 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Overlay } from './overlay/overlay';
@@ -13,6 +14,9 @@ export interface ActiveToast {
   message?: string;
   portal?: any;
   toastRef?: ToastRef<any>;
+  onShown?: Observable<any>;
+  onHidden?: Observable<any>;
+  onTap?: Observable<any>;
 }
 
 @Injectable()
@@ -56,14 +60,14 @@ export class ToastrService {
   }
   public clear(toastId?: number) {
     // Call every toast's remove function
-    for (let i = 0; i < this.toasts.length; i++) {
+    for (const toast of this.toasts) {
       if (toastId !== undefined) {
-        if (this.toasts[i].toastId === toastId) {
-          this.toasts[i].portal._component.remove();
+        if (toast.toastId === toastId) {
+          toast.portal._component.remove();
           return;
         }
       } else {
-        this.toasts[i].portal._component.remove();
+        toast.portal._component.remove();
       }
     }
   }
@@ -82,7 +86,7 @@ export class ToastrService {
       const p = this.toasts[this.currentlyActive].portal;
       if (p._component.state === 'inactive') {
         this.currentlyActive = this.currentlyActive + 1;
-        p._component.activateToast();
+        this.toasts[this.currentlyActive].toastRef.activate();
       }
     }
     return true;
@@ -122,18 +126,22 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
+    const overlayRef = this.overlay.create(optionsOverride.positionClass, this.overlayContainer);
     const ins: ActiveToast = {
       toastId: this.index++,
       message,
+      toastRef: new ToastRef(overlayRef),
     };
-    const overlayRef = this.overlay.create(optionsOverride.positionClass, this.overlayContainer);
-    ins.toastRef = new ToastRef(overlayRef);
+    ins.onShown = ins.toastRef.afterActivate();
+    ins.onHidden = ins.toastRef.afterClosed();
     const data = new ToastData();
     data.toastId = ins.toastId;
     data.optionsOverride = optionsOverride;
     data.message = message;
     data.title = title;
     data.toastType = toastType;
+    data.onTap = new Subject();
+    ins.onTap = data.onTap.asObservable();
     const toastInjector = new ToastInjector(ins.toastRef, data, this._injector);
     const component = new ComponentPortal(optionsOverride.toastComponent, null, toastInjector);
     ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
