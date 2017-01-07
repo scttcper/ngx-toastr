@@ -5,7 +5,7 @@ import {
   ApplicationRef,
   Injector,
 } from '@angular/core';
-import {BasePortalHost, ComponentPortal, TemplatePortal} from './portal';
+import {BasePortalHost, ComponentPortal} from './portal';
 
 
 /**
@@ -84,27 +84,6 @@ export class DomPortalHost extends BasePortalHost {
     }
 
     return componentRef;
-  }
-
-  /**
-   * Attaches a template portal to the DOM as an embedded view.
-   * @param portal Portal to be attached.
-   */
-  attachTemplatePortal(portal: TemplatePortal): Map<string, any> {
-    let viewContainer = portal.viewContainerRef;
-    let viewRef = viewContainer.createEmbeddedView(portal.templateRef);
-
-    viewRef.rootNodes.forEach(rootNode => this._hostDomElement.appendChild(rootNode));
-
-    this.setDisposeFn((() => {
-      let index = viewContainer.indexOf(viewRef);
-      if (index !== -1) {
-        viewContainer.remove(index);
-      }
-    }));
-
-    // TODO: Return locals from view.
-    return new Map<string, any>();
   }
 
   dispose(): void {
