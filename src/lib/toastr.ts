@@ -3,10 +3,10 @@ export {
   PortalHost,
   BasePortalHost,
   ComponentPortal,
-  TemplatePortal
 } from './portal/portal';
 export { Overlay } from './overlay/overlay';
 export { OverlayContainer } from './overlay/overlay-container';
+export { ToastContainerModule, ToastContainerDirective } from './overlay/overlay-directives'
 export { OverlayRef } from './overlay/overlay-ref';
 export { Toast } from './toast-component';
 export { ToastrService, ActiveToast } from './toastr-service';

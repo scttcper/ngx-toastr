@@ -6,6 +6,7 @@ import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
 import { ToastConfig, ToastrConfig, ToastData } from './toastr-config';
 import { ToastInjector, ToastRef } from './toast-injector';
+import { ToastContainerDirective } from './overlay/overlay-directives';
 
 export interface ActiveToast {
   toastId?: number;
@@ -20,6 +21,7 @@ export class ToastrService {
   private toasts: any[] = [];
   private previousToastMessage: string = '';
   private currentlyActive = 0;
+  overlayContainer: ToastContainerDirective;
 
   constructor(
     public toastrConfig: ToastrConfig,
@@ -124,7 +126,7 @@ export class ToastrService {
       toastId: this.index++,
       message,
     };
-    const overlayRef = this.overlay.create(optionsOverride.positionClass);
+    const overlayRef = this.overlay.create(optionsOverride.positionClass, this.overlayContainer);
     ins.toastRef = new ToastRef(overlayRef);
     const data = new ToastData();
     data.toastId = ins.toastId;

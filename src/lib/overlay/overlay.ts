@@ -3,6 +3,7 @@ import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
 import { OverlayContainer } from './overlay-container';
+import { ToastContainerDirective } from './overlay-directives';
 
 
 /**
@@ -26,14 +27,14 @@ import { OverlayContainer } from './overlay-container';
    * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
-  create(positionClass: string): OverlayRef {
+  create(positionClass: string, overlayContainer?: ToastContainerDirective): OverlayRef {
     // get existing pane if possible
-    return this._createOverlayRef(this.getPaneElement(positionClass));
+    return this._createOverlayRef(this.getPaneElement(positionClass, overlayContainer));
   }
 
-  getPaneElement(positionClass: string): HTMLElement {
+  getPaneElement(positionClass: string, overlayContainer?: ToastContainerDirective): HTMLElement {
     if (!this._paneElements[positionClass]) {
-      this._paneElements[positionClass] = this._createPaneElement(positionClass);
+      this._paneElements[positionClass] = this._createPaneElement(positionClass, overlayContainer);
     }
     return this._paneElements[positionClass];
   }
@@ -42,12 +43,16 @@ import { OverlayContainer } from './overlay-container';
    * Creates the DOM element for an overlay and appends it to the overlay container.
    * @returns Newly-created pane element
    */
-  private _createPaneElement(positionClass: string): HTMLElement {
+  private _createPaneElement(positionClass: string, overlayContainer?: ToastContainerDirective): HTMLElement {
     let pane = document.createElement('div');
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
 
-    this._overlayContainer.getContainerElement().appendChild(pane);
+    if (!overlayContainer) {
+      this._overlayContainer.getContainerElement().appendChild(pane);
+    } else {
+      overlayContainer.getContainerElement().appendChild(pane);
+    }
     return pane;
   }
 

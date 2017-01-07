@@ -144,6 +144,28 @@ export interface ActiveToast {
 ```
 Toastr Service will return undefined if prevent duplicates is on.
 
+### Put toasts in your own container
+In case you want to put toasts in a specific div.
+Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
+Add a div with `toastContainer` directive on it.
+```
+import { ToastContainerDirective } from 'toastr-ng2';
+@Component({
+  selector: 'app-root',
+  template: `<div toastContainer class="toast-top-right"></div>`,
+})
+export class AppComponent implements OnInit {
+
+  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
+
+  constructor(private toastrService: ToastrService) {}
+  ngOnInit() {
+    this.toastrService.overlayContainer = this.toastContainer;
+    this.toastrService.success('in div');
+  }
+}
+```
+
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 

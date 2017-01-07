@@ -95,46 +95,6 @@ export class ComponentPortal<T> extends Portal<ComponentRef<T>> {
 
 
 /**
- * A `TemplatePortal` is a portal that represents some embedded template (TemplateRef).
- */
-export class TemplatePortal extends Portal<Map<string, any>> {
-  /** The embedded template that will be used to instantiate an embedded View in the host. */
-  templateRef: TemplateRef<any>;
-
-  /** Reference to the ViewContainer into which the template will be stamped out. */
-  viewContainerRef: ViewContainerRef;
-
-  /**
-   * Additional locals for the instantiated embedded view.
-   * These locals can be seen as "exports" for the template, such as how ngFor has
-   * index / event / odd.
-   * See https://angular.io/docs/ts/latest/api/core/EmbeddedViewRef-class.html
-   */
-  locals: Map<string, any> = new Map<string, any>();
-
-  constructor(template: TemplateRef<any>, viewContainerRef: ViewContainerRef) {
-    super();
-    this.templateRef = template;
-    this.viewContainerRef = viewContainerRef;
-  }
-
-  get origin(): ElementRef {
-    return this.templateRef.elementRef;
-  }
-
-  attach(host: PortalHost, newestOnTop: boolean, locals?: Map<string, any>): Map<string, any> {
-    this.locals = locals == null ? new Map<string, any>() : locals;
-    return super.attach(host, newestOnTop);
-  }
-
-  detach(): void {
-    this.locals = new Map<string, any>();
-    return super.detach();
-  }
-}
-
-
-/**
  * A `PortalHost` is an space that can contain a single `Portal`.
  */
 export interface PortalHost {
@@ -167,7 +127,7 @@ export abstract class BasePortalHost implements PortalHost {
     return this._attachedPortal != null;
   }
 
-  attach(portal: Portal<any>, newestOnTop: boolean): any {
+  attach(portal: ComponentPortal<any>, newestOnTop: boolean): any {
     if (portal == null) {
       throw new NullPortalError();
     }
@@ -179,21 +139,11 @@ export abstract class BasePortalHost implements PortalHost {
     if (this._isDisposed) {
       throw new PortalHostAlreadyDisposedError();
     }
-
-    if (portal instanceof ComponentPortal) {
-      this._attachedPortal = portal;
-      return this.attachComponentPortal(portal, newestOnTop);
-    } else if (portal instanceof TemplatePortal) {
-      this._attachedPortal = portal;
-      return this.attachTemplatePortal(portal, newestOnTop);
-    }
-
-    throw new UnknownPortalTypeError();
+    this._attachedPortal = portal;
+    return this.attachComponentPortal(portal, newestOnTop);
   }
 
   abstract attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T>;
-
-  abstract attachTemplatePortal(portal: TemplatePortal, newestOnTop: boolean): Map<string, any>;
 
   detach(): void {
     if (this._attachedPortal) { this._attachedPortal.setAttachedHost(null); }
