@@ -9,9 +9,13 @@ import {
   HostBinding,
   HostListener,
 } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
 
-import { ToastConfig } from './toastr-config';
+import { ToastConfig, ToastData } from './toastr-config';
 import { ToastrService } from './toastr-service';
+import { ToastRef } from './toast-injector';
 
 @Component({
   selector: '[toast-component]',
@@ -22,7 +26,9 @@ import { ToastrService } from './toastr-service';
   <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
     {{title}}
   </div>
-  <div *ngIf="message" class="{{options.messageClass}}" [attr.aria-label]="message">
+  <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message">
+  </div>
+  <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
     {{message}}
   </div>
   <div *ngIf="options.progressBar">
@@ -48,12 +54,11 @@ import { ToastrService } from './toastr-service';
 })
 export class Toast implements OnDestroy {
   toastId: number;
-  message: string;
+  message: string | SafeHtml;
   title: string;
   toastType: string;
   options: ToastConfig;
   // used to control animation
-
   timeout: any;
   removalTimeout: any;
   // used to control width of progress bar
@@ -64,18 +69,36 @@ export class Toast implements OnDestroy {
   toastClasses: string = '';
   @HostBinding('@flyInOut')
   state: string = 'inactive';
+  private onTap: Subject<any>;
+  private sub: Subscription;
 
   constructor(
-    private toastrService: ToastrService
-  ) { }
+    private toastrService: ToastrService,
+    public data: ToastData,
+    private toastRef: ToastRef<any>,
+    sanitizer: DomSanitizer
+  ) {
+    this.options = data.optionsOverride;
+    this.toastId = data.toastId;
+    this.message = data.message;
+    if (this.message && this.options.enableHtml) {
+      this.message = sanitizer.bypassSecurityTrustHtml(data.message);
+    }
+    this.title = data.title;
+    this.toastType = data.toastType;
+    this.onTap = data.onTap;
+    this.sub = toastRef.afterActivate().subscribe((n) => {
+      this.activateToast();
+    });
+  }
   ngOnDestroy() {
+    this.sub.unsubscribe();
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
     clearTimeout(this.removalTimeout);
   }
   activateToast() {
     this.state = 'active';
-    this.options.onShown.emit(null);
     this.options.timeOut = +this.options.timeOut;
     this.toastClasses = `${this.toastType} ${this.options.toastClass}`;
     if (this.options.timeOut !== 0) {
@@ -101,7 +124,8 @@ export class Toast implements OnDestroy {
   }
   @HostListener('click')
   tapToast() {
-    this.options.onTap.emit(null);
+    this.onTap.next();
+    this.onTap.complete();
     if (this.options.tapToDismiss) {
       this.remove();
     }
@@ -110,7 +134,6 @@ export class Toast implements OnDestroy {
     if (this.state === 'removed') {
       return;
     }
-    this.options.onHidden.emit(null);
     this.state = 'removed';
     this.removalTimeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
   }

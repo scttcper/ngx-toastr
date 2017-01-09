@@ -20,14 +20,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^2.4.1",
-    "@angular/compiler": "^2.4.1",
-    "@angular/core": "^2.4.1",
-    "@angular/forms": "^2.4.1",
-    "@angular/http": "^2.4.1",
-    "@angular/platform-browser": "^2.4.1",
-    "@angular/platform-browser-dynamic": "^2.4.1",
-    "@angular/router": "^3.4.1",
+    "@angular/common": "^2.4.2",
+    "@angular/compiler": "^2.4.2",
+    "@angular/core": "^2.4.2",
+    "@angular/forms": "^2.4.2",
+    "@angular/http": "^2.4.2",
+    "@angular/platform-browser": "^2.4.2",
+    "@angular/platform-browser-dynamic": "^2.4.2",
+    "@angular/router": "^3.4.2",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",
@@ -36,9 +36,9 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.4.0",
+    "@angular/compiler-cli": "^2.4.2",
     "@types/jasmine": "2.5.38",
-    "@types/lodash": "^4.14.46",
+    "@types/lodash": "^4.14.47",
     "@types/node": "^6.0.58",
     "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~2.0.0-beta.4",
@@ -50,9 +50,9 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
-    "rollup": "^0.40.2",
-    "ts-node": "1.2.1",
+    "rollup": "^0.41.1",
+    "ts-node": "2.0.0",
     "tslint": "^4.0.2",
-    "typescript": "~2.0.3"
+    "typescript": "~2.1.4"
   }
 }

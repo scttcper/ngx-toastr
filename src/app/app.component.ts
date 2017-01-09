@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, VERSION } from '@angular/core';
+import { Component, ViewEncapsulation, VERSION, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 
 import { PinkToast } from './pink.toast';

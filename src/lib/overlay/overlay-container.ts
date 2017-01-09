@@ -9,7 +9,7 @@ export class OverlayContainer {
    * This method returns the overlay container element.  It will lazily
    * create the element the first time  it is called to facilitate using
    * the container in non-browser environments.
-   * @returns {HTMLElement} the container element
+   * @returns the container element
    */
   getContainerElement(): HTMLElement {
     if (!this._containerElement) { this._createContainer(); }
@@ -18,7 +18,7 @@ export class OverlayContainer {
 
   /**
    * Create the overlay container element, which is simply a div
-   * with the 'md-overlay-container' class on the document body.
+   * with the 'cdk-overlay-container' class on the document body.
    */
   private _createContainer(): void {
     let container = document.createElement('div');

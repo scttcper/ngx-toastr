@@ -23,7 +23,10 @@ export class DomPortalHost extends BasePortalHost {
     super();
   }
 
-  /** Attach the given ComponentPortal to DOM element using the ComponentFactoryResolver. */
+  /**
+   * Attach the given ComponentPortal to DOM element using the ComponentFactoryResolver.
+   * @param portal Portal to be attached
+   */
   attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T> {
     let componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
     let componentRef: ComponentRef<T>;
