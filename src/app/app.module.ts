@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ToastrModule } from '../lib/toastr';
 import { PinkToast } from './pink.toast';
-import { ToastContainerModule } from '../lib/overlay/overlay-directives';
+import { ToastContainerModule } from '../lib/toast-directive';
 
 @NgModule({
   declarations: [

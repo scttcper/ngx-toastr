@@ -7,7 +7,7 @@ import { OverlayRef } from './overlay/overlay-ref';
 import { ComponentPortal } from './portal/portal';
 import { ToastConfig, ToastrConfig, ToastData } from './toastr-config';
 import { ToastInjector, ToastRef } from './toast-injector';
-import { ToastContainerDirective } from './overlay/overlay-directives';
+import { ToastContainerDirective } from './toast-directive';
 
 export interface ActiveToast {
   toastId?: number;

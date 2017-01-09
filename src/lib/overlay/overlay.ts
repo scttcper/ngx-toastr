@@ -3,7 +3,7 @@ import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
 import { OverlayContainer } from './overlay-container';
-import { ToastContainerDirective } from './overlay-directives';
+import { ToastContainerDirective } from '../toast-directive';
 
 
 /**
