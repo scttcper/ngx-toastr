@@ -36,7 +36,7 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.4.0",
+    "@angular/compiler-cli": "^2.4.2",
     "@types/jasmine": "2.5.38",
     "@types/lodash": "^4.14.47",
     "@types/node": "^6.0.58",
@@ -50,7 +50,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "~4.0.13",
-    "rollup": "^0.40.2",
+    "rollup": "^0.41.1",
     "ts-node": "2.0.0",
     "tslint": "^4.0.2",
     "typescript": "~2.1.4"

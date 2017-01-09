@@ -19,7 +19,7 @@
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.4.2.tgz#7a32c76808cbd0e80ffcd6e1fd68f58fc8d0ff61"
 
-"@angular/compiler-cli@^2.3.1", "@angular/compiler-cli@^2.4.0":
+"@angular/compiler-cli@^2.3.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.4.1.tgz#9291504197a199fee2f48353d67431a1a9e40833"
   dependencies:
@@ -27,19 +27,19 @@
     minimist "^1.2.0"
     reflect-metadata "^0.1.2"
 
-"@angular/compiler@^2.3.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.1.tgz#62b4fbfc53c934bd5def78db594cbf245b3f446a"
+"@angular/compiler-cli@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-2.4.2.tgz#88ab967cb75df7442f03b3a0c9f9bd1dfe0997e1"
+  dependencies:
+    "@angular/tsc-wrapped" "0.5.1"
+    minimist "^1.2.0"
+    reflect-metadata "^0.1.2"
 
-"@angular/compiler@^2.4.2":
+"@angular/compiler@^2.3.1", "@angular/compiler@^2.4.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-2.4.2.tgz#0b1f63059330a922cd3b86444a705ca8199d69c2"
 
-"@angular/core@^2.3.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.1.tgz#3a6d2dc7fd86fdebe4febae7eb28abad7d04c76a"
-
-"@angular/core@^2.4.2":
+"@angular/core@^2.3.1", "@angular/core@^2.4.2":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.2.tgz#774fb675733437be5eab635ab13235c76ec961ba"
 
@@ -66,6 +66,12 @@
 "@angular/tsc-wrapped@0.5.0", "@angular/tsc-wrapped@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.5.0.tgz#e50f81af02c6817dcaba22032e49ba8060d628b4"
+  dependencies:
+    tsickle "^0.2"
+
+"@angular/tsc-wrapped@0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@angular/tsc-wrapped/-/tsc-wrapped-0.5.1.tgz#7a69bec999eef41903dddaaccdc862cfcface52c"
   dependencies:
     tsickle "^0.2"
 
@@ -4775,9 +4781,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rollup@^0.40.2:
-  version "0.40.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.40.2.tgz#b59c8377332f828be38983192f3369e502f9e44b"
+rollup@^0.41.1:
+  version "0.41.1"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.41.1.tgz#5be8192c196c35977551e52ec0c98c3f83280525"
   dependencies:
     source-map-support "^0.4.0"
 
