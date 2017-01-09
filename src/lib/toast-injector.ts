@@ -22,7 +22,6 @@ export class ToastRef<T> {
    * @param dialogResult Optional result to return to the dialog opener.
    */
   close(): void {
-    console.log('closed')
     this._overlayRef.detach();
     this._afterClosed.next();
     this._afterClosed.complete();
