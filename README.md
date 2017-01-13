@@ -1,5 +1,14 @@
 # toastr-ng2
-[![npm](https://img.shields.io/npm/v/toastr-ng2.svg?maxAge=3600)](https://www.npmjs.com/package/toastr-ng2)
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-img]][travis-url]
+[![coverage status][coverage-img]][coverage-url]
+
+[npm-image]: https://img.shields.io/npm/v/toastr-ng2.svg
+[npm-url]: https://npmjs.org/package/toastr-ng2
+[travis-img]: https://api.travis-ci.org/scttcper/toastr-ng2.svg?branch=master
+[travis-url]: https://travis-ci.org/scttcper/toastr-ng2
+[coverage-img]: https://codecov.io/gh/scttcper/toastr-ng2/branch/master/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/scttcper/toastr-ng2  
 
 DEMO: https://scttcper.github.io/toastr-ng2/
 
