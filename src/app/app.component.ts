@@ -63,6 +63,7 @@ export class AppComponent {
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
+    return inserted;
   }
   openPinkToast() {
     const opt = cloneDeep(this.options);
