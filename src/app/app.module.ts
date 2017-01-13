@@ -16,7 +16,7 @@ import { ToastContainerModule } from '../lib/toast-directive';
     BrowserModule,
     FormsModule,
     ToastrModule.forRoot(),
-    ToastContainerModule.forRoot(),
+    // ToastContainerModule.forRoot(),
   ],
   entryComponents: [PinkToast],
   providers: [],
