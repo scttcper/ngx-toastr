@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ToastrModule } from '../lib/toastr';
 import { PinkToast } from './pink.toast';
-import { ToastContainerModule } from '../lib/toast-directive';
+// import { ToastContainerModule } from '../lib/toast-directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { ToastContainerModule } from '../lib/toast-directive';
     BrowserModule,
     FormsModule,
     ToastrModule.forRoot(),
-    ToastContainerModule.forRoot(),
+    // ToastContainerModule.forRoot(),
   ],
   entryComponents: [PinkToast],
   providers: [],
