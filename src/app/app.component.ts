@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, VERSION, ViewChild } from '@angular/core';
+import { Component, VERSION } from '@angular/core';
 import { cloneDeep, random } from 'lodash';
 
 import { PinkToast } from './pink.toast';
@@ -54,7 +54,7 @@ export class AppComponent {
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      let randomMessage = quotes[random(0, quotes.length - 1)];
+      const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
@@ -72,7 +72,7 @@ export class AppComponent {
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      let randomMessage = quotes[random(0, quotes.length - 1)];
+      const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }

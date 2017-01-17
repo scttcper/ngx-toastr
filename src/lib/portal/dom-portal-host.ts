@@ -28,7 +28,7 @@ export class DomPortalHost extends BasePortalHost {
    * @param portal Portal to be attached
    */
   attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T> {
-    let componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
     let componentRef: ComponentRef<T>;
 
     // If the portal specifies a ViewContainerRef, we will use that as the attachment point
@@ -58,7 +58,7 @@ export class DomPortalHost extends BasePortalHost {
       // its ChangeDetector with the application. This API is unfortunately not published
       // in Angular <= 2.2.0. The change detector must also be deregistered when the component
       // is destroyed to prevent memory leaks.
-      let changeDetectorRef = componentRef.changeDetectorRef;
+      const changeDetectorRef = componentRef.changeDetectorRef;
       (this._appRef as any).registerChangeDetector(changeDetectorRef);
 
       this.setDisposeFn(() => {
@@ -66,7 +66,7 @@ export class DomPortalHost extends BasePortalHost {
 
         // Normally the ViewContainer will remove the component's nodes from the DOM.
         // Without a ViewContainer, we need to manually remove the nodes.
-        let componentRootNode = this._getComponentRootNode(componentRef);
+        const componentRootNode = this._getComponentRootNode(componentRef);
         if (componentRootNode.parentNode) {
           componentRootNode.parentNode.removeChild(componentRootNode);
         }

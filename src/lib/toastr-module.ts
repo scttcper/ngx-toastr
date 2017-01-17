@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { Toast } from './toast-component';
 import { ToastrService } from './toastr-service';
-import { ToastConfig, ToastrConfig } from './toastr-config';
+import { ToastrConfig } from './toastr-config';
 import { OverlayContainer } from './overlay/overlay-container';
 import { Overlay } from './overlay/overlay';
 

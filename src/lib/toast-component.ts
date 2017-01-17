@@ -120,8 +120,8 @@ export class Toast implements OnDestroy {
     if (this.width === 0) {
       return;
     }
-    let now = new Date().getTime();
-    let remaining = this.hideTime - now;
+    const now = new Date().getTime();
+    const remaining = this.hideTime - now;
     this.width = (remaining / this.options.timeOut) * 100;
     if (this.width <= 0) {
       this.width = 0;
