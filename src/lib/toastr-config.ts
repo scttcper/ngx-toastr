@@ -21,6 +21,7 @@ export class ToastConfig {
   messageClass?: string = 'toast-message';
   tapToDismiss?: boolean = true;
   toastComponent?: ComponentType<any> = Toast;
+  onActivateTick?: boolean = false;
   constructor(config: ToastConfig = {}) {
     this.closeButton = config.closeButton || this.closeButton;
     if (config.extendedTimeOut === 0) {
@@ -42,6 +43,7 @@ export class ToastConfig {
     this.messageClass = config.messageClass || this.messageClass;
     this.tapToDismiss = config.tapToDismiss || this.tapToDismiss;
     this.toastComponent = config.toastComponent || this.toastComponent;
+    this.onActivateTick = config.onActivateTick || this.onActivateTick;
   }
 }
 

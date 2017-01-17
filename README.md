@@ -103,6 +103,7 @@ positionClass: string = 'toast-top-right'; // class on toast
 titleClass: string = 'toast-title'; // class inside toast on title
 messageClass: string = 'toast-message'; // class inside toast on message
 tapToDismiss: boolean = true; // close on click
+onActivateTick: boolean = false; // fire a ApplicationRef.tick() from the toast component when activated. Might help show the toast if you are firing it from a websocket
 ```
 
 ### Override default settings

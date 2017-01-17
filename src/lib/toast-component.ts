@@ -8,6 +8,7 @@ import {
   OnDestroy,
   HostBinding,
   HostListener,
+  ApplicationRef,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
@@ -76,6 +77,7 @@ export class Toast implements OnDestroy {
     private toastrService: ToastrService,
     public data: ToastData,
     private toastRef: ToastRef<any>,
+    private appRef: ApplicationRef,
     sanitizer: DomSanitizer
   ) {
     this.options = data.optionsOverride;
@@ -109,6 +111,9 @@ export class Toast implements OnDestroy {
       if (this.options.progressBar) {
         this.intervalId = setInterval(() => this.updateProgress(), 10);
       }
+    }
+    if (this.options.onActivateTick) {
+      this.appRef.tick();
     }
   }
   updateProgress() {
