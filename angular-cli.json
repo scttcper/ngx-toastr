@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.25.5",
+    "version": "1.0.0-beta.26",
     "name": "toastr-ng2"
   },
   "apps": [
@@ -28,8 +28,6 @@
       }
     }
   ],
-  "addons": [],
-  "packages": [],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
