@@ -21,13 +21,13 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^2.4.4",
-    "@angular/compiler": "^2.4.4",
-    "@angular/core": "^2.4.4",
-    "@angular/forms": "^2.4.4",
-    "@angular/platform-browser": "^2.4.4",
-    "@angular/platform-browser-dynamic": "^2.4.4",
-    "@angular/router": "^3.4.4",
+    "@angular/common": "^2.4.5",
+    "@angular/compiler": "^2.4.5",
+    "@angular/core": "^2.4.5",
+    "@angular/forms": "^2.4.5",
+    "@angular/platform-browser": "^2.4.5",
+    "@angular/platform-browser-dynamic": "^2.4.5",
+    "@angular/router": "^3.4.5",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",
@@ -37,10 +37,10 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-    "@angular/compiler-cli": "^2.4.4",
+    "@angular/compiler-cli": "^2.4.5",
     "@types/jasmine": "2.5.41",
-    "@types/lodash": "^4.14.50",
-    "@types/node": "^7.0.0",
+    "@types/lodash": "^4.14.51",
+    "@types/node": "^7.0.4",
     "angular-cli": "1.0.0-beta.26",
     "codelyzer": "~2.0.0-beta.4",
     "jasmine-core": "2.5.2",
@@ -53,7 +53,7 @@
     "protractor": "~5.0.0",
     "rollup": "^0.41.4",
     "ts-node": "2.0.0",
-    "tslint": "^4.3.1",
+    "tslint": "^4.4.2",
     "typescript": "~2.1.5"
   }
 }
