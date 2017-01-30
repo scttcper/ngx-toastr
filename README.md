@@ -1,14 +1,18 @@
-# toastr-ng2
+# toastr-ng2  
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
+[![greenkeeper][greenkeeper-image]][greenkeeper-url]
 
 [npm-image]: https://img.shields.io/npm/v/toastr-ng2.svg
 [npm-url]: https://npmjs.org/package/toastr-ng2
 [travis-img]: https://api.travis-ci.org/scttcper/toastr-ng2.svg?branch=master
 [travis-url]: https://travis-ci.org/scttcper/toastr-ng2
 [coverage-img]: https://codecov.io/gh/scttcper/toastr-ng2/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/scttcper/toastr-ng2  
+[coverage-url]: https://codecov.io/gh/scttcper/toastr-ng2
+[greenkeeper-image]: https://badges.greenkeeper.io/scttcper/toastr-ng2.svg
+[greenkeeper-url]: https://greenkeeper.io/  
+
 
 DEMO: https://scttcper.github.io/toastr-ng2/
 
