@@ -1,4 +1,6 @@
 # toastr-ng2
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/scttcper/toastr-ng2.svg)](https://greenkeeper.io/)
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
