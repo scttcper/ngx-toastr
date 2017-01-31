@@ -1,4 +1,4 @@
-# toastr-ng2  
+# toastr-ng2 🍞
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
@@ -17,13 +17,13 @@
 DEMO: https://scttcper.github.io/toastr-ng2/
 
 ## Features
+- Toast Component Injection without being passed `ViewContainerRef`
 - No use of `*ngFor`. Fewer dirty checks and higher performance.
+- AoT compilation and lazy loading compatible
 - Component inheritance for custom toasts
-- angular-cli AoT compilation and lazy loading compatible
-- SystemJS rollup bundle
-- Automatic Toast component injection based on [@angular2-material/core/overlay](https://github.com/angular/material2)
+- SystemJS rollup bundle ✓
 - Animations using angular 2's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
-- Target a specific directive with toasts
+- Output toasts to a target directive
 
 ## Install  
 ```bash
