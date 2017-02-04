@@ -41,7 +41,7 @@
     "@types/jasmine": "2.5.41",
     "@types/lodash": "^4.14.51",
     "@types/node": "^7.0.4",
-    "angular-cli": "1.0.0-beta.26",
+    "angular-cli": "1.0.0-beta.28.3",
     "codelyzer": "~2.0.0-beta.4",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "3.2.0",
