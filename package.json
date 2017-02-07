@@ -50,7 +50,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.1.0",
-    "karma-remap-istanbul": "^0.5.0",
+    "karma-remap-istanbul": "^0.6.0",
     "protractor": "~5.1.0",
     "rollup": "^0.41.4",
     "ts-node": "2.0.0",
