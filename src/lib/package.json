@@ -1,6 +1,6 @@
 {
   "name": "ngx-toastr",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "description": "Toastr for Angular 2",
   "main": "toastr.umd.js",
   "module": "toastr.js",
