@@ -3,8 +3,9 @@ import 'rxjs/add/operator/toPromise';
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-
 import { ToastrModule, ActiveToast } from 'ngx-toastr';
+
+import { PinkToast } from './pink.toast';
 
 function sleep(duration: number) {
   return new Promise((resolve, reject) => {
@@ -18,12 +19,11 @@ describe('AppComponent', () => {
       imports: [
         ToastrModule.forRoot({
           timeOut: 800,
+          progressBar: true,
         }),
         FormsModule,
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     });
     TestBed.compileComponents();
   });
@@ -47,14 +47,6 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
     opened.onHidden.toPromise().then(() => {
-      done();
-    });
-  });
-  it('should show pink toast', (done) => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openPinkToast();
-    opened.onShown.toPromise().then(() => {
       done();
     });
   });
