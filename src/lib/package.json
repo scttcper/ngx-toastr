@@ -2,8 +2,10 @@
   "name": "ngx-toastr",
   "version": "4.2.0",
   "description": "Toastr for Angular 2",
-  "main": "./toastr.js",
-  "typings": "./toastr.d.ts",
+  "main": "toastr.umd.js",
+  "module": "toastr.js",
+  "jsnext:main": "toastr.js",
+  "typings": "toastr.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/scttcper/ngx-toastr.git"
