@@ -16,7 +16,9 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        ToastrModule.forRoot(),
+        ToastrModule.forRoot({
+          timeOut: 1000,
+        }),
         FormsModule,
       ],
       declarations: [
@@ -37,6 +39,14 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
     opened.onShown.toPromise().then(() => {
+      done();
+    });
+  });
+  it('should trigger onHidden', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openToast();
+    opened.onHidden.toPromise().then(() => {
       done();
     });
   });
