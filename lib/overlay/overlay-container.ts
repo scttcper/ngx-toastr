@@ -21,7 +21,7 @@ export class OverlayContainer {
    * with the 'cdk-overlay-container' class on the document body.
    */
   private _createContainer(): void {
-    let container = document.createElement('div');
+    const container = document.createElement('div');
     container.classList.add('overlay-container');
     document.body.appendChild(container);
     this._containerElement = container;

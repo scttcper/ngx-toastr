@@ -1,12 +1,12 @@
 {
-  "name": "toastr-ng2",
+  "name": "ngx-toastr",
   "version": "4.1.1",
   "description": "Toastr for Angular 2",
   "main": "./toastr.js",
   "typings": "./toastr.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scttcper/toastr-ng2.git"
+    "url": "https://github.com/scttcper/ngx-toastr.git"
   },
   "keywords": [
     "ng2",
@@ -15,15 +15,15 @@
     "toast",
     "toastr",
     "toasts",
-    "toastr-ng2",
+    "ngx-toastr",
     "notifications",
     "ngModule"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scttcper/toastr-ng2/issues"
+    "url": "https://github.com/scttcper/ngx-toastr/issues"
   },
-  "homepage": "https://github.com/scttcper/toastr-ng2",
+  "homepage": "https://github.com/scttcper/ngx-toastr",
   "peerDependencies": {
     "@angular/core": "^2.2.0",
     "@angular/common": "^2.2.0",

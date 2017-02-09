@@ -1,11 +1,11 @@
 {
   "project": {
     "version": "1.0.0-beta.30",
-    "name": "toastr-ng2"
+    "name": "ngx-toastr"
   },
   "apps": [
     {
-      "root": "src",
+      "root": "demo",
       "outDir": "dist",
       "assets": [
         "assets",
@@ -35,8 +35,8 @@
   },
   "lint": [
     {
-      "files": "src/**/*.ts",
-      "project": "src/tsconfig.json"
+      "files": "demo/**/*.ts",
+      "project": "demo/tsconfig.json"
     },
     {
       "files": "e2e/**/*.ts",

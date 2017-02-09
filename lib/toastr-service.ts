@@ -20,9 +20,9 @@ export interface ActiveToast {
 
 @Injectable()
 export class ToastrService {
-  private index: number = 0;
+  private index = 0;
   private toasts: any[] = [];
-  private previousToastMessage: string = '';
+  private previousToastMessage = '';
   private currentlyActive = 0;
   overlayContainer: ToastContainerDirective;
 

@@ -7,9 +7,9 @@ import {
   style,
 } from '@angular/core';
 
-import { Toast } from '../lib/toastr';
+import { Toast } from 'ngx-toastr';
 
-
+/* tslint:disable */
 @Component({
   selector: '[pink-toast-component]',
   styles: [`
@@ -54,3 +54,4 @@ import { Toast } from '../lib/toastr';
 export class PinkToast extends Toast {
 
 }
+/* tslint:enable */

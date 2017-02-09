@@ -1,17 +1,18 @@
 {
-  "name": "toastr-ng2",
+  "name": "ngx-toastr",
   "description": "Toastr for Angular 2",
-  "homepage": "https://github.com/scttcper/toastr-ng2",
-  "bugs": "https://github.com/scttcper/toastr-ng2/issues",
+  "homepage": "https://github.com/scttcper/ngx-toastr",
+  "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scttcper/toastr-ng2.git"
+    "url": "https://github.com/scttcper/ngx-toastr.git"
   },
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
+    "lint": "ng lint",
     "start": "ng serve",
     "test": "ng test",
     "gh": "ng github-pages:deploy --aot",
@@ -20,13 +21,13 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/common": "^2.4.6",
-    "@angular/compiler": "^2.4.6",
-    "@angular/core": "^2.4.6",
-    "@angular/forms": "^2.4.6",
-    "@angular/platform-browser": "^2.4.6",
-    "@angular/platform-browser-dynamic": "^2.4.6",
-    "@angular/router": "^3.4.6",
+    "@angular/common": "^2.4.7",
+    "@angular/compiler": "^2.4.7",
+    "@angular/core": "^2.4.7",
+    "@angular/forms": "^2.4.7",
+    "@angular/platform-browser": "^2.4.7",
+    "@angular/platform-browser-dynamic": "^2.4.7",
+    "@angular/router": "^3.4.7",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "lodash.clonedeep": "^4.5.0",
@@ -38,12 +39,12 @@
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-beta.30",
-    "@angular/compiler-cli": "^2.4.6",
+    "@angular/compiler-cli": "^2.4.7",
     "@types/jasmine": "2.5.41",
     "@types/lodash.clonedeep": "^4.5.1",
     "@types/lodash.random": "^3.2.1",
     "@types/node": "^7.0.5",
-    "codelyzer": "~2.0.0-beta.4",
+    "codelyzer": "~2.0.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "3.2.0",
     "karma": "1.4.1",
@@ -51,10 +52,10 @@
     "karma-cli": "^1.0.1",
     "karma-jasmine": "^1.1.0",
     "karma-remap-istanbul": "^0.6.0",
-    "protractor": "~5.1.0",
+    "protractor": "~5.1.1",
     "rollup": "^0.41.4",
-    "ts-node": "2.0.0",
+    "ts-node": "2.1.0",
     "tslint": "^4.4.2",
-    "typescript": "~2.1.5"
+    "typescript": "~2.1.6"
   }
 }

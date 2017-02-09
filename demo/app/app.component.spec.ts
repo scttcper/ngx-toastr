@@ -4,7 +4,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
-import { ToastrModule, ActiveToast } from '../lib/toastr';
+import { ToastrModule, ActiveToast } from 'ngx-toastr';
 
 function sleep(duration: number) {
   return new Promise((resolve, reject) => {
