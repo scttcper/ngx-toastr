@@ -36,12 +36,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
-    return opened.onShown.toPromise().then(() => {
+    opened.onShown.toPromise().then(() => {
       done();
     });
-    // const compiled = fixture.debugElement.nativeElement;
-    // const toast = document.querySelector('[toast-component]');
-    // console.log(toast)
-    // expect(app.title).toEqual('app works!');
   });
 });
