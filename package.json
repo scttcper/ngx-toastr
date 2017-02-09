@@ -53,7 +53,7 @@
     "karma-remap-istanbul": "^0.6.0",
     "protractor": "~5.1.0",
     "rollup": "^0.41.4",
-    "ts-node": "2.0.0",
+    "ts-node": "2.1.0",
     "tslint": "^4.4.2",
     "typescript": "~2.1.5"
   }
