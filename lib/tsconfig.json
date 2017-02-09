@@ -8,13 +8,13 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "../../deploy",
+    "outDir": "../deploy",
     "sourceMap": false,
     "target": "es5",
     "types": []
   },
   "angularCompilerOptions": {
-    "genDir": "../../waste"
+    "genDir": "../waste"
   },
   "exclude": [
     "node_modules"
