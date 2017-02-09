@@ -10,7 +10,7 @@ rm -rf deploy
 rm -rf waste
 
 # compile src directory and create d.ts files
-./node_modules/.bin/ngc -p ./lib/tsconfig.json -d
+./node_modules/.bin/ngc -p ./src/lib/tsconfig.json -d
 # create umd
 ./node_modules/.bin/rollup -c rollup.js
 
@@ -24,5 +24,5 @@ cp LICENSE ./deploy
 
 # copy package.json files that are in lib folders
 # find src/lib -name 'package.json' -type f -exec cp {} ./deploy \;
-cp ./lib/package.json ./deploy
-cp ./lib/toastr.css ./deploy
+cp ./src/lib/package.json ./deploy
+cp ./src/lib/toastr.css ./deploy
