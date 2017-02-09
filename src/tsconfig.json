@@ -15,7 +15,7 @@
       "../node_modules/@types"
     ],
     "paths": {
-      "ngx-toastr": ["../lib/toastr"]
+      "ngx-toastr": ["./lib/toastr"]
     }
   }
 }
