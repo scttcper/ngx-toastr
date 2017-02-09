@@ -63,13 +63,13 @@ export class Toast implements OnDestroy {
   timeout: any;
   removalTimeout: any;
   // used to control width of progress bar
-  width: number = 100;
+  width = 100;
   private intervalId: any;
   private hideTime: number;
   @HostBinding('class')
-  toastClasses: string = '';
+  toastClasses = '';
   @HostBinding('@flyInOut')
-  state: string = 'inactive';
+  state = 'inactive';
   private onTap: Subject<any>;
   private sub: Subscription;
 

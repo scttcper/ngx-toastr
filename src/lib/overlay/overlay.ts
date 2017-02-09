@@ -44,7 +44,7 @@ import { ToastContainerDirective } from '../toast-directive';
    * @returns Newly-created pane element
    */
   private _createPaneElement(positionClass: string, overlayContainer?: ToastContainerDirective): HTMLElement {
-    let pane = document.createElement('div');
+    const pane = document.createElement('div');
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
 

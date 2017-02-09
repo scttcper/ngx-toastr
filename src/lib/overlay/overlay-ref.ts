@@ -1,7 +1,5 @@
 import {NgZone} from '@angular/core';
 import {PortalHost, Portal} from '../portal/portal';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
 
 /**
  * Reference to an overlay that has been created with the Overlay service.
@@ -14,8 +12,7 @@ export class OverlayRef implements PortalHost {
       private _ngZone: NgZone) { }
 
   attach(portal: Portal<any>, newestOnTop: boolean): any {
-    let attachResult = this._portalHost.attach(portal, newestOnTop);
-
+    const attachResult = this._portalHost.attach(portal, newestOnTop);
     return attachResult;
   }
 
