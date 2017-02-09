@@ -24,7 +24,6 @@ import { ToastContainerDirective } from '../toast-directive';
                 private _ngZone: NgZone) {}
   /**
    * Creates an overlay.
-   * @param state State to apply to the overlay.
    * @returns A reference to the created overlay.
    */
   create(positionClass: string, overlayContainer?: ToastContainerDirective): OverlayRef {
@@ -68,7 +67,6 @@ import { ToastContainerDirective } from '../toast-directive';
   /**
    * Creates an OverlayRef for an overlay in the given DOM element.
    * @param pane DOM element for the overlay
-   * @param state
    */
   private _createOverlayRef(pane: HTMLElement): OverlayRef {
     return new OverlayRef(this._createPortalHost(pane), pane, this._ngZone);

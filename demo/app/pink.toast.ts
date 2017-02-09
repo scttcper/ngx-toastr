@@ -7,7 +7,7 @@ import {
   style,
 } from '@angular/core';
 
-import { Toast } from '../lib/toastr';
+import { Toast } from 'ngx-toastr';
 
 /* tslint:disable */
 @Component({
