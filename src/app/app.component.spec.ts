@@ -17,7 +17,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         ToastrModule.forRoot({
-          timeOut: 1000,
+          timeOut: 800,
         }),
         FormsModule,
       ],
@@ -47,6 +47,14 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
     opened.onHidden.toPromise().then(() => {
+      done();
+    });
+  });
+  it('should show pink toast', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openPinkToast();
+    opened.onShown.toPromise().then(() => {
       done();
     });
   });
