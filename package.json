@@ -12,6 +12,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
+    "lint": "ng lint",
     "start": "ng serve",
     "test": "ng test",
     "gh": "ng github-pages:deploy --aot",
