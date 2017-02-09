@@ -1,20 +1,20 @@
-# toastr-ng2 🍞
+# ngx-toastr 🍞
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
 [![greenkeeper][greenkeeper-image]][greenkeeper-url]
 
-[npm-image]: https://img.shields.io/npm/v/toastr-ng2.svg
-[npm-url]: https://npmjs.org/package/toastr-ng2
-[travis-img]: https://api.travis-ci.org/scttcper/toastr-ng2.svg?branch=master
-[travis-url]: https://travis-ci.org/scttcper/toastr-ng2
-[coverage-img]: https://codecov.io/gh/scttcper/toastr-ng2/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/scttcper/toastr-ng2
-[greenkeeper-image]: https://badges.greenkeeper.io/scttcper/toastr-ng2.svg
+[npm-image]: https://img.shields.io/npm/v/ngx-toastr.svg
+[npm-url]: https://npmjs.org/package/ngx-toastr
+[travis-img]: https://api.travis-ci.org/scttcper/ngx-toastr.svg?branch=master
+[travis-url]: https://travis-ci.org/scttcper/ngx-toastr
+[coverage-img]: https://codecov.io/gh/scttcper/ngx-toastr/branch/master/graph/badge.svg
+[coverage-url]: https://codecov.io/gh/scttcper/ngx-toastr
+[greenkeeper-image]: https://badges.greenkeeper.io/scttcper/ngx-toastr.svg
 [greenkeeper-url]: https://greenkeeper.io/  
 
 
-DEMO: https://scttcper.github.io/toastr-ng2/
+DEMO: https://scttcper.github.io/ngx-toastr/
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
@@ -27,25 +27,25 @@ DEMO: https://scttcper.github.io/toastr-ng2/
 
 ## Install  
 ```bash
-npm install toastr-ng2 --save
+npm install ngx-toastr --save
 ```  
 ## Setup  
-__step 1:__ copy [toast css](https://github.com/scttcper/toastr-ng2/blob/master/src/app/app.component.css) to your project.
+__step 1:__ copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
 If you are using sass you can import the css.
 ```scss
-@import 'node_modules/toastr-ng2/toastr';
+@import 'node_modules/ngx-toastr/toastr';
 ```
 If you are using angular-cli you can add it to your angular-cli.json
 ```
 "styles": [
   "styles.scss",
-  "node_modules/toastr-ng2/toastr.css"
+  "node_modules/ngx-toastr/toastr.css"
 ]
 ```
 
 __step 2:__ add ToastrModule to app NgModule
 ```typescript
-import { ToastrModule } from 'toastr-ng2';
+import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -62,7 +62,7 @@ class MainModule {}
 ## Use
 Success:
 ```typescript
-import { ToastrService } from 'toastr-ng2';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   ...
 })
@@ -122,7 +122,7 @@ imports: [
 
 Option 2: Inject ToastrConfig, typically in your root component, and customize the values.
 ```typescript
-import { ToastrConfig } from 'toastr-ng2';
+import { ToastrConfig } from 'ngx-toastr';
 import { Component } from '@angular/core';
 
 @Component({
@@ -141,7 +141,7 @@ export class AppComponent {
 success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
 ```typescript
 // OPTIONAL: import the ToastConfig interface
-import { ToastConfig } from 'toastr-ng2';
+import { ToastConfig } from 'ngx-toastr';
 
 const errorConfig: ToastConfig = {timeOut: 10000};
 this.toastrService.error('everything is broken', 'title is optional', errorConfig);
@@ -166,7 +166,7 @@ Put toasts in a specific div inside your application. This should probably be so
 Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
 Add a div with `toastContainer` directive on it.
 ```
-import { ToastContainerDirective } from 'toastr-ng2';
+import { ToastContainerDirective } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
   template: `<div toastContainer class="toast-top-right"></div>`,
@@ -186,10 +186,10 @@ export class AppComponent implements OnInit {
 ### SystemJS
 If you are using SystemJS, you should also adjust your configuration to point to the UMD bundle.
 
-In your systemjs config file, `map` needs to tell the System loader where to look for `toastr-ng2`:
+In your systemjs config file, `map` needs to tell the System loader where to look for `ngx-toastr`:
 ```js
 map: {
-  'toastr-ng2': 'node_modules/toastr-ng2/toastr.umd.js',
+  'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js',
 }
 ```
 

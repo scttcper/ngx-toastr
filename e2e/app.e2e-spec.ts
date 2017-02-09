@@ -1,6 +1,6 @@
 import { ToastrNg2Page } from './app.po';
 
-describe('toastr-ng2 App', function() {
+describe('ngx-toastr App', function() {
   let page: ToastrNg2Page;
 
   beforeEach(() => {

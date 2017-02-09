@@ -1,11 +1,11 @@
 {
-  "name": "toastr-ng2",
+  "name": "ngx-toastr",
   "description": "Toastr for Angular 2",
-  "homepage": "https://github.com/scttcper/toastr-ng2",
-  "bugs": "https://github.com/scttcper/toastr-ng2/issues",
+  "homepage": "https://github.com/scttcper/ngx-toastr",
+  "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/scttcper/toastr-ng2.git"
+    "url": "https://github.com/scttcper/ngx-toastr.git"
   },
   "version": "0.0.0",
   "license": "MIT",
