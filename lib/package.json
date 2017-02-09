@@ -1,6 +1,6 @@
 {
   "name": "ngx-toastr",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "Toastr for Angular 2",
   "main": "./toastr.js",
   "typings": "./toastr.d.ts",
@@ -10,11 +10,13 @@
   },
   "keywords": [
     "ng2",
+    "ngx",
+    "angular",
     "angular2",
+    "typescript",
     "alert",
     "toast",
     "toastr",
-    "toasts",
     "ngx-toastr",
     "notifications",
     "ngModule"
@@ -25,8 +27,8 @@
   },
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "peerDependencies": {
-    "@angular/core": "^2.2.0",
-    "@angular/common": "^2.2.0",
+    "@angular/core": "^2.4.0",
+    "@angular/common": "^2.4.0",
     "rxjs": "^5.0.0"
   }
 }
