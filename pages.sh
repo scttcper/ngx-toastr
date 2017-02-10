@@ -1,5 +1,5 @@
 #!/bin/bash
 
 yarn build
-yarn global add angular-cli-ghpages
-angular-cli-ghpages --repo=https://GH_TOKEN@github.com/scttcper/ngx-toastr.git --name="scttcper" --email=scttcper@gmail.com
+yarn global add gh-pages
+gh-pages -r https://$PUSH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git -d dist
