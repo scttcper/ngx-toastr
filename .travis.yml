@@ -17,3 +17,5 @@ before_install:
 script: ./node_modules/.bin/ng test --single-run --code-coverage --no-progress
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - bash yarn.sh
+  - bash pages.sh --repo=https://GH_TOKEN@github.com/scttcper/ngx-toastr.git --name="scttcper" --email=scttcper@gmail.com
