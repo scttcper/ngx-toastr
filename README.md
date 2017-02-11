@@ -1,4 +1,5 @@
 # ngx-toastr 🍞 (formerly toastr-ng2)
+> Renamed toastr-ng2 to ngx-toastr. Please point your package.json to the new name for continued updates.
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
