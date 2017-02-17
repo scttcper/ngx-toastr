@@ -13,7 +13,7 @@
   "scripts": {
     "ng": "ng",
     "lint": "ng lint",
-    "start": "ng serve",
+    "start": "ng serve --aot",
     "test": "ng test",
     "ghpages": "ng build --prod --aot --no-progress --baseHref='/ngx-toastr/'",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
@@ -32,13 +32,13 @@
     "core-js": "^2.4.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.random": "^3.2.0",
-    "rxjs": "^5.1.0",
+    "rxjs": "^5.1.1",
     "ts-helpers": "^1.1.2",
     "web-animations-js": "^2.2.2",
-    "zone.js": "^0.7.6"
+    "zone.js": "^0.7.7"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-beta.31",
+    "@angular/cli": "1.0.0-beta.32.3",
     "@angular/compiler-cli": "^2.4.7",
     "@types/jasmine": "2.5.43",
     "@types/lodash.clonedeep": "^4.5.1",
@@ -50,7 +50,7 @@
     "karma": "1.4.1",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "karma-coverage-istanbul-reporter": "^0.2.3",
     "karma-jasmine": "^1.1.0",
     "protractor": "~5.1.1",
     "rollup": "^0.41.4",
