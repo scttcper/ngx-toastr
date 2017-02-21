@@ -42,7 +42,9 @@ export class ToastConfig {
     this.positionClass = config.positionClass || this.positionClass;
     this.titleClass = config.titleClass || this.titleClass;
     this.messageClass = config.messageClass || this.messageClass;
-    this.tapToDismiss = config.tapToDismiss || this.tapToDismiss;
+    if (config.tapToDismiss !== undefined) {
+      this.tapToDismiss = config.tapToDismiss;
+    }
     this.toastComponent = config.toastComponent || this.toastComponent;
     this.onActivateTick = config.onActivateTick || this.onActivateTick;
   }
