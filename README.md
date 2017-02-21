@@ -159,6 +159,7 @@ export interface ActiveToast {
   onShown?: Observable<any>; // triggered when toast is active
   onHidden?: Observable<any>; // triggered when toast is destroyed
   onTap?: Observable<any>; // triggered on click
+  onAction?: Observable<any>; // available for your use in custom toast
 }
 ```
 Toastr Service will return undefined if prevent duplicates is on.
