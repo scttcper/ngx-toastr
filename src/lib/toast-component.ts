@@ -152,16 +152,19 @@ export class Toast implements OnDestroy {
 
     // disable progressBar
     clearInterval(this.intervalId);
-    this.options.progressBar = false;
+    this.width = 0;
   }
   @HostListener('mouseleave')
   delayedHideToast() {
     if (+this.options.extendedTimeOut === 0) {
       return;
     }
-    this.width = 100;
     this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
     this.options.timeOut = +this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + this.options.timeOut;
+    this.width = 100;
+    if (this.options.progressBar) {
+      this.intervalId = setInterval(() => this.updateProgress(), 10);
+    }
   }
 }
