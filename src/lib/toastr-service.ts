@@ -16,6 +16,7 @@ export interface ActiveToast {
   onShown?: Observable<any>;
   onHidden?: Observable<any>;
   onTap?: Observable<any>;
+  onAction?: Observable<any>;
 }
 
 @Injectable()
@@ -161,6 +162,8 @@ export class ToastrService {
     data.toastType = toastType;
     data.onTap = new Subject();
     ins.onTap = data.onTap.asObservable();
+    data.onAction = new Subject();
+    ins.onAction = data.onAction.asObservable();
     const toastInjector = new ToastInjector(ins.toastRef, data, this._injector);
     const component = new ComponentPortal(optionsOverride.toastComponent, null, toastInjector);
     ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);

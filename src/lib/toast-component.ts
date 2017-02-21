@@ -67,8 +67,11 @@ export class Toast implements OnDestroy {
   private timeout: any;
   private intervalId: any;
   private hideTime: number;
-  private onTap: Subject<any>;
   private sub: Subscription;
+  /** listens for click on toast */
+  onTap: Subject<any>;
+  /** listens for click on custom action */
+  onAction: Subject<any>;
 
   constructor(
     private toastrService: ToastrService,
@@ -85,6 +88,7 @@ export class Toast implements OnDestroy {
     }
     this.title = data.title;
     this.onTap = data.onTap;
+    this.onAction = data.onAction;
     this.toastClasses = `${data.toastType} ${this.options.toastClass}`;
     this.options.timeOut = +this.options.timeOut;
     this.sub = toastRef.afterActivate().subscribe((n) => {

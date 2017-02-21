@@ -95,4 +95,5 @@ export class ToastData {
   title: string;
   toastType: string;
   onTap: Subject<any>;
+  onAction: Subject<any>;
 }
