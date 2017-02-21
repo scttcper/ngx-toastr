@@ -5,7 +5,7 @@ import {Subject} from 'rxjs/Subject';
 import {ToastData} from './toastr-config';
 
 /**
- * Reference to a dialog opened via the MdDialog service.
+ * Reference to a toast opened via the Toastr service.
  */
 export class ToastRef<T> {
   /** The instance of component opened into the dialog. */
@@ -18,8 +18,8 @@ export class ToastRef<T> {
   constructor(private _overlayRef: OverlayRef) { }
 
   /**
-   * Close the dialog.
-   * @param dialogResult Optional result to return to the dialog opener.
+   * Close the toast.
+   * @param dialogResult Optional result to return to the toast opener.
    */
   close(): void {
     this._overlayRef.detach();
@@ -27,7 +27,7 @@ export class ToastRef<T> {
     this._afterClosed.complete();
   }
 
-  /** Gets an observable that is notified when the dialog is finished closing. */
+  /** Gets an observable that is notified when the toast is finished closing. */
   afterClosed(): Observable<any> {
     return this._afterClosed.asObservable();
   }
@@ -37,14 +37,14 @@ export class ToastRef<T> {
     this._activate.complete();
   }
 
-  /** Gets an observable that is notified when the dialog has started opening. */
+  /** Gets an observable that is notified when the toast has started opening. */
   afterActivate(): Observable<any> {
     return this._activate.asObservable();
   }
 }
 
 
-/** Custom injector type specifically for instantiating components with a dialog. */
+/** Custom injector type specifically for instantiating components with a toast. */
 export class ToastInjector implements Injector {
   constructor(
     private _dialogRef: ToastRef<any>,
