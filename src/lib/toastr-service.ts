@@ -32,19 +32,23 @@ export class ToastrService {
     private _injector: Injector
   ) { }
 
-  public success(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
+  /** show successful toast */
+  public success(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.success;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public error(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
+  /** show error toast */
+  public error(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.error;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public info(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
+  /** show info toast */
+  public info(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.info;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
-  public warning(message: string, title?: string, optionsOverride?: ToastConfig): ActiveToast {
+  /** show warning toast */
+  public warning(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
@@ -57,6 +61,9 @@ export class ToastrService {
     }
     return new ToastConfig(optionsOverride);
   }
+  /**
+   * Remove all toasts
+   */
   public clear(toastId?: number) {
     // Call every toast's remove function
     for (const toast of this.toasts) {
@@ -70,7 +77,10 @@ export class ToastrService {
       }
     }
   }
-  public remove(toastId: number): boolean {
+  /**
+   * Remove and destroy a single toast by id
+   */
+  public remove(toastId: number) {
     const { index, activeToast } = this._findToast(toastId);
     if (!activeToast) {
       return false;
@@ -79,7 +89,7 @@ export class ToastrService {
     this.toasts.splice(index, 1);
     this.currentlyActive = this.currentlyActive - 1;
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
-      return;
+      return false;
     }
     if (this.currentlyActive <= this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
       const p = this.toasts[this.currentlyActive].portal;
@@ -90,7 +100,11 @@ export class ToastrService {
     }
     return true;
   }
-  private _findToast(toastId: number): { index: number, activeToast: ActiveToast } {
+
+  /**
+   * Find toast object by id
+   */
+  private _findToast(toastId: number): { index: number | null, activeToast: ActiveToast | null } {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return { index: i, activeToast: this.toasts[i] };
@@ -98,7 +112,10 @@ export class ToastrService {
     }
     return { index: null, activeToast: null };
   }
-  private isDuplicate(message: string): boolean {
+  /**
+   * Determines if toast message is already shown
+   */
+  private isDuplicate(message: string) {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].message === message) {
         return true;
@@ -107,12 +124,15 @@ export class ToastrService {
     return false;
   }
 
+  /**
+   * Creates and attaches toast data to component
+   */
   private _buildNotification(
     toastType: string,
     message: string,
     title: string,
     optionsOverride: ToastConfig = Object.create(this.toastrConfig)
-  ): ActiveToast {
+  ) {
     // max opened and auto dismiss = true
     if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
       return;
