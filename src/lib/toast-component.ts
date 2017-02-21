@@ -59,7 +59,7 @@ export class Toast implements OnDestroy {
   title: string;
   options: ToastConfig;
   /** width of progress bar */
-  width = 100;
+  width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
   /** controls animation */
