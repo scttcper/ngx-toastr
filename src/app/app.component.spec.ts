@@ -12,6 +12,8 @@ describe('AppComponent', () => {
         ToastrModule.forRoot({
           timeOut: 800,
           progressBar: true,
+          onActivateTick: true,
+          enableHtml: true,
         }),
         FormsModule,
       ],
@@ -54,5 +56,14 @@ describe('AppComponent', () => {
         done();
       });
       opened.portal._component.tapToast();
+  });
+  it('should show progress on mouseover and exit', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openToast();
+    opened.portal._component.stickAround();
+    opened.portal._component.delayedHideToast();
+    expect(opened.portal._component.options.timeOut).toBe(1000);
+    done();
   });
 });
