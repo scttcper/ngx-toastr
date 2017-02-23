@@ -1,9 +1,4 @@
-export {
-  Portal,
-  PortalHost,
-  BasePortalHost,
-  ComponentPortal,
-} from './portal/portal';
+export { BasePortalHost, ComponentPortal } from './portal/portal';
 export { Overlay } from './overlay/overlay';
 export { OverlayContainer } from './overlay/overlay-container';
 export { ToastContainerModule, ToastContainerDirective } from './toast-directive'
