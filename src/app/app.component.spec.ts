@@ -57,13 +57,23 @@ describe('AppComponent', () => {
       });
       opened.portal._component.tapToast();
   });
-  it('should show progress on mouseover and exit', (done) => {
+  it('should extend life on mouseover and exit', (done) => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
     opened.portal._component.stickAround();
     opened.portal._component.delayedHideToast();
     expect(opened.portal._component.options.timeOut).toBe(1000);
+    done();
+  });
+  it('should keep on mouse exit with extended timeout 0', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    app.options.extendedTimeOut = 0;
+    const opened: ActiveToast = app.openToast();
+    opened.portal._component.stickAround();
+    opened.portal._component.delayedHideToast();
+    expect(opened.portal._component.options.timeOut).toBe(0);
     done();
   });
 });
