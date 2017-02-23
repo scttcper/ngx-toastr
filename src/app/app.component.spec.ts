@@ -1,17 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import 'rxjs/add/operator/toPromise';
 import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule, ActiveToast } from 'ngx-toastr';
 
-import { PinkToast } from './pink.toast';
-
-function sleep(duration: number) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => { resolve(0); }, duration);
-  });
-}
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -49,5 +41,18 @@ describe('AppComponent', () => {
     opened.onHidden.toPromise().then(() => {
       done();
     });
+  });
+  it('should trigger onTap', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openToast();
+    opened.onTap.toPromise()
+      .then(() => {
+        // console.info(opened.toastRef)
+        // const toast = fixture.debugElement.queryAll(By.css('toast-success'))[0];
+        // toast.nativeElement.click();
+        done();
+      });
+      opened.portal._component.tapToast();
   });
 });

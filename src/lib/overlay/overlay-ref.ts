@@ -12,8 +12,7 @@ export class OverlayRef implements PortalHost {
       private _ngZone: NgZone) { }
 
   attach(portal: Portal<any>, newestOnTop: boolean): any {
-    const attachResult = this._portalHost.attach(portal, newestOnTop);
-    return attachResult;
+    return this._portalHost.attach(portal, newestOnTop);
   }
 
   detach(): Promise<any> {

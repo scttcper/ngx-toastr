@@ -80,6 +80,7 @@ export class AppComponent {
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
+    return inserted;
   }
   clearToasts() {
     this.toastrService.clear();
