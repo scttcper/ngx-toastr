@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders, OpaqueToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Toast } from './toast-component';
 import { ToastrService } from './toastr-service';
@@ -14,7 +15,7 @@ export function provideToastrConfig(config: ToastrConfig) {
 }
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, BrowserAnimationsModule],
   exports: [Toast],
   declarations: [Toast],
   entryComponents: [Toast],

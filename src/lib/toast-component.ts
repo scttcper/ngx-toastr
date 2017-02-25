@@ -42,14 +42,10 @@ import { ToastRef } from './toast-injector';
         display: 'none',
         opacity: 0
       })),
-      state('active', style({
-        opacity: 1
-      })),
-      state('removed', style({
-        opacity: 0
-      })),
-      transition('inactive <=> active', animate('300ms ease-in')),
-      transition('active <=> removed', animate('300ms ease-in')),
+      state('active', style({ opacity: 1 })),
+      state('removed', style({ opacity: 0 })),
+      transition('* => active', animate('300ms ease-in')),
+      transition('active => *', animate('300ms ease-in')),
     ]),
   ],
 })
