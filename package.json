@@ -44,7 +44,7 @@
     "@types/lodash.clonedeep": "^4.5.1",
     "@types/lodash.random": "^3.2.1",
     "@types/node": "^7.0.5",
-    "codelyzer": "~2.0.1",
+    "codelyzer": "~3.0.0-beta.0",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "3.2.0",
     "karma": "1.5.0",
