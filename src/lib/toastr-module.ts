@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, OpaqueToken } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -8,7 +8,7 @@ import { ToastrConfig } from './toastr-config';
 import { OverlayContainer } from './overlay/overlay-container';
 import { Overlay } from './overlay/overlay';
 
-export const TOAST_CONFIG = new OpaqueToken('ToastConfig');
+export const TOAST_CONFIG = new InjectionToken('ToastConfig');
 
 export function provideToastrConfig(config: ToastrConfig) {
   return new ToastrConfig(config);
