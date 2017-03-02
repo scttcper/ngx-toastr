@@ -15,8 +15,9 @@
 [greenkeeper-image]: https://badges.greenkeeper.io/scttcper/ngx-toastr.svg
 [greenkeeper-url]: https://greenkeeper.io/  
 
+For Angular v4 support install `npm install ngx-toastr@next` and see the breaking changes on https://github.com/scttcper/ngx-toastr/tree/ng4rc readme
 
-DEMO: https://scttcper.github.io/ngx-toastr/
+__DEMO__: https://scttcper.github.io/ngx-toastr/
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
