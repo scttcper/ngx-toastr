@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
@@ -16,6 +17,7 @@ import { PinkToast } from './pink.toast';
     BrowserModule,
     FormsModule,
     ToastrModule.forRoot(),
+    BrowserAnimationsModule,
     // ToastContainerModule.forRoot(),
   ],
   entryComponents: [PinkToast],
