@@ -15,8 +15,9 @@
 [greenkeeper-image]: https://badges.greenkeeper.io/scttcper/ngx-toastr.svg
 [greenkeeper-url]: https://greenkeeper.io/  
 
+For Angular v4 support install `npm install ngx-toastr@next` and see the breaking changes on https://github.com/scttcper/ngx-toastr/tree/ng4rc readme
 
-DEMO: https://scttcper.github.io/ngx-toastr/
+__DEMO__: https://scttcper.github.io/ngx-toastr/
 
 ## ngx-toastr V4 to V5 breaking changes
 - Supports Angular v4 and drops support for anything lower than 2.4.x

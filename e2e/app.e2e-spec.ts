@@ -1,10 +1,10 @@
-import { NgxToastrPage } from './app.po';
+import { ToastrPage } from './app.po';
 
-describe('ngx-toastr App', function() {
-  let page: NgxToastrPage;
+describe('toastr App', () => {
+  let page: ToastrPage;
 
   beforeEach(() => {
-    page = new NgxToastrPage();
+    page = new ToastrPage();
   });
 
   it('should display message saying app works', () => {

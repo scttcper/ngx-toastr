@@ -2,7 +2,7 @@ export default {
   entry: './deploy/toastr.js',
   dest: './deploy/toastr.umd.js',
   format: 'umd',
-  moduleName: 'toastrng2',
+  moduleName: 'ngxtoastr',
   globals: {
     '@angular/core': 'ng.core',
     '@angular/common': 'ng.common',
