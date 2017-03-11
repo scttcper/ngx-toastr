@@ -33,7 +33,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.random": "^3.2.0",
     "rxjs": "^5.2.0",
-    "zone.js": "^0.7.7"
+    "zone.js": "^0.8.0"
   },
   "devDependencies": {
     "@angular/cli": "1.0.0-rc.1",
@@ -41,8 +41,8 @@
     "@types/jasmine": "^2.5.43",
     "@types/lodash.clonedeep": "^4.5.1",
     "@types/lodash.random": "^3.2.1",
-    "@types/node": "^7.0.5",
-    "codelyzer": "^3.0.0-beta.3",
+    "@types/node": "^7.0.8",
+    "codelyzer": "3.0.0-beta.0",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
     "karma": "^1.5.0",
@@ -52,7 +52,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-coverage-istanbul-reporter": "^0.3.0",
     "protractor": "^5.1.1",
-    "rollup": "^0.41.4",
+    "rollup": "^0.41.5",
     "ts-node": "^2.1.0",
     "tslint": "^4.5.1",
     "typescript": "^2.2.1"
