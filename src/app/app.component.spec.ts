@@ -1,8 +1,9 @@
 import 'rxjs/add/operator/toPromise';
 import { TestBed, async } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { ToastrModule, ActiveToast } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule, ActiveToast } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
           enableHtml: true,
         }),
         FormsModule,
+        BrowserAnimationsModule,
       ],
       declarations: [AppComponent],
     });
