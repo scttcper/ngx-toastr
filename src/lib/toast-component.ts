@@ -44,8 +44,8 @@ import { ToastRef } from './toast-injector';
       })),
       state('active', style({ opacity: 1 })),
       state('removed', style({ opacity: 0 })),
-      transition('* => active', animate('300ms ease-in')),
-      transition('active => *', animate('300ms ease-in')),
+      transition('inactive => active', animate('300ms ease-in')),
+      transition('active => removed', animate('300ms ease-in')),
     ]),
   ],
 })
@@ -138,6 +138,9 @@ export class Toast implements OnDestroy {
   }
   @HostListener('click')
   tapToast() {
+    if (this.state === 'removed') {
+      return;
+    }
     this.onTap.next();
     this.onTap.complete();
     if (this.options.tapToDismiss) {
@@ -146,6 +149,9 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseenter')
   stickAround() {
+    if (this.state === 'removed') {
+      return;
+    }
     clearTimeout(this.timeout);
     this.options.timeOut = 0;
     this.hideTime = 0;
@@ -156,7 +162,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (+this.options.extendedTimeOut === 0) {
+    if (+this.options.extendedTimeOut === 0 || this.state === 'removed') {
       return;
     }
     this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);

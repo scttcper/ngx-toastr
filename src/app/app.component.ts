@@ -68,7 +68,7 @@ export class AppComponent {
   openPinkToast() {
     const opt = _.cloneDeep(this.options);
     opt.toastComponent = PinkToast;
-    opt.toastClass = 'toast toast-pink';
+    opt.toastClass = '';
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
@@ -76,7 +76,7 @@ export class AppComponent {
       m = randomMessage.message;
       t = randomMessage.title;
     }
-    const inserted = this.toastrService.success(m, t, opt);
+    const inserted = this.toastrService.show(m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }

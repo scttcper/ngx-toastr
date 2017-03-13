@@ -32,7 +32,10 @@ export class ToastrService {
     private overlay: Overlay,
     private _injector: Injector
   ) { }
-
+  /** show successful toast */
+  public show(message: string, title?: string, optionsOverride?: ToastConfig, type = '') {
+    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
+  }
   /** show successful toast */
   public success(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.success;
