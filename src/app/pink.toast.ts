@@ -42,20 +42,20 @@ import { Toast } from 'ngx-toastr';
         }),
         style({
           transform: 'skewX(20deg)',
-          opacity: 1,
+          opacity: 0.8,
         }),
         style({
           transform: 'skewX(-5deg)',
-          opacity: 1,
+          opacity: 0.8,
         }),
         style({
           transform: 'none',
-          opacity: 1,
+          opacity: 0.8,
         }),
       ]))),
       transition('active <=> removed', animate('400ms ease-out', keyframes([
         style({
-          opacity: 1,
+          opacity: 0.8,
         }),
         style({
           transform: 'translate3d(100%, 0, 0) skewX(30deg)',
