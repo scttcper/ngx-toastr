@@ -1,10 +1,10 @@
 import {
   Component,
   trigger,
-  state,
   transition,
   animate,
   style,
+  keyframes,
 } from '@angular/core';
 
 import { Toast } from 'ngx-toastr';
@@ -35,18 +35,33 @@ import { Toast } from 'ngx-toastr';
   `,
   animations: [
     trigger('flyInOut', [
-      state('inactive', style({
-        display: 'none',
-        transform: 'translateX(200%)'
-      })),
-      state('active', style({
-        transform: 'translateX(0%)'
-      })),
-      state('removed', style({
-        transform: 'translateX(200%)'
-      })),
-      transition('inactive <=> active', animate('150ms linear')),
-      transition('active <=> removed', animate('150ms linear')),
+      transition('inactive <=> active', animate('400ms ease-out', keyframes([
+        style({
+          transform: 'translate3d(100%, 0, 0) skewX(-30deg)',
+          opacity: 0,
+        }),
+        style({
+          transform: 'skewX(20deg)',
+          opacity: 1,
+        }),
+        style({
+          transform: 'skewX(-5deg)',
+          opacity: 1,
+        }),
+        style({
+          transform: 'none',
+          opacity: 1,
+        }),
+      ]))),
+      transition('active <=> removed', animate('400ms ease-out', keyframes([
+        style({
+          opacity: 1,
+        }),
+        style({
+          transform: 'translate3d(100%, 0, 0) skewX(30deg)',
+          opacity: 0,
+        }),
+      ]))),
     ]),
   ],
 })
