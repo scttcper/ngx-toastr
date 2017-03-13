@@ -110,7 +110,7 @@ positionClass: string = 'toast-top-right'; // class on toast
 titleClass: string = 'toast-title'; // class inside toast on title
 messageClass: string = 'toast-message'; // class inside toast on message
 tapToDismiss: boolean = true; // close on click
-onActivateTick: boolean = false; // fire a ApplicationRef.tick() from the toast component when activated. Helps show toast from a websocket event
+onActivateTick: boolean = false; // fire ApplicationRef.tick() from the toast component when activated. Helps show toast from a websocket event
 ```
 
 ### Override default settings
