@@ -1,4 +1,3 @@
-import 'rxjs/add/operator/toPromise';
 import { TestBed, async } from '@angular/core/testing';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
