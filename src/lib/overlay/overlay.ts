@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, Injectable, ApplicationRef, Injector, NgZone } from '@angular/core';
+import { ComponentFactoryResolver, Injectable, ApplicationRef, NgZone } from '@angular/core';
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
@@ -20,7 +20,6 @@ import { ToastContainerDirective } from '../toast-directive';
     constructor(private _overlayContainer: OverlayContainer,
                 private _componentFactoryResolver: ComponentFactoryResolver,
                 private _appRef: ApplicationRef,
-                private _injector: Injector,
                 private _ngZone: NgZone) {}
   /**
    * Creates an overlay.
@@ -61,7 +60,7 @@ import { ToastContainerDirective } from '../toast-directive';
    * @returns A portal host for the given DOM element.
    */
   private _createPortalHost(pane: HTMLElement): DomPortalHost {
-    return new DomPortalHost(pane, this._componentFactoryResolver, this._appRef, this._injector);
+    return new DomPortalHost(pane, this._componentFactoryResolver, this._appRef);
   }
 
   /**

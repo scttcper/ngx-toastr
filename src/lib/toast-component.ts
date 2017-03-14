@@ -74,11 +74,11 @@ export class Toast implements OnDestroy {
   onAction: Subject<any>;
 
   constructor(
-    private toastrService: ToastrService,
+    protected toastrService: ToastrService,
     public data: ToastData,
-    private toastRef: ToastRef<any>,
-    private appRef: ApplicationRef,
-    sanitizer: DomSanitizer
+    protected toastRef: ToastRef<any>,
+    protected appRef: ApplicationRef,
+    protected sanitizer: DomSanitizer
   ) {
     this.options = data.optionsOverride;
     this.toastId = data.toastId;

@@ -5,11 +5,11 @@ import {
   transition,
   animate,
   style,
+  ApplicationRef,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
 
-import { Toast } from 'ngx-toastr';
-
-/* tslint:disable */
 @Component({
   selector: '[pink-toast-component]',
   styles: [`
@@ -53,6 +53,18 @@ import { Toast } from 'ngx-toastr';
 export class PinkToast extends Toast {
   // used for demo purposes
   undoString = 'undo';
+
+  // constructor is only necessary when not using AoT
+  constructor(
+    protected toastrService: ToastrService,
+    public data: ToastData,
+    protected toastRef: ToastRef<any>,
+    protected appRef: ApplicationRef,
+    protected sanitizer: DomSanitizer
+  ) {
+    super(toastrService, data, toastRef, appRef, sanitizer);
+  }
+
   action(event: Event) {
     event.stopPropagation();
     this.undoString = 'undid';
@@ -61,4 +73,3 @@ export class PinkToast extends Toast {
     return false;
   }
 }
-/* tslint:enable */

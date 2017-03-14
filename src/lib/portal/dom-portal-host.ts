@@ -3,7 +3,6 @@ import {
   ComponentRef,
   EmbeddedViewRef,
   ApplicationRef,
-  Injector,
 } from '@angular/core';
 import {BasePortalHost, ComponentPortal} from './portal';
 
@@ -18,8 +17,7 @@ export class DomPortalHost extends BasePortalHost {
   constructor(
       private _hostDomElement: Element,
       private _componentFactoryResolver: ComponentFactoryResolver,
-      private _appRef: ApplicationRef,
-      private _defaultInjector: Injector) {
+      private _appRef: ApplicationRef) {
     super();
   }
 
@@ -36,7 +34,7 @@ export class DomPortalHost extends BasePortalHost {
     // When the ViewContainerRef is missing, we use the factory to create the component directly
     // and then manually attach the ChangeDetector for that component to the application (which
     // happens automatically when using a ViewContainer).
-    componentRef = componentFactory.create(portal.injector || this._defaultInjector);
+    componentRef = componentFactory.create(portal.injector);
 
     // When creating a component outside of a ViewContainer, we need to manually register
     // its ChangeDetector with the application. This API is unfortunately not yet published
