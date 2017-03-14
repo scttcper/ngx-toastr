@@ -10,15 +10,12 @@
     ],
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
-    "target": "es6",
+    "target": "es5",
     "baseUrl": "",
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "ngx-toastr": ["./lib/toastr"]
-    }
+    ]
   },
   "files": [
     "test.ts"
