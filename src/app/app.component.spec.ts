@@ -1,10 +1,13 @@
 import 'rxjs/add/operator/toPromise';
 import { TestBed, async } from '@angular/core/testing';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 import { ToastrModule, ActiveToast } from 'ngx-toastr';
 import { AppComponent } from './app.component';
+import { PinkToast } from './pink.toast';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -18,6 +21,7 @@ describe('AppComponent', () => {
         }),
         FormsModule,
         BrowserAnimationsModule,
+        AppTestModule,
       ],
       declarations: [AppComponent],
     });
@@ -29,7 +33,6 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-
   it('should trigger onShown', (done) => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
@@ -52,9 +55,6 @@ describe('AppComponent', () => {
     const opened: ActiveToast = app.openToast();
     opened.onTap.toPromise()
       .then(() => {
-        // console.info(opened.toastRef)
-        // const toast = fixture.debugElement.queryAll(By.css('toast-success'))[0];
-        // toast.nativeElement.click();
         done();
       });
       opened.portal._component.tapToast();
@@ -78,4 +78,30 @@ describe('AppComponent', () => {
     expect(opened.portal._component.options.timeOut).toBe(0);
     done();
   });
+  it('should trigger onShown for openPinkToast', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openPinkToast();
+    opened.onShown.toPromise().then(() => {
+      done();
+    });
+  });
+  it('should trigger onHidden for openPinkToast', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openPinkToast();
+    opened.onHidden.toPromise().then(() => {
+      done();
+    });
+  });
 });
+
+@NgModule({
+  imports: [
+    CommonModule,
+    ToastrModule,
+  ],
+  entryComponents: [PinkToast],
+  declarations: [PinkToast],
+})
+class AppTestModule { }
