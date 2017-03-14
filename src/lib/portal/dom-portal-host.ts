@@ -4,7 +4,7 @@ import {
   EmbeddedViewRef,
   ApplicationRef,
 } from '@angular/core';
-import {BasePortalHost, ComponentPortal} from './portal';
+import { BasePortalHost, ComponentPortal } from './portal';
 
 
 /**

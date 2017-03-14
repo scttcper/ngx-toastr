@@ -4,22 +4,12 @@ import {
   transition,
   animate,
   style,
-<<<<<<< HEAD
   keyframes,
-=======
   ApplicationRef,
->>>>>>> master
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
 
-<<<<<<< HEAD
-import { Toast } from 'ngx-toastr';
-
-
-// looking for the unmodified toast? src/lib/toast-component.ts
-=======
->>>>>>> master
 @Component({
   selector: '[pink-toast-component]',
   styles: [`
