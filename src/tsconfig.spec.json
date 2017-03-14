@@ -15,7 +15,10 @@
     "types": [
       "jasmine",
       "node"
-    ]
+    ],
+    "paths": {
+      "ngx-toastr": ["./lib/toastr"]
+    }
   },
   "files": [
     "test.ts"

@@ -13,7 +13,10 @@
     "outDir": "../out-tsc/app",
     "module": "es2015",
     "baseUrl": "",
-    "types": []
+    "types": [],
+    "paths": {
+      "ngx-toastr": ["./lib/toastr"]
+    }
   },
   "exclude": [
     "test.ts",
