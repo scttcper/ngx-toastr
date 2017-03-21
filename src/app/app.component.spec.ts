@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
 import { ToastrModule, ActiveToast } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
 

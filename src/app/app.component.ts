@@ -1,8 +1,9 @@
 import { Component, VERSION } from '@angular/core';
 import * as _ from 'lodash';
 
-import { PinkToast } from './pink.toast';
 import { ToastrConfig, ToastrService } from 'ngx-toastr';
+
+import { PinkToast } from './pink.toast';
 
 const quotes = [
   {
