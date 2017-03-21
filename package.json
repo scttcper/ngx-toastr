@@ -36,24 +36,24 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.0-rc.2",
+    "@angular/cli": "1.0.0-rc.4",
     "@angular/compiler-cli": "^4.0.0-rc.5",
     "@types/jasmine": "^2.5.46",
     "@types/lodash.clonedeep": "^4.5.1",
     "@types/lodash.random": "^3.2.1",
     "@types/node": "^7.0.8",
-    "codelyzer": "^3.0.0-beta.3",
+    "codelyzer": "^3.0.0-beta.4",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
     "karma": "^1.5.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
+    "karma-coverage-istanbul-reporter": "^1.0.0",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-coverage-istanbul-reporter": "^1.0.0",
     "protractor": "^5.1.1",
     "rollup": "^0.41.6",
-    "ts-node": "^2.1.0",
+    "ts-node": "^3.0.0",
     "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   }
