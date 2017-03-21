@@ -19,6 +19,5 @@
     "paths": {
       "ngx-toastr": ["./src/lib/toastr"]
     }
-  },
-  "exclude": ["node_modules"]
+  }
 }
