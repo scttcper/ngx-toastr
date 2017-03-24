@@ -15,8 +15,8 @@
 
 __DEMO__: https://scttcper.github.io/ngx-toastr/
 
-## ngx-toastr V4 to V5 breaking changes
-- Supports Angular v4 and drops support for anything lower than 2.4.x
+## ℹ️ ngx-toastr v4 to v5 breaking changes (March 23, 2017)
+- Supports Angular v4 and drops support for anything lower than 2.4.x. Users of Angular less than v2.4 should stay ngx-toastr v4.x.x on 
 - In order to support Angular v4 animations you should:  
   - Install animations `npm install @angular/animations --save`  
   - Add `import { BrowserAnimationsModule } from '@angular/platform-browser/animations';` and import in root NgModule  
