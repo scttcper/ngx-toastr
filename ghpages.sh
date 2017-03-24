@@ -6,7 +6,7 @@ if [[ $TRAVIS_BRANCH != 'master' ]]; then
 	exit 0
 fi
 echo "creating build"
-yarn clean
+yarn cleanup
 yarn ghpages
 echo "finished build"
 git config --global user.email "$PUSH_EMAIL"
