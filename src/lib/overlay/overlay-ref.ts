@@ -1,4 +1,4 @@
-import {NgZone} from '@angular/core';
+import {NgZone, ComponentRef} from '@angular/core';
 import {BasePortalHost, ComponentPortal} from '../portal/portal';
 
 /**
@@ -11,7 +11,7 @@ export class OverlayRef {
       private _pane: HTMLElement,
       private _ngZone: NgZone) { }
 
-  attach(portal: ComponentPortal<any>, newestOnTop: boolean) {
+  attach(portal: ComponentPortal<any>, newestOnTop: boolean): ComponentRef<any> {
     return this._portalHost.attach(portal, newestOnTop);
   }
 
