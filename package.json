@@ -14,7 +14,7 @@
     "start": "ng serve --aot",
     "build": "ng build",
     "test": "ng test",
-    "clean": "rimraf dist waste deploy",
+    "cleanup": "rimraf dist waste deploy",
     "ghpages": "ng build --prod --aot --no-progress --baseHref='/ngx-toastr/'",
     "lint": "ng lint",
     "e2e": "ng e2e"

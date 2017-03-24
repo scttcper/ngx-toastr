@@ -4,7 +4,7 @@ set -exu
 # Stages a release by putting everything that should be packaged and released
 # into the ./deploy folder. This script should be run from the root of the project
 
-yarn clean
+yarn cleanup
 
 # compile src directory and create d.ts files
 ./node_modules/.bin/ngc -p ./src/lib/tsconfig.lib.json -d
