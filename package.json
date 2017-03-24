@@ -1,6 +1,6 @@
 {
   "name": "ngx-toastr",
-  "description": "Toastr for Angular 2",
+  "description": "Toastr for Angular",
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": {

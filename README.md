@@ -1,6 +1,4 @@
 # ngx-toastr 🍞 (formerly toastr-ng2)
-> Renamed toastr-ng2 to ngx-toastr. Please point your package.json to the new name for continued updates.  
-
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-img]][travis-url]
 [![coverage status][coverage-img]][coverage-url]
@@ -14,8 +12,6 @@
 [coverage-url]: https://codecov.io/gh/scttcper/ngx-toastr
 [greenkeeper-image]: https://badges.greenkeeper.io/scttcper/ngx-toastr.svg
 [greenkeeper-url]: https://greenkeeper.io/  
-
-For Angular v4 support install `npm install ngx-toastr@next` and see the breaking changes on https://github.com/scttcper/ngx-toastr/tree/ng4rc readme
 
 __DEMO__: https://scttcper.github.io/ngx-toastr/
 
@@ -32,7 +28,7 @@ __DEMO__: https://scttcper.github.io/ngx-toastr/
 - AoT compilation and lazy loading compatible
 - Component inheritance for custom toasts
 - SystemJS rollup bundle ✓
-- Animations using angular 2's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
+- Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
 - Output toasts to a target directive
 
 ## Install  
@@ -106,7 +102,7 @@ preventDuplicates: boolean = false; // block duplicate messages
 
 ### ToastConfig (Individual Toast options)
 ```typescript
-toastComponent = Toast; // the angular 2 component that will be used
+toastComponent = Toast; // the Angular component that will be used
 closeButton: boolean = false; // show close button
 timeOut: number = 5000; // time to live
 enableHtml: boolean = false; // allow html in message. (UNSAFE)
