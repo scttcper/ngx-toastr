@@ -9,20 +9,27 @@ import { Toast } from './toast-component';
  * Configuration for an individual toast.
  */
 export class ToastConfig {
-  // shows close button
+  /** show close button */
   closeButton?: boolean = false;
+  /** time to close after a user hovers over toast */
   extendedTimeOut?: number = 1000;
+  /** show progress bar */
   progressBar?: boolean = false;
+  /** time to live */
   timeOut?: number = 5000;
+  /** allow html in message */
   enableHtml?: boolean = false;
-
   toastClass?: string = 'toast';
   positionClass?: string = 'toast-top-right';
   titleClass?: string = 'toast-title';
   messageClass?: string = 'toast-message';
+  /** clicking on toast dismisses it */
   tapToDismiss?: boolean = true;
+  /** the Angular component to be shown */
   toastComponent?: ComponentType<any> = Toast;
+  /** Helps show toast from a websocket or from event outside Angular */
   onActivateTick?: boolean = false;
+
   constructor(config: ToastConfig = {}) {
     this.closeButton = config.closeButton || this.closeButton;
     if (config.extendedTimeOut === 0) {
@@ -63,7 +70,9 @@ export class ToastrIconClasses {
  */
 @Injectable()
 export class ToastrConfig extends ToastConfig {
+  /** max toasts opened. Toasts will be queued */
   maxOpened?: number = 0;
+  /** dismiss current toast when max is reached */
   autoDismiss?: boolean = false;
   iconClasses?: ToastrIconClasses = {
     error: 'toast-error',
@@ -71,8 +80,11 @@ export class ToastrConfig extends ToastConfig {
     success: 'toast-success',
     warning: 'toast-warning',
   };
+  /** new toast placement */
   newestOnTop?: boolean = true;
+  /** block duplicate messages */
   preventDuplicates?: boolean = false;
+
   constructor(config: ToastrConfig = {}) {
     super(config);
     this.maxOpened = config.maxOpened || this.maxOpened;
@@ -94,6 +106,8 @@ export class ToastData {
   message: string;
   title: string;
   toastType: string;
+  /** Fired on click */
   onTap: Subject<any>;
+  /** available for use in custom toast */
   onAction: Subject<any>;
 }

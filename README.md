@@ -18,9 +18,8 @@ __DEMO__: https://scttcper.github.io/ngx-toastr/
 ## ngx-toastr V4 to V5 breaking changes
 - Supports Angular v4 and drops support for anything lower than 2.4.x
 - In order to support Angular v4 animations you should:  
-  - Install `npm install @angular/animations --save`  
-  - Add `import { BrowserAnimationsModule } from '@angular/platform-browser/animations';` to root NgModule  
-  - Add `BrowserAnimationsModule` to imports
+  - Install animations `npm install @angular/animations --save`  
+  - Add `import { BrowserAnimationsModule } from '@angular/platform-browser/animations';` and import in root NgModule  
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
