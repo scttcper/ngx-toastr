@@ -11,10 +11,14 @@ export class OverlayRef {
       private _pane: HTMLElement,
       private _ngZone: NgZone) { }
 
-  attach(portal: ComponentPortal<any>, newestOnTop: boolean): any {
+  attach(portal: ComponentPortal<any>, newestOnTop: boolean) {
     return this._portalHost.attach(portal, newestOnTop);
   }
 
+  /**
+   * Detaches an overlay from a portal.
+   * @returns Resolves when the overlay has been detached.
+   */
   detach() {
     return this._portalHost.detach();
   }

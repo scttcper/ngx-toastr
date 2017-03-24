@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
@@ -11,7 +11,7 @@ import { ToastContainerDirective } from './toast-directive';
 export interface ActiveToast {
   toastId?: number;
   message?: string;
-  portal?: any;
+  portal?: ComponentRef<any>;
   toastRef?: ToastRef<any>;
   onShown?: Observable<any>;
   onHidden?: Observable<any>;
@@ -22,7 +22,7 @@ export interface ActiveToast {
 @Injectable()
 export class ToastrService {
   private index = 0;
-  private toasts: any[] = [];
+  private toasts: ActiveToast[] = [];
   private previousToastMessage = '';
   private currentlyActive = 0;
   overlayContainer: ToastContainerDirective;
@@ -66,18 +66,18 @@ export class ToastrService {
     return new ToastConfig(optionsOverride);
   }
   /**
-   * Remove all toasts
+   * Remove all or a single toast by id
    */
   public clear(toastId?: number) {
-    // Call every toast's remove function
+    // Call every toastRef manualClose function
     for (const toast of this.toasts) {
       if (toastId !== undefined) {
         if (toast.toastId === toastId) {
-          toast.portal._component.remove();
+          toast.toastRef.manualClose();
           return;
         }
       } else {
-        toast.portal._component.remove();
+        toast.toastRef.manualClose();
       }
     }
   }
@@ -95,11 +95,11 @@ export class ToastrService {
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
       return false;
     }
-    if (this.currentlyActive <= this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
-      const p = this.toasts[this.currentlyActive].portal;
-      if (p._component.state === 'inactive') {
+    if (this.currentlyActive <= +this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
+      const p = this.toasts[this.currentlyActive].toastRef;
+      if (!p.isInactive()) {
         this.currentlyActive = this.currentlyActive + 1;
-        this.toasts[this.currentlyActive].toastRef.activate();
+        p.activate();
       }
     }
     return true;
@@ -168,7 +168,7 @@ export class ToastrService {
     data.onAction = new Subject();
     ins.onAction = data.onAction.asObservable();
     const toastInjector = new ToastInjector(ins.toastRef, data, this._injector);
-    const component = new ComponentPortal(optionsOverride.toastComponent, null, toastInjector);
+    const component = new ComponentPortal(optionsOverride.toastComponent, toastInjector);
     ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
     if (!keepInactive) {
       setTimeout(() => {

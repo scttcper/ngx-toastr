@@ -24,22 +24,18 @@ export class ComponentPortal<T> {
    */
   viewContainerRef: ViewContainerRef;
 
-  /** [Optional] Injector used for the instantiation of the component. */
+  /** Injector used for the instantiation of the component. */
   injector: Injector;
 
-  constructor(
-      component: ComponentType<T>,
-      viewContainerRef: ViewContainerRef = null,
-      injector: Injector = null) {
+  constructor(component: ComponentType<T>, injector: Injector) {
     this.component = component;
-    this.viewContainerRef = viewContainerRef;
     this.injector = injector;
   }
 
   /** Attach this portal to a host. */
-  attach(host: BasePortalHost, newestOnTop: boolean): T {
+  attach(host: BasePortalHost, newestOnTop: boolean) {
     this._attachedHost = host;
-    return <T> host.attach(this, newestOnTop);
+    return host.attach(this, newestOnTop);
   }
 
   /** Detach this portal from its host */
@@ -64,8 +60,8 @@ export class ComponentPortal<T> {
 }
 
 /**
- * Partial implementation of PortalHost that only deals with attaching either a
- * ComponentPortal or a TemplatePortal.
+ * Partial implementation of PortalHost that only deals with attaching a
+ * ComponentPortal
  */
 export abstract class BasePortalHost {
   /** The portal currently attached to the host. */
@@ -74,7 +70,7 @@ export abstract class BasePortalHost {
   /** A function that will permanently dispose this host. */
   private _disposeFn: () => void;
 
-  attach(portal: ComponentPortal<any>, newestOnTop: boolean): any {
+  attach(portal: ComponentPortal<any>, newestOnTop: boolean) {
     this._attachedPortal = portal;
     return this.attachComponentPortal(portal, newestOnTop);
   }

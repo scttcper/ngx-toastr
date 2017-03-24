@@ -64,6 +64,7 @@ export class Toast implements OnDestroy {
   private intervalId: any;
   private hideTime: number;
   private sub: Subscription;
+  private sub1: Subscription;
   /** listens for click on toast */
   onTap: Subject<any>;
   /** listens for click on custom action */
@@ -87,12 +88,16 @@ export class Toast implements OnDestroy {
     this.onAction = data.onAction;
     this.toastClasses = `${data.toastType} ${this.options.toastClass}`;
     this.options.timeOut = +this.options.timeOut;
-    this.sub = toastRef.afterActivate().subscribe((n) => {
+    this.sub = toastRef.afterActivate().subscribe(() => {
       this.activateToast();
+    });
+    this.sub1 = toastRef.manualClosed().subscribe(() => {
+      this.remove();
     });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
+    this.sub1.unsubscribe();
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
   }
@@ -128,6 +133,10 @@ export class Toast implements OnDestroy {
       this.width = 0;
     }
   }
+
+  /**
+   * tells toastrService to remove this toast after animation time
+   */
   remove() {
     if (this.state === 'removed') {
       return;
