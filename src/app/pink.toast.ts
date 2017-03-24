@@ -6,6 +6,7 @@ import {
   style,
   keyframes,
   ApplicationRef,
+  state,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
@@ -50,7 +51,11 @@ import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
   `,
   animations: [
     trigger('flyInOut', [
-      transition('inactive <=> active', animate('400ms ease-out', keyframes([
+      state('inactive', style({
+        display: 'none',
+        opacity: 0
+      })),
+      transition('inactive => active', animate('400ms ease-out', keyframes([
         style({
           transform: 'translate3d(100%, 0, 0) skewX(-30deg)',
           opacity: 0,
@@ -68,7 +73,7 @@ import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
           opacity: 1,
         }),
       ]))),
-      transition('active <=> removed', animate('400ms ease-out', keyframes([
+      transition('active => removed', animate('400ms ease-out', keyframes([
         style({
           opacity: 1,
         }),
