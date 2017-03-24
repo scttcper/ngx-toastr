@@ -1,5 +1,5 @@
 import { Component, VERSION } from '@angular/core';
-import * as _ from 'lodash';
+import { cloneDeep, random } from 'lodash';
 
 import { ToastrConfig, ToastrService } from 'ngx-toastr';
 
@@ -55,11 +55,11 @@ export class AppComponent {
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      const randomMessage = quotes[_.random(0, quotes.length - 1)];
+      const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
-    const opt = _.cloneDeep(this.options);
+    const opt = cloneDeep(this.options);
     const inserted = this.toastrService[this.type](m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
@@ -67,13 +67,13 @@ export class AppComponent {
     return inserted;
   }
   openPinkToast() {
-    const opt = _.cloneDeep(this.options);
+    const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
-    opt.toastClass = '';
+    opt.toastClass = 'pinktoast';
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {
-      const randomMessage = quotes[_.random(0, quotes.length - 1)];
+      const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
       t = randomMessage.title;
     }
