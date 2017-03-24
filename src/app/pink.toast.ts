@@ -1,10 +1,10 @@
 import {
   Component,
   trigger,
-  state,
   transition,
   animate,
   style,
+  keyframes,
   ApplicationRef,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -14,39 +14,69 @@ import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
   selector: '[pink-toast-component]',
   styles: [`
     :host {
-      background-color: #fa39c3;
+      background-color: #FF69B4;
+      position: relative;
+      overflow: hidden;
+      margin: 0 0 6px;
+      padding: 10px 10px 10px 10px;
+      width: 300px;
+      border-radius: 3px 3px 3px 3px;
+      color: #FFFFFF;
     }
   `],
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-    &times;
-  </button>
-  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
-    {{title}}
+  <div class="row">
+    <div class="col-9">
+      <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
+        {{title}}
+      </div>
+      <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message"></div>
+      <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
+        {{message}}
+      </div>
+    </div>
+    <div class="col-3 text-right">
+      <a *ngIf="!options.closeButton" class="btn btn-pink btn-sm" (click)="action($event)">
+        {{undoString}}
+      </a>
+      <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-pink btn-sm">
+        close
+      </a>
+    </div>
   </div>
-  <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message"></div>
-  <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
-    {{message}}
-  </div>
-  <a class="btn btn-pink btn-sm" (click)="action($event)">{{undoString}}</a>
   <div *ngIf="options.progressBar">
     <div class="toast-progress" [style.width.%]="width"></div>
   </div>
   `,
   animations: [
     trigger('flyInOut', [
-      state('inactive', style({
-        display: 'none',
-        transform: 'translateX(200%)'
-      })),
-      state('active', style({
-        transform: 'translateX(0%)'
-      })),
-      state('removed', style({
-        transform: 'translateX(200%)'
-      })),
-      transition('inactive <=> active', animate('150ms linear')),
-      transition('active <=> removed', animate('150ms linear')),
+      transition('inactive <=> active', animate('400ms ease-out', keyframes([
+        style({
+          transform: 'translate3d(100%, 0, 0) skewX(-30deg)',
+          opacity: 0,
+        }),
+        style({
+          transform: 'skewX(20deg)',
+          opacity: 1,
+        }),
+        style({
+          transform: 'skewX(-5deg)',
+          opacity: 1,
+        }),
+        style({
+          transform: 'none',
+          opacity: 1,
+        }),
+      ]))),
+      transition('active <=> removed', animate('400ms ease-out', keyframes([
+        style({
+          opacity: 1,
+        }),
+        style({
+          transform: 'translate3d(100%, 0, 0) skewX(30deg)',
+          opacity: 0,
+        }),
+      ]))),
     ]),
   ],
 })

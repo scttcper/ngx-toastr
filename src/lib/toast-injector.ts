@@ -1,7 +1,8 @@
 import {Injector} from '@angular/core';
-import {OverlayRef} from './overlay/overlay-ref';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+
+import {OverlayRef} from './overlay/overlay-ref';
 import {ToastData} from './toastr-config';
 
 /**

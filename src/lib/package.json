@@ -1,6 +1,6 @@
 {
   "name": "ngx-toastr",
-  "version": "4.4.1",
+  "version": "5.0.3",
   "description": "Toastr for Angular",
   "main": "toastr.umd.js",
   "module": "toastr.js",
@@ -20,6 +20,7 @@
     "toast",
     "toastr",
     "ngx-toastr",
+    "angular toastr",
     "notifications",
     "ngModule"
   ],
@@ -29,8 +30,8 @@
   },
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "peerDependencies": {
-    "@angular/core": "^2.2.0",
-    "@angular/common": "^2.2.0",
+    "@angular/core": "^2.4.0",
+    "@angular/common": "^2.4.0",
     "rxjs": "^5.0.0"
   }
 }

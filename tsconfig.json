@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "baseUrl": "src",
+    "baseUrl": "",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -15,6 +15,9 @@
     "lib": [
       "es2016",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-toastr": ["./src/lib/toastr"]
+    }
   }
 }
