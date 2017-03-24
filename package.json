@@ -14,6 +14,7 @@
     "start": "ng serve --aot",
     "build": "ng build",
     "test": "ng test",
+    "clean": "rimraf build waste deploy",
     "ghpages": "ng build --prod --aot --no-progress --baseHref='/ngx-toastr/'",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -52,6 +53,7 @@
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.1.1",
+    "rimraf": "^2.6.1",
     "rollup": "^0.41.6",
     "ts-node": "^3.0.2",
     "tslint": "^4.5.1",
