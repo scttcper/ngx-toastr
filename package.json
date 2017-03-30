@@ -21,14 +21,14 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.0.0",
-    "@angular/common": "^4.0.0",
-    "@angular/compiler": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
+    "@angular/animations": "^4.0.1",
+    "@angular/common": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/core": "^4.0.1",
+    "@angular/forms": "^4.0.1",
+    "@angular/platform-browser": "^4.0.1",
+    "@angular/platform-browser-dynamic": "^4.0.1",
+    "@angular/router": "^4.0.1",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "lodash.clonedeep": "^4.5.0",
@@ -38,11 +38,11 @@
   },
   "devDependencies": {
     "@angular/cli": "1.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@types/jasmine": "^2.5.46",
+    "@angular/compiler-cli": "^4.0.1",
+    "@types/jasmine": "^2.5.47",
     "@types/lodash.clonedeep": "^4.5.2",
     "@types/lodash.random": "^3.2.2",
-    "@types/node": "^7.0.10",
+    "@types/node": "^7.0.12",
     "codelyzer": "^3.0.0-beta.4",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "^3.2.0",
@@ -57,6 +57,6 @@
     "rollup": "^0.41.6",
     "ts-node": "^3.0.2",
     "tslint": "^5.0.0",
-    "typescript": "^2.2.1"
+    "typescript": "^2.2.2"
   }
 }
