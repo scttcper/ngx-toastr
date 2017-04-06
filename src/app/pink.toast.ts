@@ -23,9 +23,8 @@ import { Toast, ToastData, ToastrService, ToastRef } from 'ngx-toastr';
       width: 300px;
       border-radius: 3px 3px 3px 3px;
       color: #FFFFFF;
-    }
-    .btn-pink {
       pointer-events: all;
+      cursor: pointer;
     }
   `],
   template: `
