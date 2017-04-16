@@ -5,6 +5,8 @@ import { Subject } from 'rxjs/Subject';
 import { ComponentType } from './portal/portal';
 import { Toast } from './toast-component';
 
+
+
 /**
  * Configuration for an individual toast.
  */
@@ -31,29 +33,21 @@ export class ToastConfig {
   onActivateTick?: boolean = false;
 
   constructor(config: ToastConfig = {}) {
-    this.closeButton = config.closeButton || this.closeButton;
-    if (config.extendedTimeOut === 0) {
-      this.extendedTimeOut = config.extendedTimeOut;
-    } else {
-      this.extendedTimeOut = config.extendedTimeOut || this.extendedTimeOut;
+    function use<T>(source: T, defaultValue: T): T {
+      return config && source !== undefined ? source : defaultValue;
     }
-    this.progressBar = config.progressBar || this.progressBar;
-    if (config.timeOut === 0) {
-      this.timeOut = config.timeOut;
-    } else {
-      this.timeOut = config.timeOut || this.timeOut;
-    }
-    this.enableHtml = config.enableHtml || this.enableHtml;
-
-    this.toastClass = config.toastClass || this.toastClass;
-    this.positionClass = config.positionClass || this.positionClass;
-    this.titleClass = config.titleClass || this.titleClass;
-    this.messageClass = config.messageClass || this.messageClass;
-    if (config.tapToDismiss !== undefined) {
-      this.tapToDismiss = config.tapToDismiss;
-    }
-    this.toastComponent = config.toastComponent || this.toastComponent;
-    this.onActivateTick = config.onActivateTick || this.onActivateTick;
+    this.closeButton = use(config.closeButton, this.closeButton);
+    this.extendedTimeOut = use(config.extendedTimeOut, this.extendedTimeOut);
+    this.progressBar = use(config.progressBar, this.progressBar);
+    this.timeOut = use(config.timeOut, this.timeOut);
+    this.enableHtml = use(config.enableHtml, this.enableHtml);
+    this.toastClass = use(config.toastClass, this.toastClass);
+    this.positionClass = use(config.positionClass, this.positionClass);
+    this.titleClass = use(config.titleClass, this.titleClass);
+    this.messageClass = use(config.messageClass, this.messageClass);
+    this.tapToDismiss = use(config.tapToDismiss, this.tapToDismiss);
+    this.toastComponent = use(config.toastComponent, this.toastComponent);
+    this.onActivateTick = use(config.onActivateTick, this.onActivateTick);
   }
 }
 
@@ -87,16 +81,19 @@ export class ToastrConfig extends ToastConfig {
 
   constructor(config: ToastrConfig = {}) {
     super(config);
-    this.maxOpened = config.maxOpened || this.maxOpened;
-    this.autoDismiss = config.autoDismiss || this.autoDismiss;
+    function use<T>(source: T, defaultValue: T): T {
+      return config && source !== undefined ? source : defaultValue;
+    }
+    this.maxOpened = use(config.maxOpened, this.maxOpened);
+    this.autoDismiss = use(config.autoDismiss, this.autoDismiss);
+    this.newestOnTop = use(config.newestOnTop, this.newestOnTop);
+    this.preventDuplicates = use(config.preventDuplicates, this.preventDuplicates);
     if (config.iconClasses) {
       this.iconClasses.error = this.iconClasses.error || config.iconClasses.error;
       this.iconClasses.info = this.iconClasses.info || config.iconClasses.info;
       this.iconClasses.success = this.iconClasses.success || config.iconClasses.success;
       this.iconClasses.warning = this.iconClasses.warning || config.iconClasses.warning;
     }
-    this.newestOnTop = config.newestOnTop || this.newestOnTop;
-    this.preventDuplicates = config.preventDuplicates || this.preventDuplicates;
   }
 }
 

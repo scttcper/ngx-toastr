@@ -98,8 +98,8 @@
       "check-type"
     ],
 
-    "directive-selector": [false, "attribute", "app", "camelCase"],
-    "component-selector": [false, "element", "app", "kebab-case"],
+    /*"directive-selector": [false, "attribute", "app", "camelCase"],*/
+    /*"component-selector": [false, "element", "app", "kebab-case"],*/
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
