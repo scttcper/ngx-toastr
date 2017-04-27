@@ -1,14 +1,6 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "lib": [
-      "es2016",
-      "dom"
-    ],
     "outDir": "../out-tsc/spec",
     "module": "commonjs",
     "target": "es5",
@@ -16,15 +8,13 @@
     "types": [
       "jasmine",
       "node"
-    ],
-    "paths": {
-      "ngx-toastr": ["./lib/toastr"]
-    }
+    ]
   },
   "files": [
     "test.ts"
   ],
   "include": [
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*.d.ts"
   ]
 }
