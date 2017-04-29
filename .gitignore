@@ -34,6 +34,7 @@ testem.log
 /typings
 /deploy
 /waste
+/build
 
 # e2e
 /e2e/*.js

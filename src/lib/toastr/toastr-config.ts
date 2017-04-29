@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { ComponentType } from './portal/portal';
+import { ComponentType } from '../portal/portal';
 import { Toast } from './toast-component';
 
 

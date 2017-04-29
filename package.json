@@ -43,7 +43,7 @@
     "@types/lodash.clonedeep": "^4.5.2",
     "@types/lodash.random": "^3.2.2",
     "@types/node": "^7.0.14",
-    "codelyzer": "^3.0.0",
+    "codelyzer": "^3.0.1",
     "jasmine-core": "^2.6.1",
     "jasmine-spec-reporter": "^4.0.0",
     "karma": "^1.6.0",
@@ -55,8 +55,9 @@
     "protractor": "^5.1.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.41.6",
+    "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-node": "^3.0.2",
     "tslint": "^5.1.0",
-    "typescript": "^2.2.2"
+    "typescript": "^2.3.2"
   }
 }
