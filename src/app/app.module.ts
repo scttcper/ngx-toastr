@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from '../lib';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
