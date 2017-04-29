@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import { cloneDeep, random } from 'lodash';
 
-import { ToastrConfig, ToastrService } from 'ngx-toastr';
+import { ToastrConfig, ToastrService } from '../lib';
 
 import { PinkToast } from './pink.toast';
 

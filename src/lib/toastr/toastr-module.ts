@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Toast } from './toast-component';
 import { ToastrService } from './toastr-service';
 import { ToastrConfig } from './toastr-config';
-import { OverlayContainer } from './overlay/overlay-container';
-import { Overlay } from './overlay/overlay';
+import { OverlayContainer } from '../overlay/overlay-container';
+import { Overlay } from '../overlay/overlay';
 
 export const TOAST_CONFIG = new OpaqueToken('ToastConfig');
 

@@ -2,8 +2,8 @@ const sourcemaps = require('rollup-plugin-sourcemaps');
 
 export default {
   entry: './build/toastr.js',
-  dest: './deploy/toastr.umd.js',
-  format: 'umd',
+  dest: './deploy/toastr.js',
+  format: 'es',
   moduleName: 'ngxtoastr',
   sourceMap: true,
   globals: {

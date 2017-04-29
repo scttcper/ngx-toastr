@@ -2,8 +2,8 @@ import { Injectable, Injector, ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
-import { Overlay } from './overlay/overlay';
-import { ComponentPortal } from './portal/portal';
+import { Overlay } from '../overlay/overlay';
+import { ComponentPortal } from '../portal/portal';
 import { ToastConfig, ToastrConfig, ToastData } from './toastr-config';
 import { ToastInjector, ToastRef } from './toast-injector';
 import { ToastContainerDirective } from './toast-directive';
