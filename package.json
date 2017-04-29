@@ -3,10 +3,7 @@
   "description": "Toastr for Angular",
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scttcper/ngx-toastr.git"
-  },
+  "repository": "https://github.com/scttcper/ngx-toastr.git",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

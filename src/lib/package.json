@@ -1,37 +1,32 @@
 {
   "name": "ngx-toastr",
-  "version": "5.0.7",
+  "version": "5.1.0",
   "description": "Toastr for Angular",
   "main": "toastr.umd.js",
   "module": "toastr.es5.js",
   "es2015": "toastr.js",
   "typings": "index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scttcper/ngx-toastr.git"
+  "peerDependencies": {
+    "@angular/core": ">=2.4.0 <=5.0.0",
+    "@angular/common": ">=2.4.0 <=5.0.0",
+    "rxjs": "^5.3.0"
   },
+  "repository": "https://github.com/scttcper/ngx-toastr.git",
+  "homepage": "https://github.com/scttcper/ngx-toastr",
+  "license": "MIT",
+  "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "keywords": [
     "ng2",
     "ngx",
+    "ngx-toastr",
+    "toastr-ng2",
     "angular",
     "angular2",
     "typescript",
     "alert",
     "toast",
     "toastr",
-    "ngx-toastr",
     "angular toastr",
-    "notifications",
-    "ngModule"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/scttcper/ngx-toastr/issues"
-  },
-  "homepage": "https://github.com/scttcper/ngx-toastr",
-  "peerDependencies": {
-    "@angular/core": ">=2.4.0 <=5.0.0",
-    "@angular/common": ">=2.4.0 <=5.0.0",
-    "rxjs": "^5.3.0"
-  }
+    "notifications"
+  ]
 }
