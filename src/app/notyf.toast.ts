@@ -20,7 +20,7 @@ import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
     <div class="notyf-icon">
       <i class="notyf-confirm-icon"></i>
     </div>
-    <div class="notyf-message">Hey there!</div>
+    <div class="notyf-message">{{message}}</div>
   </div>
   `,
   animations: [

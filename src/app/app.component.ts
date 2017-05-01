@@ -97,6 +97,7 @@ export class AppComponent {
       m = randomMessage.message;
       t = randomMessage.title;
     }
+    m = m || 'Success';
     const inserted = this.toastrService.show(m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
