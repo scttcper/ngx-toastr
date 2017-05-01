@@ -203,7 +203,9 @@ map: {
 ```
 
 ## Previous Works
-[angular-toastr](https://github.com/Foxandxss/angular-toastr) and the original [toastr](https://github.com/CodeSeven/toastr).
+[toastr](https://github.com/CodeSeven/toastr) original toastr  
+[angular-toastr](https://github.com/Foxandxss/angular-toastr) AngularJS toastr  
+[notyf](https://github.com/caroso1222/notyf) notyf (css)
 
 ## License
 MIT

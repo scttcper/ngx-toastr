@@ -4,6 +4,7 @@ import { cloneDeep, random } from 'lodash';
 import { ToastrConfig, ToastrService } from '../lib';
 
 import { PinkToast } from './pink.toast';
+import { NotyfToast } from './notyf.toast';
 
 const quotes = [
   {
@@ -70,6 +71,25 @@ export class AppComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'pinktoast';
+    let m = this.message;
+    let t = this.title;
+    if (!this.title.length && !this.message.length) {
+      const randomMessage = quotes[random(0, quotes.length - 1)];
+      m = randomMessage.message;
+      t = randomMessage.title;
+    }
+    const inserted = this.toastrService.show(m, t, opt);
+    if (inserted) {
+      this.lastInserted.push(inserted.toastId);
+    }
+    return inserted;
+  }
+  openNotyf() {
+    const opt = cloneDeep(this.options);
+    opt.toastComponent = NotyfToast;
+    opt.toastClass = 'notyf confirm';
+    opt.positionClass = 'notyf-container';
+    this.options.newestOnTop = false;
     let m = this.message;
     let t = this.title;
     if (!this.title.length && !this.message.length) {

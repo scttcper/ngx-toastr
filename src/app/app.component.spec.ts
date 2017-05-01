@@ -8,6 +8,7 @@ import { ToastrModule, ActiveToast } from '../lib';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
+import { NotyfToast } from './notyf.toast';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -94,6 +95,22 @@ describe('AppComponent', () => {
       done();
     });
   });
+  it('should trigger onShown for openNotyf', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openNotyf();
+    opened.onShown.toPromise().then(() => {
+      done();
+    });
+  });
+  it('should trigger onHidden for openNotyf', (done) => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast = app.openNotyf();
+    opened.onHidden.toPromise().then(() => {
+      done();
+    });
+  });
 });
 
 @NgModule({
@@ -101,7 +118,7 @@ describe('AppComponent', () => {
     CommonModule,
     ToastrModule,
   ],
-  entryComponents: [PinkToast],
-  declarations: [PinkToast],
+  entryComponents: [PinkToast, NotyfToast],
+  declarations: [PinkToast, NotyfToast],
 })
 class AppTestModule { }

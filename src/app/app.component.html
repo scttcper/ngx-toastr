@@ -151,11 +151,18 @@
           </div>
 
           <div class="row">
-            <div class="col text-center">
-              <button (click)="openToast()" class="btn btn-primary">Open Toast</button>
-              <button (click)="clearLastToast()" class="btn btn-secondary">Clear Last Toast</button>
-              <button (click)="clearToasts()" class="btn btn-secondary">Clear All Toasts</button>
-              <button (click)="openPinkToast()" class="btn btn-pink">Custom Pink Toast</button>
+            <div class="col">
+              <p class="mb-0 mt-1">Toast Controls:</p>
+              <button (click)="openToast()" type="button" role="button" class="btn btn-primary">Open Toast</button>
+              <button (click)="clearLastToast()" type="button" role="button" class="btn btn-secondary">Clear Last Toast</button>
+              <button (click)="clearToasts()" type="button" role="button" class="btn btn-secondary">Clear All Toasts</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="mb-0 mt-1">Example Custom Toasts:</p>
+              <button (click)="openPinkToast()" type="button" role="button" class="btn btn-pink">Custom Pink Toast</button>
+              <button (click)="openNotyf()" type="button" role="button" class="btn btn-secondary">Notyf Example</button>
             </div>
           </div>
         </div>

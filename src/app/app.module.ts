@@ -7,12 +7,14 @@ import { ToastrModule } from '../lib';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
+import { NotyfToast } from './notyf.toast';
 // import { ToastContainerModule } from '../lib/toast-directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     PinkToast,
+    NotyfToast,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,10 @@ import { PinkToast } from './pink.toast';
     ToastrModule.forRoot(),
     // ToastContainerModule.forRoot(),
   ],
-  entryComponents: [PinkToast],
+  entryComponents: [
+    PinkToast,
+    NotyfToast,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
