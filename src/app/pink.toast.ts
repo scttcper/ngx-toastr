@@ -27,6 +27,10 @@ import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
       pointer-events: all;
       cursor: pointer;
     }
+    .btn-pink {
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+    }
   `],
   template: `
   <div class="row">
