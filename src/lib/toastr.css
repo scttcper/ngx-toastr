@@ -43,6 +43,12 @@ button.toast-close-button {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+.toast-center-center {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .toast-top-center {
   top: 0;
   right: 0;
