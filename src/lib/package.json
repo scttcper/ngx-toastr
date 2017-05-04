@@ -3,8 +3,7 @@
   "version": "5.2.0",
   "description": "Toastr for Angular",
   "main": "toastr.umd.js",
-  "module": "toastr.es5.js",
-  "es2015": "toastr.js",
+  "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
     "@angular/core": ">=2.4.0 <=5.0.0",

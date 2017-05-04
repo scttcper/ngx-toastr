@@ -8,10 +8,6 @@ yarn cleanup
 NGC="node node_modules/.bin/ngc"
 
 # Run Angular Compiler
-$NGC -p ./src/lib/tsconfig.flat.json -d
-./node_modules/.bin/rollup -c rollup.es.js
-
-# Repeat the process for es5 version
 $NGC -p ./src/lib/tsconfig.lib.json -d
 # create umd
 ./node_modules/.bin/rollup -c rollup.js
@@ -24,6 +20,3 @@ cp LICENSE ./deploy
 # find src/lib -name 'package.json' -type f -exec cp {} ./deploy \;
 cp ./src/lib/package.json ./deploy
 cp ./src/lib/toastr.css ./deploy
-
-# Copy non-js files from build
-rsync -a build/ deploy

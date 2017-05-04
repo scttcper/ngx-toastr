@@ -8,7 +8,7 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "../../build",
+    "outDir": "../../deploy",
     "sourceMap": false,
     "target": "es5",
     "types": []
