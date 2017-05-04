@@ -4,7 +4,7 @@ set -exu
 # Stages a release by putting everything that should be packaged and released
 # into the ./deploy folder. This script should be run from the root of the project
 
-yarn cleanup
+npm run cleanup
 NGC="node node_modules/.bin/ngc"
 
 # Run Angular Compiler
