@@ -6,12 +6,12 @@ if [[ $TRAVIS_BRANCH != 'master' ]]; then
 	exit 0
 fi
 echo "creating build"
-yarn cleanup
-yarn ghpages
+npm run cleanup
+npm run ghpages
 echo "finished build"
 git config --global user.email "$PUSH_EMAIL"
 git config --global user.name "Travis CI"
 git config --global push.default simple
-yarn global add gh-pages
+npm install -g gh-pages
 echo "Pushing to github pages"
 gh-pages -r "https://$PUSH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git" -d dist -x
