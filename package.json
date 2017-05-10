@@ -34,7 +34,7 @@
     "zone.js": "^0.8.10"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.3",
+    "@angular/cli": "1.1.0-beta.1",
     "@angular/compiler-cli": "^4.1.1",
     "@types/jasmine": "^2.5.47",
     "@types/lodash.clonedeep": "^4.5.2",
