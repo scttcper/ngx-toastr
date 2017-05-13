@@ -17,11 +17,11 @@ script:
   - ./node_modules/.bin/ng test --single-run --code-coverage --no-progress
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - npm run ghpages
 deploy:
   provider: pages
   skip_cleanup: true
   local_dir: dist
-  script: npm run ghpages
   github_token: $PUSH_TOKEN
   on:
     branch: master
