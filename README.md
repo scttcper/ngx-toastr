@@ -4,7 +4,7 @@
 [![coverage status][coverage-img]][coverage-url]
 [![greenkeeper][greenkeeper-image]][greenkeeper-url]
 
-[npm-image]: https://img.shields.io/npm/v/ngx-toastr.svg
+[npm-image]: https://badge.fury.io/js/ngx-toastr.svg
 [npm-url]: https://npmjs.org/package/ngx-toastr
 [travis-img]: https://api.travis-ci.org/scttcper/ngx-toastr.svg?branch=master
 [travis-url]: https://travis-ci.org/scttcper/ngx-toastr
