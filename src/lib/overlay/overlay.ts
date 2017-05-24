@@ -67,7 +67,7 @@ import { ToastContainerDirective } from '../toastr/toast-directive';
    * @param pane DOM element for the overlay
    */
   private _createOverlayRef(pane: HTMLElement): OverlayRef {
-    return new OverlayRef(this._createPortalHost(pane), pane);
+    return new OverlayRef(this._createPortalHost(pane));
   }
 }
 
