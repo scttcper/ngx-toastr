@@ -19,8 +19,7 @@ import { ToastContainerDirective } from '../toastr/toast-directive';
     private _paneElements: {string?: HTMLElement} = {};
     constructor(private _overlayContainer: OverlayContainer,
                 private _componentFactoryResolver: ComponentFactoryResolver,
-                private _appRef: ApplicationRef,
-                private _ngZone: NgZone) {}
+                private _appRef: ApplicationRef) {}
   /**
    * Creates an overlay.
    * @returns A reference to the created overlay.
@@ -68,7 +67,7 @@ import { ToastContainerDirective } from '../toastr/toast-directive';
    * @param pane DOM element for the overlay
    */
   private _createOverlayRef(pane: HTMLElement): OverlayRef {
-    return new OverlayRef(this._createPortalHost(pane), pane, this._ngZone);
+    return new OverlayRef(this._createPortalHost(pane));
   }
 }
 

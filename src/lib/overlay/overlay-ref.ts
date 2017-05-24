@@ -7,9 +7,7 @@ import {BasePortalHost, ComponentPortal} from '../portal/portal';
  */
 export class OverlayRef {
   constructor(
-      private _portalHost: BasePortalHost,
-      private _pane: HTMLElement,
-      private _ngZone: NgZone) { }
+      private _portalHost: BasePortalHost) { }
 
   attach(portal: ComponentPortal<any>, newestOnTop: boolean): ComponentRef<any> {
     return this._portalHost.attach(portal, newestOnTop);
