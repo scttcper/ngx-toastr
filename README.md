@@ -14,9 +14,13 @@
   <a href="https://greenkeeper.io/">
     <img src="https://badges.greenkeeper.io/scttcper/ngx-toastr.svg" alt="greenkeeper">
   </a>
+  <br>
+  DEMO: https://scttcper.github.io/ngx-toastr/
 </div>
-
-__DEMO__: https://scttcper.github.io/ngx-toastr/
+<br>
+<br>
+<br>
+<br>
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
