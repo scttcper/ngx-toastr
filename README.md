@@ -19,8 +19,6 @@
 </div>
 <br>
 <br>
-<br>
-<br>
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
