@@ -21,7 +21,7 @@ import { Component, Input } from '@angular/core';
 export class GithubLinkComponent {
   @Input() className = '';
   @Input() username = 'scttcper';
-  @Input() repo = 'ngx-trend';
+  @Input() repo = 'ngx-toastr';
   // githubIcon = githubIcon;
   constructor() { }
 

@@ -13,7 +13,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
   `,
   styles: [`
   .footer {
-    margin-top: 5rem;
+    margin-top: 3rem;
     line-height: 2;
     text-align: center;
     font-size: 12px;
