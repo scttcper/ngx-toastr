@@ -8,6 +8,9 @@ import { ToastrModule } from '../lib';
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
 import { NotyfToast } from './notyf.toast';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { GithubLinkComponent } from './github-link/github-link.component';
 // import { ToastContainerModule } from '../lib/toast-directive';
 
 @NgModule({
@@ -15,6 +18,9 @@ import { NotyfToast } from './notyf.toast';
     AppComponent,
     PinkToast,
     NotyfToast,
+    FooterComponent,
+    HeaderComponent,
+    GithubLinkComponent,
   ],
   imports: [
     BrowserModule,

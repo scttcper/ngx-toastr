@@ -1,36 +1,30 @@
-# ngx-toastr 🍞 (formerly toastr-ng2)
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-img]][travis-url]
-[![coverage status][coverage-img]][coverage-url]
-[![greenkeeper][greenkeeper-image]][greenkeeper-url]
-
-[npm-image]: https://badge.fury.io/js/ngx-toastr.svg
-[npm-url]: https://npmjs.org/package/ngx-toastr
-[travis-img]: https://api.travis-ci.org/scttcper/ngx-toastr.svg?branch=master
-[travis-url]: https://travis-ci.org/scttcper/ngx-toastr
-[coverage-img]: https://codecov.io/gh/scttcper/ngx-toastr/branch/master/graph/badge.svg
-[coverage-url]: https://codecov.io/gh/scttcper/ngx-toastr
-[greenkeeper-image]: https://badges.greenkeeper.io/scttcper/ngx-toastr.svg
-[greenkeeper-url]: https://greenkeeper.io/  
+<div align="center">
+  <img src="https://raw.githubusercontent.com/scttcper/ngx-toastr/master/misc/documentation-assets/ngx-toastr-example.png" width="500" alt="Angular Trend">
+  <br>
+  <h1>ngx-toastr</h1>
+  <br>
+  <a href="https://www.npmjs.org/package/ngx-toastr">
+    <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
+  </a> 
+  <a href="https://travis-ci.org/scttcper/ngx-toastr">
+    <img src="https://travis-ci.org/scttcper/ngx-toastr.svg?branch=master" alt="travis"></a> 
+  <a href="https://codecov.io/github/scttcper/ngx-toastr">
+    <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
+  </a>
+  <a href="https://greenkeeper.io/">
+    <img src="https://badges.greenkeeper.io/scttcper/ngx-toastr.svg" alt="greenkeeper">
+  </a>
+</div>
 
 __DEMO__: https://scttcper.github.io/ngx-toastr/
-
-## ℹ️ ngx-toastr v4 to v5 breaking changes (March 23, 2017)
-- Supports Angular v4 and drops support for anything lower than 2.4.x. Users of Angular less than v2.4 should stay on ngx-toastr v4.x.x
-###### Required for Angular v4:  
-- Install animations `npm install @angular/animations --save`  
-- Add and import in root NgModule 
-```typescript
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-```
 
 ## Features
 - Toast Component Injection without being passed `ViewContainerRef`
 - No use of `*ngFor`. Fewer dirty checks and higher performance.
 - AoT compilation and lazy loading compatible
 - Component inheritance for custom toasts
-- SystemJS rollup bundle ✓
-- Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html) (pollyfill needed for older devices)
+- SystemJS/UMD rollup bundle
+- Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)(pollyfill needed for older devices)
 - Output toasts to a target directive
 
 ## Install  
@@ -38,13 +32,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 npm install ngx-toastr --save
 ```  
 ## Setup  
-__step 1:__ copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
-If you are using sass you can import the css.
+__step 1:__ add css 
+- copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
+- If you are using sass you can import the css.
 ```scss
 @import 'node_modules/ngx-toastr/toastr';
 ```
-If you are using angular-cli you can add it to your angular-cli.json
-```
+- If you are using angular-cli you can add it to your angular-cli.json
+```json
 "styles": [
   "styles.scss",
   "node_modules/ngx-toastr/toastr.css"
@@ -82,7 +77,7 @@ export class YourComponent {
   }
 }
 ```
-![success](http://i.imgur.com/ZTVc9vg.png)  
+![success](https://raw.githubusercontent.com/scttcper/ngx-toastr/master/misc/documentation-assets/ngx-toastr-example.png)  
 
 
 ## Options
