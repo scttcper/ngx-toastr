@@ -36,6 +36,7 @@
   "devDependencies": {
     "@angular/cli": "1.1.0-beta.1",
     "@angular/compiler-cli": "^4.2.0-rc.0",
+    "@angular/language-service": "^4.2.0-rc.0",
     "@types/jasmine": "^2.5.47",
     "@types/lodash.clonedeep": "^4.5.2",
     "@types/lodash.random": "^3.2.2",

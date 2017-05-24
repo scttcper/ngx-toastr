@@ -1,7 +1,9 @@
 import { Component, VERSION } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash';
 
 import { ToastrConfig, ToastrService } from '../lib';
+import json from '../lib/package.json';
 
 import { PinkToast } from './pink.toast';
 import { NotyfToast } from './notyf.toast';
@@ -41,15 +43,23 @@ const types = ['success', 'error', 'info', 'warning'];
 export class AppComponent {
   options: ToastrConfig;
   title = '';
-  type = types[0];
   message = '';
+  type = types[0];
   version = VERSION;
   private lastInserted: number[] = [];
 
-  constructor(public toastrService: ToastrService) {
+  constructor(
+    public toastrService: ToastrService,
+    private t: Title
+  ) {
     // sync options to toastrservice
     // this sets the options in the demo
     this.options = this.toastrService.toastrConfig;
+    const current = t.getTitle();
+    // fix for tests
+    if (json) {
+      t.setTitle(`${current} ${json.version}`);
+    }
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates
