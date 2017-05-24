@@ -1,4 +1,4 @@
-import {NgZone, ComponentRef} from '@angular/core';
+import {ComponentRef} from '@angular/core';
 import {BasePortalHost, ComponentPortal} from '../portal/portal';
 
 /**
