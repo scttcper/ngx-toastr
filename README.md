@@ -79,8 +79,6 @@ export class YourComponent {
   }
 }
 ```
-![success](https://raw.githubusercontent.com/scttcper/ngx-toastr/master/misc/documentation-assets/ngx-toastr-example.png)  
-
 
 ## Options
 There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be inherited and modified. See the pink toast in the demo. It has a different animation and inline style.
