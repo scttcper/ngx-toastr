@@ -7,7 +7,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
     Demo using Anuglar {{version}}
     <br>
     Released under the
-    <a href="https://github.com/scttcper/ngx-toastr/blob/master/LICENSE.md">MIT</a> license.
+    <a href="https://github.com/scttcper/ngx-toastr/blob/master/LICENSE">MIT</a> license.
     <a href="https://github.com/scttcper/ngx-toastr">View source</a>.
   </footer>
   `,
