@@ -89,10 +89,10 @@ export class ToastrConfig extends ToastConfig {
     this.newestOnTop = use(config.newestOnTop, this.newestOnTop);
     this.preventDuplicates = use(config.preventDuplicates, this.preventDuplicates);
     if (config.iconClasses) {
-      this.iconClasses.error = this.iconClasses.error || config.iconClasses.error;
-      this.iconClasses.info = this.iconClasses.info || config.iconClasses.info;
-      this.iconClasses.success = this.iconClasses.success || config.iconClasses.success;
-      this.iconClasses.warning = this.iconClasses.warning || config.iconClasses.warning;
+      this.iconClasses.error = config.iconClasses.error || this.iconClasses.error;
+      this.iconClasses.info = config.iconClasses.info || this.iconClasses.info;
+      this.iconClasses.success = config.iconClasses.success || this.iconClasses.success;
+      this.iconClasses.warning = config.iconClasses.warning || this.iconClasses.warning;
     }
   }
 }
