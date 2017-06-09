@@ -1,3 +1,4 @@
+import { browser } from 'protractor';
 import { ToastrPage } from './app.po';
 
 describe('toastr App', () => {
@@ -9,9 +10,11 @@ describe('toastr App', () => {
 
   it('should display message saying app works', () => {
     page.navigateTo();
+    page.enterMessage();
     page.clickShowToast();
-    page.waitForToast().then(() => {
-      expect<any>(page.getToast()).toEqual('app works!');
+    browser.waitForAngularEnabled(false);
+    page.waitForToast().then((element) => {
+      expect<any>(page.getToast().getText()).toEqual('HELLO THERE');
     });
   });
 });
