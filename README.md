@@ -29,10 +29,12 @@
 - Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)(pollyfill needed for older devices)
 - Output toasts to a target directive
 
-## Install  
+## Install
 ```bash
 npm install ngx-toastr --save
 ```  
+You will need `npm install @angular/animations --save` if you don't have it already
+
 ## Setup  
 __step 1:__ add css 
 - copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
@@ -50,12 +52,17 @@ __step 1:__ add css
 
 __step 2:__ add ToastrModule to app NgModule
 ```typescript
-import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+// BrowserAnimationsModule is required
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
   ], 
   bootstrap: [App],
