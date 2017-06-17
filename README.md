@@ -26,14 +26,17 @@
 - AoT compilation and lazy loading compatible
 - Component inheritance for custom toasts
 - SystemJS/UMD rollup bundle
-- Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)(pollyfill needed for older devices)
+- Animations using Angular's [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)(polyfill needed for older devices) `@angular/animations package is required`
 - Output toasts to a target directive
 
 ## Install
 ```bash
 npm install ngx-toastr --save
 ```  
-You will need `npm install @angular/animations --save` if you don't have it already
+@angular/animations is a required dependency for the default toast
+```bash
+npm install @angular/animations --save
+```
 
 ## Setup  
 __step 1:__ add css 
