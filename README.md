@@ -33,7 +33,7 @@
 ```bash
 npm install ngx-toastr --save
 ```  
-@angular/animations is a required dependency for the default toast
+`@angular/animations` package is a required dependency for the default toast
 ```bash
 npm install @angular/animations --save
 ```
