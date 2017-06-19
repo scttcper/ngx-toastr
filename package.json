@@ -40,7 +40,7 @@
     "@types/jasmine": "^2.5.52",
     "@types/lodash.clonedeep": "^4.5.2",
     "@types/lodash.random": "^3.2.2",
-    "@types/node": "^7.0.31",
+    "@types/node": "^8.0.0",
     "codelyzer": "^3.0.1",
     "jasmine-core": "^2.6.4",
     "jasmine-spec-reporter": "^4.1.0",
