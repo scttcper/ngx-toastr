@@ -9,6 +9,7 @@ import {
   HostBinding,
   HostListener,
   ApplicationRef,
+  SecurityContext,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
@@ -81,7 +82,7 @@ export class Toast implements OnDestroy {
     this.toastId = data.toastId;
     this.message = data.message;
     if (this.message && this.options.enableHtml) {
-      this.message = sanitizer.bypassSecurityTrustHtml(data.message);
+      this.message = sanitizer.sanitize(SecurityContext.HTML, data.message);
     }
     this.title = data.title;
     this.onTap = data.onTap;
