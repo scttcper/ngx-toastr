@@ -14,8 +14,8 @@ export class ToastrPage {
   waitForToast() {
     return browser
       .wait(until.elementLocated(by.className('toast')), 500, 'not found')
-      .then((element) => {
-        return browser.wait(until.elementIsVisible(element), 5000, 'not found');
+      .then((el) => {
+        return browser.wait(until.elementIsVisible(el), 5000, 'not found');
       });
   }
   getToast() {

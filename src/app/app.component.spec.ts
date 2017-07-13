@@ -33,8 +33,7 @@ describe('AppComponent', () => {
         HeaderComponent,
         GithubLinkComponent,
       ],
-    });
-    TestBed.compileComponents();
+    }).compileComponents();
   });
 
   it('should create the app', async(() => {

@@ -31,15 +31,16 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.random": "^3.2.0",
     "rxjs": "^5.4.2",
-    "zone.js": "^0.8.13"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
-    "@angular/cli": "^1.2.1",
+    "@angular/cli": "1.2.1",
     "@angular/compiler-cli": "^4.2.6",
     "@angular/language-service": "^4.2.6",
     "@types/jasmine": "^2.5.53",
     "@types/lodash.clonedeep": "^4.5.2",
     "@types/lodash.random": "^3.2.2",
+    "@types/jasminewd2": "^2.0.2",
     "@types/node": "^8.0.11",
     "codelyzer": "^3.1.2",
     "jasmine-core": "^2.6.4",
