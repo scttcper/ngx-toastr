@@ -56,7 +56,6 @@ __step 1:__ add css
 __step 2:__ add ToastrModule to app NgModule
 ```typescript
 import { CommonModule } from '@angular/common';
-// BrowserAnimationsModule is required
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -65,7 +64,7 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ], 
   bootstrap: [App],
@@ -178,20 +177,53 @@ Toastr Service will return undefined if prevent duplicates is on.
 ### Put toasts in your own container
 Put toasts in a specific div inside your application. This should probably be somewhere that doesn't get deleted.
 Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+
+    ToastrModule.forRoot({positionClass: 'inline'}),
+    ToastContainerModule.forRoot(),
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+```
 Add a div with `toastContainer` directive on it.
 ```typescript
-import { ToastContainerDirective } from 'ngx-toastr';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-root',
-  template: `<div toastContainer class="toast-top-right"></div>`,
+  template: `
+  <h1><a (click)="onClick()">Click</a></h1>
+  <div toastContainer></div>
+`,
 })
 export class AppComponent implements OnInit {
-
   @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
 
   constructor(private toastrService: ToastrService) {}
   ngOnInit() {
     this.toastrService.overlayContainer = this.toastContainer;
+  }
+  onClick() {
     this.toastrService.success('in div');
   }
 }
