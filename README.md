@@ -179,7 +179,7 @@ Toastr Service will return undefined if prevent duplicates is on.
 Put toasts in a specific div inside your application. This should probably be somewhere that doesn't get deleted.
 Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
 Add a div with `toastContainer` directive on it.
-```
+```typescript
 import { ToastContainerDirective } from 'ngx-toastr';
 @Component({
   selector: 'app-root',
