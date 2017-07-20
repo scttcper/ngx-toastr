@@ -22,9 +22,9 @@ export interface ActiveToast {
 @Injectable()
 export class ToastrService {
   private index = 0;
-  private toasts: ActiveToast[] = [];
   private previousToastMessage = '';
-  private currentlyActive = 0;
+  currentlyActive = 0;
+  toasts: ActiveToast[] = [];
   overlayContainer: ToastContainerDirective;
 
   constructor(
@@ -84,7 +84,7 @@ export class ToastrService {
   /**
    * Remove and destroy a single toast by id
    */
-  public remove(toastId: number) {
+  remove(toastId: number) {
     const { index, activeToast } = this._findToast(toastId);
     if (!activeToast) {
       return false;
@@ -119,7 +119,7 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  private isDuplicate(message: string) {
+  isDuplicate(message: string) {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].message === message) {
         return true;
@@ -130,16 +130,17 @@ export class ToastrService {
 
   /**
    * Creates and attaches toast data to component
+   * returns null if toast is duplicate and preventDuplicates == True
    */
   private _buildNotification(
     toastType: string,
     message: string,
     title: string,
     optionsOverride: ToastConfig = Object.create(this.toastrConfig)
-  ) {
+  ): ActiveToast | null {
     // max opened and auto dismiss = true
     if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
-      return;
+      return null;
     }
     this.previousToastMessage = message;
     let keepInactive = false;
