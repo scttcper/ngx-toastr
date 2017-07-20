@@ -33,26 +33,26 @@ export class ToastrService {
     private _injector: Injector
   ) { }
   /** show successful toast */
-  public show(message: string, title?: string, optionsOverride?: ToastConfig, type = '') {
+  show(message: string, title?: string, optionsOverride?: ToastConfig, type = '') {
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
   /** show successful toast */
-  public success(message: string, title?: string, optionsOverride?: ToastConfig) {
+  success(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.success;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
   /** show error toast */
-  public error(message: string, title?: string, optionsOverride?: ToastConfig) {
+  error(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.error;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
   /** show info toast */
-  public info(message: string, title?: string, optionsOverride?: ToastConfig) {
+  info(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.info;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
   /** show warning toast */
-  public warning(message: string, title?: string, optionsOverride?: ToastConfig) {
+  warning(message: string, title?: string, optionsOverride?: ToastConfig) {
     const type = this.toastrConfig.iconClasses.warning;
     return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
   }
