@@ -1,6 +1,5 @@
 import { Injectable, Injector, ComponentRef, Inject, SecurityContext } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
@@ -96,12 +95,12 @@ export class ToastrService {
    * Remove and destroy a single toast by id
    */
   remove(toastId: number) {
-    const { index, activeToast } = this._findToast(toastId);
-    if (!activeToast) {
+    const found = this._findToast(toastId);
+    if (!found) {
       return false;
     }
-    activeToast.toastRef.close();
-    this.toasts.splice(index, 1);
+    found.activeToast.toastRef.close();
+    this.toasts.splice(found.index, 1);
     this.currentlyActive = this.currentlyActive - 1;
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
       return false;
@@ -152,13 +151,13 @@ export class ToastrService {
   /**
    * Find toast object by id
    */
-  private _findToast(toastId: number): { index: number | null, activeToast: ActiveToast | null } {
+  private _findToast(toastId: number): { index: number, activeToast: ActiveToast } | null {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return { index: i, activeToast: this.toasts[i] };
       }
     }
-    return { index: null, activeToast: null };
+    return null;
   }
 
   /**
