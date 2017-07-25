@@ -1,12 +1,15 @@
-import { Injectable, Injector, ComponentRef } from '@angular/core';
+import { Injectable, Injector, ComponentRef, Inject, SecurityContext } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
-import { ToastConfig, ToastrConfig, ToastData } from './toastr-config';
+import { GlobalConfig, IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastInjector, ToastRef } from './toast-injector';
 import { ToastContainerDirective } from './toast-directive';
+import { TOAST_CONFIG } from './toast-token';
+import { Toast } from './toast-component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 export interface ActiveToast {
   toastId?: number;
@@ -28,47 +31,55 @@ export class ToastrService {
   overlayContainer: ToastContainerDirective;
 
   constructor(
-    public toastrConfig: ToastrConfig,
+    @Inject(TOAST_CONFIG) public toastrConfig: any,
     private overlay: Overlay,
-    private _injector: Injector
-  ) { }
-  /** show successful toast */
-  show(message: string, title?: string, optionsOverride?: ToastConfig, type = '') {
-    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
+    private _injector: Injector,
+    private sanitizer: DomSanitizer,
+  ) {
+    function use<T>(source: T, defaultValue: T): T {
+      return toastrConfig && source !== undefined ? source : defaultValue;
+    }
+    this.toastrConfig = this.applyConfig(toastrConfig);
+    this.toastrConfig.maxOpened = use(this.toastrConfig.maxOpened, 0);
+    this.toastrConfig.autoDismiss = use(this.toastrConfig.autoDismiss, false);
+    this.toastrConfig.newestOnTop = use(this.toastrConfig.newestOnTop, true);
+    this.toastrConfig.preventDuplicates = use(this.toastrConfig.preventDuplicates, false);
+    if (!this.toastrConfig.iconClasses) {
+      this.toastrConfig.iconClasses = {};
+    }
+    this.toastrConfig.iconClasses.error = this.toastrConfig.iconClasses.error || 'toast-error';
+    this.toastrConfig.iconClasses.info = this.toastrConfig.iconClasses.info || 'toast-info';
+    this.toastrConfig.iconClasses.success = this.toastrConfig.iconClasses.success || 'toast-success';
+    this.toastrConfig.iconClasses.warning = this.toastrConfig.iconClasses.warning || 'toast-warning';
   }
   /** show successful toast */
-  success(message: string, title?: string, optionsOverride?: ToastConfig) {
+  show(message: string, title?: string, override?: IndividualConfig, type = '') {
+    return this._buildNotification(type, message, title, this.applyConfig(override));
+  }
+  /** show successful toast */
+  success(message: string, title?: string, override?: IndividualConfig) {
     const type = this.toastrConfig.iconClasses.success;
-    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
+    return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error(message: string, title?: string, optionsOverride?: ToastConfig) {
+  error(message: string, title?: string, override?: IndividualConfig) {
     const type = this.toastrConfig.iconClasses.error;
-    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
+    return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info(message: string, title?: string, optionsOverride?: ToastConfig) {
+  info(message: string, title?: string, override?: IndividualConfig) {
     const type = this.toastrConfig.iconClasses.info;
-    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
+    return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning(message: string, title?: string, optionsOverride?: ToastConfig) {
+  warning(message: string, title?: string, override?: IndividualConfig) {
     const type = this.toastrConfig.iconClasses.warning;
-    return this._buildNotification(type, message, title, this.createToastConfig(optionsOverride));
-  }
-  createToastConfig(optionsOverride: ToastConfig): ToastConfig {
-    if (!optionsOverride) {
-      return Object.create(this.toastrConfig);
-    }
-    if (optionsOverride instanceof ToastConfig) {
-      return optionsOverride;
-    }
-    return new ToastConfig(optionsOverride);
+    return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /**
    * Remove all or a single toast by id
    */
-  public clear(toastId?: number) {
+  clear(toastId?: number) {
     // Call every toastRef manualClose function
     for (const toast of this.toasts) {
       if (toastId !== undefined) {
@@ -106,17 +117,6 @@ export class ToastrService {
   }
 
   /**
-   * Find toast object by id
-   */
-  private _findToast(toastId: number): { index: number | null, activeToast: ActiveToast | null } {
-    for (let i = 0; i < this.toasts.length; i++) {
-      if (this.toasts[i].toastId === toastId) {
-        return { index: i, activeToast: this.toasts[i] };
-      }
-    }
-    return { index: null, activeToast: null };
-  }
-  /**
    * Determines if toast message is already shown
    */
   isDuplicate(message: string) {
@@ -128,6 +128,39 @@ export class ToastrService {
     return false;
   }
 
+  /** create a clone of global config and apply individual settings */
+  private applyConfig(override: IndividualConfig = {}): GlobalConfig {
+    function use<T>(source: T, defaultValue: T): T {
+      return override && source !== undefined ? source : defaultValue;
+    }
+    const current = { ...this.toastrConfig };
+    current.closeButton = use(override.closeButton, false);
+    current.extendedTimeOut = use(override.extendedTimeOut, 1000);
+    current.progressBar = use(override.progressBar, false);
+    current.timeOut = use(override.timeOut, 5000);
+    current.enableHtml = use(override.enableHtml, false);
+    current.toastClass = use(override.toastClass, 'toast');
+    current.positionClass = use(override.positionClass, 'toast-top-right');
+    current.titleClass = use(override.titleClass, 'toast-title');
+    current.messageClass = use(override.messageClass, 'toast-message');
+    current.tapToDismiss = use(override.tapToDismiss, true);
+    current.toastComponent = use(override.toastComponent, Toast);
+    current.onActivateTick = use(override.onActivateTick, false);
+    return current;
+  }
+
+  /**
+   * Find toast object by id
+   */
+  private _findToast(toastId: number): { index: number | null, activeToast: ActiveToast | null } {
+    for (let i = 0; i < this.toasts.length; i++) {
+      if (this.toasts[i].toastId === toastId) {
+        return { index: i, activeToast: this.toasts[i] };
+      }
+    }
+    return { index: null, activeToast: null };
+  }
+
   /**
    * Creates and attaches toast data to component
    * returns null if toast is duplicate and preventDuplicates == True
@@ -136,7 +169,7 @@ export class ToastrService {
     toastType: string,
     message: string,
     title: string,
-    optionsOverride: ToastConfig = Object.create(this.toastrConfig)
+    config: GlobalConfig,
   ): ActiveToast | null {
     // max opened and auto dismiss = true
     if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
@@ -150,26 +183,32 @@ export class ToastrService {
         this.clear(this.toasts[this.toasts.length - 1].toastId);
       }
     }
-    const overlayRef = this.overlay.create(optionsOverride.positionClass, this.overlayContainer);
+    const overlayRef = this.overlay.create(config.positionClass, this.overlayContainer);
+    this.index = this.index + 1;
+    let sanitizedMessage = message;
+    if (message && config.enableHtml) {
+      sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
+    }
+    const toastRef = new ToastRef(overlayRef);
+    const toastPackage = new ToastPackage(
+      this.index,
+      config,
+      sanitizedMessage,
+      title,
+      toastType,
+      toastRef,
+    );
     const ins: ActiveToast = {
-      toastId: this.index++,
+      toastId: this.index,
       message,
-      toastRef: new ToastRef(overlayRef),
+      toastRef,
+      onShown: toastRef.afterActivate(),
+      onHidden: toastRef.afterActivate(),
+      onTap: toastPackage.onTap(),
+      onAction: toastPackage.onAction(),
     };
-    ins.onShown = ins.toastRef.afterActivate();
-    ins.onHidden = ins.toastRef.afterClosed();
-    const data = new ToastData();
-    data.toastId = ins.toastId;
-    data.optionsOverride = optionsOverride;
-    data.message = message;
-    data.title = title;
-    data.toastType = toastType;
-    data.onTap = new Subject();
-    ins.onTap = data.onTap.asObservable();
-    data.onAction = new Subject();
-    ins.onAction = data.onAction.asObservable();
-    const toastInjector = new ToastInjector(ins.toastRef, data, this._injector);
-    const component = new ComponentPortal(optionsOverride.toastComponent, toastInjector);
+    const toastInjector = new ToastInjector(toastPackage, this._injector);
+    const component = new ComponentPortal(config.toastComponent, toastInjector);
     ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
     if (!keepInactive) {
       setTimeout(() => {

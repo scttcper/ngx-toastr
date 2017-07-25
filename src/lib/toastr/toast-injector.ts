@@ -1,9 +1,9 @@
-import {Injector} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
+import { Injector } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
-import {OverlayRef} from '../overlay/overlay-ref';
-import {ToastData} from './toastr-config';
+import { OverlayRef } from '../overlay/overlay-ref';
+import { ToastPackage } from './toastr-config';
 
 /**
  * Reference to a toast opened via the Toastr service.
@@ -61,19 +61,13 @@ export class ToastRef<T> {
 /** Custom injector type specifically for instantiating components with a toast. */
 export class ToastInjector implements Injector {
   constructor(
-    private _dialogRef: ToastRef<any>,
-    private _data: ToastData,
+    private _toastPackage: ToastPackage,
     private _parentInjector: Injector) { }
 
   get(token: any, notFoundValue?: any): any {
-    if (token === ToastRef) {
-      return this._dialogRef;
+    if (token === ToastPackage && this._toastPackage) {
+      return this._toastPackage;
     }
-
-    if (token === ToastData && this._data) {
-      return this._data;
-    }
-
     return this._parentInjector.get(token, notFoundValue);
   }
 }

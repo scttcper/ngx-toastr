@@ -2,7 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash';
 
-import { ToastrConfig, ToastrService } from '../lib';
+import { GlobalConfig, ToastrService } from '../lib';
 import json from '../lib/package.json';
 
 import { PinkToast } from './pink.toast';
@@ -41,7 +41,7 @@ const types = ['success', 'error', 'info', 'warning'];
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  options: ToastrConfig;
+  options: GlobalConfig;
   title = '';
   message = '';
   type = types[0];
