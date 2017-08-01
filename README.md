@@ -110,7 +110,7 @@ preventDuplicates: boolean = false; // block duplicate messages
 ```typescript
 toastComponent = Toast; // the Angular component that will be used
 closeButton: boolean = false; // show close button
-timeOut: number = 5000; // time to live
+timeOut: number = 5000; // time to live in milliseconds
 enableHtml: boolean = false; // allow html in message. (UNSAFE)
 extendedTimeOut: number = 1000; // time to close after a user hovers over toast
 progressBar: boolean = false; // show progress bar
