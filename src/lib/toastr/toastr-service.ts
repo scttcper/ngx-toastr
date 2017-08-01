@@ -39,14 +39,24 @@ export class ToastrService {
       return toastrConfig && source !== undefined ? source : defaultValue;
     }
     this.toastrConfig = this.applyConfig(toastrConfig);
+    // Global
     this.toastrConfig.maxOpened = use(this.toastrConfig.maxOpened, 0);
     this.toastrConfig.autoDismiss = use(this.toastrConfig.autoDismiss, false);
     this.toastrConfig.newestOnTop = use(this.toastrConfig.newestOnTop, true);
     this.toastrConfig.preventDuplicates = use(this.toastrConfig.preventDuplicates, false);
+    if (!this.toastrConfig.iconClasses) {
+      this.toastrConfig.iconClasses = {};
+    }
+    this.toastrConfig.iconClasses.error = this.toastrConfig.iconClasses.error || 'toast-error';
+    this.toastrConfig.iconClasses.info = this.toastrConfig.iconClasses.info || 'toast-info';
+    this.toastrConfig.iconClasses.success = this.toastrConfig.iconClasses.success || 'toast-success';
+    this.toastrConfig.iconClasses.warning = this.toastrConfig.iconClasses.warning || 'toast-warning';
+
+    // Individual
+    this.toastrConfig.timeOut = use(this.toastrConfig.timeOut, 5000);
     this.toastrConfig.closeButton = use(this.toastrConfig.closeButton, false);
     this.toastrConfig.extendedTimeOut = use(this.toastrConfig.extendedTimeOut, 1000);
     this.toastrConfig.progressBar = use(this.toastrConfig.progressBar, false);
-    this.toastrConfig.timeOut = use(this.toastrConfig.timeOut, 5000);
     this.toastrConfig.enableHtml = use(this.toastrConfig.enableHtml, false);
     this.toastrConfig.toastClass = use(this.toastrConfig.toastClass, 'toast');
     this.toastrConfig.positionClass = use(this.toastrConfig.positionClass, 'toast-top-right');
@@ -55,13 +65,6 @@ export class ToastrService {
     this.toastrConfig.tapToDismiss = use(this.toastrConfig.tapToDismiss, true);
     this.toastrConfig.toastComponent = use(this.toastrConfig.toastComponent, Toast);
     this.toastrConfig.onActivateTick = use(this.toastrConfig.onActivateTick, false);
-    if (!this.toastrConfig.iconClasses) {
-      this.toastrConfig.iconClasses = {};
-    }
-    this.toastrConfig.iconClasses.error = this.toastrConfig.iconClasses.error || 'toast-error';
-    this.toastrConfig.iconClasses.info = this.toastrConfig.iconClasses.info || 'toast-info';
-    this.toastrConfig.iconClasses.success = this.toastrConfig.iconClasses.success || 'toast-success';
-    this.toastrConfig.iconClasses.warning = this.toastrConfig.iconClasses.warning || 'toast-warning';
   }
   /** show successful toast */
   show(message: string, title?: string, override?: IndividualConfig, type = '') {
