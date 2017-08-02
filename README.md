@@ -81,10 +81,10 @@ import { ToastrService } from 'ngx-toastr';
   ...
 })
 export class YourComponent {
-  constructor(private toastrService: ToastrService) {}
+  constructor(private toastr: ToastrService) {}
   
   showSuccess() {
-    this.toastrService.success('Hello world!', 'Toastr fun!');
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 }
 ```
