@@ -1,17 +1,18 @@
-import { NgModule, ModuleWithProviders, OpaqueToken } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  SkipSelf,
+  Optional,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Toast } from './toast-component';
+import { TOAST_CONFIG } from './toast-token';
 import { ToastrService } from './toastr-service';
-import { ToastrConfig } from './toastr-config';
+import { GlobalConfig } from './toastr-config';
 import { OverlayContainer } from '../overlay/overlay-container';
 import { Overlay } from '../overlay/overlay';
 
-export const TOAST_CONFIG = new OpaqueToken('ToastConfig');
-
-export function provideToastrConfig(config: ToastrConfig) {
-  return new ToastrConfig(config);
-}
 
 @NgModule({
   imports: [CommonModule],
@@ -20,15 +21,19 @@ export function provideToastrConfig(config: ToastrConfig) {
   entryComponents: [Toast],
 })
 export class ToastrModule {
-  static forRoot(config?: ToastrConfig): ModuleWithProviders {
+  constructor(@Optional() @SkipSelf() parentModule: ToastrModule) {
+    if (parentModule) {
+      throw new Error('ToastrModule is already loaded. It should only be imported in your application\'s main module.');
+    }
+  }
+  static forRoot(config?: GlobalConfig): ModuleWithProviders {
     return {
       ngModule: ToastrModule,
       providers: [
         { provide: TOAST_CONFIG, useValue: config },
-        { provide: ToastrConfig, useFactory: provideToastrConfig, deps: [TOAST_CONFIG] },
         OverlayContainer,
         Overlay,
-        ToastrService
+        ToastrService,
       ]
     };
   }

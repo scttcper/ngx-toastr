@@ -9,13 +9,13 @@ import {
   HostBinding,
   HostListener,
   ApplicationRef,
-  SecurityContext,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { SafeHtml } from '@angular/platform-browser';
+
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
-import { ToastConfig, ToastData } from './toastr-config';
+import { GlobalConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr-service';
 import { ToastRef } from './toast-injector';
 
@@ -51,10 +51,9 @@ import { ToastRef } from './toast-injector';
   ],
 })
 export class Toast implements OnDestroy {
-  toastId: number;
   message: string | SafeHtml;
   title: string;
-  options: ToastConfig;
+  options: GlobalConfig;
   /** width of progress bar */
   width = -1;
   /** a combination of toast type and options.toastClass */
@@ -66,33 +65,20 @@ export class Toast implements OnDestroy {
   private hideTime: number;
   private sub: Subscription;
   private sub1: Subscription;
-  /** listens for click on toast */
-  onTap: Subject<any>;
-  /** listens for click on custom action */
-  onAction: Subject<any>;
 
   constructor(
     protected toastrService: ToastrService,
-    public data: ToastData,
-    protected toastRef: ToastRef<any>,
+    public toastPackage: ToastPackage,
     protected appRef: ApplicationRef,
-    protected sanitizer: DomSanitizer
   ) {
-    this.options = data.optionsOverride;
-    this.toastId = data.toastId;
-    this.message = data.message;
-    if (this.message && this.options.enableHtml) {
-      this.message = sanitizer.sanitize(SecurityContext.HTML, data.message);
-    }
-    this.title = data.title;
-    this.onTap = data.onTap;
-    this.onAction = data.onAction;
-    this.toastClasses = `${data.toastType} ${this.options.toastClass}`;
-    this.options.timeOut = +this.options.timeOut;
-    this.sub = toastRef.afterActivate().subscribe(() => {
+    this.message = toastPackage.message;
+    this.title = toastPackage.title;
+    this.options = toastPackage.config;
+    this.toastClasses = `${toastPackage.toastType} ${toastPackage.config.toastClass}`;
+    this.sub = toastPackage.toastRef.afterActivate().subscribe(() => {
       this.activateToast();
     });
-    this.sub1 = toastRef.manualClosed().subscribe(() => {
+    this.sub1 = toastPackage.toastRef.manualClosed().subscribe(() => {
       this.remove();
     });
   }
@@ -144,15 +130,17 @@ export class Toast implements OnDestroy {
     }
     clearTimeout(this.timeout);
     this.state = 'removed';
-    this.timeout = setTimeout(() => this.toastrService.remove(this.toastId), 300);
+    this.timeout = setTimeout(() =>
+      this.toastrService.remove(this.toastPackage.toastId),
+      300
+    );
   }
   @HostListener('click')
   tapToast() {
     if (this.state === 'removed') {
       return;
     }
-    this.onTap.next();
-    this.onTap.complete();
+    this.toastPackage.triggerTap();
     if (this.options.tapToDismiss) {
       this.remove();
     }

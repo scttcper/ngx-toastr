@@ -9,8 +9,7 @@ import {
   ApplicationRef,
   state,
 } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
+import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib';
 
 @Component({
   selector: '[notyf-toast-component]',
@@ -77,11 +76,9 @@ export class NotyfToast extends Toast {
   // constructor is only necessary when not using AoT
   constructor(
     protected toastrService: ToastrService,
-    public data: ToastData,
-    protected toastRef: ToastRef<any>,
+    public toastPackage: ToastPackage,
     protected appRef: ApplicationRef,
-    protected sanitizer: DomSanitizer
   ) {
-    super(toastrService, data, toastRef, appRef, sanitizer);
+    super(toastrService, toastPackage, appRef);
   }
 }
