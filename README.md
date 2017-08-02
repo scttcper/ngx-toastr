@@ -123,40 +123,22 @@ onActivateTick: boolean = false; // fire ApplicationRef.tick() from the toast co
 ```
 
 ### Override default settings
-NEW FOR VERSION > 3
-Option 1: Pass values to ToastrModule.forRoot
+Pass values to ToastrModule.forRoot  
 ```typescript
-// your NgModule
+// root app NgModule
 imports: [
-  ToastrModule.forRoot({timeOut: 0}),
+  ToastrModule.forRoot({ 
+    timeOut: 10000,
+    positionClass: 'toast-bottom-right',
+    preventDuplicates: true,
+  }),
 ], 
 ```
 
-Option 2: Inject ToastrConfig, typically in your root component, and customize the values.
-```typescript
-import { ToastrConfig } from 'ngx-toastr';
-import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-  constructor(toastrConfig: ToastrConfig) {
-    toastrConfig.timeOut = 100;
-  }
-}
-```
-
 ### individual toast settings
-success, error, info, warning take ```(message, title, ToastConfig)``` pass a ToastConfig object to replace several default settings.
+success, error, info, warning take ```(message, title, ToastConfig)``` pass an options object to replace several default settings.
 ```typescript
-// OPTIONAL: import the ToastConfig interface
-import { ToastConfig } from 'ngx-toastr';
-
-const errorConfig: ToastConfig = {timeOut: 10000};
-this.toastrService.error('everything is broken', 'title is optional', errorConfig);
+this.toastrService.error('everything is broken', 'title is optional', { timeout: 3000 });
 ```
 
 ### Toastr Service methods return:
