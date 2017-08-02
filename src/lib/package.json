@@ -1,9 +1,6 @@
 {
   "name": "ngx-toastr",
-  "version": "6.0.0-beta.2",
-  "publishConfig": {
-    "tag": "next"
-  },
+  "version": "6.0.0",
   "description": "Toastr for Angular",
   "main": "toastr.umd.js",
   "module": "index.js",
