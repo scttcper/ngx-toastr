@@ -16,7 +16,6 @@ import { Component, OnInit } from '@angular/core';
   <header class="header mt-5">
     <h1>Angular Toastr</h1>
     <p>Easy Toasts for Angular.</p>
-    <github-link></github-link>
   </header>
   `,
 })
