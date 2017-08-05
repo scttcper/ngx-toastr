@@ -3,7 +3,7 @@ import { Component, OnInit, VERSION } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-  <footer class="footer">
+  <footer class="footer mb-4 mt-5">
     Demo using Anuglar {{version}}
     <br>
     Released under the
@@ -13,16 +13,10 @@ import { Component, OnInit, VERSION } from '@angular/core';
   `,
   styles: [`
   .footer {
-    margin-top: 3rem;
     line-height: 2;
     text-align: center;
     font-size: 12px;
     color: #999;
-  }
-  @media only screen and (max-width: 480px) {
-    .footer {
-      font-size: 10px;
-    }
   }
   `],
 })

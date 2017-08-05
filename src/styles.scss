@@ -1,3 +1,16 @@
+@import "node_modules/bootswatch/simplex/variables";
+$brand-primary: #266072;
+$input-border-focus: lighten($brand-primary, 25%);
+$btn-primary-color: $white;
+$btn-primary-bg: $brand-primary;
+$btn-primary-border: $btn-primary-bg;
+$link-color: $brand-primary;
+$link-hover-color: darken($link-color, 15%);
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base:       $font-family-sans-serif;
+
 // @import 'node_modules/bootstrap/scss/bootstrap';
 // Core variables and mixins
 @import "node_modules/bootstrap/scss/custom";
@@ -46,6 +59,7 @@
 
 // Utility classes
 @import "node_modules/bootstrap/scss/utilities";
+@import "node_modules/bootswatch/simplex/bootswatch";
 
 @import './lib/toastr';
 
@@ -56,11 +70,10 @@
   color: #FFFFFF;
   background-color: #FF69B4;
   border-color: #F013B1;
+  background-image: linear-gradient(#ff9ff8, #ffa2d0 6%, #ff1493);
 }
-.cornerGithubLink {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
+.btn-primary {
+  background-image: linear-gradient(#44a9c7, #2b7e98 6%, #225667);
 }
 
 

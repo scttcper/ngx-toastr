@@ -1,4 +1,3 @@
-/* tslint:disable:no-inferrable-types */
 import { SafeHtml } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs/Subject';

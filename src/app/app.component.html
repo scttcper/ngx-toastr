@@ -1,5 +1,4 @@
 <app-header></app-header>
-<github-link class="cornerGithubLink"></github-link>
 
 <div class="container">
   <div class="row justify-content-center">
@@ -18,34 +17,35 @@
               </div>
 
               <div class="form-group">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.enableHtml"> Enable Html
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.enableHtml">
+                    Enable Html (message)
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.tapToDismiss"> Tap to dismiss
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.tapToDismiss"> Tap to dismiss
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.closeButton"> Close button
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.closeButton"> Close button
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.preventDuplicates"> Prevent duplicates
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.preventDuplicates"> Prevent duplicates
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.newestOnTop"> New toasts on top
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.newestOnTop"> New toasts on top
                   </label>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.progressBar"> Progress bar
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.progressBar"> Progress bar
                   </label>
                 </div>
               </div>
@@ -58,52 +58,52 @@
               </div>
               <div class="form-group">
                 <label for="maxNumberToasts">Maximum Toasts</label>
-                <input [(ngModel)]="toastrService.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+                <input [(ngModel)]="toastr.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
               </div>
               <div class="form-group">
                 <label for="toastExtendedTimeout">Extended Timeout</label>
-                <input type="text" [(ngModel)]="toastrService.toastrConfig.extendedTimeOut" class="form-control" id="toastExtendedTimeout">
+                <input type="text" [(ngModel)]="toastr.toastrConfig.extendedTimeOut" class="form-control" id="toastExtendedTimeout">
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" [(ngModel)]="toastrService.toastrConfig.autoDismiss"> Auto dismiss on max
+                  <input type="checkbox" [(ngModel)]="toastr.toastrConfig.autoDismiss"> Auto dismiss on max
                 </label>
               </div>
             </div>
             <div class="col-md-3">
               <fieldset class="form-group">
                 <label>Toast type</label>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="typeRadios" [(ngModel)]="type" value="success">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="success">
                     Success
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="typeRadios" [(ngModel)]="type" value="info">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="info">
                     Info
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="typeRadios" [(ngModel)]="type" value="warning">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="warning">
                     Warning
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="typeRadios" [(ngModel)]="type" value="error">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="error">
                     Error
                   </label>
                 </div>
               </fieldset>
               <fieldset class="form-group">
                 <label>Toast position</label>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right">
                     Top Right
                   </label>
                 </div>
@@ -113,39 +113,39 @@
                     Bottom Right
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-left">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-left">
                     Bottom Left
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-left">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-left">
                     Top Left
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-full-width">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-full-width">
                     Top Full Width
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-full-width">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-full-width">
                     Bottom Full Width
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-center">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-center">
                     Top Center
                   </label>
                 </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-center">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-center">
                     Bottom Center
                   </label>
                 </div>
@@ -153,19 +153,37 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col text-center">
-              <p class="mb-0 mt-1"><small>Toast Controls:</small></p>
-              <button (click)="openToast()" type="button" role="button" class="btn btn-primary">Open Toast</button>
-              <button (click)="clearLastToast()" type="button" role="button" class="btn btn-secondary">Clear Last Toast</button>
-              <button (click)="clearToasts()" type="button" role="button" class="btn btn-secondary">Clear All Toasts</button>
-            </div>
-          </div>
           <div class="row mb-3">
             <div class="col text-center">
-              <p class="mb-0 mt-2"><small>Example Custom Toasts:</small></p>
-              <button (click)="openPinkToast()" type="button" role="button" class="btn btn-pink">Custom Pink Toast</button>
-              <button (click)="openNotyf()" type="button" role="button" class="btn btn-secondary">Notyf Example</button>
+              <p class="mb-1"><small>Toast Controls:</small></p>
+              <div class="row justify-content-center">
+                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
+                  <button (click)="openToast()" type="button" role="button" class="btn btn-primary btn-block">
+                    Open Toast
+                  </button>
+                </div>
+                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
+                  <button (click)="clearLastToast()" type="button" role="button" class="btn btn-secondary btn-block">
+                    Clear Last Toast
+                  </button>
+                </div>
+                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
+                  <button (click)="clearToasts()" type="button" role="button" class="btn btn-secondary btn-block">
+                    Clear All Toasts
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col text-center">
+              <p class="mb-1"><small>Example Custom Toasts:</small></p>
+              <button (click)="openPinkToast()" type="button" role="button" class="btn btn-pink">
+                Pink Toast
+              </button>
+              <button (click)="openNotyf()" type="button" role="button" class="btn btn-secondary">
+                Notyf
+              </button>
             </div>
           </div>
         </div>

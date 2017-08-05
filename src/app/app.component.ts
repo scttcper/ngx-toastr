@@ -49,12 +49,12 @@ export class AppComponent {
   private lastInserted: number[] = [];
 
   constructor(
-    public toastrService: ToastrService,
+    public toastr: ToastrService,
     private t: Title
   ) {
     // sync options to toastrservice
     // this sets the options in the demo
-    this.options = this.toastrService.toastrConfig;
+    this.options = this.toastr.toastrConfig;
     const current = t.getTitle();
     // fix for tests
     if (json) {
@@ -71,7 +71,7 @@ export class AppComponent {
       t = randomMessage.title;
     }
     const opt = cloneDeep(this.options);
-    const inserted = this.toastrService[this.type](m, t, opt);
+    const inserted = this.toastr[this.type](m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -88,7 +88,7 @@ export class AppComponent {
       m = randomMessage.message;
       t = randomMessage.title;
     }
-    const inserted = this.toastrService.show(m, t, opt);
+    const inserted = this.toastr.show(m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -108,16 +108,16 @@ export class AppComponent {
       t = randomMessage.title;
     }
     m = m || 'Success';
-    const inserted = this.toastrService.show(m, t, opt);
+    const inserted = this.toastr.show(m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
     return inserted;
   }
   clearToasts() {
-    this.toastrService.clear();
+    this.toastr.clear();
   }
   clearLastToast() {
-    this.toastrService.clear(this.lastInserted.pop());
+    this.toastr.clear(this.lastInserted.pop());
   }
 }

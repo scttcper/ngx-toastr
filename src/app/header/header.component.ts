@@ -8,12 +8,15 @@ import { Component, OnInit } from '@angular/core';
   }
   .header h1 {
     font-size: 46px;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-weight: bold;
   }
   `],
   template: `
-  <header class="header">
+  <header class="header mt-5">
     <h1>Angular Toastr</h1>
     <p>Easy Toasts for Angular.</p>
+    <github-link></github-link>
   </header>
   `,
 })
