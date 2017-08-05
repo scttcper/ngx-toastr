@@ -27,7 +27,7 @@
     "@angular/platform-browser-dynamic": "^4.3.3",
     "@angular/router": "^4.3.3",
     "bootstrap": "^4.0.0-alpha.6",
-    "bootswatch": "^v4.0.0-alpha.6",
+    "bootswatch": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "lodash.clonedeep": "^4.5.0",
     "lodash.random": "^3.2.0",
