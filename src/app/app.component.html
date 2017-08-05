@@ -53,17 +53,17 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="toastTimeout">Timeout</label>
-                <input [(ngModel)]="options.timeOut" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
+                <input [(ngModel)]="options.timeOut" (ngModelChange)="fixNumber('timeOut')" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
                 <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
               </div>
               <div class="form-group">
                 <label for="maxNumberToasts">Maximum Toasts</label>
-                <input [(ngModel)]="toastr.toastrConfig.maxOpened" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+                <input [(ngModel)]="toastr.toastrConfig.maxOpened" (ngModelChange)="fixNumber('maxOpened')" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
               </div>
               <div class="form-group">
                 <label for="toastExtendedTimeout">Extended Timeout</label>
-                <input type="text" [(ngModel)]="toastr.toastrConfig.extendedTimeOut" class="form-control" id="toastExtendedTimeout">
+                <input type="text" [(ngModel)]="toastr.toastrConfig.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" class="form-control" id="toastExtendedTimeout">
               </div>
               <div class="checkbox">
                 <label>

@@ -120,4 +120,7 @@ export class AppComponent {
   clearLastToast() {
     this.toastr.clear(this.lastInserted.pop());
   }
+  fixNumber(field: string) {
+    this.options[field] = Number(this.options[field]);
+  }
 }
