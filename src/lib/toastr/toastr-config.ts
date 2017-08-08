@@ -147,3 +147,8 @@ export class ToastPackage {
   }
 
 }
+
+/* tslint:disable:no-empty-interface */
+export interface GlobalToastrConfig extends GlobalConfig {}
+export interface IndividualToastrConfig extends IndividualConfig {}
+export interface ToastrConfig extends IndividualConfig {}
