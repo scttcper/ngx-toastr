@@ -1,19 +1,19 @@
 <app-header></app-header>
 <github-link></github-link>
 
-<div class="container">
+<div class="container mt-3">
   <div class="row justify-content-center">
     <div class="col-lg-10 col-sm-12">
       <div class="card">
-        <div class="card-block">
+        <div class="card-body">
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <label for="toastTitle">Title</label>
+                <label for="toastTitle"><strong>Title</strong></label>
                 <input [(ngModel)]="title" type="text" class="form-control" name="toastTitle" id="toastTitle" placeholder="Toast title">
               </div>
               <div class="form-group">
-                <label for="toastMessage">Message</label>
+                <label for="toastMessage"><strong>Message</strong></label>
                 <textarea [(ngModel)]="message" rows="3" class="form-control" name="toastMessage" id="toastMessage" placeholder="Toast message"></textarea>
               </div>
 
@@ -51,19 +51,19 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mb-2">
               <div class="form-group">
-                <label for="toastTimeout">Timeout</label>
+                <label for="toastTimeout"><strong>Timeout</strong></label>
                 <input [(ngModel)]="options.timeOut" (ngModelChange)="fixNumber('timeOut')" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
                 <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
               </div>
               <div class="form-group">
-                <label for="maxNumberToasts">Maximum Toasts</label>
+                <label for="maxNumberToasts"><strong>Maximum Toasts</strong></label>
                 <input [(ngModel)]="toastr.toastrConfig.maxOpened" (ngModelChange)="fixNumber('maxOpened')" type="text" class="form-control" id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
               </div>
               <div class="form-group">
-                <label for="toastExtendedTimeout">Extended Timeout</label>
+                <label for="toastExtendedTimeout"><strong>Extended Timeout</strong></label>
                 <input type="text" [(ngModel)]="toastr.toastrConfig.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" class="form-control" id="toastExtendedTimeout">
               </div>
               <div class="checkbox">
@@ -73,8 +73,10 @@
               </div>
             </div>
             <div class="col-md-3">
+            <div class="row">
+            <div class="col-6 col-md-12">
               <fieldset class="form-group">
-                <label>Toast type</label>
+                <label><strong>Toast Type</strong></label>
                 <div class="form-check">
                   <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="success">
@@ -100,8 +102,10 @@
                   </label>
                 </div>
               </fieldset>
+              </div>
+              <div class="col-6 col-md-12">
               <fieldset class="form-group">
-                <label>Toast position</label>
+                <label><strong>Toast Position</strong></label>
                 <div class="form-check">
                   <label class="form-check-label">
                     <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right">
@@ -152,24 +156,26 @@
                 </div>
               </fieldset>
             </div>
+            </div>
+            </div>
           </div>
-
+          <hr>
           <div class="row mb-3">
-            <div class="col text-center">
+            <div class="col-12 text-center">
               <p class="mb-1"><small>Toast Controls:</small></p>
               <div class="row justify-content-center">
-                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
-                  <button (click)="openToast()" type="button" role="button" class="btn btn-primary btn-block">
+                <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-3">
+                  <button (click)="openToast()" type="button" class="btn btn-primary btn-block">
                     Open Toast
                   </button>
                 </div>
-                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
-                  <button (click)="clearLastToast()" type="button" role="button" class="btn btn-secondary btn-block">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+                  <button (click)="clearLastToast()" type="button" class="btn btn-outline-primary btn-block">
                     Clear Last Toast
                   </button>
                 </div>
-                <div class="col-xl-2 col-md-3 col-sm-4 col-12 mb-2">
-                  <button (click)="clearToasts()" type="button" role="button" class="btn btn-secondary btn-block">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+                  <button (click)="clearToasts()" type="button" class="btn btn-outline-primary btn-block">
                     Clear All Toasts
                   </button>
                 </div>
@@ -177,12 +183,12 @@
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col text-center">
+            <div class="col-12 text-center">
               <p class="mb-1"><small>Example Custom Toasts:</small></p>
-              <button (click)="openPinkToast()" type="button" role="button" class="btn btn-pink">
+              <button (click)="openPinkToast()" type="button" class="btn btn-pink">
                 Pink
               </button>
-              <button (click)="openNotyf()" type="button" role="button" class="btn btn-secondary">
+              <button (click)="openNotyf()" type="button" class="btn btn-dark">
                 Notyf
               </button>
             </div>

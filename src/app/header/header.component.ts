@@ -11,11 +11,14 @@ import { Component, OnInit } from '@angular/core';
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
     font-weight: bold;
   }
+  p {
+    color: #777;
+  }
   `],
   template: `
   <header class="header mt-5">
     <h1>Angular Toastr</h1>
-    <p>Easy Toasts for Angular.</p>
+    <p>Easy Toasts for Angular</p>
   </header>
   `,
 })

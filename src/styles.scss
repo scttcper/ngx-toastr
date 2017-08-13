@@ -1,27 +1,7 @@
-@import "node_modules/bootswatch/simplex/variables";
-$brand-primary: #266072;
-$input-border-focus: lighten($brand-primary, 25%);
-$btn-primary-color: $white;
-$btn-primary-bg: $brand-primary;
-$btn-primary-border: $btn-primary-bg;
-$link-color: $brand-primary;
-$link-hover-color: darken($link-color, 15%);
-
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-family-monospace:  Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-$font-family-base:       $font-family-sans-serif;
-
-// @import 'node_modules/bootstrap/scss/bootstrap';
-// Core variables and mixins
-@import "node_modules/bootstrap/scss/custom";
+@import "node_modules/bootstrap/scss/functions";
 @import "node_modules/bootstrap/scss/variables";
 @import "node_modules/bootstrap/scss/mixins";
-
-// Reset and dependencies
-@import "node_modules/bootstrap/scss/normalize";
 @import "node_modules/bootstrap/scss/print";
-
-// Core CSS
 @import "node_modules/bootstrap/scss/reboot";
 @import "node_modules/bootstrap/scss/type";
 // @import "node_modules/bootstrap/scss/images";
@@ -30,9 +10,7 @@ $font-family-base:       $font-family-sans-serif;
 // @import "node_modules/bootstrap/scss/tables";
 @import "node_modules/bootstrap/scss/forms";
 @import "node_modules/bootstrap/scss/buttons";
-
-// Components
-// @import "node_modules/bootstrap/scss/transitions";
+@import "node_modules/bootstrap/scss/transitions";
 // @import "node_modules/bootstrap/scss/dropdown";
 // @import "node_modules/bootstrap/scss/button-group";
 // @import "node_modules/bootstrap/scss/input-group";
@@ -48,297 +26,23 @@ $font-family-base:       $font-family-sans-serif;
 // @import "node_modules/bootstrap/scss/progress";
 // @import "node_modules/bootstrap/scss/media";
 // @import "node_modules/bootstrap/scss/list-group";
-// @import "node_modules/bootstrap/scss/responsive-embed";
 // @import "node_modules/bootstrap/scss/close";
-
-// Components w/ JavaScript
 // @import "node_modules/bootstrap/scss/modal";
 // @import "node_modules/bootstrap/scss/tooltip";
 // @import "node_modules/bootstrap/scss/popover";
 // @import "node_modules/bootstrap/scss/carousel";
-
-// Utility classes
 @import "node_modules/bootstrap/scss/utilities";
-@import "node_modules/bootswatch/simplex/bootswatch";
 
-@import './lib/toastr';
-
-.card {
-  margin-top: 15px;
+body {
+  background-color: #fcfcfc;
 }
+strong {
+  font-weight: 500;
+}
+
 .btn-pink {
   color: #FFFFFF;
   background-color: #FF69B4;
   border-color: #F013B1;
   background-image: linear-gradient(#ea7be2, #f50079 6%, #ff1493);
 }
-.btn-primary {
-  background-image: linear-gradient(#44a9c7, #2b7e98 6%, #225667);
-}
-.toast {
-  font-size: 14px;
-  line-height: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
-}
-
-
-// NOTYF CSS
-@-webkit-keyframes a {
-  0% {
-    opacity: 0;
-    bottom: -15px;
-    max-height: 0;
-    max-width: 0;
-    margin-top: 0
-  }
-  30% {
-    opacity: .8;
-    bottom: -3px
-  }
-  to {
-    opacity: 1;
-    bottom: 0;
-    max-height: 200px;
-    margin-top: 12px;
-    max-width: 400px
-  }
-}
-
-@keyframes a {
-  0% {
-    opacity: 0;
-    bottom: -15px;
-    max-height: 0;
-    max-width: 0;
-    margin-top: 0
-  }
-  30% {
-    opacity: .8;
-    bottom: -3px
-  }
-  to {
-    opacity: 1;
-    bottom: 0;
-    max-height: 200px;
-    margin-top: 12px;
-    max-width: 400px
-  }
-}
-
-@-webkit-keyframes b {
-  0% {
-    opacity: 1;
-    bottom: 0
-  }
-  30% {
-    opacity: .2;
-    bottom: -3px
-  }
-  to {
-    opacity: 0;
-    bottom: -15px
-  }
-}
-
-@keyframes b {
-  0% {
-    opacity: 1;
-    bottom: 0
-  }
-  30% {
-    opacity: .2;
-    bottom: -3px
-  }
-  to {
-    opacity: 0;
-    bottom: -15px
-  }
-}
-
-@-webkit-keyframes c {
-  0% {
-    opacity: 0
-  }
-  30% {
-    opacity: .5
-  }
-  to {
-    opacity: .6
-  }
-}
-
-@keyframes c {
-  0% {
-    opacity: 0
-  }
-  30% {
-    opacity: .5
-  }
-  to {
-    opacity: .6
-  }
-}
-
-@-webkit-keyframes d {
-  0% {
-    opacity: .6
-  }
-  30% {
-    opacity: .1
-  }
-  to {
-    opacity: 0
-  }
-}
-
-@keyframes d {
-  0% {
-    opacity: .6
-  }
-  30% {
-    opacity: .1
-  }
-  to {
-    opacity: 0
-  }
-}
-
-.notyf-container {
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  width: 20%;
-  color: #fff;
-  z-index: 1
-}
-
-.notyf-container .notyf-alert-icon, .notyf-container .notyf-confirm-icon {
-  height: 21px;
-  width: 21px;
-  background: #fff;
-  border-radius: 50%;
-  display: block;
-  margin: 0 auto;
-  position: relative
-}
-
-.notyf-container .notyf-alert-icon:after, .notyf-container .notyf-alert-icon:before {
-  content: "";
-  background: #ed3d3d;
-  display: block;
-  position: absolute;
-  width: 3px;
-  border-radius: 3px;
-  left: 9px
-}
-
-.notyf-container .notyf-alert-icon:after {
-  height: 3px;
-  top: 14px
-}
-
-.notyf-container .notyf-alert-icon:before {
-  height: 8px;
-  top: 4px
-}
-
-.notyf-container .notyf-confirm-icon:after, .notyf-container .notyf-confirm-icon:before {
-  content: "";
-  background: #3dc763;
-  display: block;
-  position: absolute;
-  width: 3px;
-  border-radius: 3px
-}
-
-.notyf-container .notyf-confirm-icon:after {
-  height: 6px;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 9px;
-  left: 6px
-}
-
-.notyf-container .notyf-confirm-icon:before {
-  height: 11px;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
-  top: 5px;
-  left: 10px;
-}
-
-.notyf-container .notyf {
-  display: block;
-  overflow: hidden;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .45);
-  position: relative;
-  padding-right: 13px
-}
-
-.notyf-container .notyf.alert {
-  background: #ed3d3d
-}
-
-.notyf-container .notyf.confirm {
-  background: #3dc763
-}
-
-.notyf-container .notyf.removed .notyf-message {
-  opacity: 1;
-  -webkit-animation: b .3s 1 forwards;
-  animation: b .3s 1 forwards;
-  -webkit-animation-delay: .1s;
-  animation-delay: .1s
-}
-
-.notyf-container .notyf.removed .notyf-icon {
-  opacity: 1;
-  -webkit-animation: d .3s 1 forwards;
-  animation: d .3s 1 forwards
-}
-
-.notyf-container .notyf-wrapper {
-  display: table;
-  width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 15px;
-  border-radius: 3px
-}
-
-.notyf-container .notyf-icon {
-  display: table-cell;
-  width: 20%;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 1.3em;
-  opacity: 0;
-  -webkit-animation: c .5s forwards;
-  animation: c .5s forwards;
-  -webkit-animation-delay: .25s;
-  animation-delay: .25s
-}
-
-.notyf-container .notyf-message {
-  display: table-cell;
-  width: 80%;
-  vertical-align: middle;
-  position: relative;
-  opacity: 0;
-  -webkit-animation: a .3s forwards;
-  animation: a .3s forwards;
-  -webkit-animation-delay: .15s;
-  animation-delay: .15s
-}
-
-@media only screen and (max-width: 736px) {
-  .notyf-container {
-    width: 90%;
-    margin: 0 auto;
-    display: block;
-    right: 0;
-    left: 0
-  }
-}
-// END NOTYF CSS

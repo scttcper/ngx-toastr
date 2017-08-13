@@ -19,7 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "notyf.css",
+        "lib/toastr.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
