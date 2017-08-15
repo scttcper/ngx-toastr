@@ -20,7 +20,6 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "notyf.css",
         "lib/toastr.css"
       ],
       "scripts": [],
