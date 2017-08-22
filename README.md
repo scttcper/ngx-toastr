@@ -220,6 +220,18 @@ map: {
   'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js',
 }
 ```
+  
+### FAQ  
+1. ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked  
+When opening a toast inside an angular lifecycle wrap it in setTimeout  
+```typescript
+ngOnInit() {
+    setTimeout(() => this.toastr.success('sup'))
+}
+```
+2. Change default icons (check, warning sign, etc)  
+Overwrite the css background-image
+https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
 
 ## Previous Works
 [toastr](https://github.com/CodeSeven/toastr) original toastr  
