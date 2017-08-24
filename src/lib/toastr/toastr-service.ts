@@ -66,7 +66,7 @@ export class ToastrService {
     this.toastrConfig.toastComponent = use(this.toastrConfig.toastComponent, Toast);
     this.toastrConfig.onActivateTick = use(this.toastrConfig.onActivateTick, false);
   }
-  /** show successful toast */
+  /** show toast */
   show(message: string, title?: string, override?: IndividualConfig, type = '') {
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
