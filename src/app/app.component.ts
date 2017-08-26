@@ -8,7 +8,12 @@ import json from '../lib/package.json';
 import { PinkToast } from './pink.toast';
 import { NotyfToast } from './notyf.toast';
 
-const quotes = [
+interface Quote {
+  title?: string;
+  message?: string;
+}
+
+const quotes: Quote[] = [
   {
     title: 'Title',
     message: 'Message'
@@ -18,16 +23,13 @@ const quotes = [
     message: 'Supports Emoji'
   },
   {
-    title: null,
     message: 'My name is Inigo Montoya. You killed my father. Prepare to die!',
   },
   {
-    title: null,
     message: 'Titles are not always needed'
   },
   {
     title: 'Title only 👊',
-    message: null,
   },
   {
     title: '',
@@ -63,8 +65,8 @@ export class AppComponent {
   }
   openToast() {
     // Clone current config so it doesn't change when ngModel updates
-    let m = this.message;
-    let t = this.title;
+    let m: string | undefined = this.message;
+    let t: string | undefined = this.title;
     if (!this.title.length && !this.message.length) {
       const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
@@ -81,15 +83,15 @@ export class AppComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'pinktoast';
-    let m = this.message;
-    let t = this.title;
+    let m: string | undefined = this.message;
+    let t: string | undefined = this.title;
     if (!this.title.length && !this.message.length) {
       const randomMessage = quotes[random(0, quotes.length - 1)];
-      m = randomMessage.message;
+      m = randomMessage.message || '';
       t = randomMessage.title;
     }
     const inserted = this.toastr.show(m, t, opt);
-    if (inserted) {
+    if (inserted && inserted.toastId) {
       this.lastInserted.push(inserted.toastId);
     }
     return inserted;
@@ -100,8 +102,8 @@ export class AppComponent {
     opt.toastClass = 'notyf confirm';
     opt.positionClass = 'notyf-container';
     this.options.newestOnTop = false;
-    let m = this.message;
-    let t = this.title;
+    let m: string | undefined = this.message;
+    let t: string | undefined = this.title;
     if (!this.title.length && !this.message.length) {
       const randomMessage = quotes[random(0, quotes.length - 1)];
       m = randomMessage.message;
@@ -109,7 +111,7 @@ export class AppComponent {
     }
     m = m || 'Success';
     const inserted = this.toastr.show(m, t, opt);
-    if (inserted) {
+    if (inserted && inserted.toastId) {
       this.lastInserted.push(inserted.toastId);
     }
     return inserted;

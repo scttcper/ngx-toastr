@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { BasePortalHost, ComponentPortal } from './portal';
 
-
 /**
  * A PortalHost for attaching portals to an arbitrary DOM element outside of the Angular
  * application context.
@@ -15,9 +14,10 @@ import { BasePortalHost, ComponentPortal } from './portal';
  */
 export class DomPortalHost extends BasePortalHost {
   constructor(
-      private _hostDomElement: Element,
-      private _componentFactoryResolver: ComponentFactoryResolver,
-      private _appRef: ApplicationRef) {
+    private _hostDomElement: Element,
+    private _componentFactoryResolver: ComponentFactoryResolver,
+    private _appRef: ApplicationRef,
+  ) {
     super();
   }
 
@@ -25,8 +25,13 @@ export class DomPortalHost extends BasePortalHost {
    * Attach the given ComponentPortal to DOM element using the ComponentFactoryResolver.
    * @param portal Portal to be attached
    */
-  attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T> {
-    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(portal.component);
+  attachComponentPortal<T>(
+    portal: ComponentPortal<T>,
+    newestOnTop: boolean,
+  ): ComponentRef<T> {
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+      portal.component,
+    );
     let componentRef: ComponentRef<T>;
 
     // If the portal specifies a ViewContainerRef, we will use that as the attachment point
@@ -50,9 +55,14 @@ export class DomPortalHost extends BasePortalHost {
     // At this point the component has been instantiated, so we move it to the location in the DOM
     // where we want it to be rendered.
     if (newestOnTop) {
-      this._hostDomElement.insertBefore(this._getComponentRootNode(componentRef), this._hostDomElement.firstChild);
+      this._hostDomElement.insertBefore(
+        this._getComponentRootNode(componentRef),
+        this._hostDomElement.firstChild,
+      );
     } else {
-      this._hostDomElement.appendChild(this._getComponentRootNode(componentRef));
+      this._hostDomElement.appendChild(
+        this._getComponentRootNode(componentRef),
+      );
     }
 
     return componentRef;

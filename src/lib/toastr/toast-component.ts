@@ -51,8 +51,8 @@ import { ToastRef } from './toast-injector';
   ],
 })
 export class Toast implements OnDestroy {
-  message: string | SafeHtml;
-  title: string;
+  message?: string | SafeHtml | null;
+  title?: string;
   options: GlobalConfig;
   /** width of progress bar */
   width = -1;
@@ -93,7 +93,7 @@ export class Toast implements OnDestroy {
    */
   activateToast() {
     this.state = 'active';
-    if (this.options.timeOut !== 0) {
+    if (this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();
       }, this.options.timeOut);
@@ -110,7 +110,7 @@ export class Toast implements OnDestroy {
    * updates progress bar width
    */
   updateProgress() {
-    if (this.width === 0) {
+    if (this.width === 0 || !this.options.timeOut) {
       return;
     }
     const now = new Date().getTime();
@@ -132,7 +132,7 @@ export class Toast implements OnDestroy {
     this.state = 'removed';
     this.timeout = setTimeout(() =>
       this.toastrService.remove(this.toastPackage.toastId),
-      300
+      300,
     );
   }
   @HostListener('click')
@@ -160,12 +160,12 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (+this.options.extendedTimeOut === 0 || this.state === 'removed') {
+    if (this.options.extendedTimeOut === 0 || this.state === 'removed') {
       return;
     }
     this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
-    this.options.timeOut = +this.options.extendedTimeOut;
-    this.hideTime = new Date().getTime() + this.options.timeOut;
+    this.options.timeOut = this.options.extendedTimeOut;
+    this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
     this.width = 100;
     if (this.options.progressBar) {
       this.intervalId = setInterval(() => this.updateProgress(), 10);

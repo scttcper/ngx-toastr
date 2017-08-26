@@ -6,6 +6,7 @@ node_js:
 addons:
   chrome: stable
 script:
+  - npm run lint
   - ./node_modules/.bin/ng test --single-run --code-coverage --no-progress --browsers=ChromeHeadless
 after_success:
   - bash <(curl -s https://codecov.io/bash)

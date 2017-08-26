@@ -45,7 +45,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
-    opened.onShown.toPromise().then(() => {
+    expect(opened).toBeDefined();
+    opened.onShown!.toPromise().then(() => {
       done();
     });
   });
@@ -53,7 +54,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
-    opened.onHidden.toPromise().then(() => {
+    expect(opened.portal).toBeDefined();
+    opened.onHidden!.toPromise().then(() => {
       done();
     });
   });
@@ -61,19 +63,20 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
-    opened.onTap.toPromise()
+    expect(opened.portal).toBeDefined();
+    opened.onTap!.toPromise()
       .then(() => {
         done();
       });
-      opened.portal.instance.tapToast();
+      opened.portal!.instance.tapToast();
   });
   it('should extend life on mouseover and exit', (done) => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openToast();
-    opened.portal.instance.stickAround();
-    opened.portal.instance.delayedHideToast();
-    expect(opened.portal.instance.options.timeOut).toBe(1000);
+    opened.portal!.instance.stickAround();
+    opened.portal!.instance.delayedHideToast();
+    expect(opened.portal!.instance.options.timeOut).toBe(1000);
     done();
   });
   it('should keep on mouse exit with extended timeout 0', (done) => {
@@ -81,16 +84,16 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     app.options.extendedTimeOut = 0;
     const opened: ActiveToast = app.openToast();
-    opened.portal.instance.stickAround();
-    opened.portal.instance.delayedHideToast();
-    expect(opened.portal.instance.options.timeOut).toBe(0);
+    opened.portal!.instance.stickAround();
+    opened.portal!.instance.delayedHideToast();
+    expect(opened.portal!.instance.options.timeOut).toBe(0);
     done();
   });
   it('should trigger onShown for openPinkToast', (done) => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openPinkToast();
-    opened.onShown.toPromise().then(() => {
+    opened.onShown!.toPromise().then(() => {
       done();
     });
   });
@@ -98,7 +101,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openPinkToast();
-    opened.onHidden.toPromise().then(() => {
+    opened.onHidden!.toPromise().then(() => {
       done();
     });
   });
@@ -106,7 +109,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openNotyf();
-    opened.onShown.toPromise().then(() => {
+    opened.onShown!.toPromise().then(() => {
       done();
     });
   });
@@ -114,7 +117,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast = app.openNotyf();
-    opened.onHidden.toPromise().then(() => {
+    opened.onHidden!.toPromise().then(() => {
       done();
     });
   });

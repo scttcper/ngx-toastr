@@ -24,12 +24,12 @@ import { ToastContainerDirective } from '../toastr/toast-directive';
    * Creates an overlay.
    * @returns A reference to the created overlay.
    */
-  create(positionClass: string, overlayContainer?: ToastContainerDirective): OverlayRef {
+  create(positionClass?: string, overlayContainer?: ToastContainerDirective): OverlayRef {
     // get existing pane if possible
     return this._createOverlayRef(this.getPaneElement(positionClass, overlayContainer));
   }
 
-  getPaneElement(positionClass: string, overlayContainer?: ToastContainerDirective): HTMLElement {
+  getPaneElement(positionClass: string = '', overlayContainer?: ToastContainerDirective): HTMLElement {
     if (!this._paneElements[positionClass]) {
       this._paneElements[positionClass] = this._createPaneElement(positionClass, overlayContainer);
     }

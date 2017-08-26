@@ -1,4 +1,5 @@
 import { Injectable, Injector, ComponentRef, Inject, SecurityContext } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
 
 import { Overlay } from '../overlay/overlay';
@@ -14,7 +15,7 @@ export interface ActiveToast {
   toastId?: number;
   message?: string;
   portal?: ComponentRef<any>;
-  toastRef?: ToastRef<any>;
+  toastRef: ToastRef<any>;
   onShown?: Observable<any>;
   onHidden?: Observable<any>;
   onTap?: Observable<any>;
@@ -24,7 +25,7 @@ export interface ActiveToast {
 @Injectable()
 export class ToastrService {
   private index = 0;
-  private previousToastMessage = '';
+  private previousToastMessage?: string;
   currentlyActive = 0;
   toasts: ActiveToast[] = [];
   overlayContainer: ToastContainerDirective;
@@ -67,27 +68,27 @@ export class ToastrService {
     this.toastrConfig.onActivateTick = use(this.toastrConfig.onActivateTick, false);
   }
   /** show toast */
-  show(message: string, title?: string, override?: IndividualConfig, type = '') {
+  show(message?: string, title?: string, override?: IndividualConfig, type = '') {
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
-  success(message: string, title?: string, override?: IndividualConfig) {
-    const type = this.toastrConfig.iconClasses.success;
+  success(message?: string, title?: string, override?: IndividualConfig) {
+    const type = this.toastrConfig.iconClasses!.success || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error(message: string, title?: string, override?: IndividualConfig) {
-    const type = this.toastrConfig.iconClasses.error;
+  error(message?: string, title?: string, override?: IndividualConfig) {
+    const type = this.toastrConfig.iconClasses!.error || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info(message: string, title?: string, override?: IndividualConfig) {
-    const type = this.toastrConfig.iconClasses.info;
+  info(message?: string, title?: string, override?: IndividualConfig) {
+    const type = this.toastrConfig.iconClasses!.info || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning(message: string, title?: string, override?: IndividualConfig) {
-    const type = this.toastrConfig.iconClasses.warning;
+  warning(message?: string, title?: string, override?: IndividualConfig) {
+    const type = this.toastrConfig.iconClasses!.warning || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /**
@@ -143,7 +144,7 @@ export class ToastrService {
   }
 
   /** create a clone of global config and apply individual settings */
-  private applyConfig(override: IndividualConfig = {}): GlobalConfig {
+  private applyConfig(override: IndividualConfig = {}) {
     function use<T>(source: T, defaultValue: T): T {
       return override && source !== undefined ? source : defaultValue;
     }
@@ -181,12 +182,15 @@ export class ToastrService {
    */
   private _buildNotification(
     toastType: string,
-    message: string,
-    title: string,
+    message: string | undefined,
+    title: string | undefined,
     config: GlobalConfig,
   ): ActiveToast | null {
+    if (!config.toastComponent) {
+      throw new Error('toastComponent required');
+    }
     // max opened and auto dismiss = true
-    if (this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
+    if (message && this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
       return null;
     }
     this.previousToastMessage = message;
@@ -199,7 +203,7 @@ export class ToastrService {
     }
     const overlayRef = this.overlay.create(config.positionClass, this.overlayContainer);
     this.index = this.index + 1;
-    let sanitizedMessage = message;
+    let sanitizedMessage: string | SafeHtml | undefined | null = message;
     if (message && config.enableHtml) {
       sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
     }

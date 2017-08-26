@@ -13,7 +13,7 @@ export interface ComponentType<T> {
  * A `ComponentPortal` is a portal that instantiates some Component upon attachment.
  */
 export class ComponentPortal<T> {
-  private _attachedHost: BasePortalHost;
+  private _attachedHost?: BasePortalHost;
   /** The type of the component that will be instantiated for attachment. */
   component: ComponentType<T>;
 
@@ -39,10 +39,12 @@ export class ComponentPortal<T> {
   }
 
   /** Detach this portal from its host */
-  detach(): void {
+  detach() {
     const host = this._attachedHost;
-    this._attachedHost = null;
-    return host.detach();
+    if (host) {
+      this._attachedHost = undefined;
+      return host.detach();
+    }
   }
 
   /** Whether this portal is attached to a host. */
@@ -54,7 +56,7 @@ export class ComponentPortal<T> {
    * Sets the PortalHost reference without performing `attach()`. This is used directly by
    * the PortalHost when it is performing an `attach()` or `detach()`.
    */
-  setAttachedHost(host: BasePortalHost) {
+  setAttachedHost(host?: BasePortalHost) {
     this._attachedHost = host;
   }
 }
@@ -65,10 +67,10 @@ export class ComponentPortal<T> {
  */
 export abstract class BasePortalHost {
   /** The portal currently attached to the host. */
-  private _attachedPortal: ComponentPortal<any>;
+  private _attachedPortal?: ComponentPortal<any>;
 
   /** A function that will permanently dispose this host. */
-  private _disposeFn: () => void;
+  private _disposeFn?: () => void;
 
   attach(portal: ComponentPortal<any>, newestOnTop: boolean) {
     this._attachedPortal = portal;
@@ -78,12 +80,14 @@ export abstract class BasePortalHost {
   abstract attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T>;
 
   detach() {
-    if (this._attachedPortal) { this._attachedPortal.setAttachedHost(null); }
+    if (this._attachedPortal) {
+      this._attachedPortal.setAttachedHost();
+    }
 
-    this._attachedPortal = null;
-    if (this._disposeFn != null) {
+    this._attachedPortal = undefined;
+    if (this._disposeFn) {
       this._disposeFn();
-      this._disposeFn = null;
+      this._disposeFn = undefined;
     }
   }
 

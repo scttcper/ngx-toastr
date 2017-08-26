@@ -120,8 +120,8 @@ export class ToastPackage {
   constructor(
     public toastId: number,
     public config: IndividualConfig,
-    public message: string | SafeHtml,
-    public title: string,
+    public message: string | SafeHtml | null | undefined,
+    public title: string | undefined,
     public toastType: string,
     public toastRef: ToastRef<any>,
   ) { }
