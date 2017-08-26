@@ -90,9 +90,10 @@ export class YourComponent {
 ```
 
 ## Options
-There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be inherited and modified. See the pink toast in the demo. It has a different animation and inline style.
+There's __global options__ and __individual options__. All individual options are global options.
 
-### ToastrConfig (Global Options)
+### ToastrConfig (Global Options)  
+Passed to `ToastrModule.forRoot()`  
 |      Option       |  Type   |                                 Default                                  |                       Description                        |
 | ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
 | maxOpened         | number  | 0                                                                        | Max toasts opened. Toasts will be queued. 0 is unlimited |
@@ -112,6 +113,7 @@ iconClasses = {
 ```
 
 ### ToastConfig (Individual Toast options)
+Passed to `ToastrService.success()` or `ToastrModule.forRoot()`  
 |     Option      |   Type    |      Default      |                                    Description                                     |
 | --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
 | toastComponent  | Component | Toast             | Angular component that will be used                                                |
