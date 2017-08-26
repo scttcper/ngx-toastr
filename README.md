@@ -93,34 +93,39 @@ export class YourComponent {
 There's global options and individual toast options. All individual toast options are included in the global options. See file `toastr-config.ts` The toastComponent can be inherited and modified. See the pink toast in the demo. It has a different animation and inline style.
 
 ### ToastrConfig (Global Options)
+|      Option       |  Type   |    Default     |                Description                |
+| ----------------- | ------- | -------------- | ----------------------------------------- |
+| maxOpened         | number  | 0              | max toasts opened. Toasts will be queued  |
+| autoDismiss       | boolean | false          | dismiss current toast when max is reached |
+| iconClasses       | object  | 'toast-{type}' | classes used on toastr service methods    |
+| newestOnTop       | boolean | true           | new toast placement                       |
+| preventDuplicates | boolean | false          | block duplicate messages                  |
+
+##### iconClasses defaults
 ```typescript
-maxOpened: number = 0; // max toasts opened. Toasts will be queued
-autoDismiss: boolean = false; // dismiss current toast when max is reached
-iconClasses = { // classes used on toastr service methods
+iconClasses = {
   error: 'toast-error',
   info: 'toast-info',
   success: 'toast-success',
   warning: 'toast-warning',
 };
-newestOnTop: boolean = true; // new toast placement
-preventDuplicates: boolean = false; // block duplicate messages
 ```
 
 ### ToastConfig (Individual Toast options)
-|     Option      |   Type    |      Default      |                                                 description                                                 |
-| --------------- | --------- | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| toastComponent  | Component | Toast             | Angular component that will be used                                                                         |
-| closeButton     | boolean   | false             | show close button                                                                                           |
-| timeOut         | number    | 5000              | time to live in milliseconds                                                                                |
-| enableHtml      | boolean   | false             | allow html in message                                                                                       |
-| extendedTimeOut | number    | 1000              | time to close after a user hovers over toast                                                                |
-| progressBar     | boolean   | false             | show progress bar                                                                                           |
-| toastClass      | string    | 'toast'           | class on toast                                                                                              |
-| positionClass   | string    | 'toast-top-right' | class on toast container                                                                                    |
-| titleClass      | string    | 'toast-title'     | class inside toast on title                                                                                 |
-| messageClass    | string    | 'toast-message'   | class inside toast on message                                                                               |
-| tapToDismiss    | boolean   | true              | close on click                                                                                              |
-| onActivateTick  | boolean   | false             | fire ApplicationRef.tick() from the toast component when activated. Helps show toast from a websocket event |
+|     Option      |   Type    |      Default      |                                    Description                                     |
+| --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
+| toastComponent  | Component | Toast             | Angular component that will be used                                                |
+| closeButton     | boolean   | false             | show close button                                                                  |
+| timeOut         | number    | 5000              | time to live in milliseconds                                                       |
+| enableHtml      | boolean   | false             | allow html in message                                                              |
+| extendedTimeOut | number    | 1000              | time to close after a user hovers over toast                                       |
+| progressBar     | boolean   | false             | show progress bar                                                                  |
+| toastClass      | string    | 'toast'           | class on toast                                                                     |
+| positionClass   | string    | 'toast-top-right' | class on toast container                                                           |
+| titleClass      | string    | 'toast-title'     | class inside toast on title                                                        |
+| messageClass    | string    | 'toast-message'   | class inside toast on message                                                      |
+| tapToDismiss    | boolean   | true              | close on click                                                                     |
+| onActivateTick  | boolean   | false             | fire ApplicationRef.tick() when activated. Helps show toast from a websocket event |
 
 
 ### Override default settings
