@@ -92,8 +92,9 @@ export class YourComponent {
 ## Options
 There's __global options__ and __individual options__. All individual options are global options.
 
-### ToastrConfig (Global Options)  
+### Global Options  
 Passed to `ToastrModule.forRoot()`  
+
 |      Option       |  Type   |                                 Default                                  |                       Description                        |
 | ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
 | maxOpened         | number  | 0                                                                        | Max toasts opened. Toasts will be queued. 0 is unlimited |
@@ -112,8 +113,9 @@ iconClasses = {
 };
 ```
 
-### ToastConfig (Individual Toast options)
-Passed to `ToastrService.success()` or `ToastrModule.forRoot()`  
+### Individual Options  
+Passed to `ToastrService.success/error/warn/info/show()` or `ToastrModule.forRoot()`  
+
 |     Option      |   Type    |      Default      |                                    Description                                     |
 | --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
 | toastComponent  | Component | Toast             | Angular component that will be used                                                |
