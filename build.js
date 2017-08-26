@@ -133,6 +133,10 @@ function copyReadme() {
   return copy(`${process.cwd()}/README.md`, `${process.cwd()}/dist/packages-dist/README.md`);
 }
 
+function copyCSS() {
+  return copy(`${process.cwd()}/src/lib/toastr.css`, `${process.cwd()}/dist/packages-dist/toastr.css`);
+}
+
 /**
  * Returns each version of each AngularFire module.
  * This is used to help ensure each package has the same verison.
@@ -172,6 +176,7 @@ function buildLibrary(globals) {
     .forkJoin(modules$)
     // .switchMap(() => Observable.from(copyNpmIgnore()))
     .switchMap(() => Observable.from(copyReadme()))
+    .switchMap(() => Observable.from(copyCSS()))
     .do(() => verifyVersions());
 }
 
