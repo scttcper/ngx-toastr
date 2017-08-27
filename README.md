@@ -100,8 +100,8 @@ Passed to `ToastrService.success/error/warn/info/show()`
 | toastComponent  | Component | Toast             | Angular component that will be used                                                |
 | closeButton     | boolean   | false             | Show close button                                                                  |
 | timeOut         | number    | 5000              | Time to live in milliseconds                                                       |
-| enableHtml      | boolean   | false             | Allow html in message                                                              |
 | extendedTimeOut | number    | 1000              | Time to close after a user hovers over toast                                       |
+| enableHtml      | boolean   | false             | Allow html in message                                                              |
 | progressBar     | boolean   | false             | Show progress bar                                                                  |
 | toastClass      | string    | 'toast'           | Class on toast                                                                     |
 | positionClass   | string    | 'toast-top-right' | Class on toast container                                                           |
@@ -120,13 +120,13 @@ this.toastrService.error('everything is broken', 'title is optional', { timeout:
 ### Global Options  
 All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, global options include the following options:
 
-|      Option       |  Type   |                                 Default                                  |                       Description                        |
-| ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
-| maxOpened         | number  | 0                                                                        | Max toasts opened. Toasts will be queued. 0 is unlimited |
-| autoDismiss       | boolean | false                                                                    | Dismiss current toast when max is reached                |
-| iconClasses       | object  | [see below](https://github.com/scttcper/ngx-toastr#iconclasses-defaults) | Classes used on toastr service methods                   |
-| newestOnTop       | boolean | true                                                                     | New toast placement                                      |
-| preventDuplicates | boolean | false                                                                    | Block duplicate messages                                 |
+|      Option       |  Type   |              Default               |                       Description                        |
+| ----------------- | ------- | ---------------------------------- | -------------------------------------------------------- |
+| maxOpened         | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited |
+| autoDismiss       | boolean | false                              | Dismiss current toast when max is reached                |
+| iconClasses       | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                   |
+| newestOnTop       | boolean | true                               | New toast placement                                      |
+| preventDuplicates | boolean | false                              | Block duplicate messages                                 |
 
 ##### iconClasses defaults
 ```typescript
