@@ -90,10 +90,35 @@ export class YourComponent {
 ```
 
 ## Options
-There's __global options__ and __individual options__. All individual options are global options.
+There are __individual options__ and __global options__.
+
+### Individual Options  
+Passed to `ToastrService.success/error/warn/info/show()`
+
+|     Option      |   Type    |      Default      |                                    Description                                     |
+| --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
+| toastComponent  | Component | Toast             | Angular component that will be used                                                |
+| closeButton     | boolean   | false             | Show close button                                                                  |
+| timeOut         | number    | 5000              | Time to live in milliseconds                                                       |
+| enableHtml      | boolean   | false             | Allow html in message                                                              |
+| extendedTimeOut | number    | 1000              | Time to close after a user hovers over toast                                       |
+| progressBar     | boolean   | false             | Show progress bar                                                                  |
+| toastClass      | string    | 'toast'           | Class on toast                                                                     |
+| positionClass   | string    | 'toast-top-right' | Class on toast container                                                           |
+| titleClass      | string    | 'toast-title'     | Class inside toast on title                                                        |
+| messageClass    | string    | 'toast-message'   | Class inside toast on message                                                      |
+| tapToDismiss    | boolean   | true              | Close on click                                                                     |
+| onActivateTick  | boolean   | false             | Fires `ApplicationRef.tick()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
+
+
+#### Setting Individual Options
+success, error, info, warning take ```(message, title, ToastConfig)``` pass an options object to replace any default option.
+```typescript
+this.toastrService.error('everything is broken', 'title is optional', { timeout: 3000 });
+```
 
 ### Global Options  
-Passed to `ToastrModule.forRoot()`  
+All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, global options include the following options:
 
 |      Option       |  Type   |                                 Default                                  |                       Description                        |
 | ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
@@ -113,27 +138,8 @@ iconClasses = {
 };
 ```
 
-### Individual Options  
-Passed to `ToastrService.success/error/warn/info/show()` or `ToastrModule.forRoot()`  
-
-|     Option      |   Type    |      Default      |                                    Description                                     |
-| --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
-| toastComponent  | Component | Toast             | Angular component that will be used                                                |
-| closeButton     | boolean   | false             | Show close button                                                                  |
-| timeOut         | number    | 5000              | Time to live in milliseconds                                                       |
-| enableHtml      | boolean   | false             | Allow html in message                                                              |
-| extendedTimeOut | number    | 1000              | Time to close after a user hovers over toast                                       |
-| progressBar     | boolean   | false             | Show progress bar                                                                  |
-| toastClass      | string    | 'toast'           | Class on toast                                                                     |
-| positionClass   | string    | 'toast-top-right' | Class on toast container                                                           |
-| titleClass      | string    | 'toast-title'     | Class inside toast on title                                                        |
-| messageClass    | string    | 'toast-message'   | Class inside toast on message                                                      |
-| tapToDismiss    | boolean   | true              | Close on click                                                                     |
-| onActivateTick  | boolean   | false             | Fire ApplicationRef.tick() when activated. Helps show toast from a websocket event |
-
-
-### Override default settings
-Pass values to ToastrModule.forRoot  
+#### Setting Global Options
+Pass values to `ToastrModule.forRoot()`  
 ```typescript
 // root app NgModule
 imports: [
@@ -143,12 +149,6 @@ imports: [
     preventDuplicates: true,
   }),
 ], 
-```
-
-### individual toast settings
-success, error, info, warning take ```(message, title, ToastConfig)``` pass an options object to replace several default settings.
-```typescript
-this.toastrService.error('everything is broken', 'title is optional', { timeout: 3000 });
 ```
 
 ### Toastr Service methods return:
