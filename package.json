@@ -11,6 +11,7 @@
     "start": "ng serve",
     "build": "rimraf dist && node build.js",
     "publish": "cd dist/packages-dist && npm publish",
+    "bundlesize": "bundlesize",
     "test": "ng test",
     "cleanup": "rimraf build dist waste deploy",
     "ghpages": "ng build --prod --build-optimizer --aot --no-progress --baseHref='/ngx-toastr/'",
@@ -44,6 +45,7 @@
     "@types/lodash.clonedeep": "^4.5.3",
     "@types/lodash.random": "^3.2.3",
     "@types/node": "^8.0.25",
+    "bundlesize": "^0.14.1",
     "codelyzer": "^3.1.2",
     "fs-extra": "^4.0.1",
     "jasmine-core": "^2.8.0",
@@ -64,5 +66,11 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "typescript": "^2.4.2"
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/packages-dist/bundles/*.js",
+      "maxSize": "5.5 kB"
+    }
+  ]
 }

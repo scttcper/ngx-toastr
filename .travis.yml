@@ -6,6 +6,8 @@ node_js:
 addons:
   chrome: stable
 script:
+  - npm run build
+  - npm run bundlesize
   - npm run lint
   - ./node_modules/.bin/ng test --single-run --code-coverage --no-progress --browsers=ChromeHeadless
 after_success:
