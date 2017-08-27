@@ -118,7 +118,7 @@ this.toastrService.error('everything is broken', 'title is optional', { timeout:
 ```
 
 ### Global Options  
-All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, global options includes the following options:
+All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, global options include the following options:
 
 |      Option       |  Type   |                                 Default                                  |                       Description                        |
 | ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
