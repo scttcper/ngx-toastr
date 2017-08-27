@@ -118,9 +118,7 @@ this.toastrService.error('everything is broken', 'title is optional', { timeout:
 ```
 
 ### Global Options  
-All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, the global options includes the following options:
-
-Passed to `ToastrModule.forRoot()`  
+All [individual options](#individual-options) can be overridden in the global options to affect all toasts. In addition, global options includes the following options:
 
 |      Option       |  Type   |                                 Default                                  |                       Description                        |
 | ----------------- | ------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
@@ -140,7 +138,7 @@ iconClasses = {
 };
 ```
 
-#### Overriding Global Options
+#### Setting Global Options
 Pass values to `ToastrModule.forRoot()`  
 ```typescript
 // root app NgModule
