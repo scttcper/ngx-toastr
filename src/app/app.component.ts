@@ -1,6 +1,6 @@
 import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { cloneDeep, random } from 'lodash';
+import { cloneDeep, random } from 'lodash-es';
 
 import { GlobalConfig, ToastrService } from '../lib';
 import json from '../lib/package.json';
