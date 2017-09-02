@@ -1,10 +1,10 @@
 {
   "name": "ngx-toastr",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "description": "Toastr for Angular",
-  "main": "./bundles/toastr.umd.js",
-  "module": "./index.js",
-  "es2015": "./es2015/index.js",
+  "main": "./toastr.umd.js",
+  "module": "./toastr.es5.js",
+  "es2015": "./toastr.es2015.js",
   "typings": "./index.d.ts",
   "peerDependencies": {
     "@angular/core": ">=4.3.0 <=6.0.0",

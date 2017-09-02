@@ -2,7 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash-es';
 
-import { GlobalConfig, ToastrService } from '../lib';
+import { GlobalConfig, ToastrService } from '../lib/public_api';
 import json from '../lib/package.json';
 
 import { PinkToast } from './pink.toast';

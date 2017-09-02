@@ -10,7 +10,7 @@ import {
   state,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib';
+import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api';
 
 @Component({
   selector: '[pink-toast-component]',

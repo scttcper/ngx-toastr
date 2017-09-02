@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 
-import { ToastrModule, ActiveToast } from '../lib';
+import { ToastrModule, ActiveToast } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';

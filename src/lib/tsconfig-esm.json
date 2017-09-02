@@ -2,16 +2,19 @@
   "extends": "./tsconfig-build.json",
   "compilerOptions": {
     "target": "es5",
-    "outDir": "../../dist/packages-dist",
+    "outDir": "../../dist/es5",
     "declaration": true,
     "removeComments": false
   },
   "files": [
-    "index.ts"
+    "public_api.ts"
   ],
   "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "enableSummariesForJit": false
+    "enableSummariesForJit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "ngx-toastr"
   }
 }

@@ -9,7 +9,7 @@ import {
   ApplicationRef,
   state,
 } from '@angular/core';
-import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib';
+import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api';
 
 @Component({
   selector: '[notyf-toast-component]',

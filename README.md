@@ -227,7 +227,7 @@ If you are using SystemJS, you should also adjust your configuration to point to
 In your systemjs config file, `map` needs to tell the System loader where to look for `ngx-toastr`:
 ```js
 map: {
-  'ngx-toastr': 'node_modules/ngx-toastr/bundles/toastr.umd.js',
+  'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js',
 }
 ```
   
