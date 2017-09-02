@@ -43,7 +43,7 @@ __step 1:__ add css
 - copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
 - If you are using sass you can import the css.
 ```scss
-@import 'node_modules/ngx-toastr/toastr.css';
+@import "~ngx-toastr/toastr";
 ```
 - If you are using angular-cli you can add it to your angular-cli.json
 ```json

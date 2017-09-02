@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "6.1.3",
+  "version": "6.1.4",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -69,6 +69,10 @@
     {
       "path": "./dist/packages-dist/toastr.umd.js",
       "maxSize": "8 kB"
+    },
+    {
+      "path": "./dist/packages-dist/toastr.css",
+      "maxSize": "3 kB"
     }
   ]
 }

@@ -133,6 +133,7 @@ function copyFiles() {
       copyAll(`${process.cwd()}/dist/es5/**/*.metadata.json`, `${process.cwd()}/dist/packages-dist`),
       Observable.from(copy(`${process.cwd()}/README.md`, `${process.cwd()}/dist/packages-dist/README.md`)),
       Observable.from(copy(`${process.cwd()}/src/lib/package.json`, `${process.cwd()}/dist/packages-dist/package.json`)),
+      Observable.from(copy(`${process.cwd()}/src/lib/toastr.css`, `${process.cwd()}/dist/packages-dist/toastr.css`)),
     );
 
 }
