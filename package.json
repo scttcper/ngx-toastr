@@ -43,7 +43,7 @@
     "@types/jasminewd2": "^2.0.3",
     "@types/lodash-es": "^4.14.6",
     "@types/node": "^8.0.26",
-    "bundlesize": "0.14.2",
+    "bundlesize": "^0.14.4",
     "codelyzer": "^3.1.2",
     "copy": "^0.3.1",
     "fs-extra": "^4.0.1",
