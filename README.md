@@ -241,7 +241,9 @@ ngOnInit() {
 ```
 2. Change default icons (check, warning sign, etc)  
 Overwrite the css background-image
-https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
+https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css  
+3. How do I use this in an ErrorHandler?
+See: https://github.com/scttcper/ngx-toastr/issues/179
 
 ## Previous Works
 [toastr](https://github.com/CodeSeven/toastr) original toastr  
