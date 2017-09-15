@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "6.1.5",
+  "version": "6.2.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -39,7 +39,7 @@
     "@angular/cli": "^1.4.2",
     "@angular/compiler-cli": "^4.4.0-RC.0",
     "@angular/language-service": "^4.4.0-RC.0",
-    "@types/jasmine": "^2.5.54",
+    "@types/jasmine": "^2.6.0",
     "@types/jasminewd2": "^2.0.3",
     "@types/lodash-es": "^4.14.6",
     "@types/node": "^8.0.28",
