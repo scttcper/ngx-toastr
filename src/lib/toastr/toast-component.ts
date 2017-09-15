@@ -1,15 +1,11 @@
+import { Component, OnDestroy, HostBinding, HostListener, ApplicationRef, } from '@angular/core';
 import {
-  Component,
   trigger,
   state,
   transition,
   animate,
-  style,
-  OnDestroy,
-  HostBinding,
-  HostListener,
-  ApplicationRef,
-} from '@angular/core';
+  style
+} from '@angular/animations';
 import { SafeHtml } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs/Subscription';

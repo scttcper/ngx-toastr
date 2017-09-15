@@ -1,14 +1,13 @@
 /* tslint:disable:no-access-missing-member */
+import { Component, ApplicationRef } from '@angular/core';
 import {
-  Component,
   trigger,
+  state,
   transition,
   animate,
   style,
-  keyframes,
-  ApplicationRef,
-  state,
-} from '@angular/core';
+  keyframes
+} from '@angular/animations';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api';
 
