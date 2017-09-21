@@ -221,7 +221,7 @@ export class ToastrService {
       message,
       toastRef,
       onShown: toastRef.afterActivate(),
-      onHidden: toastRef.afterActivate(),
+      onHidden: toastRef.afterClosed(),
       onTap: toastPackage.onTap(),
       onAction: toastPackage.onAction(),
     };
