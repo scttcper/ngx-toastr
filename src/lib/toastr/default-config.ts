@@ -1,8 +1,8 @@
 import { GlobalConfig } from './toastr-config';
-import { Toast } from "./toast-component";
+import { Toast } from './toast-component';
 
 export class DefaultGlobalConfig implements GlobalConfig {
-    //Global
+    // Global
     maxOpened = 0;
     autoDismiss = false;
     newestOnTop = true;
@@ -28,4 +28,3 @@ export class DefaultGlobalConfig implements GlobalConfig {
     tapToDismiss = true;
     onActivateTick = false;
   }
-  

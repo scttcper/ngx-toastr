@@ -119,21 +119,21 @@ export class ToastrService {
     function use<T>(source: T, defaultValue: T): T {
       return override && source !== undefined ? source : defaultValue;
     }
-    
+
     const current: GlobalConfig = { ...this.toastrConfig };
-    
-    for (let property in current) {
+
+    for (const property of Object.keys(current)) {
       override[property] = use(override[property], current[property]);
     }
 
-    let asGlobalConfig = override as GlobalConfig;
+    const asGlobalConfig = override as GlobalConfig;
     if (asGlobalConfig.iconClasses) {
       const currentIconClasses = <ToastrIconClasses>current.iconClasses;
-      for (let property in currentIconClasses) {
+      for (const property of Object.keys(currentIconClasses)) {
         asGlobalConfig.iconClasses[property] = use(asGlobalConfig.iconClasses[property], currentIconClasses[property]);
       }
     }
-    
+
     return override;
   }
 
