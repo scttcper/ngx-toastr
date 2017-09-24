@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { copy } from 'fs-extra';
 import * as copyfiles from 'copy';
 import * as filesize from 'rollup-plugin-filesize';
-import * as resolve from 'rollup-plugin-node-resolve';
 import * as sourcemaps from 'rollup-plugin-sourcemaps';
 
 const pkg = require(`${process.cwd()}/package.json`);
@@ -45,7 +44,6 @@ function spawnObservable(command, args) {
 
 function generateBundle(input, file, globals, name, format) {
   const plugins = [
-    resolve(),
     sourcemaps(),
     filesize(),
   ];
