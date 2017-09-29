@@ -20,29 +20,29 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.4.3",
-    "@angular/common": "^4.4.3",
-    "@angular/compiler": "^4.4.3",
-    "@angular/core": "^4.4.3",
-    "@angular/forms": "^4.4.3",
-    "@angular/platform-browser": "^4.4.3",
-    "@angular/platform-browser-dynamic": "^4.4.3",
-    "@angular/router": "^4.4.3",
+    "@angular/animations": "^4.4.4",
+    "@angular/common": "^4.4.4",
+    "@angular/compiler": "^4.4.4",
+    "@angular/core": "^4.4.4",
+    "@angular/forms": "^4.4.4",
+    "@angular/platform-browser": "^4.4.4",
+    "@angular/platform-browser-dynamic": "^4.4.4",
+    "@angular/router": "^4.4.4",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.1",
     "lodash-es": "^4.17.4",
     "rxjs": "^5.4.3",
     "web-animations-js": "^2.3.1",
-    "zone.js": "^0.8.17"
+    "zone.js": "^0.8.18"
   },
   "devDependencies": {
-    "@angular/cli": "1.4.3",
-    "@angular/compiler-cli": "^4.4.3",
-    "@angular/language-service": "^4.4.3",
+    "@angular/cli": "1.4.4",
+    "@angular/compiler-cli": "^4.4.4",
+    "@angular/language-service": "^4.4.4",
     "@types/jasmine": "^2.6.0",
     "@types/jasminewd2": "^2.0.3",
-    "@types/lodash-es": "^4.14.6",
-    "@types/node": "^8.0.30",
+    "@types/lodash-es": "^4.14.7",
+    "@types/node": "^8.0.31",
     "bundlesize": "^0.14.4",
     "codelyzer": "^3.2.0",
     "copy": "^0.3.1",
@@ -62,7 +62,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.2"
+    "typescript": "^2.5.3"
   },
   "bundlesize": [
     {
