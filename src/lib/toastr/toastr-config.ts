@@ -34,7 +34,7 @@ import { ToastRef } from './toast-injector';
   progressBar?: boolean;
 
   /**
-   * show toast progress bar
+   * changes toast progress bar animation
    * default: decreasing
    */
   progressAnimation?: "increasing" | "decreasing";
