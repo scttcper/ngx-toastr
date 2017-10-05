@@ -32,6 +32,12 @@ import { ToastRef } from './toast-injector';
    * default: false
    */
   progressBar?: boolean;
+
+  /**
+   * show toast progress bar
+   * default: decreasing
+   */
+  progressAnimation?: "increasing" | "decreasing";
   /**
    * render html in toast message (possibly unsafe)
    * default: false
