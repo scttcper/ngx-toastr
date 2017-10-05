@@ -37,7 +37,7 @@ import { ToastRef } from './toast-injector';
    * changes toast progress bar animation
    * default: decreasing
    */
-  progressAnimation?: "increasing" | "decreasing";
+  progressAnimation?: 'increasing' | 'decreasing';
   /**
    * render html in toast message (possibly unsafe)
    * default: false

@@ -112,7 +112,7 @@ export class Toast implements OnDestroy {
     const now = new Date().getTime();
     const remaining = this.hideTime - now;
     this.width = (remaining / this.options.timeOut) * 100;
-    if (this.options.progressAnimation == 'increasing') {
+    if (this.options.progressAnimation === 'increasing') {
       this.width = 100 - this.width;
     }
     if (this.width <= 0) {
