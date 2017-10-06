@@ -169,7 +169,7 @@ Toastr Service will return undefined if prevent duplicates is on.
 
 ### Put toasts in your own container
 Put toasts in a specific div inside your application. This should probably be somewhere that doesn't get deleted.
-Add `ToastContainerModule.forRoot()` to ngModule after the `ToastrModule.forRoot()`
+Add `ToastContainerModule` to the ngModule where you need the directive available.
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -188,7 +188,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
 
     ToastrModule.forRoot({positionClass: 'inline'}),
-    ToastContainerModule.forRoot(),
+    ToastContainerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

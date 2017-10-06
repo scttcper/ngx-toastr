@@ -5,27 +5,19 @@ import {
   ElementRef,
 } from '@angular/core';
 
-
 @Directive({
   selector: '[toastContainer]',
   exportAs: 'toastContainer',
 })
 export class ToastContainerDirective {
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
   getContainerElement(): HTMLElement {
     return this.el.nativeElement;
   }
 }
 
 @NgModule({
-  exports: [ToastContainerDirective],
   declarations: [ToastContainerDirective],
+  exports: [ToastContainerDirective],
 })
-export class ToastContainerModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: ToastContainerModule,
-      providers: []
-    };
-  }
-}
+export class ToastContainerModule {}
