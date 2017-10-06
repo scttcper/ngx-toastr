@@ -1,6 +1,13 @@
-import { ComponentRef, Inject, Injectable, Injector, SecurityContext } from '@angular/core';
+import {
+  ComponentRef,
+  Inject,
+  Injectable,
+  Injector,
+  SecurityContext,
+} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs/Observable';
+
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
@@ -8,7 +15,13 @@ import { DefaultGlobalConfig } from './default-config';
 import { ToastContainerDirective } from './toast-directive';
 import { ToastRef, ToastInjector } from './toast-injector';
 import { TOAST_CONFIG } from './toast-token';
-import { GlobalConfig, IndividualConfig, ToastrIconClasses, ToastPackage } from './toastr-config';
+import {
+  GlobalConfig,
+  IndividualConfig,
+  ToastrIconClasses,
+  ToastPackage,
+} from './toastr-config';
+
 
 export interface ActiveToast {
   toastId?: number;

@@ -1,4 +1,10 @@
-import { NgModule, ModuleWithProviders, Directive, ElementRef } from '@angular/core';
+import {
+  NgModule,
+  ModuleWithProviders,
+  Directive,
+  ElementRef,
+} from '@angular/core';
+
 
 @Directive({
   selector: '[toastContainer]',

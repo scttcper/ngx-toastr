@@ -1,10 +1,16 @@
-import { Component, OnDestroy, HostBinding, HostListener, ApplicationRef, } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  HostBinding,
+  HostListener,
+  ApplicationRef,
+} from '@angular/core';
 import {
   trigger,
   state,
   transition,
   animate,
-  style
+  style,
 } from '@angular/animations';
 import { SafeHtml } from '@angular/platform-browser';
 
