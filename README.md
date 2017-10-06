@@ -95,20 +95,21 @@ There are __individual options__ and __global options__.
 ### Individual Options  
 Passed to `ToastrService.success/error/warn/info/show()`
 
-|     Option      |   Type    |      Default      |                                    Description                                     |
-| --------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
-| toastComponent  | Component | Toast             | Angular component that will be used                                                |
-| closeButton     | boolean   | false             | Show close button                                                                  |
-| timeOut         | number    | 5000              | Time to live in milliseconds                                                       |
-| extendedTimeOut | number    | 1000              | Time to close after a user hovers over toast                                       |
-| enableHtml      | boolean   | false             | Allow html in message                                                              |
-| progressBar     | boolean   | false             | Show progress bar                                                                  |
-| toastClass      | string    | 'toast'           | Class on toast                                                                     |
-| positionClass   | string    | 'toast-top-right' | Class on toast container                                                           |
-| titleClass      | string    | 'toast-title'     | Class inside toast on title                                                        |
-| messageClass    | string    | 'toast-message'   | Class inside toast on message                                                      |
-| tapToDismiss    | boolean   | true              | Close on click                                                                     |
-| onActivateTick  | boolean   | false             | Fires `ApplicationRef.tick()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
+|     Option        |   Type    |      Default      |                                    Description                                     |
+| ----------------- | --------- | ----------------- | ---------------------------------------------------------------------------------- |
+| toastComponent    | Component | Toast             | Angular component that will be used                                                |
+| closeButton       | boolean   | false             | Show close button                                                                  |
+| timeOut           | number    | 5000              | Time to live in milliseconds                                                       |
+| extendedTimeOut   | number    | 1000              | Time to close after a user hovers over toast                                       |
+| enableHtml        | boolean   | false             | Allow html in message                                                              |
+| progressBar       | boolean   | false             | Show progress bar                                                                  |
+| progressAnimation | 'decreasing' &#124; 'increasing'  | 'decreasing'      | Changes the animation of the progress bar. |
+| toastClass        | string    | 'toast'           | Class on toast                                                                     |
+| positionClass     | string    | 'toast-top-right' | Class on toast container                                                           |
+| titleClass        | string    | 'toast-title'     | Class inside toast on title                                                        |
+| messageClass      | string    | 'toast-message'   | Class inside toast on message                                                      |
+| tapToDismiss      | boolean   | true              | Close on click                                                                     |
+| onActivateTick    | boolean   | false             | Fires `ApplicationRef.tick()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
 
 
 #### Setting Individual Options

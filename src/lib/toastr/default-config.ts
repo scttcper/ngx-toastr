@@ -27,4 +27,5 @@ export class DefaultGlobalConfig implements GlobalConfig {
     messageClass = 'toast-message';
     tapToDismiss = true;
     onActivateTick = false;
+    progressAnimation: 'decreasing' | 'increasing' = 'decreasing';
   }
