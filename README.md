@@ -245,6 +245,8 @@ Overwrite the css background-image
 https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css  
 3. How do I use this in an ErrorHandler?
 See: https://github.com/scttcper/ngx-toastr/issues/179
+4. How can I translate messages
+See: https://github.com/scttcper/ngx-toastr/issues/201
 
 ## Previous Works
 [toastr](https://github.com/CodeSeven/toastr) original toastr  
