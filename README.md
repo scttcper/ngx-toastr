@@ -115,7 +115,7 @@ Passed to `ToastrService.success/error/warn/info/show()`
 #### Setting Individual Options
 success, error, info, warning take ```(message, title, ToastConfig)``` pass an options object to replace any default option.
 ```typescript
-this.toastrService.error('everything is broken', 'title is optional', { timeout: 3000 });
+this.toastrService.error('everything is broken', 'title is optional', { timeOut: 3000 });
 ```
 
 ### Global Options  
