@@ -5,6 +5,10 @@ node_js:
   - 8
 addons:
   chrome: stable
+before_install:
+- npm install -g greenkeeper-lockfile@1
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
 script:
   - npm run build
   - npm run bundlesize
@@ -17,6 +21,6 @@ deploy:
   provider: pages
   skip_cleanup: true
   local_dir: dist
-  github_token: $PUSH_TOKEN
+  github_token: $GH_TOKEN
   on:
     branch: master
