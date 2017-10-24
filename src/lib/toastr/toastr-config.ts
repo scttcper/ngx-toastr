@@ -15,23 +15,23 @@ import { ToastRef } from './toast-injector';
   * toast time to live in milliseconds
   * default: 5000
   */
-  timeOut?: number;
+  timeOut: number;
   /**
   * toast show close button
   * default: false
   */
-  closeButton?: boolean;
+  closeButton: boolean;
   /** time to close after a user hovers over toast */
   /**
    * show toast progress bar
    * default: false
    */
-  extendedTimeOut?: number;
+  extendedTimeOut: number;
   /**
    * show toast progress bar
    * default: false
    */
-  progressBar?: boolean;
+  progressBar: boolean;
 
   /**
    * changes toast progress bar animation
@@ -42,49 +42,49 @@ import { ToastRef } from './toast-injector';
    * render html in toast message (possibly unsafe)
    * default: false
    */
-  enableHtml?: boolean;
+  enableHtml: boolean;
   /**
    * css class on toast component
    * default: toast
    */
-  toastClass?: string;
+  toastClass: string;
   /**
    * css class on toast container
    * default: toast-top-right
    */
-  positionClass?: string;
+  positionClass: string;
   /**
    * css class on to toast title
    * default: toast-title
    */
-  titleClass?: string;
+  titleClass: string;
   /**
    * css class on to toast title
    * default: toast-title
    */
-  messageClass?: string;
+  messageClass: string;
   /**
    * clicking on toast dismisses it
    * default: true
    */
-  tapToDismiss?: boolean;
+  tapToDismiss: boolean;
   /**
    * Angular toast component to be shown
    * default: Toast
    */
-  toastComponent?: ComponentType<any>;
+  toastComponent: ComponentType<any>;
   /**
    * Helps show toast from a websocket or from event outside Angular
    * default: false
    */
-  onActivateTick?: boolean;
+  onActivateTick: boolean;
 }
 
 export interface ToastrIconClasses {
-  error?: string;
-  info?: string;
-  success?: string;
-  warning?: string;
+  error: string;
+  info: string;
+  success: string;
+  warning: string;
 }
 
 /**
@@ -97,23 +97,23 @@ export interface GlobalConfig extends IndividualConfig {
    * Zero is unlimited
    * default: 0
    */
-  maxOpened?: number;
+  maxOpened: number;
   /**
    * dismiss current toast when max is reached
    * default: false
    */
-  autoDismiss?: boolean;
-  iconClasses?: ToastrIconClasses;
+  autoDismiss: boolean;
+  iconClasses: Partial<ToastrIconClasses>;
   /**
    * New toast placement
    * default: true
    */
-  newestOnTop?: boolean;
+  newestOnTop: boolean;
   /**
    * block duplicate messages
    * default: false
    */
-  preventDuplicates?: boolean;
+  preventDuplicates: boolean;
 }
 
 /**

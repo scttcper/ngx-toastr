@@ -26,7 +26,7 @@ export class ToastrModule {
       throw new Error('ToastrModule is already loaded. It should only be imported in your application\'s main module.');
     }
   }
-  static forRoot(config?: GlobalConfig): ModuleWithProviders {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
     return {
       ngModule: ToastrModule,
       providers: [
