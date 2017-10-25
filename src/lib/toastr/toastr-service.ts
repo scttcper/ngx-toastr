@@ -36,7 +36,7 @@ export interface ActiveToast {
 
 @Injectable()
 export class ToastrService {
-  toastrConfig: GlobalConfig = new DefaultGlobalConfig();
+  toastrConfig: GlobalConfig;
   private index = 0;
   private previousToastMessage?: string;
   currentlyActive = 0;
@@ -49,29 +49,31 @@ export class ToastrService {
     private _injector: Injector,
     private sanitizer: DomSanitizer,
   ) {
-    this.toastrConfig = this.applyConfig(toastrConfig);
+    const defaultConfig = new DefaultGlobalConfig;
+    this.toastrConfig = { ...defaultConfig, ...toastrConfig };
+    this.toastrConfig.iconClasses = { ...defaultConfig.iconClasses, ...toastrConfig.iconClasses };
   }
   /** show toast */
-  show(message?: string, title?: string, override?: IndividualConfig, type = '') {
+  show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
-  success(message?: string, title?: string, override?: IndividualConfig) {
+  success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses!.success || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error(message?: string, title?: string, override?: IndividualConfig) {
+  error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses!.error || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info(message?: string, title?: string, override?: IndividualConfig) {
+  info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses!.info || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning(message?: string, title?: string, override?: IndividualConfig) {
+  warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses!.warning || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
@@ -128,26 +130,8 @@ export class ToastrService {
   }
 
   /** create a clone of global config and apply individual settings */
-  private applyConfig(override: GlobalConfig | IndividualConfig = {}): GlobalConfig {
-    function use<T>(source: T, defaultValue: T): T {
-      return override && source !== undefined ? source : defaultValue;
-    }
-
-    const current: GlobalConfig = { ...this.toastrConfig };
-
-    for (const property of Object.keys(current)) {
-      override[property] = use(override[property], current[property]);
-    }
-
-    const asGlobalConfig = override as GlobalConfig;
-    if (asGlobalConfig.iconClasses) {
-      const currentIconClasses = <ToastrIconClasses>current.iconClasses;
-      for (const property of Object.keys(currentIconClasses)) {
-        asGlobalConfig.iconClasses[property] = use(asGlobalConfig.iconClasses[property], currentIconClasses[property]);
-      }
-    }
-
-    return override;
+  private applyConfig(override: Partial<IndividualConfig> = {}): GlobalConfig {
+    return { ...this.toastrConfig, ...override };
   }
 
   /**

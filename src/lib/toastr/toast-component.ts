@@ -17,7 +17,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
-import { GlobalConfig, ToastPackage } from './toastr-config';
+import { ToastPackage, IndividualConfig } from './toastr-config';
 import { ToastrService } from './toastr-service';
 import { ToastRef } from './toast-injector';
 
@@ -55,7 +55,7 @@ import { ToastRef } from './toast-injector';
 export class Toast implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
-  options: GlobalConfig;
+  options: IndividualConfig;
   /** width of progress bar */
   width = -1;
   /** a combination of toast type and options.toastClass */
