@@ -27,7 +27,7 @@
     "@angular/forms": "^4.4.6",
     "@angular/platform-browser": "^4.4.6",
     "@angular/platform-browser-dynamic": "^4.4.6",
-    "@angular/router": "^4.4.6",
+    "@angular/router": "^5.0.0",
     "bootstrap": "^4.0.0-beta",
     "core-js": "^2.5.1",
     "lodash-es": "^4.17.4",
