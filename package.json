@@ -15,7 +15,7 @@
     "test": "ng test",
     "cleanup": "rimraf build dist waste deploy",
     "ghpages": "ng build --prod --build-optimizer --aot --no-progress --baseHref='/ngx-toastr/'",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check -t stylish",
     "e2e": "ng e2e"
   },
   "private": true,
