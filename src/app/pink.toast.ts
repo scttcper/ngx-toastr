@@ -1,5 +1,5 @@
 /* tslint:disable:no-access-missing-member */
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import {
   trigger,
   state,
@@ -99,9 +99,9 @@ export class PinkToast extends Toast {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected changeDetectorRef: ChangeDetectorRef,
+    protected appRef: ApplicationRef,
   ) {
-    super(toastrService, toastPackage, changeDetectorRef);
+    super(toastrService, toastPackage, appRef);
   }
 
   action(event: Event) {
