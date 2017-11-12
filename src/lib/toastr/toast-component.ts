@@ -3,7 +3,7 @@ import {
   OnDestroy,
   HostBinding,
   HostListener,
-  ApplicationRef,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   trigger,
@@ -71,7 +71,7 @@ export class Toast implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
+    protected changeDetectorRef: ChangeDetectorRef,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -105,7 +105,7 @@ export class Toast implements OnDestroy {
       }
     }
     if (this.options.onActivateTick) {
-      this.appRef.tick();
+      this.changeDetectorRef.detectChanges();
     }
   }
   /**

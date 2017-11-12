@@ -1,5 +1,5 @@
 /* tslint:disable:no-access-missing-member */
-import { Component, ApplicationRef } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import {
   trigger,
   state,
@@ -76,8 +76,8 @@ export class NotyfToast extends Toast {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
+    protected changeDetectorRef: ChangeDetectorRef,
   ) {
-    super(toastrService, toastPackage, appRef);
+    super(toastrService, toastPackage, changeDetectorRef);
   }
 }
