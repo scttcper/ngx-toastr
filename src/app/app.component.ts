@@ -2,7 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash-es';
 
-import { GlobalConfig, ToastrService } from '../lib/public_api';
+import { GlobalConfig, ToastrService, ToastNoAnimation } from '../lib/public_api';
 import json from '../lib/package.json';
 
 import { PinkToast } from './pink.toast';
@@ -73,6 +73,22 @@ export class AppComponent {
       t = randomMessage.title;
     }
     const opt = cloneDeep(this.options);
+    const inserted = this.toastr[this.type](m, t, opt);
+    if (inserted) {
+      this.lastInserted.push(inserted.toastId);
+    }
+    return inserted;
+  }
+  openToastNoAnimation() {
+    let m: string | undefined = this.message;
+    let t: string | undefined = this.title;
+    if (!this.title.length && !this.message.length) {
+      const randomMessage = quotes[random(0, quotes.length - 1)];
+      m = randomMessage.message;
+      t = randomMessage.title;
+    }
+    const opt = cloneDeep(this.options);
+    opt.toastComponent = ToastNoAnimation;
     const inserted = this.toastr[this.type](m, t, opt);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
