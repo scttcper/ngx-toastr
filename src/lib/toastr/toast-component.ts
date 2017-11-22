@@ -28,15 +28,15 @@ import { ToastRef } from './toast-injector';
     &times;
   </button>
   <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
-    {{title}}
+    {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message">
+  <div *ngIf="message && options.enableHtml" [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
-    {{message}}
+  <div *ngIf="message && !options.enableHtml" [class]="options.messageClass" [attr.aria-label]="message">
+    {{ message }}
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width.%]="width"></div>
+    <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
   animations: [
