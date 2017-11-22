@@ -1,4 +1,3 @@
-/* tslint:disable:no-access-missing-member */
 import { Component, ApplicationRef } from '@angular/core';
 import {
   trigger,
