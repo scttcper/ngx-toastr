@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { ComponentType } from '../portal/portal';
-import { Toast } from './toast-component';
+import { Toast } from './toast.component';
 import { ToastRef } from './toast-injector';
 
 /**

@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
 import { DefaultGlobalConfig } from './default-config';
-import { ToastContainerDirective } from './toast-directive';
+import { ToastContainerDirective } from './toast.directive';
 import { ToastRef, ToastInjector } from './toast-injector';
 import { TOAST_CONFIG } from './toast-token';
 import {

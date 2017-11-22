@@ -11,7 +11,7 @@ import { NotyfToast } from './notyf.toast';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { GithubLinkComponent } from './github-link/github-link.component';
-// import { ToastContainerModule } from '../lib/toast-directive';
+// import { ToastContainerModule } from '../lib/toast.directive';
 
 @NgModule({
   declarations: [
