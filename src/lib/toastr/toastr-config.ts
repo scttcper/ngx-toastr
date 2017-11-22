@@ -64,6 +64,16 @@ import { ToastRef } from './toast-injector';
    */
   messageClass: string;
   /**
+   * animation easing on toast
+   * default: ease-in
+   */
+  easing: string;
+  /**
+   * animation ease time on toast
+   * default: 300
+   */
+  easeTime: string | number;
+  /**
    * clicking on toast dismisses it
    * default: true
    */

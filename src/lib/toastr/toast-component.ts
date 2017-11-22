@@ -43,12 +43,16 @@ import { ToastRef } from './toast-injector';
     trigger('flyInOut', [
       state('inactive', style({
         display: 'none',
-        opacity: 0
+        opacity: 0,
       })),
       state('active', style({ opacity: 1 })),
       state('removed', style({ opacity: 0 })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => removed', animate('300ms ease-in')),
+      transition('inactive => active',
+        animate('{{ easeTime }}ms {{ easing }}')
+      ),
+      transition('active => removed',
+        animate('{{ easeTime }}ms {{ easing }}'),
+      ),
     ]),
   ],
 })
@@ -61,7 +65,13 @@ export class Toast implements OnDestroy {
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
   /** controls animation */
-  @HostBinding('@flyInOut') state = 'inactive';
+  @HostBinding('@flyInOut') state = {
+    value: 'inactive',
+    params: {
+      easeTime: this.toastPackage.config.easeTime,
+      easing: 'ease-in',
+    },
+  };
   private timeout: any;
   private intervalId: any;
   private hideTime: number;

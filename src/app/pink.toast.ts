@@ -34,17 +34,17 @@ import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api'
   template: `
   <div class="row">
     <div class="col-9">
-      <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
-        {{title}}
+      <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+        {{ title }}
       </div>
-      <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message"></div>
-      <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
-        {{message}}
+      <div *ngIf="message && options.enableHtml" [class]="options.messageClass" [innerHTML]="message"></div>
+      <div *ngIf="message && !options.enableHtml" [class]="options.messageClass" [attr.aria-label]="message">
+        {{ message }}
       </div>
     </div>
     <div class="col-3 text-right">
       <a *ngIf="!options.closeButton" class="btn btn-pink btn-sm" (click)="action($event)">
-        {{undoString}}
+        {{ undoString }}
       </a>
       <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-pink btn-sm">
         close
@@ -52,7 +52,7 @@ import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api'
     </div>
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width.%]="width"></div>
+    <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
   animations: [
@@ -90,6 +90,7 @@ import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api'
       ]))),
     ]),
   ],
+  preserveWhitespaces: false,
 })
 export class PinkToast extends Toast {
   // used for demo purposes
