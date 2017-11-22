@@ -4,6 +4,7 @@ import {
   HostBinding,
   HostListener,
   ApplicationRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   trigger,
@@ -18,7 +19,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 
 import { ToastPackage, IndividualConfig } from './toastr-config';
-import { ToastrService } from './toastr-service';
+import { ToastrService } from './toastr.service';
 import { ToastRef } from './toast-injector';
 
 @Component({
@@ -55,6 +56,8 @@ import { ToastRef } from './toast-injector';
       ),
     ]),
   ],
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Toast implements OnDestroy {
   message?: string | SafeHtml | null;
@@ -104,7 +107,7 @@ export class Toast implements OnDestroy {
    * activates toast and sets timeout
    */
   activateToast() {
-    this.state = 'active';
+    this.state = {...this.state, value: 'active'};
     if (this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();
@@ -143,11 +146,11 @@ export class Toast implements OnDestroy {
    * tells toastrService to remove this toast after animation time
    */
   remove() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
-    this.state = 'removed';
+    this.state = {...this.state, value: 'removed'};
     this.timeout = setTimeout(() =>
       this.toastrService.remove(this.toastPackage.toastId),
       300,
@@ -155,7 +158,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('click')
   tapToast() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     this.toastPackage.triggerTap();
@@ -165,7 +168,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseenter')
   stickAround() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
@@ -178,7 +181,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (this.options.extendedTimeOut === 0 || this.state === 'removed') {
+    if (this.options.extendedTimeOut === 0 || this.state.value === 'removed') {
       return;
     }
     this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
