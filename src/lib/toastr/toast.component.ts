@@ -26,7 +26,7 @@ import { ToastRef } from './toast-injector';
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
     &times;
   </button>
-  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
+  <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
   </div>
   <div *ngIf="message && options.enableHtml" [class]="options.messageClass" [innerHTML]="message">
