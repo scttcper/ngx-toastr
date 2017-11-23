@@ -1,6 +1,9 @@
 {
   "name": "ngx-toastr",
-  "version": "6.5.0",
+  "version": "7.0.0-beta.0",
+  "publishConfig": {
+    "tag": "next"
+  },
   "description": "Toastr for Angular",
   "main": "./toastr.umd.js",
   "module": "./toastr.es5.js",

@@ -4,7 +4,10 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "6.5.0",
+  "version": "7.0.0-beta.0",
+  "publishConfig": {
+    "tag": "next"
+  },
   "license": "MIT",
   "scripts": {
     "ng": "ng",
