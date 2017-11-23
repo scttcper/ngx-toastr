@@ -146,7 +146,7 @@ export class Toast implements OnDestroy {
     this.state = {...this.state, value: 'removed'};
     this.timeout = setTimeout(() =>
       this.toastrService.remove(this.toastPackage.toastId),
-      300,
+      this.toastPackage.config.easeTime,
     );
   }
   @HostListener('click')
