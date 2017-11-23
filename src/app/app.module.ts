@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToastrModule } from '../lib/public_api';
+import { ToastrModule, ToastNoAnimationModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
 import { PinkToast } from './pink.toast';
@@ -26,6 +26,7 @@ import { GithubLinkComponent } from './github-link/github-link.component';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastNoAnimationModule,
     ToastrModule.forRoot(),
     // ToastContainerModule.forRoot(),
   ],
