@@ -44,13 +44,17 @@ npm install ngx-toastr --save
 npm install @angular/animations --save
 ```
 
+Don't want to use `@angular/animations`? See
+[Setup Without Animations](#setup-without-animations).
 
-Don't want to use `@angular/animations`? See [Setup Without Animations](#setup-without-animations).
+## Setup
 
-## Setup  
-__step 1:__ add css 
-- copy [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css) to your project.
-- If you are using sass you can import the css.
+**step 1:** add css
+
+* copy
+  [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css)
+  to your project.
+* If you are using sass you can import the css.
 
 ```scss
 @import '~ngx-toastr/toastr';
@@ -269,14 +273,21 @@ map: {
 ```
 
 ## Setup Without Animations
-If you do not want to include `@angular/animations` in your project you can override the default toast component in the global config to use `ToastNoAnimation` instead of the default one.
+
+If you do not want to include `@angular/animations` in your project you can
+override the default toast component in the global config to use
+`ToastNoAnimation` instead of the default one.
 
 In your main module (ex: `app.module.ts`)
+
 ```typescript
 import { CommonModule } from '@angular/common';
 
-import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
-
+import {
+  ToastrModule,
+  ToastNoAnimation,
+  ToastNoAnimationModule,
+} from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -285,22 +296,24 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     // BrowserAnimationsModule no longer required
     ToastNoAnimationModule,
     ToastrModule.forRoot({
-      toastComponent: ToastNoAnimation
+      toastComponent: ToastNoAnimation,
     }),
 
     // ...
-  ], 
+  ],
   bootstrap: [App],
   declarations: [App],
 })
 class AppModule {}
-``` 
+```
 
 That's it! Animations are no longer required.
-  
-### FAQ  
-1. ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked  
-When opening a toast inside an angular lifecycle wrap it in setTimeout  
+
+### FAQ
+
+1. ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it
+   was checked\
+   When opening a toast inside an angular lifecycle wrap it in setTimeout
 
 ```typescript
 ngOnInit() {
