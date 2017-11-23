@@ -205,11 +205,12 @@ export class ToastrService {
       // Trigger change detection if onActivateTick is set to true
       if (config.onActivateTick && ins.onShown) {
         ins.onShown.take(1).subscribe(() => {
-          if (!ins.portal) // Gotta love Typescript's strict null checking
+          if (!ins.portal) { // Gotta love Typescript's strict null checking
             return;
+        }
 
           ins.portal.changeDetectorRef.detectChanges();
-        })
+        });
       }
       setTimeout(() => {
         ins.toastRef.activate();
