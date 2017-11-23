@@ -125,7 +125,6 @@ export class ToastNoAnimation implements OnDestroy {
     this.state = 'removed';
     this.timeout = setTimeout(
       () => this.toastrService.remove(this.toastPackage.toastId),
-      300,
     );
   }
   @HostListener('click')
