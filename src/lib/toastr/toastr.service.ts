@@ -22,6 +22,8 @@ import {
   ToastPackage,
 } from './toastr-config';
 
+import 'rxjs/add/operator/take';
+
 
 export interface ActiveToast {
   toastId?: number;
@@ -198,12 +200,24 @@ export class ToastrService {
     const toastInjector = new ToastInjector(toastPackage, this._injector);
     const component = new ComponentPortal(config.toastComponent, toastInjector);
     ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
+
     if (!keepInactive) {
+      // Trigger change detection if onActivateTick is set to true
+      if (config.onActivateTick && ins.onShown) {
+        ins.onShown.take(1).subscribe(() => {
+          if (!ins.portal) { // Gotta love Typescript's strict null checking
+            return;
+        }
+
+          ins.portal.changeDetectorRef.detectChanges();
+        });
+      }
       setTimeout(() => {
         ins.toastRef.activate();
         this.currentlyActive = this.currentlyActive + 1;
       });
     }
+
     this.toasts.push(ins);
     return ins;
   }

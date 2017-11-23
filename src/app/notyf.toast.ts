@@ -1,4 +1,4 @@
-import { Component, ApplicationRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   trigger,
   state,
@@ -74,9 +74,8 @@ export class NotyfToast extends Toast {
   // constructor is only necessary when not using AoT
   constructor(
     protected toastrService: ToastrService,
-    public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
+    public toastPackage: ToastPackage
   ) {
-    super(toastrService, toastPackage, appRef);
+    super(toastrService, toastPackage);
   }
 }

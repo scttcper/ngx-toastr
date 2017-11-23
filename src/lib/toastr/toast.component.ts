@@ -3,8 +3,6 @@ import {
   OnDestroy,
   HostBinding,
   HostListener,
-  ApplicationRef,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   trigger,
@@ -84,7 +82,6 @@ export class Toast implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -116,9 +113,6 @@ export class Toast implements OnDestroy {
       if (this.options.progressBar) {
         this.intervalId = setInterval(() => this.updateProgress(), 10);
       }
-    }
-    if (this.options.onActivateTick) {
-      this.appRef.tick();
     }
   }
   /**
