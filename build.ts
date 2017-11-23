@@ -16,7 +16,6 @@ const GLOBALS = {
   '@angular/common': 'ng.common',
   '@angular/animations': 'ng.animations',
   '@angular/platform-browser': 'ng.platformBrowser',
-  'rxjs': 'Rx',
   'rxjs/Observable': 'Rx',
   'rxjs/Subject': 'Rx',
   'rxjs/Observer': 'Rx',
