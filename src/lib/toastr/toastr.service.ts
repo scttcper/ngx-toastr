@@ -6,8 +6,8 @@ import {
   SecurityContext,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
 
+import { Observable } from 'rxjs/Observable';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
@@ -22,18 +22,16 @@ import {
   ToastPackage,
 } from './toastr-config';
 
-import 'rxjs/add/operator/take';
-
 
 export interface ActiveToast {
-  toastId?: number;
-  message?: string;
-  portal?: ComponentRef<any>;
+  toastId: number;
+  message: string;
+  portal: ComponentRef<any>;
   toastRef: ToastRef<any>;
-  onShown?: Observable<any>;
-  onHidden?: Observable<any>;
-  onTap?: Observable<any>;
-  onAction?: Observable<any>;
+  onShown: Observable<any>;
+  onHidden: Observable<any>;
+  onTap: Observable<any>;
+  onAction: Observable<any>;
 }
 
 @Injectable()
@@ -188,27 +186,23 @@ export class ToastrService {
       toastType,
       toastRef,
     );
+    const toastInjector = new ToastInjector(toastPackage, this._injector);
+    const component = new ComponentPortal(config.toastComponent, toastInjector);
     const ins: ActiveToast = {
       toastId: this.index,
-      message,
+      message: message || '',
       toastRef,
       onShown: toastRef.afterActivate(),
       onHidden: toastRef.afterClosed(),
       onTap: toastPackage.onTap(),
       onAction: toastPackage.onAction(),
+      portal: overlayRef.attach(component, this.toastrConfig.newestOnTop),
     };
-    const toastInjector = new ToastInjector(toastPackage, this._injector);
-    const component = new ComponentPortal(config.toastComponent, toastInjector);
-    ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
 
     if (!keepInactive) {
       // Trigger change detection if onActivateTick is set to true
       if (config.onActivateTick && ins.onShown) {
-        ins.onShown.take(1).subscribe(() => {
-          if (!ins.portal) { // Gotta love Typescript's strict null checking
-            return;
-        }
-
+        ins.onShown.subscribe(() => {
           ins.portal.changeDetectorRef.detectChanges();
         });
       }
