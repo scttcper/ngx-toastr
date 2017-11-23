@@ -3,7 +3,6 @@ import {
   OnDestroy,
   HostBinding,
   HostListener,
-  ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   trigger,
@@ -56,7 +55,6 @@ import { ToastRef } from './toast-injector';
     ]),
   ],
   preserveWhitespaces: false,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Toast implements OnDestroy {
   message?: string | SafeHtml | null;
