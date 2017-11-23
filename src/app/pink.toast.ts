@@ -1,5 +1,5 @@
 /* tslint:disable:no-access-missing-member */
-import { Component, ApplicationRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   trigger,
   state,
@@ -99,9 +99,8 @@ export class PinkToast extends Toast {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
   ) {
-    super(toastrService, toastPackage, appRef);
+    super(toastrService, toastPackage);
   }
 
   action(event: Event) {
