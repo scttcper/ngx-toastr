@@ -9,4 +9,4 @@ export * from './toastr/toastr-config';
 export * from './toastr/toastr.module';
 export * from './toastr/toast-injector';
 export * from './toastr/toast-token';
-export * from './toastr/toast-noanimation-component';
+export * from './toastr/toast-noanimation.component';
