@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Toast } from './toast-component';
+import { Toast } from './toast.component';
 import { TOAST_CONFIG } from './toast-token';
-import { ToastrService } from './toastr-service';
+import { ToastrService } from './toastr.service';
 import { GlobalConfig } from './toastr-config';
 import { OverlayContainer } from '../overlay/overlay-container';
 import { Overlay } from '../overlay/overlay';

@@ -3,18 +3,17 @@
   "compilerOptions": {
     "target": "es5",
     "outDir": "../../dist/es5",
-    "declaration": true,
-    "removeComments": false
+    "declaration": true
   },
   "files": [
     "public_api.ts"
   ],
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-toastr"
+    "flatModuleId": "ngx-toastr",
+    "annotationsAs": "decorators"
   }
 }

@@ -12,7 +12,7 @@
     "declaration": false,
     "removeComments": false,
     "strictNullChecks": true,
-    "lib": ["es2015", "dom"],
+    "lib": ["es2015", "dom", "es2015.promise", "es2015.collection", "es2015.iterable"],
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
@@ -20,11 +20,11 @@
     "public_api.ts"
   ],
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
-    "flatModuleId": "ngx-toastr"
+    "flatModuleId": "ngx-toastr",
+    "annotationsAs": "decorators"
   }
 }

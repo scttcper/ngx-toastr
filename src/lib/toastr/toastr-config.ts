@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
 import { ComponentType } from '../portal/portal';
-import { Toast } from './toast-component';
+import { Toast } from './toast.component';
 import { ToastRef } from './toast-injector';
 
 /**
@@ -63,6 +63,16 @@ import { ToastRef } from './toast-injector';
    * default: toast-title
    */
   messageClass: string;
+  /**
+   * animation easing on toast
+   * default: ease-in
+   */
+  easing: string;
+  /**
+   * animation ease time on toast
+   * default: 300
+   */
+  easeTime: string | number;
   /**
    * clicking on toast dismisses it
    * default: true
