@@ -25,9 +25,11 @@ import { ToastRef } from './toast-injector';
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" [class]="options.messageClass" [innerHTML]="message">
+  <div *ngIf="message && options.enableHtml" role="alert"
+    [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" [class]="options.messageClass" [attr.aria-label]="message">
+  <div *ngIf="message && !options.enableHtml" role="alert"
+    [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
   <div *ngIf="options.progressBar">
