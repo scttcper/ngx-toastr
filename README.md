@@ -185,21 +185,29 @@ imports: [
 ```
 
 ### Toastr Service methods return:
-
+Toastr Service will return undefined if prevent duplicates is enabled
 ```typescript
 export interface ActiveToast {
-  toastId: number; // Your Toast ID. Use this to close it individually
-  message: string; // the message of your toast. Stored for prevent duplicate reasons
-  portal?: any; // a reference to the component see portal.ts
-  toastRef?: ToastRef<any>; // a reference to your toast
-  onShown?: Observable<any>; // triggered when toast is active
-  onHidden?: Observable<any>; // triggered when toast is destroyed
-  onTap?: Observable<any>; // triggered on click
-  onAction?: Observable<any>; // available for your use in custom toast
+  /** Your Toast ID. Use this to close it individually */
+  toastId: number;
+  /** the message of your toast. Stored to prevent duplicates */
+  message: string;
+  /** a reference to the component see portal.ts */
+  portal: ComponentRef<any>;
+  /** a reference to your toast */
+  toastRef: ToastRef<any>;
+  /** triggered when toast is active */
+  onShown: Observable<any>;
+  /** triggered when toast is destroyed */
+  onHidden: Observable<any>;
+  /** triggered on toast click */
+  onTap: Observable<any>;
+  /** available for your use in custom toast */
+  onAction: Observable<any>;
 }
 ```
 
-Toastr Service will return undefined if prevent duplicates is on.
+
 
 ### Put toasts in your own container
 

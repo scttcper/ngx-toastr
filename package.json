@@ -65,7 +65,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   },
   "bundlesize": [
     {
