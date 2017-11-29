@@ -1,4 +1,4 @@
-import { browser, element, by, until } from 'protractor';
+import { browser, by, element, until } from 'protractor';
 
 export class ToastrPage {
   navigateTo() {

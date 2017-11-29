@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -21,12 +21,7 @@ import { Component, OnInit } from '@angular/core';
     <p>Easy Toasts for Angular</p>
   </header>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class HeaderComponent {
 }

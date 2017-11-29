@@ -2,11 +2,15 @@ import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash-es';
 
-import { GlobalConfig, ToastrService } from '../lib/public_api';
 import json from '../lib/package.json';
+import {
+  GlobalConfig,
+  ToastrService,
+  ToastNoAnimation,
+} from '../lib/public_api';
 
-import { PinkToast } from './pink.toast';
 import { NotyfToast } from './notyf.toast';
+import { PinkToast } from './pink.toast';
 
 interface Quote {
   title?: string;
@@ -16,17 +20,17 @@ interface Quote {
 const quotes: Quote[] = [
   {
     title: 'Title',
-    message: 'Message'
+    message: 'Message',
   },
   {
     title: '😃',
-    message: 'Supports Emoji'
+    message: 'Supports Emoji',
   },
   {
     message: 'My name is Inigo Montoya. You killed my father. Prepare to die!',
   },
   {
-    message: 'Titles are not always needed'
+    message: 'Titles are not always needed',
   },
   {
     title: 'Title only 👊',
@@ -50,21 +54,17 @@ export class AppComponent {
   version = VERSION;
   private lastInserted: number[] = [];
 
-  constructor(
-    public toastr: ToastrService,
-    private t: Title
-  ) {
+  constructor(public toastr: ToastrService, title: Title) {
     // sync options to toastrservice
     // this sets the options in the demo
     this.options = this.toastr.toastrConfig;
-    const current = t.getTitle();
+    const current = title.getTitle();
     // fix for tests
     if (json) {
-      t.setTitle(`${current} ${json.version}`);
+      title.setTitle(`${current}: v${json.version}`);
     }
   }
-  openToast() {
-    // Clone current config so it doesn't change when ngModel updates
+  getMessage() {
     let m: string | undefined = this.message;
     let t: string | undefined = this.title;
     if (!this.title.length && !this.message.length) {
@@ -72,8 +72,36 @@ export class AppComponent {
       m = randomMessage.message;
       t = randomMessage.title;
     }
+    return {
+      message: m,
+      title: t,
+    };
+  }
+  openToast() {
+    const { message, title } = this.getMessage();
+    // Clone current config so it doesn't change when ngModel updates
     const opt = cloneDeep(this.options);
-    const inserted = this.toastr[this.type](m, t, opt);
+    const inserted = this.toastr.show(
+      message,
+      title,
+      opt,
+      this.options.iconClasses[this.type],
+    );
+    if (inserted) {
+      this.lastInserted.push(inserted.toastId);
+    }
+    return inserted;
+  }
+  openToastNoAnimation() {
+    const { message, title } = this.getMessage();
+    const opt = cloneDeep(this.options);
+    opt.toastComponent = ToastNoAnimation;
+    const inserted = this.toastr.show(
+      message,
+      title,
+      opt,
+      this.options.iconClasses[this.type],
+    );
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -83,14 +111,8 @@ export class AppComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'pinktoast';
-    let m: string | undefined = this.message;
-    let t: string | undefined = this.title;
-    if (!this.title.length && !this.message.length) {
-      const randomMessage = quotes[random(0, quotes.length - 1)];
-      m = randomMessage.message || '';
-      t = randomMessage.title;
-    }
-    const inserted = this.toastr.show(m, t, opt);
+    const { message, title } = this.getMessage();
+    const inserted = this.toastr.show(message, title, opt);
     if (inserted && inserted.toastId) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -102,15 +124,8 @@ export class AppComponent {
     opt.toastClass = 'notyf confirm';
     opt.positionClass = 'notyf-container';
     this.options.newestOnTop = false;
-    let m: string | undefined = this.message;
-    let t: string | undefined = this.title;
-    if (!this.title.length && !this.message.length) {
-      const randomMessage = quotes[random(0, quotes.length - 1)];
-      m = randomMessage.message;
-      t = randomMessage.title;
-    }
-    m = m || 'Success';
-    const inserted = this.toastr.show(m, t, opt);
+    const { message, title } = this.getMessage();
+    const inserted = this.toastr.show(message || 'Success', title, opt);
     if (inserted && inserted.toastId) {
       this.lastInserted.push(inserted.toastId);
     }

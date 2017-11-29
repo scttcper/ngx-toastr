@@ -1,17 +1,18 @@
-import {
-  NgModule,
-  ModuleWithProviders,
-  SkipSelf,
-  Optional,
-} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from '@angular/core';
 
-import { Toast } from './toast-component';
-import { TOAST_CONFIG } from './toast-token';
-import { ToastrService } from './toastr-service';
-import { GlobalConfig } from './toastr-config';
-import { OverlayContainer } from '../overlay/overlay-container';
 import { Overlay } from '../overlay/overlay';
+import { OverlayContainer } from '../overlay/overlay-container';
+import { DefaultGlobalConfig } from './default-config';
+import { TOAST_CONFIG } from './toast-token';
+import { Toast } from './toast.component';
+import { GlobalConfig } from './toastr-config';
+import { ToastrService } from './toastr.service';
 
 
 @NgModule({
@@ -30,11 +31,11 @@ export class ToastrModule {
     return {
       ngModule: ToastrModule,
       providers: [
-        { provide: TOAST_CONFIG, useValue: config },
+        { provide: TOAST_CONFIG, useValue: { config, defaults: DefaultGlobalConfig } },
         OverlayContainer,
         Overlay,
         ToastrService,
-      ]
+      ],
     };
   }
 }

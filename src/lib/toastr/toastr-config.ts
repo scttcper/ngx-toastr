@@ -1,10 +1,9 @@
 import { SafeHtml } from '@angular/platform-browser';
 
-import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import { ComponentType } from '../portal/portal';
-import { Toast } from './toast-component';
 import { ToastRef } from './toast-injector';
 
 /**
@@ -64,6 +63,16 @@ import { ToastRef } from './toast-injector';
    */
   messageClass: string;
   /**
+   * animation easing on toast
+   * default: ease-in
+   */
+  easing: string;
+  /**
+   * animation ease time on toast
+   * default: 300
+   */
+  easeTime: string | number;
+  /**
    * clicking on toast dismisses it
    * default: true
    */
@@ -120,8 +129,8 @@ export interface GlobalConfig extends IndividualConfig {
  * Everything a toast needs to launch
  */
 export class ToastPackage {
-  private _onTap: Subject<any> = new Subject();
-  private _onAction: Subject<any> = new Subject();
+  private _onTap = new Subject<any>();
+  private _onAction = new Subject<any>();
 
   constructor(
     public toastId: number,
@@ -130,7 +139,12 @@ export class ToastPackage {
     public title: string | undefined,
     public toastType: string,
     public toastRef: ToastRef<any>,
-  ) { }
+  ) {
+    this.toastRef.afterClosed().subscribe(() => {
+      this._onAction.complete();
+      this._onTap.complete();
+    });
+  }
 
   /** Fired on click */
   triggerTap() {
@@ -145,13 +159,11 @@ export class ToastPackage {
   /** available for use in custom toast */
   triggerAction(action?: any) {
     this._onAction.next(action);
-    this._onAction.complete();
   }
 
   onAction(): Observable<any> {
     return this._onAction.asObservable();
   }
-
 }
 
 /* tslint:disable:no-empty-interface */

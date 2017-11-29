@@ -1,25 +1,22 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   Component,
-  OnDestroy,
   HostBinding,
   HostListener,
-  ApplicationRef,
+  OnDestroy,
 } from '@angular/core';
-import {
-  trigger,
-  state,
-  transition,
-  animate,
-  style,
-} from '@angular/animations';
 import { SafeHtml } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
 
-import { ToastPackage, IndividualConfig } from './toastr-config';
-import { ToastrService } from './toastr-service';
-import { ToastRef } from './toast-injector';
+import { IndividualConfig, ToastPackage } from './toastr-config';
+import { ToastrService } from './toastr.service';
 
 @Component({
   selector: '[toast-component]',
@@ -27,30 +24,37 @@ import { ToastRef } from './toast-injector';
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
     &times;
   </button>
-  <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
-    {{title}}
+  <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+    {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message">
+  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+    [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
-    {{message}}
+  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+    [class]="options.messageClass" [attr.aria-label]="message">
+    {{ message }}
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width.%]="width"></div>
+    <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
         display: 'none',
-        opacity: 0
+        opacity: 0,
       })),
       state('active', style({ opacity: 1 })),
       state('removed', style({ opacity: 0 })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => removed', animate('300ms ease-in')),
+      transition('inactive => active',
+        animate('{{ easeTime }}ms {{ easing }}')
+      ),
+      transition('active => removed',
+        animate('{{ easeTime }}ms {{ easing }}'),
+      ),
     ]),
   ],
+  preserveWhitespaces: false,
 })
 export class Toast implements OnDestroy {
   message?: string | SafeHtml | null;
@@ -61,7 +65,13 @@ export class Toast implements OnDestroy {
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
   /** controls animation */
-  @HostBinding('@flyInOut') state = 'inactive';
+  @HostBinding('@flyInOut') state = {
+    value: 'inactive',
+    params: {
+      easeTime: this.toastPackage.config.easeTime,
+      easing: 'ease-in',
+    },
+  };
   private timeout: any;
   private intervalId: any;
   private hideTime: number;
@@ -71,7 +81,6 @@ export class Toast implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -94,7 +103,7 @@ export class Toast implements OnDestroy {
    * activates toast and sets timeout
    */
   activateToast() {
-    this.state = 'active';
+    this.state = { ...this.state, value: 'active' };
     if (this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();
@@ -103,9 +112,6 @@ export class Toast implements OnDestroy {
       if (this.options.progressBar) {
         this.intervalId = setInterval(() => this.updateProgress(), 10);
       }
-    }
-    if (this.options.onActivateTick) {
-      this.appRef.tick();
     }
   }
   /**
@@ -133,19 +139,19 @@ export class Toast implements OnDestroy {
    * tells toastrService to remove this toast after animation time
    */
   remove() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
-    this.state = 'removed';
+    this.state = {...this.state, value: 'removed'};
     this.timeout = setTimeout(() =>
       this.toastrService.remove(this.toastPackage.toastId),
-      300,
+      this.toastPackage.config.easeTime,
     );
   }
   @HostListener('click')
   tapToast() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     this.toastPackage.triggerTap();
@@ -155,7 +161,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseenter')
   stickAround() {
-    if (this.state === 'removed') {
+    if (this.state.value === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
@@ -168,7 +174,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (this.options.extendedTimeOut === 0 || this.state === 'removed') {
+    if (this.options.extendedTimeOut === 0 || this.state.value === 'removed') {
       return;
     }
     this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);

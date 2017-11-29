@@ -1,15 +1,18 @@
 {
   "name": "ngx-toastr",
-  "version": "6.5.0",
+  "version": "7.0.0-beta.1",
+  "publishConfig": {
+    "tag": "next"
+  },
   "description": "Toastr for Angular",
   "main": "./toastr.umd.js",
   "module": "./toastr.es5.js",
   "es2015": "./toastr.es2015.js",
   "typings": "./index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=4.3.0 <=6.0.0",
-    "@angular/common": ">=4.3.0 <=6.0.0",
-    "rxjs": "^5.4.0"
+    "@angular/core": ">=5.0.0 <=6.0.0",
+    "@angular/common": ">=5.0.0 <=6.0.0",
+    "rxjs": "^5.5.0"
   },
   "repository": "https://github.com/scttcper/ngx-toastr.git",
   "homepage": "https://github.com/scttcper/ngx-toastr",

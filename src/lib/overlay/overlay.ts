@@ -1,9 +1,9 @@
-import { ComponentFactoryResolver, Injectable, ApplicationRef } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, Injectable } from '@angular/core';
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { OverlayRef } from './overlay-ref';
 
+import { ToastContainerDirective } from '../toastr/toast.directive';
 import { OverlayContainer } from './overlay-container';
-import { ToastContainerDirective } from '../toastr/toast-directive';
 
 
 /**

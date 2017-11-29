@@ -1,7 +1,7 @@
 import {
-  ViewContainerRef,
   ComponentRef,
-  Injector
+  Injector,
+  ViewContainerRef
 } from '@angular/core';
 
 export interface ComponentType<T> {

@@ -6,52 +6,61 @@ import {
   SecurityContext,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Observable } from 'rxjs/Observable';
 
+import { Observable } from 'rxjs/Observable';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
-import { DefaultGlobalConfig } from './default-config';
-import { ToastContainerDirective } from './toast-directive';
-import { ToastRef, ToastInjector } from './toast-injector';
-import { TOAST_CONFIG } from './toast-token';
+import { ToastInjector, ToastRef } from './toast-injector';
+import { ToastToken, TOAST_CONFIG } from './toast-token';
+import { ToastContainerDirective } from './toast.directive';
 import {
   GlobalConfig,
   IndividualConfig,
-  ToastrIconClasses,
   ToastPackage,
 } from './toastr-config';
 
 
 export interface ActiveToast {
-  toastId?: number;
-  message?: string;
-  portal?: ComponentRef<any>;
+  /** Your Toast ID. Use this to close it individually */
+  toastId: number;
+  /** the message of your toast. Stored to prevent duplicates */
+  message: string;
+  /** a reference to the component see portal.ts */
+  portal: ComponentRef<any>;
+  /** a reference to your toast */
   toastRef: ToastRef<any>;
-  onShown?: Observable<any>;
-  onHidden?: Observable<any>;
-  onTap?: Observable<any>;
-  onAction?: Observable<any>;
+  /** triggered when toast is active */
+  onShown: Observable<any>;
+  /** triggered when toast is destroyed */
+  onHidden: Observable<any>;
+  /** triggered on toast click */
+  onTap: Observable<any>;
+  /** available for your use in custom toast */
+  onAction: Observable<any>;
 }
 
 @Injectable()
 export class ToastrService {
   toastrConfig: GlobalConfig;
-  private index = 0;
-  private previousToastMessage?: string;
   currentlyActive = 0;
   toasts: ActiveToast[] = [];
   overlayContainer: ToastContainerDirective;
+  previousToastMessage: string | undefined;
+  private index = 0;
 
   constructor(
-    @Inject(TOAST_CONFIG) toastrConfig: GlobalConfig,
+    @Inject(TOAST_CONFIG) token: ToastToken,
     private overlay: Overlay,
     private _injector: Injector,
     private sanitizer: DomSanitizer,
   ) {
-    const defaultConfig = new DefaultGlobalConfig;
-    this.toastrConfig = { ...defaultConfig, ...toastrConfig };
-    this.toastrConfig.iconClasses = { ...defaultConfig.iconClasses, ...toastrConfig.iconClasses };
+    const defaultConfig = new token.defaults;
+    this.toastrConfig = { ...defaultConfig, ...token.config };
+    this.toastrConfig.iconClasses = {
+      ...defaultConfig.iconClasses,
+      ...token.config.iconClasses,
+    };
   }
   /** show toast */
   show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {
@@ -59,22 +68,22 @@ export class ToastrService {
   }
   /** show successful toast */
   success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.success || '';
+    const type = this.toastrConfig.iconClasses.success || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
   error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.error || '';
+    const type = this.toastrConfig.iconClasses.error || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
   info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.info || '';
+    const type = this.toastrConfig.iconClasses.info || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
   warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.warning || '';
+    const type = this.toastrConfig.iconClasses.warning || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /**
@@ -186,24 +195,32 @@ export class ToastrService {
       toastType,
       toastRef,
     );
+    const toastInjector = new ToastInjector(toastPackage, this._injector);
+    const component = new ComponentPortal(config.toastComponent, toastInjector);
     const ins: ActiveToast = {
       toastId: this.index,
-      message,
+      message: message || '',
       toastRef,
       onShown: toastRef.afterActivate(),
       onHidden: toastRef.afterClosed(),
       onTap: toastPackage.onTap(),
       onAction: toastPackage.onAction(),
+      portal: overlayRef.attach(component, this.toastrConfig.newestOnTop),
     };
-    const toastInjector = new ToastInjector(toastPackage, this._injector);
-    const component = new ComponentPortal(config.toastComponent, toastInjector);
-    ins.portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
+
     if (!keepInactive) {
+      // Trigger change detection if onActivateTick is set to true
+      if (config.onActivateTick && ins.onShown) {
+        ins.onShown.subscribe(() => {
+          ins.portal.changeDetectorRef.detectChanges();
+        });
+      }
       setTimeout(() => {
         ins.toastRef.activate();
         this.currentlyActive = this.currentlyActive + 1;
       });
     }
+
     this.toasts.push(ins);
     return ins;
   }

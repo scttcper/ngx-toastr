@@ -1,14 +1,13 @@
-/* tslint:disable:no-access-missing-member */
-import { Component, ApplicationRef } from '@angular/core';
 import {
-  trigger,
-  state,
-  transition,
   animate,
+  keyframes,
+  state,
   style,
-  keyframes
+  transition,
+  trigger
 } from '@angular/animations';
-import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api';
+import { Component } from '@angular/core';
+import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
   selector: '[notyf-toast-component]',
@@ -18,7 +17,7 @@ import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api'
     <div class="notyf-icon">
       <i class="notyf-confirm-icon"></i>
     </div>
-    <div class="notyf-message">{{message}}</div>
+    <div class="notyf-message">{{ message }}</div>
   </div>
   `,
   animations: [
@@ -75,9 +74,8 @@ export class NotyfToast extends Toast {
   // constructor is only necessary when not using AoT
   constructor(
     protected toastrService: ToastrService,
-    public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
+    public toastPackage: ToastPackage
   ) {
-    super(toastrService, toastPackage, appRef);
+    super(toastrService, toastPackage);
   }
 }

@@ -1,5 +1,5 @@
+import { Toast } from './toast.component';
 import { GlobalConfig } from './toastr-config';
-import { Toast } from './toast-component';
 
 export class DefaultGlobalConfig implements GlobalConfig {
   // Global
@@ -25,6 +25,8 @@ export class DefaultGlobalConfig implements GlobalConfig {
   positionClass = 'toast-top-right';
   titleClass = 'toast-title';
   messageClass = 'toast-message';
+  easing = 'ease-in';
+  easeTime = 300;
   tapToDismiss = true;
   onActivateTick = false;
   progressAnimation: 'decreasing' | 'increasing' = 'decreasing';

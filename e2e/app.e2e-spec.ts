@@ -8,7 +8,7 @@ describe('toastr App', () => {
     page = new ToastrPage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display toast HELLO THERE', () => {
     page.navigateTo();
     page.enterMessage();
     page.clickShowToast();

@@ -16,7 +16,6 @@ const GLOBALS = {
   '@angular/common': 'ng.common',
   '@angular/animations': 'ng.animations',
   '@angular/platform-browser': 'ng.platformBrowser',
-  'rxjs': 'Rx',
   'rxjs/Observable': 'Rx',
   'rxjs/Subject': 'Rx',
   'rxjs/Observer': 'Rx',
@@ -52,8 +51,16 @@ function generateBundle(input, file, globals, name, format) {
     external: Object.keys(globals),
     file,
     plugins,
+    onwarn(warning) {
+      if (warning.code === 'THIS_IS_UNDEFINED') {
+        return;
+      }
+      if (warning.code === 'UNUSED_EXTERNAL_IMPORT') {
+        return;
+      }
+      console.log(warning.message);
+    },
   }).then(bundle => {
-    console.log(file);
     return bundle.write({
       file,
       name,
