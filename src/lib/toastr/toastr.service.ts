@@ -11,10 +11,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
-import { DefaultGlobalConfig } from './default-config';
 import { ToastContainerDirective } from './toast.directive';
 import { ToastRef, ToastInjector } from './toast-injector';
-import { TOAST_CONFIG } from './toast-token';
+import { TOAST_CONFIG, ToastToken } from './toast-token';
 import {
   GlobalConfig,
   IndividualConfig,
@@ -52,14 +51,17 @@ export class ToastrService {
   overlayContainer: ToastContainerDirective;
 
   constructor(
-    @Inject(TOAST_CONFIG) toastrConfig: GlobalConfig,
+    @Inject(TOAST_CONFIG) token: ToastToken,
     private overlay: Overlay,
     private _injector: Injector,
     private sanitizer: DomSanitizer,
   ) {
-    const defaultConfig = new DefaultGlobalConfig;
-    this.toastrConfig = { ...defaultConfig, ...toastrConfig };
-    this.toastrConfig.iconClasses = { ...defaultConfig.iconClasses, ...toastrConfig.iconClasses };
+    const defaultConfig = new token.defaults;
+    this.toastrConfig = { ...defaultConfig, ...token.config };
+    this.toastrConfig.iconClasses = {
+      ...defaultConfig.iconClasses,
+      ...token.config.iconClasses,
+    };
   }
   /** show toast */
   show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {

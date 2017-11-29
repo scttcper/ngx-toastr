@@ -12,6 +12,7 @@ import { ToastrService } from './toastr.service';
 import { GlobalConfig } from './toastr-config';
 import { OverlayContainer } from '../overlay/overlay-container';
 import { Overlay } from '../overlay/overlay';
+import { DefaultGlobalConfig } from './default-config';
 
 
 @NgModule({
@@ -30,11 +31,11 @@ export class ToastrModule {
     return {
       ngModule: ToastrModule,
       providers: [
-        { provide: TOAST_CONFIG, useValue: config },
+        { provide: TOAST_CONFIG, useValue: { config, defaults: DefaultGlobalConfig } },
         OverlayContainer,
         Overlay,
         ToastrService,
-      ]
+      ],
     };
   }
 }
