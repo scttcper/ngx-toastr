@@ -13,9 +13,11 @@ export class ToastRef<T> {
   componentInstance: T;
 
   /** Subject for notifying the user that the toast has finished closing. */
-  private _afterClosed: Subject<any> = new Subject();
-  private _activate: Subject<any> = new Subject();
-  private _manualClose: Subject<any> = new Subject();
+  private _afterClosed = new Subject<any>();
+  /** triggered when toast is activated */
+  private _activate = new Subject<any>();
+  /** notifies the toast that it should close before the timeout */
+  private _manualClose = new Subject<any>();
 
   constructor(private _overlayRef: OverlayRef) { }
 
@@ -35,6 +37,8 @@ export class ToastRef<T> {
     this._overlayRef.detach();
     this._afterClosed.next();
     this._afterClosed.complete();
+    this._manualClose.complete();
+    this._activate.complete();
   }
 
   /** Gets an observable that is notified when the toast is finished closing. */
