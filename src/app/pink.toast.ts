@@ -7,6 +7,7 @@ import {
   trigger
 } from '@angular/animations';
 import { Component } from '@angular/core';
+
 import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
@@ -35,8 +36,11 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
       <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
         {{ title }}
       </div>
-      <div *ngIf="message && options.enableHtml" [class]="options.messageClass" [innerHTML]="message"></div>
-      <div *ngIf="message && !options.enableHtml" [class]="options.messageClass" [attr.aria-label]="message">
+      <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+        [class]="options.messageClass" [innerHTML]="message">
+      </div>
+      <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+        [class]="options.messageClass" [attr.aria-label]="message">
         {{ message }}
       </div>
     </div>

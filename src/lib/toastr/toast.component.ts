@@ -27,10 +27,10 @@ import { ToastrService } from './toastr.service';
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" role="alert"
+  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" role="alert"
+  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
