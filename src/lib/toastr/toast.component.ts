@@ -105,7 +105,7 @@ export class Toast implements OnDestroy {
    * activates toast and sets timeout
    */
   activateToast() {
-    this.state = {...this.state, value: 'active'};
+    this.state = { ...this.state, value: 'active' };
     if (this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();

@@ -69,22 +69,22 @@ export class ToastrService {
   }
   /** show successful toast */
   success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.success || '';
+    const type = this.toastrConfig.iconClasses.success || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
   error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.error || '';
+    const type = this.toastrConfig.iconClasses.error || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
   info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.info || '';
+    const type = this.toastrConfig.iconClasses.info || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
   warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
-    const type = this.toastrConfig.iconClasses!.warning || '';
+    const type = this.toastrConfig.iconClasses.warning || '';
     return this._buildNotification(type, message, title, this.applyConfig(override));
   }
   /**
