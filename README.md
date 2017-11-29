@@ -207,8 +207,6 @@ export interface ActiveToast {
 }
 ```
 
-
-
 ### Put toasts in your own container
 
 Put toasts in a specific div inside your application. This should probably be
@@ -266,12 +264,12 @@ export class AppComponent implements OnInit {
 }
 ```
 
-### SystemJS
+## SystemJS
 
 If you are using SystemJS, you should also adjust your configuration to point to
 the UMD bundle.
 
-In your systemjs config file, `map` needs to tell the System loader where to
+In your SystemJS config file, `map` needs to tell the System loader where to
 look for `ngx-toastr`:
 
 ```js
@@ -289,8 +287,6 @@ override the default toast component in the global config to use
 In your main module (ex: `app.module.ts`)
 
 ```typescript
-import { CommonModule } from '@angular/common';
-
 import {
   ToastrModule,
   ToastNoAnimation,
@@ -306,18 +302,36 @@ import {
     ToastrModule.forRoot({
       toastComponent: ToastNoAnimation,
     }),
-
-    // ...
   ],
-  bootstrap: [App],
-  declarations: [App],
+  // ...
 })
 class AppModule {}
 ```
 
 That's it! Animations are no longer required.
 
-### FAQ
+## Using A Custom Toast
+Create your toast component extending Toast see the demo's pink toast for an example
+https://github.com/scttcper/ngx-toastr/blob/master/src/app/pink.toast.ts
+
+```typescript
+import { ToastrModule } from 'ngx-toastr';
+
+@NgModule({
+  imports: [
+    ToastrModule.forRoot({
+      toastComponent: YourToastComponent, // added custom toast!
+    }),
+  ],
+  entryComponents: [YourToastComponent], // add!
+  bootstrap: [App],
+  declarations: [App, YourToastComponent], // add!
+})
+class AppModule {}
+```
+
+
+## FAQ
 
 1. ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it
    was checked\
