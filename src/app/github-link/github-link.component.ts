@@ -1,5 +1,5 @@
 /* tslint:disable:max-line-length */
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'github-link',
@@ -21,6 +21,7 @@ import { Component, Input } from '@angular/core';
     </a>
   </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GithubLinkComponent {
   @Input() username = 'scttcper';

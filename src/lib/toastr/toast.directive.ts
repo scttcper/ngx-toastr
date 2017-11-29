@@ -1,8 +1,7 @@
 import {
-  NgModule,
-  ModuleWithProviders,
   Directive,
   ElementRef,
+  NgModule,
 } from '@angular/core';
 
 @Directive({

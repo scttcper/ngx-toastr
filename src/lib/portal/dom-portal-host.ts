@@ -1,8 +1,8 @@
 import {
+  ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
   EmbeddedViewRef,
-  ApplicationRef,
 } from '@angular/core';
 import { BasePortalHost, ComponentPortal } from './portal';
 

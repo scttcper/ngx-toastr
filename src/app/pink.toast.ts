@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
 import {
-  trigger,
-  state,
-  transition,
   animate,
+  keyframes,
+  state,
   style,
-  keyframes
+  transition,
+  trigger
 } from '@angular/animations';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Toast, ToastPackage, ToastrService, ToastRef } from '../lib/public_api';
+import { Component } from '@angular/core';
+import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
   selector: '[pink-toast-component]',

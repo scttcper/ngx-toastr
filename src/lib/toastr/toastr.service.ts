@@ -11,13 +11,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
+import { ToastInjector, ToastRef } from './toast-injector';
+import { ToastToken, TOAST_CONFIG } from './toast-token';
 import { ToastContainerDirective } from './toast.directive';
-import { ToastRef, ToastInjector } from './toast-injector';
-import { TOAST_CONFIG, ToastToken } from './toast-token';
 import {
   GlobalConfig,
   IndividualConfig,
-  ToastrIconClasses,
   ToastPackage,
 } from './toastr-config';
 
@@ -44,11 +43,11 @@ export interface ActiveToast {
 @Injectable()
 export class ToastrService {
   toastrConfig: GlobalConfig;
-  private index = 0;
-  private previousToastMessage?: string;
   currentlyActive = 0;
   toasts: ActiveToast[] = [];
   overlayContainer: ToastContainerDirective;
+  previousToastMessage: string | undefined;
+  private index = 0;
 
   constructor(
     @Inject(TOAST_CONFIG) token: ToastToken,

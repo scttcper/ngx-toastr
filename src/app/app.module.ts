@@ -1,16 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule, ToastNoAnimationModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
-import { PinkToast } from './pink.toast';
-import { NotyfToast } from './notyf.toast';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
 import { GithubLinkComponent } from './github-link/github-link.component';
+import { HeaderComponent } from './header/header.component';
+import { NotyfToast } from './notyf.toast';
+import { PinkToast } from './pink.toast';
 // import { ToastContainerModule } from '../lib/toast.directive';
 
 @NgModule({

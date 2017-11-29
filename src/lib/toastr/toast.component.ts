@@ -1,24 +1,22 @@
 import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import {
   Component,
-  OnDestroy,
   HostBinding,
   HostListener,
+  OnDestroy,
 } from '@angular/core';
-import {
-  trigger,
-  state,
-  transition,
-  animate,
-  style,
-} from '@angular/animations';
 import { SafeHtml } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
 
-import { ToastPackage, IndividualConfig } from './toastr-config';
+import { IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
-import { ToastRef } from './toast-injector';
 
 @Component({
   selector: '[toast-component]',

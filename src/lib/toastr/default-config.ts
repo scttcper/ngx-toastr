@@ -1,5 +1,5 @@
-import { GlobalConfig } from './toastr-config';
 import { Toast } from './toast.component';
+import { GlobalConfig } from './toastr-config';
 
 export class DefaultGlobalConfig implements GlobalConfig {
   // Global

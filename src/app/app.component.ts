@@ -2,16 +2,15 @@ import { Component, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash-es';
 
+import json from '../lib/package.json';
 import {
   GlobalConfig,
   ToastrService,
   ToastNoAnimation,
-  ActiveToast,
 } from '../lib/public_api';
-import json from '../lib/package.json';
 
-import { PinkToast } from './pink.toast';
 import { NotyfToast } from './notyf.toast';
+import { PinkToast } from './pink.toast';
 
 interface Quote {
   title?: string;
@@ -55,14 +54,14 @@ export class AppComponent {
   version = VERSION;
   private lastInserted: number[] = [];
 
-  constructor(public toastr: ToastrService, private t: Title) {
+  constructor(public toastr: ToastrService, title: Title) {
     // sync options to toastrservice
     // this sets the options in the demo
     this.options = this.toastr.toastrConfig;
-    const current = t.getTitle();
+    const current = title.getTitle();
     // fix for tests
     if (json) {
-      t.setTitle(`${current} ${json.version}`);
+      title.setTitle(`${current}: v${json.version}`);
     }
   }
   getMessage() {

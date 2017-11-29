@@ -1,20 +1,18 @@
+import { CommonModule } from '@angular/common';
 import {
+  ApplicationRef,
   Component,
-  OnDestroy,
   HostBinding,
   HostListener,
-  ApplicationRef,
   NgModule,
+  OnDestroy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SafeHtml } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
 
-import { ToastPackage, IndividualConfig } from './toastr-config';
+import { IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
-import { ToastRef } from './toast-injector';
 
 @Component({
   selector: '[toast-component]',
