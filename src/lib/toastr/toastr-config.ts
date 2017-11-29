@@ -143,6 +143,7 @@ export class ToastPackage {
   ) {
     this.toastRef.afterClosed().subscribe(() => {
       this._onAction.complete();
+      this._onTap.complete();
     });
   }
 
