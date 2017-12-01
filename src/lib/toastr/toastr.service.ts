@@ -3,7 +3,8 @@ import {
   Inject,
   Injectable,
   Injector,
-  SecurityContext,
+  NgZone,
+  SecurityContext
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -54,6 +55,7 @@ export class ToastrService {
     private overlay: Overlay,
     private _injector: Injector,
     private sanitizer: DomSanitizer,
+    private ngZone: NgZone
   ) {
     const defaultConfig = new token.defaults;
     this.toastrConfig = { ...defaultConfig, ...token.config };
@@ -64,27 +66,27 @@ export class ToastrService {
   }
   /** show toast */
   show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {
-    return this._buildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
   success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses.success || '';
-    return this._buildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
   error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses.error || '';
-    return this._buildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
   info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses.info || '';
-    return this._buildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
   warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
     const type = this.toastrConfig.iconClasses.warning || '';
-    return this._buildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /**
    * Remove all or a single toast by id
@@ -156,6 +158,21 @@ export class ToastrService {
   }
 
   /**
+   * Determines the need to run inside angular's zone then builds the toast
+   */
+  private _preBuildNotification(
+    toastType: string,
+    message: string | undefined,
+    title: string | undefined,
+    config: GlobalConfig,
+  ): ActiveToast | null {
+    if (config.onActivateTick) {
+      return this.ngZone.run(() => this._buildNotification(toastType, message, title, config));
+    }
+    return this._buildNotification(toastType, message, title, config);
+  }
+
+  /**
    * Creates and attaches toast data to component
    * returns null if toast is duplicate and preventDuplicates == True
    */
@@ -209,12 +226,6 @@ export class ToastrService {
     };
 
     if (!keepInactive) {
-      // Trigger change detection if onActivateTick is set to true
-      if (config.onActivateTick && ins.onShown) {
-        ins.onShown.subscribe(() => {
-          ins.portal.changeDetectorRef.detectChanges();
-        });
-      }
       setTimeout(() => {
         ins.toastRef.activate();
         this.currentlyActive = this.currentlyActive + 1;
