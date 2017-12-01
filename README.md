@@ -52,7 +52,7 @@ Don't want to use `@angular/animations`? See
 **step 1:** add css
 
 * copy
-  [toast css](https://github.com/scttcper/ngx-toastr/blob/master/src/app/app.component.css)
+  [toast css](/src/lib/toastr.css)
   to your project.
 * If you are using sass you can import the css.
 
