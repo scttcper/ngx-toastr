@@ -161,7 +161,7 @@ export class ToastNoAnimation implements OnDestroy {
     );
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
-    this.width = 100;
+    this.width = -1;
     if (this.options.progressBar) {
       this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
