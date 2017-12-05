@@ -1,0 +1,184 @@
+.toast-title {
+  font-weight: bold;
+}
+.toast-message {
+  word-wrap: break-word;
+}
+.toast-message a,
+.toast-message label {
+  color: #FFFFFF;
+}
+.toast-message a:hover {
+  color: #CCCCCC;
+  text-decoration: none;
+}
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #ffffff;
+}
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+}
+button.toast-close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+.toast-center-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.toast-top-center {
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-bottom-center {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-top-full-width {
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-bottom-full-width {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+.toast-top-left {
+  top: 12px;
+  left: 12px;
+}
+.toast-top-right {
+  top: 12px;
+  right: 12px;
+}
+.toast-bottom-right {
+  right: 12px;
+  bottom: 12px;
+}
+.toast-bottom-left {
+  bottom: 12px;
+  left: 12px;
+}
+#toast-container {
+  pointer-events: none;
+  position: fixed;
+  z-index: 999999;
+}
+#toast-container .toast {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: .75rem 1.25rem .75rem 50px;
+  width: 300px;
+  border-radius: 3px 3px 3px 3px;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+}
+#toast-container .toast:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  opacity: 1;
+  cursor: pointer;
+}
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/info-circle.svg */
+#toast-container .toast.toast-info {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjU2IDhDMTE5LjA0MyA4IDggMTE5LjA4MyA4IDI1NmMwIDEzNi45OTcgMTExLjA0MyAyNDggMjQ4IDI0OHMyNDgtMTExLjAwMyAyNDgtMjQ4QzUwNCAxMTkuMDgzIDM5Mi45NTcgOCAyNTYgOHptMCA0NDhjLTExMC41MzIgMC0yMDAtODkuNDMxLTIwMC0yMDAgMC0xMTAuNDk1IDg5LjQ3Mi0yMDAgMjAwLTIwMCAxMTAuNDkxIDAgMjAwIDg5LjQ3MSAyMDAgMjAwIDAgMTEwLjUzLTg5LjQzMSAyMDAtMjAwIDIwMHptMC0zMzhjMjMuMTk2IDAgNDIgMTguODA0IDQyIDQycy0xOC44MDQgNDItNDIgNDItNDItMTguODA0LTQyLTQyIDE4LjgwNC00MiA0Mi00MnptNTYgMjU0YzAgNi42MjctNS4zNzMgMTItMTIgMTJoLTg4Yy02LjYyNyAwLTEyLTUuMzczLTEyLTEydi0yNGMwLTYuNjI3IDUuMzczLTEyIDEyLTEyaDEydi02NGgtMTJjLTYuNjI3IDAtMTItNS4zNzMtMTItMTJ2LTI0YzAtNi42MjcgNS4zNzMtMTIgMTItMTJoNjRjNi42MjcgMCAxMiA1LjM3MyAxMiAxMnYxMDBoMTJjNi42MjcgMCAxMiA1LjM3MyAxMiAxMnYyNHoiLz48L3N2Zz4=") !important;
+}
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/times-circle.svg */
+#toast-container .toast.toast-error {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjU2IDhDMTE5IDggOCAxMTkgOCAyNTZzMTExIDI0OCAyNDggMjQ4IDI0OC0xMTEgMjQ4LTI0OFMzOTMgOCAyNTYgOHptMCA0NDhjLTExMC41IDAtMjAwLTg5LjUtMjAwLTIwMFMxNDUuNSA1NiAyNTYgNTZzMjAwIDg5LjUgMjAwIDIwMC04OS41IDIwMC0yMDAgMjAwem0xMDEuOC0yNjIuMkwyOTUuNiAyNTZsNjIuMiA2Mi4yYzQuNyA0LjcgNC43IDEyLjMgMCAxN2wtMjIuNiAyMi42Yy00LjcgNC43LTEyLjMgNC43LTE3IDBMMjU2IDI5NS42bC02Mi4yIDYyLjJjLTQuNyA0LjctMTIuMyA0LjctMTcgMGwtMjIuNi0yMi42Yy00LjctNC43LTQuNy0xMi4zIDAtMTdsNjIuMi02Mi4yLTYyLjItNjIuMmMtNC43LTQuNy00LjctMTIuMyAwLTE3bDIyLjYtMjIuNmM0LjctNC43IDEyLjMtNC43IDE3IDBsNjIuMiA2Mi4yIDYyLjItNjIuMmM0LjctNC43IDEyLjMtNC43IDE3IDBsMjIuNiAyMi42YzQuNyA0LjcgNC43IDEyLjMgMCAxN3oiLz48L3N2Zz4=") !important;
+}
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/check.svg */
+#toast-container .toast.toast-success {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNDM1Ljg0OCA4My40NjZMMTcyLjgwNCAzNDYuNTFsLTk2LjY1Mi05Ni42NTJjLTQuNjg2LTQuNjg2LTEyLjI4NC00LjY4Ni0xNi45NzEgMGwtMjguMjg0IDI4LjI4NGMtNC42ODYgNC42ODYtNC42ODYgMTIuMjg0IDAgMTYuOTcxbDEzMy40MjEgMTMzLjQyMWM0LjY4NiA0LjY4NiAxMi4yODQgNC42ODYgMTYuOTcxIDBsMjk5LjgxMy0yOTkuODEzYzQuNjg2LTQuNjg2IDQuNjg2LTEyLjI4NCAwLTE2Ljk3MWwtMjguMjg0LTI4LjI4NGMtNC42ODYtNC42ODYtMTIuMjg0LTQuNjg2LTE2Ljk3IDB6Ii8+PC9zdmc+") !important;
+}
+/* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/regular/exclamation-triangle.svg */
+#toast-container .toast.toast-warning {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NzYgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjQ4Ljc0NyAyMDQuNzA1bDYuNTg4IDExMmMuMzczIDYuMzQzIDUuNjI2IDExLjI5NSAxMS45NzkgMTEuMjk1aDQxLjM3YTEyIDEyIDAgMCAwIDExLjk3OS0xMS4yOTVsNi41ODgtMTEyYy40MDUtNi44OTMtNS4wNzUtMTIuNzA1LTExLjk3OS0xMi43MDVoLTU0LjU0N2MtNi45MDMgMC0xMi4zODMgNS44MTItMTEuOTc4IDEyLjcwNXpNMzMwIDM4NGMwIDIzLjE5Ni0xOC44MDQgNDItNDIgNDJzLTQyLTE4LjgwNC00Mi00MiAxOC44MDQtNDIgNDItNDIgNDIgMTguODA0IDQyIDQyem0tLjQyMy0zNjAuMDE1Yy0xOC40MzMtMzEuOTUxLTY0LjY4Ny0zMi4wMDktODMuMTU0IDBMNi40NzcgNDQwLjAxM0MtMTEuOTQ1IDQ3MS45NDYgMTEuMTE4IDUxMiA0OC4wNTQgNTEySDUyNy45NGMzNi44NjUgMCA2MC4wMzUtMzkuOTkzIDQxLjU3Ny03MS45ODdMMzI5LjU3NyAyMy45ODV6TTUzLjE5MSA0NTUuMDAyTDI4Mi44MDMgNTcuMDA4YzIuMzA5LTQuMDAyIDguMDg1LTQuMDAyIDEwLjM5NCAwbDIyOS42MTIgMzk3Ljk5M2MyLjMwOCA0LS41NzkgOC45OTgtNS4xOTcgOC45OThINTguMzg4Yy00LjYxNy4wMDEtNy41MDQtNC45OTctNS4xOTctOC45OTd6Ii8+PC9zdmc+") !important;
+}
+#toast-container.toast-top-center .toast,
+#toast-container.toast-bottom-center .toast {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#toast-container.toast-top-full-width .toast,
+#toast-container.toast-bottom-full-width .toast {
+  width: 96%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.toast {
+  background-color: #030303;
+  pointer-events: auto;
+}
+.toast-success {
+  background-color: #51A351;
+  border: 1px solid #ffeeba;
+}
+.toast-error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+.toast-info {
+  background-color: #2F96B4;
+  border: 1px solid #ffeeba;
+}
+.toast-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+}
+.toast-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  background-color: #000000;
+  opacity: 0.4;
+}
+/*Responsive Design*/
+@media all and (max-width: 240px) {
+  #toast-container .toast.div {
+    padding: 8px 8px 8px 50px;
+    width: 11em;
+  }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em;
+  }
+}
+@media all and (min-width: 241px) and (max-width: 480px) {
+  #toast-container .toast.div {
+    padding: 8px 8px 8px 50px;
+    width: 18em;
+  }
+  #toast-container .toast-close-button {
+    right: -0.2em;
+    top: -0.2em;
+  }
+}
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #toast-container .toast.div {
+    padding: 15px 15px 15px 50px;
+    width: 25em;
+  }
+}
