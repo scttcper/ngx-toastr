@@ -9,7 +9,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "inlineSources": true,
-    "declaration": false,
+    "declaration": true,
     "removeComments": false,
     "strictNullChecks": true,
     "lib": ["es2015", "dom", "es2015.promise", "es2015.collection", "es2015.iterable"],
@@ -25,6 +25,6 @@
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
     "flatModuleId": "ngx-toastr",
-    "annotationsAs": "decorators"
+    "annotationsAs": "static fields"
   }
 }

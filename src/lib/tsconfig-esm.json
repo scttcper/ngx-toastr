@@ -3,7 +3,8 @@
   "compilerOptions": {
     "target": "es5",
     "outDir": "../../dist/es5",
-    "declaration": true
+    "declaration": false,
+    "removeComments": true
   },
   "files": [
     "public_api.ts"
@@ -14,6 +15,6 @@
     "enableSummariesForJit": true,
     "flatModuleOutFile": "index.js",
     "flatModuleId": "ngx-toastr",
-    "annotationsAs": "decorators"
+    "annotationsAs": "static fields"
   }
 }
