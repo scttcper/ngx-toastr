@@ -69,8 +69,18 @@
             <div class="col-md-4 mb-2">
               <div class="form-group">
                 <label for="toastTimeout"><strong>Timeout</strong></label>
-                <input [(ngModel)]="options.timeOut" (ngModelChange)="fixNumber('timeOut')" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
+                <input [(ngModel)]="options.timeOut" (ngModelChange)="fixNumber('timeOut')" [disabled]="options.disableTimeOut" type="text" class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
                 <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
+              </div>
+              <div class="form-group">
+                <label for="toastExtendedTimeout"><strong>Extended Timeout</strong></label>
+                <input type="text" [(ngModel)]="options.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" [disabled]="options.disableTimeOut" class="form-control" id="toastExtendedTimeout">
+                <small id="toastExtendedTimeoutHelp" class="form-text text-muted">0 never expires</small>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" [(ngModel)]="options.disableTimeOut"> Disable timouts
+                  </label>
+                </div>
               </div>
               <div class="form-group">
                 <label for="maxNumberToasts"><strong>Maximum Toasts</strong></label>
@@ -81,10 +91,6 @@
                     <input type="checkbox" [(ngModel)]="toastr.toastrConfig.autoDismiss"> Auto dismiss on max
                   </label>
                 </div>
-              </div>
-              <div class="form-group">
-                <label for="toastExtendedTimeout"><strong>Extended Timeout</strong></label>
-                <input type="text" [(ngModel)]="toastr.toastrConfig.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" class="form-control" id="toastExtendedTimeout">
               </div>
               <div class="form-group">
                 <label for="toastExtendedTimeout"><strong>Ease Time</strong></label>

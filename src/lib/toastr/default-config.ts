@@ -17,6 +17,7 @@ export class DefaultGlobalConfig implements GlobalConfig {
   // Individual
   toastComponent = Toast;
   closeButton = false;
+  disableTimeOut: false;
   timeOut = 5000;
   extendedTimeOut = 1000;
   enableHtml = false;
