@@ -11,6 +11,11 @@ import { ToastRef } from './toast-injector';
  */
  export interface IndividualConfig {
   /**
+   * disable both timeOut and extendedTimeOut
+   * default: false
+   */
+  disableTimeOut: boolean;
+  /**
   * toast time to live in milliseconds
   * default: 5000
   */

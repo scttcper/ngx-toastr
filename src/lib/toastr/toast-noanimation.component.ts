@@ -80,7 +80,7 @@ export class ToastNoAnimation implements OnDestroy {
    */
   activateToast() {
     this.state = 'active';
-    if (this.options.timeOut) {
+    if (!this.options.disableTimeOut && this.options.timeOut) {
       this.timeout = setTimeout(() => {
         this.remove();
       }, this.options.timeOut);
@@ -152,7 +152,9 @@ export class ToastNoAnimation implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (this.options.extendedTimeOut === 0 || this.state === 'removed') {
+    if (this.options.disableTimeOut
+      || this.options.extendedTimeOut === 0
+      || this.state === 'removed') {
       return;
     }
     this.timeout = setTimeout(

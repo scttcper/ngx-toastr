@@ -121,6 +121,7 @@ Passed to `ToastrService.success/error/warn/info/show()`
 | closeButton       | boolean                        | false             | Show close button                                                                                                                         |
 | timeOut           | number                         | 5000              | Time to live in milliseconds                                                                                                              |
 | extendedTimeOut   | number                         | 1000              | Time to close after a user hovers over toast                                                                                              |
+| disableTimeOut    | boolean                        | false             | Disable both timeOut and extendedTimeOut                                                                                                  |
 | easing            | string                         | 'ease-in'         | Toast component easing                                                                                                                    |
 | easeTime          | string \| number               | 300               | Time spent easing                                                                                                                         |
 | enableHtml        | boolean                        | false             | Allow html in message                                                                                                                     |
