@@ -57,7 +57,9 @@ Don't want to use `@angular/animations`? See
 * If you are using sass you can import the css.
 
 ```scss
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
+// or import a bootstrap 4 alert styled design (SASS ONLY)
+@import "~ngx-toastr/toastr-bs4-alert"
 ```
 
 * If you are using angular-cli you can add it to your angular-cli.json
