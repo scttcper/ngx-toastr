@@ -37,6 +37,13 @@ $enable-gradients: true;
 
 @import "notyf.css";
 
+.normal {
+  @import "lib/toastr.css";
+}
+.bootstrap {
+  @import "lib/toastr-bs4";
+}
+
 body {
   background-color: #fcfcfc;
 }
