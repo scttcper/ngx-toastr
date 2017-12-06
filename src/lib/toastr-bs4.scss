@@ -1,40 +1,4 @@
-.toast-title {
-  font-weight: bold;
-}
-.toast-message {
-  word-wrap: break-word;
-}
-.toast-message a,
-.toast-message label {
-  color: #FFFFFF;
-}
-.toast-message a:hover {
-  color: #CCCCCC;
-  text-decoration: none;
-}
-.toast-close-button {
-  position: relative;
-  right: -0.3em;
-  top: -0.3em;
-  float: right;
-  font-size: 20px;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-shadow: 0 1px 0 #ffffff;
-}
-.toast-close-button:hover,
-.toast-close-button:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.4;
-}
-button.toast-close-button {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-}
+// Position
 .toast-center-center {
   top: 50%;
   left: 50%;
@@ -76,35 +40,6 @@ button.toast-close-button {
   bottom: 12px;
   left: 12px;
 }
-.toast-container {
-  pointer-events: none;
-  position: fixed;
-  z-index: 999999;
-}
-.toast-container .toast {
-  position: relative;
-  overflow: hidden;
-  margin: 0 0 6px;
-  padding: .75rem 1.25rem .75rem 50px;
-  width: 300px;
-  background-position: 15px center;
-  background-repeat: no-repeat;
-  background-size: 24px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .03);
-  @include border-radius($alert-border-radius);
-}
-.toast-container .toast:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, .15);
-  opacity: 1;
-  cursor: pointer;
-}
-@function svg-factory($fill-color, $viewbox, $path) {
-  @return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + $viewbox + '"><path fill="' + rgba($fill-color, 1) + '" d="' + $path + '"/></svg>';
-}
-@function svg-encode($svg) {
-  @return 'data:image/svg+xml,' + $svg;
-}
-
 .toast-container.toast-top-center .toast,
 .toast-container.toast-bottom-center .toast {
   width: 300px;
@@ -117,9 +52,76 @@ button.toast-close-button {
   margin-left: auto;
   margin-right: auto;
 }
-.toast {
-  background-color: #030303;
-  pointer-events: auto;
+
+// Toast
+.toast-container {
+  pointer-events: none;
+  position: fixed;
+  z-index: 999999;
+
+  .toast {
+    @include border-radius($alert-border-radius);
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: .75rem 1.25rem .75rem 50px;
+    width: 300px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .03);
+    pointer-events: auto;
+
+    .toast-title {
+      font-weight: bold;
+    }
+    .toast-message {
+      word-wrap: break-word;
+    }
+    .toast-message a:hover {
+      text-decoration: underline;
+    }
+    .toast-close-button {
+      position: relative;
+      right: -0.3em;
+      top: -0.3em;
+      float: right;
+      font-size: 20px;
+      font-weight: bold;
+      color: inherit;
+      text-shadow: 0 1px 0 #fff;
+      opacity: .5;
+    }
+    .toast-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      background-color: #000000;
+      opacity: 0.3;
+    }
+    .toast-close-button:hover,
+    .toast-close-button:focus {
+      color: #000000;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: .75;
+    }
+  }
+  .toast:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+    opacity: 1;
+    cursor: pointer;
+  }
+}
+
+@function svg-factory($fill-color, $viewbox, $path) {
+  // opacity is 0.9999 otherwise it uses a hex equivelent
+  // firefox requires fill rgb
+  @return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + $viewbox + '"><path fill="' + rgba($fill-color, 0.999999) + '" d="' + $path + '"/></svg>';
+}
+@function svg-encode($svg) {
+  @return 'data:image/svg+xml,' + $svg;
 }
 .toast-success {
   /* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/solid/check.svg */
@@ -149,15 +151,8 @@ button.toast-close-button {
   background-color: theme-color-level('warning', -10);
   border: 1px solid theme-color-level('warning', -9);
 }
-.toast-progress {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 4px;
-  background-color: #000000;
-  opacity: 0.4;
-}
-/*Responsive Design*/
+
+// Responsive Design
 @media all and (max-width: 240px) {
   .toast-container .toast.div {
     padding: 8px 8px 8px 50px;
