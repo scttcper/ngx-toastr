@@ -1,8 +1,6 @@
-dist: trusty
-sudo: false
 language: node_js
-node_js:
-  - 8
+node_js: 8
+cache: npm
 addons:
   chrome: stable
 before_install: npm install -g greenkeeper-lockfile@1
