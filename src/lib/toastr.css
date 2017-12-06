@@ -1,45 +1,6 @@
 /* based on angular-toastr css https://github.com/Foxandxss/angular-toastr/blob/cb508fe6801d6b288d3afc525bb40fee1b101650/dist/angular-toastr.css */
-.toast-title {
-  font-weight: bold;
-}
-.toast-message {
-  word-wrap: break-word;
-}
-.toast-message a,
-.toast-message label {
-  color: #FFFFFF;
-}
-.toast-message a:hover {
-  color: #CCCCCC;
-  text-decoration: none;
-}
-.toast-close-button {
-  position: relative;
-  right: -0.3em;
-  top: -0.3em;
-  float: right;
-  font-size: 20px;
-  font-weight: bold;
-  color: #FFFFFF;
-  text-shadow: 0 1px 0 #ffffff;
-  /* opacity: 0.8; */
-}
-.toast-close-button:hover,
-.toast-close-button:focus {
-  color: #000000;
-  text-decoration: none;
-  cursor: pointer;
-  opacity: 0.4;
-}
-/*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
- If you want the anchor version, it requires `href="#"`.*/
-button.toast-close-button {
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  border: 0;
-}
+
+/* position */
 .toast-center-center {
   top: 50%;
   left: 50%;
@@ -80,6 +41,49 @@ button.toast-close-button {
 .toast-bottom-left {
   bottom: 12px;
   left: 12px;
+}
+
+/* toast styles */
+.toast-title {
+  font-weight: bold;
+}
+.toast-message {
+  word-wrap: break-word;
+}
+.toast-message a,
+.toast-message label {
+  color: #FFFFFF;
+}
+.toast-message a:hover {
+  color: #CCCCCC;
+  text-decoration: none;
+}
+.toast-close-button {
+  position: relative;
+  right: -0.3em;
+  top: -0.3em;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-shadow: 0 1px 0 #ffffff;
+  /* opacity: 0.8; */
+}
+.toast-close-button:hover,
+.toast-close-button:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+}
+/*Additional properties for button version
+ iOS requires the button element instead of an anchor tag.
+ If you want the anchor version, it requires `href="#"`.*/
+button.toast-close-button {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
 }
 .toast-container {
   pointer-events: none;
@@ -159,7 +163,7 @@ button.toast-close-button {
   background-color: #000000;
   opacity: 0.4;
 }
-/*Responsive Design*/
+/* Responsive Design */
 @media all and (max-width: 240px) {
   .toast-container .toast.div {
     padding: 8px 8px 8px 50px;
