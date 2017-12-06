@@ -21,8 +21,8 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-    &times;
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
@@ -44,7 +44,7 @@ import { ToastrService } from './toastr.service';
         display: 'none',
         opacity: 0,
       })),
-      state('active', style({ opacity: 1 })),
+      state('active', style({})),
       state('removed', style({ opacity: 0 })),
       transition('inactive => active',
         animate('{{ easeTime }}ms {{ easing }}')
@@ -64,6 +64,7 @@ export class Toast implements OnDestroy {
   width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
+  @HostBinding('attr.role') role = 'alert';
   /** controls animation */
   @HostBinding('@flyInOut') state = {
     value: 'inactive',

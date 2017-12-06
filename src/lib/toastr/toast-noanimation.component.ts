@@ -17,8 +17,8 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-    &times;
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
@@ -43,6 +43,7 @@ export class ToastNoAnimation implements OnDestroy {
   width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
+  @HostBinding('attr.role') role = 'alert';
   /** controls animation */
   state = 'inactive';
   private timeout: any;
