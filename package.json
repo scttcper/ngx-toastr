@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -79,7 +79,15 @@
     },
     {
       "path": "./dist/packages-dist/toastr.css",
+      "maxSize": "2 kB"
+    },
+    {
+      "path": "./dist/packages-dist/toastr-old.css",
       "maxSize": "3 kB"
+    },
+    {
+      "path": "./dist/packages-dist/toastr-bs4-alert.scss",
+      "maxSize": "2 kB"
     }
   ]
 }
