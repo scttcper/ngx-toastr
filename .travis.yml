@@ -10,8 +10,8 @@ before_script: greenkeeper-lockfile-update
 after_script: greenkeeper-lockfile-upload
 script:
   - npm run build
-  - npm run bundlesize
   - npm run lint
+  - npm run bundlesize
   - ./node_modules/.bin/ng test --single-run --code-coverage --no-progress --browsers=ChromeHeadless
 after_success:
   - bash <(curl -s https://codecov.io/bash)
