@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, Renderer2, VERSION } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { cloneDeep, random } from 'lodash-es';
 
@@ -52,9 +52,10 @@ export class AppComponent {
   message = '';
   type = types[0];
   version = VERSION;
+  enableBootstrap = false;
   private lastInserted: number[] = [];
 
-  constructor(public toastr: ToastrService, title: Title) {
+  constructor(public toastr: ToastrService, title: Title, private renderer: Renderer2) {
     // sync options to toastrservice
     // this sets the options in the demo
     this.options = this.toastr.toastrConfig;
@@ -139,5 +140,11 @@ export class AppComponent {
   }
   fixNumber(field: string) {
     this.options[field] = Number(this.options[field]);
+  }
+  setClass(enableBootstrap: boolean) {
+    const add = enableBootstrap ? 'bootstrap' : 'normal';
+    const remove = enableBootstrap ? 'normal' : 'bootstrap';
+    this.renderer.addClass(document.body, add);
+    this.renderer.removeClass(document.body, remove);
   }
 }

@@ -17,8 +17,8 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-    &times;
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}

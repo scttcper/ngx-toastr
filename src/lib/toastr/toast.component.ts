@@ -21,16 +21,16 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button">
-    &times;
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+  <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+  <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
     [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
@@ -44,7 +44,7 @@ import { ToastrService } from './toastr.service';
         display: 'none',
         opacity: 0,
       })),
-      state('active', style({ opacity: 1 })),
+      state('active', style({})),
       state('removed', style({ opacity: 0 })),
       transition('inactive => active',
         animate('{{ easeTime }}ms {{ easing }}')

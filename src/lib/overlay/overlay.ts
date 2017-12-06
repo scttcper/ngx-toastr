@@ -44,6 +44,7 @@ import { OverlayContainer } from './overlay-container';
     const pane = document.createElement('div');
     pane.id = 'toast-container';
     pane.classList.add(positionClass);
+    pane.classList.add('toast-container');
 
     if (!overlayContainer) {
       this._overlayContainer.getContainerElement().appendChild(pane);
