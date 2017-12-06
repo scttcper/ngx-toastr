@@ -161,6 +161,18 @@ function copyFiles() {
         `${process.cwd()}/dist/packages-dist/toastr.css`,
       ),
     ),
+    Observable.from(
+      copy(
+        `${process.cwd()}/src/lib/toastr-old.css`,
+        `${process.cwd()}/dist/packages-dist/toastr-old.css`,
+      ),
+    ),
+    Observable.from(
+      copy(
+        `${process.cwd()}/src/lib/toastr-bs4-alert.scss`,
+        `${process.cwd()}/dist/packages-dist/toastr-bs4-alert.scss`,
+      ),
+    ),
   );
 }
 
