@@ -43,7 +43,6 @@ export class ToastNoAnimation implements OnDestroy {
   width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
-  @HostBinding('attr.role') role = 'alert';
   /** controls animation */
   state = 'inactive';
   private timeout: any;

@@ -27,10 +27,10 @@ import { ToastrService } from './toastr.service';
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }}
   </div>
-  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+  <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+  <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
     [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
@@ -64,7 +64,6 @@ export class Toast implements OnDestroy {
   width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
-  @HostBinding('attr.role') role = 'alert';
   /** controls animation */
   @HostBinding('@flyInOut') state = {
     value: 'inactive',
