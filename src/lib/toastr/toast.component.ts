@@ -9,6 +9,7 @@ import {
   Component,
   HostBinding,
   HostListener,
+  NgZone,
   OnDestroy,
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
@@ -81,6 +82,7 @@ export class Toast implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
+    protected ngZone: NgZone,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -105,9 +107,11 @@ export class Toast implements OnDestroy {
   activateToast() {
     this.state = { ...this.state, value: 'active' };
     if (!this.options.disableTimeOut && this.options.timeOut) {
-      this.timeout = setTimeout(() => {
-        this.remove();
-      }, this.options.timeOut);
+      this.ngZone.runOutsideAngular(() =>
+        this.timeout = setTimeout(() => {
+          this.remove();
+        }, this.options.timeOut)
+      );
       this.hideTime = new Date().getTime() + this.options.timeOut;
       if (this.options.progressBar) {
         this.intervalId = setInterval(() => this.updateProgress(), 10);
@@ -144,9 +148,11 @@ export class Toast implements OnDestroy {
     }
     clearTimeout(this.timeout);
     this.state = {...this.state, value: 'removed'};
-    this.timeout = setTimeout(() =>
-      this.toastrService.remove(this.toastPackage.toastId),
-      this.toastPackage.config.easeTime,
+    this.ngZone.runOutsideAngular(() =>
+      this.timeout = setTimeout(() =>
+        this.toastrService.remove(this.toastPackage.toastId),
+        this.toastPackage.config.easeTime,
+      )
     );
   }
   @HostListener('click')
@@ -179,7 +185,9 @@ export class Toast implements OnDestroy {
       || this.state.value === 'removed') {
       return;
     }
-    this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut);
+    this.ngZone.runOutsideAngular(() =>
+      this.timeout = setTimeout(() => this.remove(), this.options.extendedTimeOut)
+    );
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
     this.width = -1;
