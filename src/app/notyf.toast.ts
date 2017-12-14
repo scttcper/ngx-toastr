@@ -6,7 +6,7 @@ import {
   transition,
   trigger
 } from '@angular/animations';
-import {Component, NgZone} from '@angular/core';
+import { Component } from '@angular/core';
 import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
@@ -75,8 +75,7 @@ export class NotyfToast extends Toast {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected ngZone: NgZone
   ) {
-    super(toastrService, toastPackage, ngZone);
+    super(toastrService, toastPackage);
   }
 }
