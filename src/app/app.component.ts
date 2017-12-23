@@ -1,4 +1,4 @@
-import { Component, Renderer2, VERSION } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import json from '../lib/package.json';

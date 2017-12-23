@@ -16,6 +16,7 @@
     "cleanup": "rimraf build dist waste deploy",
     "ghpages": "ng build --prod --build-optimizer --aot --no-progress --baseHref='/ngx-toastr/'",
     "lint": "ng lint --type-check -t stylish",
+    "lint:fix": "ng lint --type-check --fix -t stylish",
     "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "build:prerender": "npm run build:client-and-server-bundles && npm run webpack:server && npm run generate:prerender",
     "generate:prerender": "cd dist && node prerender",

@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-import { ActiveToast, ToastrModule } from '../lib/public_api';
+import { ToastrModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
