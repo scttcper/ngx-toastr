@@ -1,4 +1,5 @@
 // Load zone.js for the server.
+/* tslint:disable:ordered-imports */
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
@@ -10,9 +11,10 @@ enableProdMode();
 
 // Express Engine
 import { ngExpressEngine } from '@nguniversal/express-engine';
+
 // Import module map for lazy loading
-import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import { renderModuleFactory } from '@angular/platform-server';
+import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 import { ROUTES } from './static.paths';
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
@@ -27,10 +29,10 @@ let previousRender = Promise.resolve();
 
 // Iterate each route path
 ROUTES.forEach(route => {
-  var fullPath = join(BROWSER_FOLDER, route);
+  const fullPath = join(BROWSER_FOLDER, route);
 
   // Make sure the directory structure is there
-  if(!existsSync(fullPath)){
+  if (!existsSync(fullPath)) {
     mkdirSync(fullPath);
   }
 
