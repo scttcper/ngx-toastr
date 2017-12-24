@@ -14,7 +14,7 @@ import { GithubLinkComponent } from './github-link/github-link.component';
 import { HeaderComponent } from './header/header.component';
 
 describe('AppComponent', () => {
-  beforeEach(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         ToastrModule.forRoot({
@@ -35,10 +35,11 @@ describe('AppComponent', () => {
         GithubLinkComponent,
       ],
       providers: [
-        {provide: APP_BASE_HREF, useValue : '/' },
+        { provide: APP_BASE_HREF, useValue : '/' },
       ],
-    }).compileComponents();
-  });
+    });
+    TestBed.compileComponents();
+  }));
 
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
