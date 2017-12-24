@@ -15,7 +15,8 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 // Import module map for lazy loading
 import { renderModuleFactory } from '@angular/platform-server';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
-import { ROUTES } from './static.paths';
+
+export const ROUTES = ['/'];
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/main.bundle');

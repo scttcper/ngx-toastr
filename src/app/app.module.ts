@@ -26,9 +26,9 @@ import { PinkToast } from './pink.toast';
     HomeComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'my-app'}),
+    BrowserModule.withServerTransition({ appId: 'my-app' }),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full'},
+      { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
     FormsModule,
     BrowserAnimationsModule,
@@ -36,11 +36,8 @@ import { PinkToast } from './pink.toast';
     ToastrModule.forRoot(),
     // ToastContainerModule.forRoot(),
   ],
-  entryComponents: [
-    PinkToast,
-    NotyfToast,
-  ],
+  entryComponents: [PinkToast, NotyfToast],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

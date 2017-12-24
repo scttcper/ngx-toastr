@@ -3,18 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    // Set the module format to "commonjs":
     "module": "commonjs",
-    "types": [
-      "node"
-    ]
+    "types": ["node"]
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ],
-  // Add "angularCompilerOptions" with the AppServerModule you wrote
-  // set as the "entryModule".
+  "exclude": ["test.ts", "**/*.spec.ts"],
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule",
     "preserveWhitespaces": false
