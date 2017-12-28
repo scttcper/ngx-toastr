@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "8.0.0",
+  "version": "8.1.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -13,7 +13,7 @@
     "publish": "cd dist/packages-dist && npm publish",
     "bundlesize": "npx bundlesize",
     "test": "ng test",
-    "cleanup": "rimraf build dist waste deploy",
+    "test-ci": "ng test --single-run --code-coverage --no-progress --browsers=ChromeHeadless",
     "lint": "ng lint --type-check -t stylish",
     "lint:fix": "ng lint --type-check --fix -t stylish",
     "build:ghpages": "ng build --prod --baseHref='/ngx-toastr/' && ng build --prod --app 1 --output-hashing=false --no-progress",

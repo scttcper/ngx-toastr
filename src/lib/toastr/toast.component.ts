@@ -107,10 +107,10 @@ export class Toast implements OnDestroy {
   activateToast() {
     this.state = { ...this.state, value: 'active' };
     if (!this.options.disableTimeOut && this.options.timeOut) {
-      this.mySetTimeout(() => this.remove(), this.options.timeOut);
+      this.outsideTimeout(() => this.remove(), this.options.timeOut);
       this.hideTime = new Date().getTime() + this.options.timeOut;
       if (this.options.progressBar) {
-        this.mySetInterval(() => this.updateProgress(), 10);
+        this.outsideInterval(() => this.updateProgress(), 10);
       }
     }
   }
@@ -144,9 +144,9 @@ export class Toast implements OnDestroy {
     }
     clearTimeout(this.timeout);
     this.state = {...this.state, value: 'removed'};
-    this.mySetTimeout(() =>
+    this.outsideTimeout(() =>
         this.toastrService.remove(this.toastPackage.toastId),
-        this.toastPackage.config.easeTime
+        +this.toastPackage.config.easeTime,
       );
   }
   @HostListener('click')
@@ -179,16 +179,16 @@ export class Toast implements OnDestroy {
       || this.state.value === 'removed') {
       return;
     }
-    this.mySetTimeout(() => this.remove(), this.options.extendedTimeOut);
+    this.outsideTimeout(() => this.remove(), this.options.extendedTimeOut);
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
     this.width = -1;
     if (this.options.progressBar) {
-      this.mySetInterval(() => this.updateProgress(), 10);
+      this.outsideInterval(() => this.updateProgress(), 10);
     }
   }
 
-  mySetTimeout(func: Function, timeout: any) {
+  outsideTimeout(func: Function, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(() =>
         this.timeout = setTimeout(() => this.runInsideAngular(func), timeout)
@@ -198,7 +198,7 @@ export class Toast implements OnDestroy {
     }
   }
 
-  mySetInterval(func: Function, timeout: any) {
+  outsideInterval(func: Function, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(() =>
         this.intervalId = setInterval(() => this.runInsideAngular(func), timeout)
