@@ -74,7 +74,7 @@ export class NotyfToast extends Toast {
   // constructor is only necessary when not using AoT
   constructor(
     protected toastrService: ToastrService,
-    public toastPackage: ToastPackage
+    public toastPackage: ToastPackage,
   ) {
     super(toastrService, toastPackage);
   }
