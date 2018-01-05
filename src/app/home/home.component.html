@@ -20,33 +20,39 @@
 
               <div class="form-group">
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.enableHtml"> Enable Html (message)
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.enableHtml" id="enableHtml">
+                  <label class="form-check-label" for="enableHtml">
+                    Enable Html (message)
                   </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.tapToDismiss"> Tap to dismiss
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.tapToDismiss" id="tapToDismiss">
+                  <label class="form-check-label" for="tapToDismiss">
+                    Tap to dismiss
                   </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.closeButton"> Close button
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.closeButton" id="closeButton">
+                  <label class="form-check-label" for="closeButton">
+                    Close button
                   </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.preventDuplicates"> Prevent duplicates
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.preventDuplicates" id="preventDuplicates">
+                  <label class="form-check-label" for="preventDuplicates">
+                    Prevent duplicates
                   </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.newestOnTop"> New toasts on top
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.newestOnTop" id="newestOnTop">
+                  <label class="form-check-label" for="newestOnTop">
+                    New toasts on top
                   </label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" [(ngModel)]="options.progressBar"> Progress bar
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.progressBar" id="progressBar">
+                  <label class="form-check-label" for="progressBar">
+                    Progress bar
                   </label>
                 </div>
               </div>
@@ -55,15 +61,15 @@
                   <strong>Progress Bar Animation</strong>
                 </label>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="decreasing"
-                      [disabled]="!options.progressBar"> Decreasing
-                  </label>
+                  <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="decreasing"
+                    [disabled]="!options.progressBar" id="progressBarDecreasing">
+                  <label class="form-check-label" for="progressBarDecreasing">Decreasing</label>
                 </div>
                 <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="increasing"
-                      [disabled]="!options.progressBar"> Increasing
+                  <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="increasing"
+                    [disabled]="!options.progressBar" id="progressBarIncreasing">
+                  <label class="form-check-label" for="progressBarIncreasing">
+                    Increasing
                   </label>
                 </div>
               </fieldset>
@@ -84,9 +90,10 @@
                 <input type="text" [(ngModel)]="options.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" [disabled]="options.disableTimeOut"
                   class="form-control" id="toastExtendedTimeout">
                 <small id="toastExtendedTimeoutHelp" class="form-text text-muted">0 never expires</small>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="options.disableTimeOut"> Disable timouts
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="options.disableTimeOut" id="disableTimeOut">
+                  <label for="disableTimeOut" class="form-check-label">
+                    Disable timouts
                   </label>
                 </div>
               </div>
@@ -97,10 +104,9 @@
                 <input [(ngModel)]="toastr.toastrConfig.maxOpened" (ngModelChange)="fixNumber('maxOpened')" type="text" class="form-control"
                   id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
                 <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" [(ngModel)]="toastr.toastrConfig.autoDismiss"> Auto dismiss on max
-                  </label>
+                <div class="form-check">
+                  <input type="checkbox" [(ngModel)]="toastr.toastrConfig.autoDismiss" id="autoDismiss">
+                  <label for="disableTimeOut" class="form-check-label" for="autoDismiss">Auto dismiss on max</label>
                 </div>
               </div>
               <div class="form-group">
@@ -119,23 +125,27 @@
                       <strong>Toast Type</strong>
                     </label>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="success"> Success
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="success" id="typesuccess">
+                      <label class="form-check-label" for="typesuccess">
+                        Success
                       </label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="info"> Info
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="info" id="typeinfo">
+                      <label class="form-check-label" for="typeinfo">
+                        Info
                       </label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="warning"> Warning
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="warning" id="typewarning">
+                      <label class="form-check-label" for="typewarning">
+                        Warning
                       </label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="error"> Error
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="error" id="typeerror">
+                      <label class="form-check-label" for="typeerror">
+                        Error
                       </label>
                     </div>
                   </fieldset>
@@ -146,51 +156,50 @@
                       <strong>Toast Position</strong>
                     </label>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right"> Top Right
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-right"> Bottom Right
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right"
+                        id="toast-top-right">
+                      <label for="toast-top-right" class="form-check-label">Top Right</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-left"> Bottom Left
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-right"
+                        id="toast-bottom-right">
+                      <label for="toast-bottom-right" class="form-check-label">Bottom Right</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-left"> Top Left
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-left"
+                        id="toast-bottom-left">
+                      <label for="toast-bottom-left" class="form-check-label">Bottom Left</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-full-width"> Top Full Width
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-left"
+                        id="toast-top-left">
+                      <label for="toast-top-left" class="form-check-label">Top Left</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-full-width"> Bottom Full Width
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-full-width"
+                        id="top-full-width">
+                      <label for="top-full-width" class="form-check-label">Top Full Width</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-center"> Top Center
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-full-width"
+                        id="bottom-full-width">
+                      <label for="bottom-full-width" class="form-check-label">Bottom Full Width</label>
                     </div>
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-center"> Bottom Center
-                      </label>
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-center"
+                        id="toast-top-center">
+                      <label for="toast-top-center" class="form-check-label">Top Center</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-center"
+                        id="toast-bottom-center">
+                      <label for="toast-bottom-center" class="form-check-label">Bottom Center</label>
                     </div>
                   </fieldset>
                   <div class="form-group">
                     <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" (ngModelChange)="setClass($event)" [(ngModel)]="enableBootstrap"> Bootstrap 4 Style
-                      </label>
+                      <input class="form-check-input" type="checkbox" (ngModelChange)="setClass($event)" [(ngModel)]="enableBootstrap" id="enableBootstrap">
+                      <label for="enableBootstrap" class="form-check-label">Bootstrap 4 Style</label>
                     </div>
                   </div>
                 </div>
