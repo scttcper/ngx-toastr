@@ -14,7 +14,7 @@ script:
   - npm run build
   - npm run lint
   - npm run bundlesize
-  - npm run test-ci
+  - npm run test:ci
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - npm run build:prerender-ghpages
