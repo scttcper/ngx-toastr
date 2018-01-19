@@ -1,15 +1,15 @@
 {
   "name": "ngx-toastr",
-  "version": "8.1.0",
+  "version": "8.1.1",
   "description": "Toastr for Angular",
   "main": "./toastr.umd.js",
   "module": "./toastr.es5.js",
   "es2015": "./toastr.es2015.js",
   "typings": "./index.d.ts",
   "peerDependencies": {
-    "@angular/core": ">=5.0.0 <=6.0.0",
-    "@angular/common": ">=5.0.0 <=6.0.0",
-    "rxjs": "^5.5.0"
+    "@angular/core": ">=5.0.0",
+    "@angular/common": ">=5.0.0",
+    "rxjs": ">=5.5.0"
   },
   "repository": "https://github.com/scttcper/ngx-toastr.git",
   "homepage": "https://github.com/scttcper/ngx-toastr",
