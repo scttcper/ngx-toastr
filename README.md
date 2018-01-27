@@ -116,7 +116,7 @@ There are **individual options** and **global options**.
 
 ### Individual Options
 
-Passed to `ToastrService.success/error/warn/info/show()`
+Passed to `ToastrService.success/error/warning/info/show()`
 
 | Option            | Type                           | Default           | Description                                                                                                                               |
 | ----------------- | ------------------------------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -363,3 +363,8 @@ ngOnInit() {
 ## License
 
 MIT
+
+---
+
+> GitHub [@scttcper](https://github.com/scttcper) &nbsp;&middot;&nbsp;
+> Twitter [@scttcper](https://twitter.com/scttcper)
