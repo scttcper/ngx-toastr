@@ -10,7 +10,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "rimraf dist && ts-node build.ts",
-    "publish": "cd dist/packages-dist && npm publish",
+    "publish": "cd dist && npm publish",
     "bundlesize": "npx bundlesize",
     "test": "ng test --browsers=ChromeCI",
     "test:ci": "ng test --single-run --code-coverage --no-progress --browsers=ChromeCI",
