@@ -1,20 +1,23 @@
 {
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-toastr",
-  "version": "8.1.1",
-  "description": "Toastr for Angular",
-  "main": "./toastr.umd.js",
-  "module": "./toastr.es5.js",
-  "es2015": "./toastr.es2015.js",
-  "typings": "./index.d.ts",
+  "version": "8.2.0",
   "peerDependencies": {
     "@angular/core": ">=5.0.0",
     "@angular/common": ">=5.0.0",
     "rxjs": ">=5.5.0"
   },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public_api.ts"
+    },
+    "dest": "../../dist"
+  },
   "repository": "https://github.com/scttcper/ngx-toastr.git",
   "homepage": "https://github.com/scttcper/ngx-toastr",
-  "license": "MIT",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
+  "license": "MIT",
+  "description": "Toastr for Angular",
   "keywords": [
     "ng2",
     "ngx",

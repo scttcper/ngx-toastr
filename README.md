@@ -278,7 +278,7 @@ look for `ngx-toastr`:
 
 ```js
 map: {
-  'ngx-toastr': 'node_modules/ngx-toastr/toastr.umd.js',
+  'ngx-toastr': 'node_modules/ngx-toastr/bundles/ngx-toastr.umd.min.js',
 }
 ```
 

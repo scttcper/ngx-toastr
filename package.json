@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "8.1.1",
+  "version": "8.2.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -26,29 +26,30 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.2.2",
-    "@angular/common": "^5.2.2",
-    "@angular/compiler": "^5.2.2",
-    "@angular/core": "^5.2.2",
-    "@angular/forms": "^5.2.2",
-    "@angular/http": "^5.2.2",
-    "@angular/platform-browser": "^5.2.2",
-    "@angular/platform-browser-dynamic": "^5.2.2",
-    "@angular/platform-server": "^5.2.2",
-    "@angular/router": "^5.2.2",
+    "@angular/animations": "^5.2.3",
+    "@angular/common": "^5.2.3",
+    "@angular/compiler": "^5.2.3",
+    "@angular/core": "^5.2.3",
+    "@angular/forms": "^5.2.3",
+    "@angular/http": "^5.2.3",
+    "@angular/platform-browser": "^5.2.3",
+    "@angular/platform-browser-dynamic": "^5.2.3",
+    "@angular/platform-server": "^5.2.3",
+    "@angular/router": "^5.2.3",
     "@nguniversal/express-engine": "^5.0.0-beta.5",
     "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
     "bootstrap": "4.0.0",
     "core-js": "^2.5.3",
-    "lodash-es": "^4.17.4",
+    "lodash-es": "^4.17.5",
     "rxjs": "^5.5.6",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "1.6.6",
-    "@angular/compiler-cli": "^5.2.2",
-    "@angular/language-service": "^5.2.2",
+    "@angular/cli": "1.6.7",
+    "@angular/compiler-cli": "^5.2.3",
+    "@angular/language-service": "^5.2.3",
+    "@types/fs-extra": "^5.0.0",
     "@types/jasmine": "^2.8.6",
     "@types/jasminewd2": "^2.0.3",
     "@types/lodash-es": "^4.17.0",
@@ -64,9 +65,10 @@
     "karma-coverage-istanbul-reporter": "^1.4.1",
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "ng-packagr": "^2.0.0",
     "protractor": "^5.3.0",
     "rimraf": "^2.6.2",
-    "rollup": "^0.55.1",
+    "rollup": "^0.55.3",
     "rollup-plugin-filesize": "^1.5.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "ts-loader": "^3.4.0",
@@ -76,27 +78,27 @@
   },
   "bundlesize": [
     {
-      "path": "./dist/packages-dist/toastr.umd.js",
-      "maxSize": "6 kB"
+      "path": "./dist/bundles/ngx-toastr.umd.min.js",
+      "maxSize": "5 kB"
     },
     {
-      "path": "./dist/packages-dist/toastr.es2015.js",
-      "maxSize": "7 kB"
+      "path": "./dist/esm2015/ngx-toastr.js",
+      "maxSize": "8 kB"
     },
     {
-      "path": "./dist/packages-dist/toastr.es5.js",
-      "maxSize": "6 kB"
+      "path": "./dist/esm5/ngx-toastr.js",
+      "maxSize": "8 kB"
     },
     {
-      "path": "./dist/packages-dist/toastr.css",
+      "path": "./dist/toastr.css",
       "maxSize": "2 kB"
     },
     {
-      "path": "./dist/packages-dist/toastr-old.css",
+      "path": "./dist/toastr-old.css",
       "maxSize": "3 kB"
     },
     {
-      "path": "./dist/packages-dist/toastr-bs4-alert.scss",
+      "path": "./dist/toastr-bs4-alert.scss",
       "maxSize": "2 kB"
     }
   ]
