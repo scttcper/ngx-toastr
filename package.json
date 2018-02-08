@@ -4,7 +4,7 @@
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "8.2.0",
+  "version": "8.2.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
