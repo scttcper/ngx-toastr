@@ -7,18 +7,16 @@
     <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
   </a> 
   <a href="https://travis-ci.org/scttcper/ngx-toastr">
-    <img src="https://travis-ci.org/scttcper/ngx-toastr.svg?branch=master" alt="travis"></a> 
+    <img src="https://travis-ci.org/scttcper/ngx-toastr.svg?branch=master" alt="travis">
+  </a> 
   <a href="https://codecov.io/github/scttcper/ngx-toastr">
     <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
   </a>
-  <a href="https://greenkeeper.io/">
-    <img src="https://badges.greenkeeper.io/scttcper/ngx-toastr.svg" alt="greenkeeper">
-  </a>
   <br>
-  DEMO: https://scttcper.github.io/ngx-toastr/
+  <br>
 </div>
-<br>
-<br>
+
+DEMO: https://scttcper.github.io/ngx-toastr/
 
 ## Features
 
