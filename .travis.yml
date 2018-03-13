@@ -14,7 +14,7 @@ after_success:
 deploy:
   provider: pages
   skip_cleanup: true
-  local_dir: dist
+  local_dir: dist/browser
   github_token: $GH_TOKEN
   on:
     branch: master
