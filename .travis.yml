@@ -1,15 +1,8 @@
 sudo: false
-dist: xenial
 language: node_js
 node_js: 8
-cache:
-  directories:
-    - $HOME/.npm
 addons:
   chrome: stable
-before_install: npm install -g greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
 script:
   - npm run build
   - npm run lint
@@ -21,7 +14,7 @@ after_success:
 deploy:
   provider: pages
   skip_cleanup: true
-  local_dir: dist/browser
+  local_dir: dist
   github_token: $GH_TOKEN
   on:
     branch: master
