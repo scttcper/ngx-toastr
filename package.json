@@ -41,7 +41,7 @@
     "bootstrap": "4.0.0",
     "core-js": "2.5.3",
     "lodash-es": "4.17.7",
-    "rxjs": "5.5.6",
+    "rxjs": "5.5.7",
     "web-animations-js": "2.3.1",
     "zone.js": "0.8.20"
   },
