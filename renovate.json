@@ -1,5 +1,14 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "timezone": "America/Los_Angeles",
+  "schedule": ["after 10pm and before 5am on every weekday"],
+  "prHourlyLimit": 4,
+  "rebaseStalePrs": true,
+  "semanticCommits": true,
+  "patch": {
+    "automerge": true
+  }
 }
