@@ -36,7 +36,7 @@
     "@angular/platform-browser-dynamic": "5.2.9",
     "@angular/platform-server": "5.2.9",
     "@angular/router": "5.2.9",
-    "@nguniversal/express-engine": "5.0.0-beta.6",
+    "@nguniversal/express-engine": "5.0.0-beta.7",
     "@nguniversal/module-map-ngfactory-loader": "5.0.0-beta.7",
     "bootstrap": "4.0.0",
     "core-js": "2.5.3",
