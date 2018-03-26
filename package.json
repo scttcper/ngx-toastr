@@ -64,7 +64,7 @@
     "karma-coverage-istanbul-reporter": "1.4.2",
     "karma-jasmine": "1.1.1",
     "karma-jasmine-html-reporter": "0.2.2",
-    "ng-packagr": "2.2.0",
+    "ng-packagr": "2.4.1",
     "protractor": "5.3.0",
     "rimraf": "2.6.2",
     "ts-loader": "4.1.0",
