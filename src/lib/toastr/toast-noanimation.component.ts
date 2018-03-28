@@ -44,13 +44,12 @@ export class ToastNoAnimation implements OnDestroy {
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
 
-  @HostBinding('style')
+  @HostBinding('style.display')
   get displayStyle() {
     if (this.state === 'inactive') {
-      return 'display: none;';
+      return 'none';
     }
-
-    return 'display: block';
+    return 'inherit';
   }
 
   /** controls animation */
