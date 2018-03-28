@@ -118,7 +118,7 @@ export class ToastrService {
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
       return false;
     }
-    if (this.currentlyActive <= +this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
+    if (this.currentlyActive < this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
       const p = this.toasts[this.currentlyActive].toastRef;
       if (!p.isInactive()) {
         this.currentlyActive = this.currentlyActive + 1;
