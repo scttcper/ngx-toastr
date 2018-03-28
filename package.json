@@ -38,7 +38,7 @@
     "@angular/router": "5.2.9",
     "bootstrap": "4.0.0",
     "core-js": "2.5.4",
-    "lodash-es": "4.17.7",
+    "lodash-es": "4.17.8",
     "rxjs": "5.5.8",
     "web-animations-js": "2.3.1",
     "zone.js": "0.8.20"
