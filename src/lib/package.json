@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-toastr",
-  "version": "8.3.1",
+  "version": "8.3.2",
   "sideEffects": false,
   "peerDependencies": {
     "@angular/core": ">=5.0.0",
