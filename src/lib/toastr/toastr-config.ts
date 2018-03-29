@@ -25,10 +25,9 @@ import { ToastRef } from './toast-injector';
   * default: false
   */
   closeButton: boolean;
-  /** time to close after a user hovers over toast */
   /**
-   * show toast progress bar
-   * default: false
+  * time to close after a user hovers over toast
+  * default: 1000
    */
   extendedTimeOut: number;
   /**
