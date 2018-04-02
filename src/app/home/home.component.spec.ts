@@ -9,6 +9,7 @@ import { ActiveToast, ToastrModule } from '../../lib/public_api';
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';
 import { HomeComponent } from './home.component';
+import { Toast } from '../../../dist/public_api';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -38,7 +39,7 @@ describe('AppComponent', () => {
   it('should trigger onShown', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openToast();
+    const opened: ActiveToast<Toast> = app.openToast();
     expect(opened).toBeDefined();
     opened.onShown.toPromise().then(() => {
       done();
@@ -47,7 +48,7 @@ describe('AppComponent', () => {
   it('should trigger onHidden', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openToast();
+    const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.portal).toBeDefined();
     opened.onHidden.toPromise().then(() => {
       done();
@@ -56,7 +57,7 @@ describe('AppComponent', () => {
   it('should trigger onTap', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openToast();
+    const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.portal).toBeDefined();
     opened.onTap.toPromise()
       .then(() => {
@@ -67,7 +68,7 @@ describe('AppComponent', () => {
   it('should extend life on mouseover and exit', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openToast();
+    const opened: ActiveToast<Toast> = app.openToast();
     opened.portal.instance.stickAround();
     opened.portal.instance.delayedHideToast();
     expect(opened.portal.instance.options.timeOut).toBe(1000);
@@ -77,7 +78,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     app.options.extendedTimeOut = 0;
-    const opened: ActiveToast = app.openToast();
+    const opened: ActiveToast<Toast> = app.openToast();
     opened.portal.instance.stickAround();
     opened.portal.instance.delayedHideToast();
     expect(opened.portal.instance.options.timeOut).toBe(0);
@@ -86,7 +87,7 @@ describe('AppComponent', () => {
   it('should trigger onShown for openPinkToast', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openPinkToast();
+    const opened: ActiveToast<PinkToast> = app.openPinkToast();
     opened.onShown.toPromise().then(() => {
       done();
     });
@@ -94,7 +95,7 @@ describe('AppComponent', () => {
   it('should trigger onHidden for openPinkToast', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openPinkToast();
+    const opened: ActiveToast<PinkToast> = app.openPinkToast();
     opened.onHidden.toPromise().then(() => {
       done();
     });
@@ -102,7 +103,7 @@ describe('AppComponent', () => {
   it('should trigger onShown for openNotyf', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openNotyf();
+    const opened: ActiveToast<NotyfToast> = app.openNotyf();
     opened.onShown.toPromise().then(() => {
       done();
     });
@@ -110,10 +111,16 @@ describe('AppComponent', () => {
   it('should trigger onHidden for openNotyf', (done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
-    const opened: ActiveToast = app.openNotyf();
+    const opened: ActiveToast<NotyfToast> = app.openNotyf();
     opened.onHidden.toPromise().then(() => {
       done();
     });
+  });
+  it('should have defined componentInstance', (done) => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    const app = fixture.debugElement.componentInstance;
+    const opened: ActiveToast<Toast> = app.openToast();
+    expect(opened.toastRef.componentInstance).toBeDefined();
   });
 });
 
