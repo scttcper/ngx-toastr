@@ -41,14 +41,14 @@
     "lodash-es": "4.17.8",
     "rxjs": "5.5.8",
     "web-animations-js": "2.3.1",
-    "zone.js": "0.8.22"
+    "zone.js": "0.8.23"
   },
   "devDependencies": {
     "@angular/cli": "1.7.3",
     "@angular/compiler-cli": "5.2.9",
     "@angular/language-service": "5.2.9",
-    "@nguniversal/express-engine": "5.0.0-beta.8",
-    "@nguniversal/module-map-ngfactory-loader": "5.0.0-beta.8",
+    "@nguniversal/express-engine": "5.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "5.0.0",
     "@types/fs-extra": "5.0.1",
     "@types/jasmine": "2.8.6",
     "@types/jasminewd2": "2.0.3",
