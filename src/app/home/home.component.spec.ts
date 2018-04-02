@@ -116,12 +116,12 @@ describe('AppComponent', () => {
       done();
     });
   });
-  it('should have defined componentInstance', (done) => {
+  it('should have defined componentInstance', async((done) => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.toastRef.componentInstance).toBeDefined();
-  });
+  }));
 });
 
 @NgModule({
