@@ -22,15 +22,15 @@ import {
 } from './toastr-config';
 
 
-export interface ActiveToast {
+export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
   toastId: number;
   /** the message of your toast. Stored to prevent duplicates */
   message: string;
   /** a reference to the component see portal.ts */
-  portal: ComponentRef<any>;
+  portal: ComponentRef<C>;
   /** a reference to your toast */
-  toastRef: ToastRef<any>;
+  toastRef: ToastRef<C>;
   /** triggered when toast is active */
   onShown: Observable<any>;
   /** triggered when toast is destroyed */
@@ -45,7 +45,7 @@ export interface ActiveToast {
 export class ToastrService {
   toastrConfig: GlobalConfig;
   currentlyActive = 0;
-  toasts: ActiveToast[] = [];
+  toasts: ActiveToast<any>[] = [];
   overlayContainer: ToastContainerDirective;
   previousToastMessage: string | undefined;
   private index = 0;
@@ -148,7 +148,7 @@ export class ToastrService {
   /**
    * Find toast object by id
    */
-  private _findToast(toastId: number): { index: number, activeToast: ActiveToast } | null {
+  private _findToast(toastId: number): { index: number, activeToast: ActiveToast<any> } | null {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return { index: i, activeToast: this.toasts[i] };
@@ -165,7 +165,7 @@ export class ToastrService {
     message: string | undefined,
     title: string | undefined,
     config: GlobalConfig,
-  ): ActiveToast | null {
+  ): ActiveToast<any> | null {
     if (config.onActivateTick) {
       return this.ngZone.run(() => this._buildNotification(toastType, message, title, config));
     }
@@ -181,7 +181,7 @@ export class ToastrService {
     message: string | undefined,
     title: string | undefined,
     config: GlobalConfig,
-  ): ActiveToast | null {
+  ): ActiveToast<any> | null {
     if (!config.toastComponent) {
       throw new Error('toastComponent required');
     }
@@ -214,7 +214,9 @@ export class ToastrService {
     );
     const toastInjector = new ToastInjector(toastPackage, this._injector);
     const component = new ComponentPortal(config.toastComponent, toastInjector);
-    const ins: ActiveToast = {
+    const portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
+    toastRef.componentInstance = (<any>portal)._component;
+    const ins: ActiveToast<any> = {
       toastId: this.index,
       message: message || '',
       toastRef,
@@ -222,7 +224,7 @@ export class ToastrService {
       onHidden: toastRef.afterClosed(),
       onTap: toastPackage.onTap(),
       onAction: toastPackage.onAction(),
-      portal: overlayRef.attach(component, this.toastrConfig.newestOnTop),
+      portal,
     };
 
     if (!keepInactive) {
