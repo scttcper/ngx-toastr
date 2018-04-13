@@ -57,7 +57,13 @@ Don't want to use `@angular/animations`? See
 ```scss
 @import "~ngx-toastr/toastr.css";
 // or import a bootstrap 4 alert styled design (SASS ONLY)
-// should be after your bootstrap imports, it uses bs4 variables
+// should be after your bootstrap imports, it uses bs4 variables, mixins, functions
+@import "~ngx-toastr/toastr-bs4-alert"
+
+// if you'd like to use it without importing bootstrap it requires
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 @import "~ngx-toastr/toastr-bs4-alert"
 ```
 
