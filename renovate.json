@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base",
+    "config:js-lib",
     ":semanticCommitTypeAll(chore)",
     "schedule:earlyMondays"
   ],
