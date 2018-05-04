@@ -1,10 +1,9 @@
 /* tslint:disable:no-use-before-declare */
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 
 import { ToastrModule } from '../lib/public_api';
 
