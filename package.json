@@ -13,7 +13,7 @@
     "publish": "cd dist && npm publish",
     "bundlesize": "npx bundlesize",
     "test": "ng test --browsers=ChromeCI",
-    "test:ci": "ng test --single-run --code-coverage --no-progress --browsers=ChromeCI",
+    "test:ci": "ng test --watch=false --code-coverage --no-progress --browsers=ChromeCI",
     "lint": "ng lint ngx-toastr --type-check ---format stylish",
     "lint:fix": "ng lint ngx-toastr --type-check --fix ---format stylish",
     "ghpages": "ng build --prod --no-progress --baseHref='/ngx-toastr/'",
