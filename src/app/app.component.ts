@@ -9,7 +9,7 @@ import json from '../lib/package.json';
   template: `
   <app-header></app-header>
   <github-link></github-link>
-  <router-outlet></router-outlet>
+  <app-home></app-home>
   <app-footer></app-footer>
 `,
 })

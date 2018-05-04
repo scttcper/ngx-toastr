@@ -1,7 +1,6 @@
 import { SafeHtml } from '@angular/platform-browser';
 
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Observable, Subject } from 'rxjs';
 
 import { ComponentType } from '../portal/portal';
 import { ToastRef } from './toast-injector';

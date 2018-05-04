@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
 
 import { ToastrModule, ToastNoAnimationModule } from '../lib/public_api';
 
@@ -26,10 +25,7 @@ import { PinkToast } from './pink.toast';
     HomeComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'my-app' }),
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-    ]),
+    BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     ToastNoAnimationModule,

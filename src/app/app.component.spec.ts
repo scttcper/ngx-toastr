@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { GithubLinkComponent } from './github-link/github-link.component';
 import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -23,7 +24,6 @@ describe('AppComponent', () => {
           onActivateTick: true,
           enableHtml: true,
         }),
-        RouterModule.forRoot([{ path: '', component: FooterComponent, pathMatch: 'full'}]),
         FormsModule,
         BrowserAnimationsModule,
         AppTestModule,
@@ -31,11 +31,11 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         FooterComponent,
+        HomeComponent,
         HeaderComponent,
         GithubLinkComponent,
       ],
       providers: [
-        { provide: APP_BASE_HREF, useValue : '/' },
       ],
     });
     TestBed.compileComponents();

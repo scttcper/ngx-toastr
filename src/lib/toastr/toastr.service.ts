@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';

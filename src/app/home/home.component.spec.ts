@@ -5,7 +5,7 @@ import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Toast } from '../../../dist/public_api';
+import { Toast } from '../../lib/public_api';
 import { ActiveToast, ToastrModule } from '../../lib/public_api';
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';

@@ -27,7 +27,6 @@ DEMO: https://scttcper.github.io/ngx-toastr/
 * SystemJS/UMD rollup bundle
 * Animations using Angular's
   [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)
-  (polyfill needed for older devices)
 * Output toasts to an optional target directive
 
 ## Install
