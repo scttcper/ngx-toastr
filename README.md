@@ -54,19 +54,22 @@ Don't want to use `@angular/animations`? See
 * If you are using sass you can import the css.
 
 ```scss
+// regular style toast
 @import "~ngx-toastr/toastr.css";
+
+// bootstrap style toast
 // or import a bootstrap 4 alert styled design (SASS ONLY)
 // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
 @import "~ngx-toastr/toastr-bs4-alert";
 
-// if you'd like to use it without importing bootstrap it requires
+// if you'd like to use it without importing all of bootstrap it requires
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~ngx-toastr/toastr-bs4-alert";
 ```
 
-* If you are using angular-cli you can add it to your angular-cli.json
+* If you are using angular-cli you can add it to your angular.json
 
 ```json
 "styles": [
