@@ -1,13 +1,13 @@
 {
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-toastr",
-  "version": "8.5.0",
+  "version": "8.5.1",
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/core": ">=5.2.0",
-    "@angular/common": ">=5.2.0",
-    "@angular/platform-browser": ">=5.2.0",
-    "rxjs": ">=6.0.0"
+    "@angular/core": "^5.2.0 || ^6.0.0",
+    "@angular/common": "^5.2.0 || ^6.0.0",
+    "@angular/platform-browser": "^5.2.0 || ^6.0.0",
+    "rxjs": "^6.0.0"
   },
   "ngPackage": {
     "lib": {
