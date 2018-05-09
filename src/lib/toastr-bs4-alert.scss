@@ -82,6 +82,8 @@
       text-decoration: underline;
     }
     .toast-close-button {
+      @extend .close;
+      @extend button.close;
       position: relative;
       right: -0.3em;
       top: -0.3em;
