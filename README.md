@@ -100,13 +100,10 @@ class MainModule {}
 
 ## Use
 
-Success:
-
 ```typescript
 import { ToastrService } from 'ngx-toastr';
-@Component({
-  ...
-})
+
+@Component({...})
 export class YourComponent {
   constructor(private toastr: ToastrService) {}
 
