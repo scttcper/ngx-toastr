@@ -1,3 +1,8 @@
+coverage:
+  range: "50..100"
+  status:
+    project: no
+    patch: no
 comment:
   require_changes: yes
   behavior: once
