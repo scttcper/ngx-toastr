@@ -71,7 +71,7 @@ Don't want to use `@angular/animations`? See
 
 * If you are using angular-cli you can add it to your angular.json
 
-```json
+```ts
 "styles": [
   "styles.scss",
   "node_modules/ngx-toastr/toastr.css" // try adding '../' if you're using angular cli before 6
