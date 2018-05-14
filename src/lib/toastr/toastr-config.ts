@@ -152,7 +152,9 @@ export class ToastPackage {
   /** Fired on click */
   triggerTap() {
     this._onTap.next();
-    this._onTap.complete();
+    if (this.config.tapToDismiss) {
+      this._onTap.complete();
+    }
   }
 
   onTap(): Observable<any> {
