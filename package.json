@@ -63,7 +63,7 @@
     "ts-loader": "4.3.0",
     "ts-node": "6.0.3",
     "tslint": "5.10.0",
-    "typescript": "2.7.2"
+    "typescript": "2.8.3"
   },
   "bundlesize": [
     {
