@@ -2,7 +2,6 @@
   "$schema": "../../node_modules/ng-packagr/package.schema.json",
   "name": "ngx-toastr",
   "version": "8.6.0",
-  "sideEffects": false,
   "peerDependencies": {
     "@angular/core": "^5.2.0 || ^6.0.0",
     "@angular/common": "^5.2.0 || ^6.0.0",
@@ -15,7 +14,7 @@
     },
     "dest": "../../dist"
   },
-  "repository": "https://github.com/scttcper/ngx-toastr.git",
+  "repository": "scttcper/ngx-toastr",
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
   "license": "MIT",
