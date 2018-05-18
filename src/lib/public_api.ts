@@ -7,3 +7,8 @@ export * from './toastr/toastr.module';
 export * from './toastr/toast-injector';
 export * from './toastr/toast-token';
 export * from './toastr/toast-noanimation.component';
+
+export * from './portal/portal';
+export * from './overlay/overlay';
+export * from './overlay/overlay-container';
+export * from './overlay/overlay-ref';
