@@ -1,7 +1,3 @@
-export * from './portal/portal';
-export * from './overlay/overlay';
-export * from './overlay/overlay-container';
-export * from './overlay/overlay-ref';
 export * from './toastr/toast.directive';
 export * from './toastr/toast.component';
 export * from './toastr/toastr.service';
