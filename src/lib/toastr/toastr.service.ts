@@ -194,7 +194,7 @@ export class ToastrService {
     if (this.toastrConfig.maxOpened && this.currentlyActive >= this.toastrConfig.maxOpened) {
       keepInactive = true;
       if (this.toastrConfig.autoDismiss) {
-        this.clear(this.toasts[this.toasts.length - 1].toastId);
+        this.clear(this.toasts[0].toastId);
       }
     }
     const overlayRef = this.overlay.create(config.positionClass, this.overlayContainer);
