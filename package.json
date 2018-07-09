@@ -3,7 +3,7 @@
   "description": "Toastr for Angular",
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
-  "repository": "https://github.com/scttcper/ngx-toastr.git",
+  "repository": "scttcper/ngx-toastr",
   "version": "8.8.0",
   "license": "MIT",
   "scripts": {
@@ -33,7 +33,7 @@
     "bootstrap": "4.1.1",
     "core-js": "2.5.7",
     "lodash-es": "4.17.10",
-    "rxjs": "6.1.0",
+    "rxjs": "6.2.1",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
@@ -45,9 +45,9 @@
     "@types/jasmine": "2.8.8",
     "@types/jasminewd2": "2.0.3",
     "@types/lodash-es": "4.17.0",
-    "@types/node": "10.1.4",
+    "@types/node": "10.5.2",
     "@types/rimraf": "2.0.2",
-    "codelyzer": "4.3.0",
+    "codelyzer": "4.4.2",
     "fs-extra": "6.0.1",
     "jasmine-core": "2.99.1",
     "jasmine-spec-reporter": "4.2.1",
@@ -57,11 +57,10 @@
     "karma-coverage-istanbul-reporter": "2.0.1",
     "karma-jasmine": "1.1.2",
     "karma-jasmine-html-reporter": "0.2.2",
-    "ng-packagr": "3.0.3",
+    "ng-packagr": "4.0.0-rc.3",
     "protractor": "5.3.2",
     "rimraf": "2.6.2",
-    "ts-loader": "4.3.1",
-    "ts-node": "6.0.5",
+    "ts-node": "7.0.0",
     "tslint": "5.10.0",
     "typescript": "2.7.2"
   },
