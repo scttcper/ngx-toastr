@@ -33,7 +33,7 @@
     "bootstrap": "4.1.2",
     "core-js": "2.5.7",
     "lodash-es": "4.17.10",
-    "rxjs": "6.2.1",
+    "rxjs": "6.2.2",
     "zone.js": "0.8.26"
   },
   "devDependencies": {
