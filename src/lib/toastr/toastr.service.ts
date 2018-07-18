@@ -7,20 +7,13 @@ import {
   SecurityContext
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
 import { Observable } from 'rxjs';
-
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
 import { ToastInjector, ToastRef } from './toast-injector';
 import { ToastToken, TOAST_CONFIG } from './toast-token';
 import { ToastContainerDirective } from './toast.directive';
-import {
-  GlobalConfig,
-  IndividualConfig,
-  ToastPackage,
-} from './toastr-config';
-
+import { GlobalConfig, IndividualConfig, ToastPackage } from './toastr-config';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
@@ -57,36 +50,82 @@ export class ToastrService {
     private sanitizer: DomSanitizer,
     private ngZone: NgZone
   ) {
-    const defaultConfig = new token.defaults;
+    const defaultConfig = new token.defaults();
     this.toastrConfig = { ...defaultConfig, ...token.config };
     this.toastrConfig.iconClasses = {
       ...defaultConfig.iconClasses,
-      ...token.config.iconClasses,
+      ...token.config.iconClasses
     };
   }
   /** show toast */
-  show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+  show(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig> = {},
+    type = ''
+  ) {
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override)
+    );
   }
   /** show successful toast */
-  success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  success(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig> = {}
+  ) {
     const type = this.toastrConfig.iconClasses.success || '';
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override)
+    );
   }
   /** show error toast */
-  error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  error(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig> = {}
+  ) {
     const type = this.toastrConfig.iconClasses.error || '';
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override)
+    );
   }
   /** show info toast */
-  info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  info(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig> = {}
+  ) {
     const type = this.toastrConfig.iconClasses.info || '';
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override)
+    );
   }
   /** show warning toast */
-  warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  warning(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig> = {}
+  ) {
     const type = this.toastrConfig.iconClasses.warning || '';
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override)
+    );
   }
   /**
    * Remove all or a single toast by id
@@ -118,7 +157,10 @@ export class ToastrService {
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
       return false;
     }
-    if (this.currentlyActive < this.toastrConfig.maxOpened && this.toasts[this.currentlyActive]) {
+    if (
+      this.currentlyActive < this.toastrConfig.maxOpened &&
+      this.toasts[this.currentlyActive]
+    ) {
       const p = this.toasts[this.currentlyActive].toastRef;
       if (!p.isInactive()) {
         this.currentlyActive = this.currentlyActive + 1;
@@ -131,9 +173,16 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  isDuplicate(message: string) {
+  isDuplicate(message: string, resetOnDuplicate: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].message === message) {
+        if (
+          resetOnDuplicate &&
+          this.toasts[i].toastRef.componentInstance.resetTimeout
+        ) {
+          console.log(resetOnDuplicate);
+          this.toasts[i].toastRef.resetTimeout();
+        }
         return true;
       }
     }
@@ -148,7 +197,9 @@ export class ToastrService {
   /**
    * Find toast object by id
    */
-  private _findToast(toastId: number): { index: number, activeToast: ActiveToast<any> } | null {
+  private _findToast(
+    toastId: number
+  ): { index: number; activeToast: ActiveToast<any> } | null {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
         return { index: i, activeToast: this.toasts[i] };
@@ -164,10 +215,12 @@ export class ToastrService {
     toastType: string,
     message: string | undefined,
     title: string | undefined,
-    config: GlobalConfig,
+    config: GlobalConfig
   ): ActiveToast<any> | null {
     if (config.onActivateTick) {
-      return this.ngZone.run(() => this._buildNotification(toastType, message, title, config));
+      return this.ngZone.run(() =>
+        this._buildNotification(toastType, message, title, config)
+      );
     }
     return this._buildNotification(toastType, message, title, config);
   }
@@ -180,24 +233,34 @@ export class ToastrService {
     toastType: string,
     message: string | undefined,
     title: string | undefined,
-    config: GlobalConfig,
+    config: GlobalConfig
   ): ActiveToast<any> | null {
     if (!config.toastComponent) {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
-    if (message && this.toastrConfig.preventDuplicates && this.isDuplicate(message)) {
+    if (
+      message &&
+      this.toastrConfig.preventDuplicates &&
+      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate)
+    ) {
       return null;
     }
     this.previousToastMessage = message;
     let keepInactive = false;
-    if (this.toastrConfig.maxOpened && this.currentlyActive >= this.toastrConfig.maxOpened) {
+    if (
+      this.toastrConfig.maxOpened &&
+      this.currentlyActive >= this.toastrConfig.maxOpened
+    ) {
       keepInactive = true;
       if (this.toastrConfig.autoDismiss) {
         this.clear(this.toasts[0].toastId);
       }
     }
-    const overlayRef = this.overlay.create(config.positionClass, this.overlayContainer);
+    const overlayRef = this.overlay.create(
+      config.positionClass,
+      this.overlayContainer
+    );
     this.index = this.index + 1;
     let sanitizedMessage: string | SafeHtml | undefined | null = message;
     if (message && config.enableHtml) {
@@ -210,7 +273,7 @@ export class ToastrService {
       sanitizedMessage,
       title,
       toastType,
-      toastRef,
+      toastRef
     );
     const toastInjector = new ToastInjector(toastPackage, this._injector);
     const component = new ComponentPortal(config.toastComponent, toastInjector);
@@ -224,7 +287,7 @@ export class ToastrService {
       onHidden: toastRef.afterClosed(),
       onTap: toastPackage.onTap(),
       onAction: toastPackage.onAction(),
-      portal,
+      portal
     };
 
     if (!keepInactive) {

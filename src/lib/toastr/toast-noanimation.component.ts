@@ -5,12 +5,10 @@ import {
   HostBinding,
   HostListener,
   NgModule,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
-
 import { Subscription } from 'rxjs';
-
 import { IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
 
@@ -33,12 +31,13 @@ import { ToastrService } from './toastr.service';
   <div *ngIf="options.progressBar">
     <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
-  `,
+  `
 })
 export class ToastNoAnimation implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
   options: IndividualConfig;
+  originalTimeout: number;
   /** width of progress bar */
   width = -1;
   /** a combination of toast type and options.toastClass */
@@ -59,15 +58,17 @@ export class ToastNoAnimation implements OnDestroy {
   private hideTime: number;
   private sub: Subscription;
   private sub1: Subscription;
+  private sub2: Subscription;
 
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef,
+    protected appRef: ApplicationRef
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
     this.options = toastPackage.config;
+    this.originalTimeout = toastPackage.config.timeOut;
     this.toastClasses = `${toastPackage.toastType} ${
       toastPackage.config.toastClass
     }`;
@@ -77,10 +78,14 @@ export class ToastNoAnimation implements OnDestroy {
     this.sub1 = toastPackage.toastRef.manualClosed().subscribe(() => {
       this.remove();
     });
+    this.sub2 = toastPackage.toastRef.timeoutReset().subscribe(() => {
+      this.resetTimeout();
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
   }
@@ -111,7 +116,7 @@ export class ToastNoAnimation implements OnDestroy {
     }
     const now = new Date().getTime();
     const remaining = this.hideTime - now;
-    this.width = remaining / this.options.timeOut * 100;
+    this.width = (remaining / this.options.timeOut) * 100;
     if (this.options.progressAnimation === 'increasing') {
       this.width = 100 - this.width;
     }
@@ -120,6 +125,20 @@ export class ToastNoAnimation implements OnDestroy {
     }
     if (this.width >= 100) {
       this.width = 100;
+    }
+  }
+
+  resetTimeout() {
+    console.log('test');
+    clearTimeout(this.timeout);
+    clearInterval(this.intervalId);
+
+    this.options.timeOut = this.originalTimeout;
+    this.timeout = setTimeout(() => this.remove(), this.originalTimeout);
+    this.hideTime = new Date().getTime() + (this.originalTimeout || 0);
+    this.width = -1;
+    if (this.options.progressBar) {
+      this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
   }
 
@@ -132,8 +151,8 @@ export class ToastNoAnimation implements OnDestroy {
     }
     clearTimeout(this.timeout);
     this.state = 'removed';
-    this.timeout = setTimeout(
-      () => this.toastrService.remove(this.toastPackage.toastId),
+    this.timeout = setTimeout(() =>
+      this.toastrService.remove(this.toastPackage.toastId)
     );
   }
   @HostListener('click')
@@ -161,14 +180,16 @@ export class ToastNoAnimation implements OnDestroy {
   }
   @HostListener('mouseleave')
   delayedHideToast() {
-    if (this.options.disableTimeOut
-      || this.options.extendedTimeOut === 0
-      || this.state === 'removed') {
+    if (
+      this.options.disableTimeOut ||
+      this.options.extendedTimeOut === 0 ||
+      this.state === 'removed'
+    ) {
       return;
     }
     this.timeout = setTimeout(
       () => this.remove(),
-      this.options.extendedTimeOut,
+      this.options.extendedTimeOut
     );
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
@@ -183,6 +204,6 @@ export class ToastNoAnimation implements OnDestroy {
   imports: [CommonModule],
   declarations: [ToastNoAnimation],
   exports: [ToastNoAnimation],
-  entryComponents: [ToastNoAnimation],
+  entryComponents: [ToastNoAnimation]
 })
 export class ToastNoAnimationModule {}
