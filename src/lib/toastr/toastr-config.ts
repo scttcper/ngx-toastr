@@ -1,32 +1,30 @@
 import { SafeHtml } from '@angular/platform-browser';
-
 import { Observable, Subject } from 'rxjs';
-
 import { ComponentType } from '../portal/portal';
 import { ToastRef } from './toast-injector';
 
 /**
  * Configuration for an individual toast.
  */
- export interface IndividualConfig {
+export interface IndividualConfig {
   /**
    * disable both timeOut and extendedTimeOut
    * default: false
    */
   disableTimeOut: boolean;
   /**
-  * toast time to live in milliseconds
-  * default: 5000
-  */
+   * toast time to live in milliseconds
+   * default: 5000
+   */
   timeOut: number;
   /**
-  * toast show close button
-  * default: false
-  */
+   * toast show close button
+   * default: false
+   */
   closeButton: boolean;
   /**
-  * time to close after a user hovers over toast
-  * default: 1000
+   * time to close after a user hovers over toast
+   * default: 1000
    */
   extendedTimeOut: number;
   /**
@@ -126,6 +124,12 @@ export interface GlobalConfig extends IndividualConfig {
    * default: false
    */
   preventDuplicates: boolean;
+
+  /**
+   * Reset toast timeout when there's a duplicate (preventDuplicates needs to be set to true)
+   * default: false
+   */
+  resetTimeoutOnDuplicate: boolean;
 }
 
 /**
@@ -141,7 +145,7 @@ export class ToastPackage {
     public message: string | SafeHtml | null | undefined,
     public title: string | undefined,
     public toastType: string,
-    public toastRef: ToastRef<any>,
+    public toastRef: ToastRef<any>
   ) {
     this.toastRef.afterClosed().subscribe(() => {
       this._onAction.complete();

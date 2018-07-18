@@ -1,6 +1,5 @@
 import { Injector } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-
 import { OverlayRef } from '../overlay/overlay-ref';
 import { ToastPackage } from './toastr-config';
 
@@ -17,8 +16,10 @@ export class ToastRef<T> {
   private _activate = new Subject<any>();
   /** notifies the toast that it should close before the timeout */
   private _manualClose = new Subject<any>();
+  /** notifies the toast that it should reset the timeouts */
+  private _resetTimeout = new Subject<any>();
 
-  constructor(private _overlayRef: OverlayRef) { }
+  constructor(private _overlayRef: OverlayRef) {}
 
   manualClose() {
     this._manualClose.next();
@@ -27,6 +28,10 @@ export class ToastRef<T> {
 
   manualClosed(): Observable<any> {
     return this._manualClose.asObservable();
+  }
+
+  timeoutReset(): Observable<any> {
+    return this._resetTimeout.asObservable();
   }
 
   /**
@@ -38,6 +43,7 @@ export class ToastRef<T> {
     this._afterClosed.complete();
     this._manualClose.complete();
     this._activate.complete();
+    this._resetTimeout.complete();
   }
 
   /** Gets an observable that is notified when the toast is finished closing. */
@@ -58,14 +64,19 @@ export class ToastRef<T> {
   afterActivate(): Observable<any> {
     return this._activate.asObservable();
   }
-}
 
+  /** Reset the toast timouts */
+  resetTimeout() {
+    this._resetTimeout.next();
+  }
+}
 
 /** Custom injector type specifically for instantiating components with a toast. */
 export class ToastInjector implements Injector {
   constructor(
     private _toastPackage: ToastPackage,
-    private _parentInjector: Injector) { }
+    private _parentInjector: Injector
+  ) {}
 
   get(token: any, notFoundValue?: any): any {
     if (token === ToastPackage && this._toastPackage) {

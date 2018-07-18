@@ -7,11 +7,12 @@ export class DefaultGlobalConfig implements GlobalConfig {
   autoDismiss = false;
   newestOnTop = true;
   preventDuplicates = false;
+  resetTimeoutOnDuplicate = false;
   iconClasses = {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
-    warning: 'toast-warning',
+    warning: 'toast-warning'
   };
 
   // Individual

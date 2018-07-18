@@ -5,10 +5,10 @@
   <br>
   <a href="https://www.npmjs.org/package/ngx-toastr">
     <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
-  </a> 
+  </a>
   <a href="https://travis-ci.org/scttcper/ngx-toastr">
     <img src="https://travis-ci.org/scttcper/ngx-toastr.svg?branch=master" alt="travis">
-  </a> 
+  </a>
   <a href="https://codecov.io/github/scttcper/ngx-toastr">
     <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
   </a>
@@ -20,14 +20,14 @@ DEMO: https://scttcper.github.io/ngx-toastr/
 
 ## Features
 
-* Toast Component Injection without being passed `ViewContainerRef`
-* No use of `*ngFor`. Fewer dirty checks and higher performance.
-* AoT compilation and lazy loading compatible
-* Component inheritance for custom toasts
-* SystemJS/UMD rollup bundle
-* Animations using Angular's
+- Toast Component Injection without being passed `ViewContainerRef`
+- No use of `*ngFor`. Fewer dirty checks and higher performance.
+- AoT compilation and lazy loading compatible
+- Component inheritance for custom toasts
+- SystemJS/UMD rollup bundle
+- Animations using Angular's
   [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)
-* Output toasts to an optional target directive
+- Output toasts to an optional target directive
 
 ## Install
 
@@ -48,28 +48,28 @@ Don't want to use `@angular/animations`? See
 
 **step 1:** add css
 
-* copy
+- copy
   [toast css](/src/lib/toastr.css)
   to your project.
-* If you are using sass you can import the css.
+- If you are using sass you can import the css.
 
 ```scss
 // regular style toast
-@import "~ngx-toastr/toastr.css";
+@import '~ngx-toastr/toastr.css';
 
 // bootstrap style toast
 // or import a bootstrap 4 alert styled design (SASS ONLY)
 // should be after your bootstrap imports, it uses bs4 variables, mixins, functions
-@import "~ngx-toastr/toastr-bs4-alert";
+@import '~ngx-toastr/toastr-bs4-alert';
 
 // if you'd like to use it without importing all of bootstrap it requires
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~ngx-toastr/toastr-bs4-alert";
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
 ```
 
-* If you are using angular-cli you can add it to your angular.json
+- If you are using angular-cli you can add it to your angular.json
 
 ```ts
 "styles": [
@@ -90,10 +90,10 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot() // ToastrModule added
   ],
   bootstrap: [App],
-  declarations: [App],
+  declarations: [App]
 })
 class MainModule {}
 ```
@@ -147,7 +147,7 @@ options object to replace any default option.
 
 ```typescript
 this.toastrService.error('everything is broken', 'Major Error', {
-  timeOut: 3000,
+  timeOut: 3000
 });
 ```
 
@@ -157,13 +157,14 @@ All [individual options](#individual-options) can be overridden in the global
 options to affect all toasts. In addition, global options include the following
 options:
 
-| Option            | Type    | Default                            | Description                                              |
-| ----------------- | ------- | ---------------------------------- | -------------------------------------------------------- |
-| maxOpened         | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited |
-| autoDismiss       | boolean | false                              | Dismiss current toast when max is reached                |
-| iconClasses       | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                   |
-| newestOnTop       | boolean | true                               | New toast placement                                      |
-| preventDuplicates | boolean | false                              | Block duplicate messages                                 |
+| Option                  | Type    | Default                            | Description                                                       |
+| ----------------------- | ------- | ---------------------------------- | ----------------------------------------------------------------- |
+| maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited          |
+| autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                         |
+| iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                            |
+| newestOnTop             | boolean | true                               | New toast placement                                               |
+| preventDuplicates       | boolean | false                              | Block duplicate messages                                          |
+| resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true) |
 
 ##### iconClasses defaults
 
@@ -172,7 +173,7 @@ iconClasses = {
   error: 'toast-error',
   info: 'toast-info',
   success: 'toast-success',
-  warning: 'toast-warning',
+  warning: 'toast-warning'
 };
 ```
 
@@ -192,7 +193,9 @@ imports: [
 ```
 
 ### Toastr Service methods return:
+
 Toastr Service will return undefined if prevent duplicates is enabled
+
 ```typescript
 export interface ActiveToast {
   /** Your Toast ID. Use this to close it individually */
@@ -236,10 +239,10 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
 
     ToastrModule.forRoot({ positionClass: 'inline' }),
-    ToastContainerModule,
+    ToastContainerModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
 ```
@@ -256,7 +259,7 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
   template: `
   <h1><a (click)="onClick()">Click</a></h1>
   <div toastContainer></div>
-`,
+`
 })
 export class AppComponent implements OnInit {
   @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
@@ -297,7 +300,7 @@ In your main module (ex: `app.module.ts`)
 import {
   ToastrModule,
   ToastNoAnimation,
-  ToastNoAnimationModule,
+  ToastNoAnimationModule
 } from 'ngx-toastr';
 
 @NgModule({
@@ -307,9 +310,9 @@ import {
     // BrowserAnimationsModule no longer required
     ToastNoAnimationModule,
     ToastrModule.forRoot({
-      toastComponent: ToastNoAnimation,
-    }),
-  ],
+      toastComponent: ToastNoAnimation
+    })
+  ]
   // ...
 })
 class AppModule {}
@@ -318,6 +321,7 @@ class AppModule {}
 That's it! Animations are no longer required.
 
 ## Using A Custom Toast
+
 Create your toast component extending Toast see the demo's pink toast for an example
 https://github.com/scttcper/ngx-toastr/blob/master/src/app/pink.toast.ts
 
@@ -327,22 +331,21 @@ import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   imports: [
     ToastrModule.forRoot({
-      toastComponent: YourToastComponent, // added custom toast!
-    }),
+      toastComponent: YourToastComponent // added custom toast!
+    })
   ],
   entryComponents: [YourToastComponent], // add!
   bootstrap: [App],
-  declarations: [App, YourToastComponent], // add!
+  declarations: [App, YourToastComponent] // add!
 })
 class AppModule {}
 ```
 
-
 ## FAQ
 
-1. ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it
-   was checked\
-   When opening a toast inside an angular lifecycle wrap it in setTimeout
+1.  ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it
+    was checked\
+    When opening a toast inside an angular lifecycle wrap it in setTimeout
 
 ```typescript
 ngOnInit() {
@@ -350,12 +353,12 @@ ngOnInit() {
 }
 ```
 
-2. Change default icons (check, warning sign, etc)\
-   Overwrite the css background-image https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
-3. How do I use this in an ErrorHandler? See:
-   https://github.com/scttcper/ngx-toastr/issues/179
-4. How can I translate messages See:
-   https://github.com/scttcper/ngx-toastr/issues/201
+2.  Change default icons (check, warning sign, etc)\
+    Overwrite the css background-image https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
+3.  How do I use this in an ErrorHandler? See:
+    https://github.com/scttcper/ngx-toastr/issues/179
+4.  How can I translate messages See:
+    https://github.com/scttcper/ngx-toastr/issues/201
 
 ## Previous Works
 
