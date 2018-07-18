@@ -40,6 +40,7 @@ export class ToastRef<T> {
   close(): void {
     this._overlayRef.detach();
     this._afterClosed.next();
+    this._manualClose.next();
     this._afterClosed.complete();
     this._manualClose.complete();
     this._activate.complete();
