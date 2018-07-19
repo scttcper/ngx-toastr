@@ -54,13 +54,13 @@ export interface IndividualConfig {
    */
   positionClass: string;
   /**
-   * css class on to toast title
+   * css class on toast title
    * default: toast-title
    */
   titleClass: string;
   /**
-   * css class on to toast title
-   * default: toast-title
+   * css class on toast message
+   * default: toast-message
    */
   messageClass: string;
   /**
