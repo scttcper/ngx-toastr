@@ -118,15 +118,40 @@
   }
 }
 
+@function str-split($string, $separator) {
+  $split-arr: ();
+  // first index of separator in string
+  $index: str-index($string, $separator);
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: str-slice($string, 1, $index - 1);
+    // push item to array
+    $split-arr: append($split-arr, $item);
+    // remove item and separator from string
+    $string: str-slice($string, $index + 1);
+    // find new index of separator
+    $index: str-index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
 @function svg-factory($fill-color, $viewbox, $path) {
+  $split: str-split($viewbox, ' ');
+  $width: nth($split, 3);
+  $height: nth($split, 4);
+
   // opacity is 0.9999 otherwise it uses a hex equivelent
   // firefox requires fill rgb
-  @return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + $viewbox +
-    '"><path fill="' + rgba($fill-color, 0.999999) + '" d="' + $path +
-    '"/></svg>';
+  @return "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='" + $viewbox +
+    "' width='" + $width + "' height='" + $height + "'%3E%3Cpath fill='" +
+    rgba($fill-color, 0.999999) + "' d='" + $path + "'/%3E%3C/svg%3E";
 }
 @function svg-encode($svg) {
-  @return 'data:image/svg+xml,' + $svg;
+  @return 'data:image/svg+xml;charset=utf8,' + $svg;
 }
 .toast-success {
   /* https://github.com/FortAwesome/Font-Awesome-Pro/blob/master/advanced-options/raw-svg/solid/check.svg */
