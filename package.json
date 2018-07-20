@@ -79,15 +79,15 @@
     },
     {
       "path": "./dist/toastr.css",
-      "maxSize": "2 kB"
+      "maxSize": "5 kB"
     },
     {
       "path": "./dist/toastr-old.css",
-      "maxSize": "3 kB"
+      "maxSize": "5 kB"
     },
     {
       "path": "./dist/toastr-bs4-alert.scss",
-      "maxSize": "2 kB"
+      "maxSize": "5 kB"
     }
   ]
 }
