@@ -139,7 +139,7 @@ export class HomeComponent {
   }
   setInlineClass(enableInline: boolean) {
     if (enableInline) {
-      this.toastr.overlayContainer = this.inlineContainers.first;
+      this.toastr.overlayContainer = this.inlineContainers.toArray()[this.inlinePositionIndex];
       this.options.positionClass = 'inline';
     } else {
       this.toastr.overlayContainer = undefined;
