@@ -68,3 +68,7 @@ strong {
   background: darken($pink, 10%) linear-gradient(180deg, darken($pink, 5%), darken($pink, 15%)) repeat-x;
   border-color: darken($pink, 10%);
 }
+
+.toast-container.inline {
+  position: relative;
+}

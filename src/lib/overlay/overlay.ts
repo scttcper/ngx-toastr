@@ -5,7 +5,6 @@ import { OverlayRef } from './overlay-ref';
 import { ToastContainerDirective } from '../toastr/toast.directive';
 import { OverlayContainer } from './overlay-container';
 
-
 /**
  * Service to create Overlays. Overlays are dynamically added pieces of floating UI, meant to be
  * used as a low-level building building block for other components. Dialogs, tooltips, menus,
@@ -16,7 +15,9 @@ import { OverlayContainer } from './overlay-container';
  */
  @Injectable()
   export class Overlay {
-    private _paneElements: {string?: HTMLElement} = {};
+    // Namespace panes by overlay container
+    private _paneElements: Map<ToastContainerDirective, {string?: HTMLElement}> = new Map();
+
     constructor(private _overlayContainer: OverlayContainer,
                 private _componentFactoryResolver: ComponentFactoryResolver,
                 private _appRef: ApplicationRef) {}
@@ -30,10 +31,15 @@ import { OverlayContainer } from './overlay-container';
   }
 
   getPaneElement(positionClass: string = '', overlayContainer?: ToastContainerDirective): HTMLElement {
-    if (!this._paneElements[positionClass]) {
-      this._paneElements[positionClass] = this._createPaneElement(positionClass, overlayContainer);
+    if (!this._paneElements.get(overlayContainer)) {
+      this._paneElements.set(overlayContainer, {});
     }
-    return this._paneElements[positionClass];
+
+    if (!this._paneElements.get(overlayContainer)[positionClass]) {
+      this._paneElements.get(overlayContainer)[positionClass] = this._createPaneElement(positionClass, overlayContainer);
+    }
+
+    return this._paneElements.get(overlayContainer)[positionClass];
   }
 
   /**

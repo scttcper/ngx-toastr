@@ -163,46 +163,62 @@
                       <strong>Toast Position</strong>
                     </label>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-right"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-right"
                         id="toast-top-right">
                       <label for="toast-top-right" class="form-check-label">Top Right</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-right"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-right"
                         id="toast-bottom-right">
                       <label for="toast-bottom-right" class="form-check-label">Bottom Right</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-left"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-left"
                         id="toast-bottom-left">
                       <label for="toast-bottom-left" class="form-check-label">Bottom Left</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-left"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-left"
                         id="toast-top-left">
                       <label for="toast-top-left" class="form-check-label">Top Left</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-full-width"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-full-width"
                         id="top-full-width">
                       <label for="top-full-width" class="form-check-label">Top Full Width</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-full-width"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-full-width"
                         id="bottom-full-width">
                       <label for="bottom-full-width" class="form-check-label">Bottom Full Width</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-top-center"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-center"
                         id="toast-top-center">
                       <label for="toast-top-center" class="form-check-label">Top Center</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" value="toast-bottom-center"
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-center"
                         id="toast-bottom-center">
                       <label for="toast-bottom-center" class="form-check-label">Bottom Center</label>
                     </div>
                   </fieldset>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" (ngModelChange)="setInlineClass($event)" [(ngModel)]="inline" id="inline">
+                      <label for="inline" class="form-check-label">Inline Position</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="inlinePositionRadio" (ngModelChange)="setInlinePosition($event)" [(ngModel)]="inlinePositionIndex" [disabled]="!inline" [value]="0"
+                        id="inline-a">
+                      <label for="inline-a" class="form-check-label">A</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="inlinePositionRadio" (ngModelChange)="setInlinePosition($event)" [(ngModel)]="inlinePositionIndex" [disabled]="!inline" [value]="1"
+                        id="inline-b">
+                      <label for="inline-b" class="form-check-label">B</label>
+                    </div>
+                  </div>
                   <div class="form-group">
                     <div class="form-check">
                       <input class="form-check-input" type="checkbox" (ngModelChange)="setClass($event)" [(ngModel)]="enableBootstrap" id="enableBootstrap">
@@ -211,6 +227,18 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="col-6">
+              <label>
+                <strong>Inline A</strong>
+              </label>
+              <span toastContainer></span>
+            </div>
+            <div class="col-6">
+              <label>
+                <strong>Inline B</strong>
+              </label>
+              <span toastContainer></span>
             </div>
           </div>
           <hr>

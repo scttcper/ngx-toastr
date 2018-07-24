@@ -1,9 +1,10 @@
-import { Component, Renderer2, VERSION } from '@angular/core';
+import { Component, QueryList, Renderer2, ViewChildren, VERSION } from '@angular/core';
 import { cloneDeep, random } from 'lodash-es';
 
 import {
   GlobalConfig,
   ToastrService,
+  ToastContainerDirective,
   ToastNoAnimation,
 } from '../../lib/public_api';
 
@@ -52,7 +53,9 @@ export class HomeComponent {
   version = VERSION;
   enableBootstrap = false;
   private lastInserted: number[] = [];
-
+  inline = false;
+  inlinePositionIndex = 0;
+  @ViewChildren(ToastContainerDirective) inlineContainers: QueryList<ToastContainerDirective>;
 
 
   constructor(public toastr: ToastrService, private renderer: Renderer2) {
@@ -133,6 +136,18 @@ export class HomeComponent {
   }
   fixNumber(field: string) {
     this.options[field] = Number(this.options[field]);
+  }
+  setInlineClass(enableInline: boolean) {
+    if (enableInline) {
+      this.toastr.overlayContainer = this.inlineContainers.toArray()[this.inlinePositionIndex];
+      this.options.positionClass = 'inline';
+    } else {
+      this.toastr.overlayContainer = undefined;
+      this.options.positionClass = 'toast-top-right';
+    }
+  }
+  setInlinePosition(index: number) {
+    this.toastr.overlayContainer = this.inlineContainers.toArray()[index];
   }
   setClass(enableBootstrap: boolean) {
     const add = enableBootstrap ? 'bootstrap' : 'normal';
