@@ -78,7 +78,7 @@ Don't want to use `@angular/animations`? See
 ]
 ```
 
-**step 2:** add ToastrModule to app NgModule
+**step 2:** add ToastrModule to app NgModule, make sure you have BrowserAnimationsModule as well
 
 ```typescript
 import { CommonModule } from '@angular/common';
