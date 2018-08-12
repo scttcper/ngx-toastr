@@ -120,7 +120,7 @@ export interface GlobalConfig extends IndividualConfig {
    */
   newestOnTop: boolean;
   /**
-   * block duplicate messages
+   * block duplicate toasts
    * default: false
    */
   preventDuplicates: boolean;
