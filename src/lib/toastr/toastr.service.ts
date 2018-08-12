@@ -6,15 +6,14 @@ import {
   NgZone,
   SecurityContext
 } from '@angular/core';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
-import {Observable} from 'rxjs';
-import {Overlay} from '../overlay/overlay';
-import {ComponentPortal} from '../portal/portal';
-import {ToastInjector, ToastRef} from './toast-injector';
-import {ToastToken, TOAST_CONFIG} from './toast-token';
-import {ToastContainerDirective} from './toast.directive';
-import {GlobalConfig, IndividualConfig, ToastPackage} from './toastr-config';
-import {Toast} from './toast.component';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { Overlay } from '../overlay/overlay';
+import { ComponentPortal } from '../portal/portal';
+import { ToastInjector, ToastRef } from './toast-injector';
+import { ToastToken, TOAST_CONFIG } from './toast-token';
+import { ToastContainerDirective } from './toast.directive';
+import { GlobalConfig, IndividualConfig, ToastPackage } from './toastr-config';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
@@ -56,13 +55,12 @@ export class ToastrService {
     private ngZone: NgZone
   ) {
     const defaultConfig = new token.defaults();
-    this.toastrConfig = {...defaultConfig, ...token.config};
+    this.toastrConfig = { ...defaultConfig, ...token.config };
     this.toastrConfig.iconClasses = {
       ...defaultConfig.iconClasses,
       ...token.config.iconClasses
     };
   }
-
   /** show toast */
   show(
     message?: string,
@@ -77,7 +75,6 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
-
   /** show successful toast */
   success(
     message?: string,
@@ -92,7 +89,6 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
-
   /** show error toast */
   error(
     message?: string,
@@ -107,7 +103,6 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
-
   /** show info toast */
   info(
     message?: string,
@@ -122,7 +117,6 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
-
   /** show warning toast */
   warning(
     message?: string,
@@ -137,7 +131,6 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
-
   /**
    * Remove all or a single toast by id
    */
@@ -154,7 +147,6 @@ export class ToastrService {
       }
     }
   }
-
   /**
    * Remove and destroy a single toast by id
    */
@@ -208,7 +200,7 @@ export class ToastrService {
 
   /** create a clone of global config and apply individual settings */
   private applyConfig(override: Partial<IndividualConfig> = {}): GlobalConfig {
-    return {...this.toastrConfig, ...override};
+    return { ...this.toastrConfig, ...override };
   }
 
   /**
@@ -219,7 +211,7 @@ export class ToastrService {
   ): { index: number; activeToast: ActiveToast<any> } | null {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
-        return {index: i, activeToast: this.toasts[i]};
+        return { index: i, activeToast: this.toasts[i] };
       }
     }
     return null;
@@ -256,7 +248,8 @@ export class ToastrService {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
-    if (this.toastrConfig.preventDuplicates &&
+    if (
+      this.toastrConfig.preventDuplicates &&
       this.isDuplicate(toastType, message, title, this.toastrConfig.resetTimeoutOnDuplicate)
     ) {
       return null;
