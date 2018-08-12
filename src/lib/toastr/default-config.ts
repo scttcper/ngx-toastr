@@ -32,4 +32,5 @@ export class DefaultGlobalConfig implements GlobalConfig {
   tapToDismiss = true;
   onActivateTick = false;
   progressAnimation: 'decreasing' | 'increasing' = 'decreasing';
+  countDuplicates = false;
 }

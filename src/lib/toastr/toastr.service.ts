@@ -176,6 +176,7 @@ export class ToastrService {
   isDuplicate(message: string, resetOnDuplicate: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].message === message) {
+        this.toasts[i].toastRef.incrementRefCount();
         if (
           resetOnDuplicate &&
           this.toasts[i].toastRef.componentInstance.resetTimeout

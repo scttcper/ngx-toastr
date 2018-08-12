@@ -19,7 +19,7 @@ import { ToastrService } from './toastr.service';
     <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-    {{ title }}
+    {{ !options.countDuplicates || refCount === 1 ? title : title + ' [' + refCount + ']'}}
   </div>
   <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
@@ -37,9 +37,11 @@ export class ToastNoAnimation implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
   options: IndividualConfig;
+  refCount = 1;
   originalTimeout: number;
   /** width of progress bar */
   width = -1;
+
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
 
@@ -50,7 +52,6 @@ export class ToastNoAnimation implements OnDestroy {
     }
     return 'inherit';
   }
-
   /** controls animation */
   state = 'inactive';
   private timeout: any;
@@ -59,6 +60,7 @@ export class ToastNoAnimation implements OnDestroy {
   private sub: Subscription;
   private sub1: Subscription;
   private sub2: Subscription;
+  private sub3: Subscription;
 
   constructor(
     protected toastrService: ToastrService,
@@ -81,11 +83,15 @@ export class ToastNoAnimation implements OnDestroy {
     this.sub2 = toastPackage.toastRef.timeoutReset().subscribe(() => {
       this.resetTimeout();
     });
+    this.sub3 = toastPackage.toastRef.refCountIncrement().subscribe(() => {
+      this.incrementRefCount();
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
+    this.sub3.unsubscribe();
     clearInterval(this.intervalId);
     clearTimeout(this.timeout);
   }
@@ -197,6 +203,10 @@ export class ToastNoAnimation implements OnDestroy {
     if (this.options.progressBar) {
       this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
+  }
+
+  private incrementRefCount() {
+    this.refCount++;
   }
 }
 

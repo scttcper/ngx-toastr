@@ -18,6 +18,8 @@ export class ToastRef<T> {
   private _manualClose = new Subject<any>();
   /** notifies the toast that it should reset the timeouts */
   private _resetTimeout = new Subject<any>();
+  /** notifies the toast that it should increment the ref counter */
+  private _incrementRefCount = new Subject<any>();
 
   constructor(private _overlayRef: OverlayRef) {}
 
@@ -32,6 +34,10 @@ export class ToastRef<T> {
 
   timeoutReset(): Observable<any> {
     return this._resetTimeout.asObservable();
+  }
+
+  refCountIncrement(): Observable<any> {
+    return this._incrementRefCount.asObservable();
   }
 
   /**
@@ -69,6 +75,10 @@ export class ToastRef<T> {
   /** Reset the toast timouts */
   resetTimeout() {
     this._resetTimeout.next();
+  }
+
+  incrementRefCount() {
+    this._incrementRefCount.next();
   }
 }
 

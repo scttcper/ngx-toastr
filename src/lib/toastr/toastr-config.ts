@@ -124,7 +124,11 @@ export interface GlobalConfig extends IndividualConfig {
    * default: false
    */
   preventDuplicates: boolean;
-
+  /**
+   * display the number of duplicate messages
+   * default: false
+   */
+  countDuplicates: boolean;
   /**
    * Reset toast timeout when there's a duplicate (preventDuplicates needs to be set to true)
    * default: false
