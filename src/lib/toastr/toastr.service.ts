@@ -21,9 +21,9 @@ export interface ActiveToast<C> {
   /** the type of your toast. Stored to prevent duplicates */
   toastType: string;
   /** the message of your toast. Stored to prevent duplicates */
-  message: string | undefined;
+  message: string;
   /** the title of your toast. Stored to prevent duplicates */
-  title: string | undefined;
+  title: string;
   /** a reference to the component see portal.ts */
   portal: ComponentRef<C>;
   /** a reference to your toast */
