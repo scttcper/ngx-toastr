@@ -145,7 +145,7 @@ export class ToastPackage {
 
   constructor(
     public toastId: number,
-    public config: IndividualConfig,
+    public config: GlobalConfig,
     public message: string | SafeHtml | null | undefined,
     public title: string | undefined,
     public toastType: string,

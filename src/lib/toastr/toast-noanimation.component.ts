@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { IndividualConfig, ToastPackage } from './toastr-config';
+import {GlobalConfig, IndividualConfig, ToastPackage} from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
@@ -36,7 +36,7 @@ import { ToastrService } from './toastr.service';
 export class ToastNoAnimation implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
-  options: IndividualConfig;
+  options: GlobalConfig;
   refCount = 1;
   originalTimeout: number;
   /** width of progress bar */
