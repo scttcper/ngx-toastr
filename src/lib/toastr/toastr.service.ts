@@ -241,7 +241,7 @@ export class ToastrService {
     // max opened and auto dismiss = true
     if (
       message &&
-      this.toastrConfig.preventDuplicates &&
+      (this.toastrConfig.preventDuplicates && !config.allowDuplicates) &&
       this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate)
     ) {
       return null;

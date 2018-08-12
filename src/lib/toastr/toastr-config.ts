@@ -32,7 +32,11 @@ export interface IndividualConfig {
    * default: false
    */
   progressBar: boolean;
-
+  /**
+   * allow duplicates of this toast. ignored if preventDuplicates == false
+   * default: false
+   */
+  allowDuplicates: boolean;
   /**
    * changes toast progress bar animation
    * default: decreasing

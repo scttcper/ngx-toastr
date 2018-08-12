@@ -19,6 +19,7 @@ export class DefaultGlobalConfig implements GlobalConfig {
   toastComponent = Toast;
   closeButton = false;
   disableTimeOut: false;
+  allowDuplicates = false;
   timeOut = 5000;
   extendedTimeOut = 1000;
   enableHtml = false;
