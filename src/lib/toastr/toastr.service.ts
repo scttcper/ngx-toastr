@@ -6,20 +6,25 @@ import {
   NgZone,
   SecurityContext
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
-import { Overlay } from '../overlay/overlay';
-import { ComponentPortal } from '../portal/portal';
-import { ToastInjector, ToastRef } from './toast-injector';
-import { ToastToken, TOAST_CONFIG } from './toast-token';
-import { ToastContainerDirective } from './toast.directive';
-import { GlobalConfig, IndividualConfig, ToastPackage } from './toastr-config';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {Observable} from 'rxjs';
+import {Overlay} from '../overlay/overlay';
+import {ComponentPortal} from '../portal/portal';
+import {ToastInjector, ToastRef} from './toast-injector';
+import {ToastToken, TOAST_CONFIG} from './toast-token';
+import {ToastContainerDirective} from './toast.directive';
+import {GlobalConfig, IndividualConfig, ToastPackage} from './toastr-config';
+import {Toast} from './toast.component';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
   toastId: number;
+  /** the type of your toast. Stored to prevent duplicates */
+  toastType: string;
   /** the message of your toast. Stored to prevent duplicates */
-  message: string;
+  message: string | undefined;
+  /** the title of your toast. Stored to prevent duplicates */
+  title: string | undefined;
   /** a reference to the component see portal.ts */
   portal: ComponentRef<C>;
   /** a reference to your toast */
@@ -51,12 +56,13 @@ export class ToastrService {
     private ngZone: NgZone
   ) {
     const defaultConfig = new token.defaults();
-    this.toastrConfig = { ...defaultConfig, ...token.config };
+    this.toastrConfig = {...defaultConfig, ...token.config};
     this.toastrConfig.iconClasses = {
       ...defaultConfig.iconClasses,
       ...token.config.iconClasses
     };
   }
+
   /** show toast */
   show(
     message?: string,
@@ -71,6 +77,7 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
+
   /** show successful toast */
   success(
     message?: string,
@@ -85,6 +92,7 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
+
   /** show error toast */
   error(
     message?: string,
@@ -99,6 +107,7 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
+
   /** show info toast */
   info(
     message?: string,
@@ -113,6 +122,7 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
+
   /** show warning toast */
   warning(
     message?: string,
@@ -127,6 +137,7 @@ export class ToastrService {
       this.applyConfig(override)
     );
   }
+
   /**
    * Remove all or a single toast by id
    */
@@ -143,6 +154,7 @@ export class ToastrService {
       }
     }
   }
+
   /**
    * Remove and destroy a single toast by id
    */
@@ -171,11 +183,16 @@ export class ToastrService {
   }
 
   /**
-   * Determines if toast message is already shown
+   * Determines if toast is already shown
    */
-  isDuplicate(message: string, resetOnDuplicate: boolean) {
+  isDuplicate(toastType: string,
+              message: string | undefined,
+              title: string | undefined,
+              resetOnDuplicate: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
-      if (this.toasts[i].message === message) {
+      if (this.toasts[i].toastType === toastType &&
+        this.toasts[i].message === (message || '') &&
+        this.toasts[i].title === (title || '')) {
         if (
           resetOnDuplicate &&
           this.toasts[i].toastRef.componentInstance.resetTimeout
@@ -191,7 +208,7 @@ export class ToastrService {
 
   /** create a clone of global config and apply individual settings */
   private applyConfig(override: Partial<IndividualConfig> = {}): GlobalConfig {
-    return { ...this.toastrConfig, ...override };
+    return {...this.toastrConfig, ...override};
   }
 
   /**
@@ -202,7 +219,7 @@ export class ToastrService {
   ): { index: number; activeToast: ActiveToast<any> } | null {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].toastId === toastId) {
-        return { index: i, activeToast: this.toasts[i] };
+        return {index: i, activeToast: this.toasts[i]};
       }
     }
     return null;
@@ -239,10 +256,8 @@ export class ToastrService {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
-    if (
-      message &&
-      this.toastrConfig.preventDuplicates &&
-      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate)
+    if (this.toastrConfig.preventDuplicates &&
+      this.isDuplicate(toastType, message, title, this.toastrConfig.resetTimeoutOnDuplicate)
     ) {
       return null;
     }
@@ -281,7 +296,9 @@ export class ToastrService {
     toastRef.componentInstance = (<any>portal)._component;
     const ins: ActiveToast<any> = {
       toastId: this.index,
+      toastType: toastType,
       message: message || '',
+      title: title || '',
       toastRef,
       onShown: toastRef.afterActivate(),
       onHidden: toastRef.afterClosed(),
