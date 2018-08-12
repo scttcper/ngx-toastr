@@ -129,6 +129,7 @@ Passed to `ToastrService.success/error/warning/info/show()`
 | extendedTimeOut   | number                         | 1000              | Time to close after a user hovers over toast                                                                                              |
 | disableTimeOut    | boolean                        | false             | Disable both timeOut and extendedTimeOut                                                                                                  |
 | easing            | string                         | 'ease-in'         | Toast component easing                                                                                                                    |
+| allowDuplicates   | boolean                        | false             | Allow duplicates of this toast. Ignored if preventDuplicates == false                                                                     |
 | easeTime          | string \| number               | 300               | Time spent easing                                                                                                                         |
 | enableHtml        | boolean                        | false             | Allow html in message                                                                                                                     |
 | progressBar       | boolean                        | false             | Show progress bar                                                                                                                         |
