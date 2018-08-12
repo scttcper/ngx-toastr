@@ -19,7 +19,7 @@ import { ToastrService } from './toastr.service';
     <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-    {{ !options.countDuplicates || refCount === 1 ? title : title + ' [' + refCount + ']'}}
+    {{ title }} <ng-container *ngIf="options.countDuplicates && refCount > 1">[{{ refCount }}]</ng-container>
   </div>
   <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">

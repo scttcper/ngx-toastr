@@ -14,28 +14,28 @@ import {
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { IndividualConfig, ToastPackage } from './toastr-config';
+import {GlobalConfig, IndividualConfig, ToastPackage} from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-    {{ !options.countDuplicates || refCount === 1 ? title : title + ' [' + refCount + ']'}}
-  </div>
-  <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
-    [class]="options.messageClass" [innerHTML]="message">
-  </div>
-  <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
-    [class]="options.messageClass" [attr.aria-label]="message">
-    {{ message }}
-  </div>
-  <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width]="width + '%'"></div>
-  </div>
+    <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+      {{ title }} <ng-container *ngIf="options.countDuplicates && refCount > 1">[{{ refCount }}]</ng-container>
+    </div>
+    <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
+         [class]="options.messageClass" [innerHTML]="message">
+    </div>
+    <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
+         [class]="options.messageClass" [attr.aria-label]="message">
+      {{ message }}
+    </div>
+    <div *ngIf="options.progressBar">
+      <div class="toast-progress" [style.width]="width + '%'"></div>
+    </div>
   `,
   animations: [
     trigger('flyInOut', [
