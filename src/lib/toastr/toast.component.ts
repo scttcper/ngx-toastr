@@ -146,9 +146,9 @@ export class Toast implements OnDestroy {
   }
 
   resetTimeout() {
-    console.log('test');
     clearTimeout(this.timeout);
     clearInterval(this.intervalId);
+    this.state = { ...this.state, value: 'active' };
 
     this.outsideTimeout(() => this.remove(), this.originalTimeout);
     this.options.timeOut = this.originalTimeout;
