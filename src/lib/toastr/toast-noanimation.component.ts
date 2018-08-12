@@ -129,9 +129,9 @@ export class ToastNoAnimation implements OnDestroy {
   }
 
   resetTimeout() {
-    console.log('test');
     clearTimeout(this.timeout);
     clearInterval(this.intervalId);
+    this.state = 'active';
 
     this.options.timeOut = this.originalTimeout;
     this.timeout = setTimeout(() => this.remove(), this.originalTimeout);
