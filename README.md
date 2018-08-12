@@ -164,6 +164,7 @@ options:
 | iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                            |
 | newestOnTop             | boolean | true                               | New toast placement                                               |
 | preventDuplicates       | boolean | false                              | Block duplicate messages                                          |
+| countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true)    |
 | resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true) |
 
 ##### iconClasses defaults
