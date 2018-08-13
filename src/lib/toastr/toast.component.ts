@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import {GlobalConfig, ToastPackage} from './toastr-config';
+import { GlobalConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
