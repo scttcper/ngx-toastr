@@ -9,7 +9,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "rimraf dist && ts-node build.ts",
+    "build": "ts-node -O '{\"module\": \"commonjs\"}' build.ts",
     "test": "ng test --watch=false",
     "test:watch": "ng test",
     "test:ci": "ng test --watch=false --code-coverage --no-progress",
