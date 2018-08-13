@@ -181,7 +181,6 @@ export class ToastrService {
           resetOnDuplicate &&
           this.toasts[i].toastRef.componentInstance.resetTimeout
         ) {
-          console.log(resetOnDuplicate);
           this.toasts[i].toastRef.resetTimeout();
         }
         return true;
