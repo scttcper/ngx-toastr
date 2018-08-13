@@ -2,8 +2,7 @@
   "extends": [
     "config:base",
     ":semanticCommitTypeAll(chore)",
-    "schedule:earlyMondays",
-    ":maintainLockFilesMonthly"
+    "schedule:monthly"
   ],
   "rebaseStalePrs": true,
   "semanticCommits": true,

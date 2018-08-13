@@ -34,10 +34,8 @@ describe('AppComponent', () => {
         HeaderComponent,
         GithubLinkComponent,
       ],
-      providers: [
-      ],
-    });
-    TestBed.compileComponents();
+      providers: [],
+    }).compileComponents();
   }));
 
   it('should create the app', async(() => {
@@ -48,11 +46,8 @@ describe('AppComponent', () => {
 });
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ToastrModule,
-  ],
+  imports: [CommonModule, ToastrModule],
   entryComponents: [],
   declarations: [],
 })
-class AppTestModule { }
+class AppTestModule {}

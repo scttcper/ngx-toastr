@@ -6,6 +6,9 @@
     "class-name": true,
     "comment-format": [true, "check-space"],
     "curly": true,
+    "deprecation": {
+      "severity": "warn"
+    },
     "eofline": true,
     "forin": true,
     "import-blacklist": [true, "rxjs/Rx"],
@@ -80,9 +83,6 @@
       "check-separator",
       "check-type"
     ],
-    "directive-selector": [false, "attribute", "app", "camelCase"],
-    "component-selector": [false, "element", "app", "kebab-case"],
-    "angular-whitespace": [true, "check-interpolation"],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
@@ -91,15 +91,7 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": false,
-    "directive-class-suffix": true,
-    "no-unused-variable": true,
-    "ordered-imports": [
-      true,
-      {
-        "import-sources-order": "lowercase-last",
-        "named-imports-order": "lowercase-first"
-      }
-    ]
+    "component-class-suffix": true,
+    "directive-class-suffix": true
   }
 }
