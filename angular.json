@@ -68,6 +68,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
+            "browsers": "ChromeCI",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
@@ -84,6 +85,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
+            "format": "stylish",
+            "typeCheck": true,
             "tsConfig": [
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
