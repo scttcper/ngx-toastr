@@ -1,4 +1,4 @@
-import { Injector, InjectFlags } from '@angular/core';
+import { Injector } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { OverlayRef } from '../overlay/overlay-ref';
 import { ToastPackage } from './toastr-config';
@@ -79,10 +79,11 @@ export class ToastInjector implements Injector {
     private _parentInjector: Injector
   ) {}
 
-  get<T>(token: any, notFoundValue?: T, flags?: InjectFlags): T | ToastPackage {
-    if (token === ToastPackage) {
+  /* tslint:disable:deprecation */
+  get(token: any, notFoundValue?: any): any {
+    if (token === ToastPackage && this._toastPackage) {
       return this._toastPackage;
     }
-    return this._parentInjector.get<T>(token, notFoundValue, flags);
+    return this._parentInjector.get(token, notFoundValue);
   }
 }
