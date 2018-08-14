@@ -34,7 +34,7 @@ export interface ActiveToast<C> {
   onAction: Observable<any>;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ToastrService {
   toastrConfig: GlobalConfig;
   currentlyActive = 0;

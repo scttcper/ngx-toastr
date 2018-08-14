@@ -12,7 +12,7 @@ export class DefaultGlobalConfig implements GlobalConfig {
     error: 'toast-error',
     info: 'toast-info',
     success: 'toast-success',
-    warning: 'toast-warning'
+    warning: 'toast-warning',
   };
 
   // Individual
