@@ -3,10 +3,10 @@
   "name": "ngx-toastr",
   "version": "0.0.0-placeholder",
   "peerDependencies": {
-    "@angular/core": "^5.2.0 || ^6.0.0",
-    "@angular/common": "^5.2.0 || ^6.0.0",
-    "@angular/platform-browser": "^5.2.0 || ^6.0.0",
-    "rxjs": "^6.0.0"
+    "@angular/core": "^6.0.0",
+    "@angular/common": "^6.0.0",
+    "@angular/platform-browser": "^6.0.0",
+    "rxjs": "^6.1.0"
   },
   "ngPackage": {
     "lib": {
