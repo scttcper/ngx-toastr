@@ -27,12 +27,8 @@ export class ToastrModule {
         {
           provide: TOAST_CONFIG,
           useValue: {
-            ...DefaultGlobalConfig,
-            ...config,
-            iconClasses: {
-              ...DefaultGlobalConfig.iconClasses,
-              ...config.iconClasses,
-            }
+            default: DefaultGlobalConfig,
+            config,
           },
         },
       ],
@@ -51,12 +47,8 @@ export class ToastrComponentlessModule {
         {
           provide: TOAST_CONFIG,
           useValue: {
-            ...DefaultGlobalConfig,
-            ...config,
-            iconClasses: {
-              ...DefaultGlobalConfig.iconClasses,
-              ...config.iconClasses,
-            }
+            default: DefaultNoComponentGlobalConfig,
+            config,
           },
         },
       ],
