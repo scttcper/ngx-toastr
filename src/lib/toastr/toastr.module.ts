@@ -21,17 +21,19 @@ export const DefaultGlobalConfig: GlobalConfig = {
 })
 export class ToastrModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
-    const toastrConfig = { ...DefaultGlobalConfig, ...config };
-    toastrConfig.iconClasses = {
-      ...DefaultGlobalConfig.iconClasses,
-      ...config.iconClasses,
-    };
     return {
       ngModule: ToastrModule,
       providers: [
         {
           provide: TOAST_CONFIG,
-          useValue: toastrConfig,
+          useValue: {
+            ...DefaultGlobalConfig,
+            ...config,
+            iconClasses: {
+              ...DefaultGlobalConfig.iconClasses,
+              ...config.iconClasses,
+            }
+          },
         },
       ],
     };
@@ -43,17 +45,19 @@ export class ToastrModule {
 })
 export class ToastrComponentlessModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
-    const toastrConfig = { ...DefaultNoComponentGlobalConfig, ...config };
-    toastrConfig.iconClasses = {
-      ...DefaultNoComponentGlobalConfig.iconClasses,
-      ...config.iconClasses,
-    };
     return {
       ngModule: ToastrModule,
       providers: [
         {
           provide: TOAST_CONFIG,
-          useValue: toastrConfig,
+          useValue: {
+            ...DefaultGlobalConfig,
+            ...config,
+            iconClasses: {
+              ...DefaultGlobalConfig.iconClasses,
+              ...config.iconClasses,
+            }
+          },
         },
       ],
     };

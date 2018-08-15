@@ -222,17 +222,19 @@ export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
 })
 export class ToastNoAnimationModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
-    const toastrConfig = { ...DefaultNoAnimationsGlobalConfig, ...config };
-    toastrConfig.iconClasses = {
-      ...DefaultNoAnimationsGlobalConfig.iconClasses,
-      ...config.iconClasses,
-    };
     return {
       ngModule: ToastNoAnimationModule,
       providers: [
         {
           provide: TOAST_CONFIG,
-          useValue: toastrConfig,
+          useValue: {
+            ...DefaultNoAnimationsGlobalConfig,
+            ...config,
+            iconClasses: {
+              ...DefaultNoAnimationsGlobalConfig.iconClasses,
+              ...config.iconClasses,
+            }
+          },
         },
       ],
     };
