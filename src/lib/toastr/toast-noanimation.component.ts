@@ -228,12 +228,8 @@ export class ToastNoAnimationModule {
         {
           provide: TOAST_CONFIG,
           useValue: {
-            ...DefaultNoAnimationsGlobalConfig,
-            ...config,
-            iconClasses: {
-              ...DefaultNoAnimationsGlobalConfig.iconClasses,
-              ...config.iconClasses,
-            }
+            default: DefaultNoAnimationsGlobalConfig,
+            config,
           },
         },
       ],

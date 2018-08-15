@@ -220,4 +220,9 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   progressAnimation: 'decreasing',
 };
 
-export const TOAST_CONFIG = new InjectionToken<GlobalConfig>('ToastConfig');
+export interface ToastToken {
+  default: GlobalConfig;
+  config: Partial<GlobalConfig>;
+}
+
+export const TOAST_CONFIG = new InjectionToken<ToastToken>('ToastConfig');

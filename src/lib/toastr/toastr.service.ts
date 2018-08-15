@@ -14,7 +14,7 @@ import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
 import { ToastInjector, ToastRef } from './toast-injector';
 import { ToastContainerDirective } from './toast.directive';
-import { GlobalConfig, IndividualConfig, ToastPackage, TOAST_CONFIG } from './toastr-config';
+import { GlobalConfig, IndividualConfig, ToastPackage, ToastToken, TOAST_CONFIG } from './toastr-config';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
@@ -37,6 +37,7 @@ export interface ActiveToast<C> {
 
 @Injectable({ providedIn: 'root' })
 export class ToastrService {
+  toastrConfig: GlobalConfig;
   currentlyActive = 0;
   toasts: ActiveToast<any>[] = [];
   overlayContainer: ToastContainerDirective;
@@ -44,12 +45,22 @@ export class ToastrService {
   private index = 0;
 
   constructor(
-    @Inject(TOAST_CONFIG) public toastrConfig: GlobalConfig,
+    @Inject(TOAST_CONFIG) token: ToastToken,
     private overlay: Overlay,
     private _injector: Injector,
     private sanitizer: DomSanitizer,
     private ngZone: NgZone
   ) {
+    this.toastrConfig = {
+      ...token.default,
+      ...token.config,
+    };
+    if (token.config.iconClasses) {
+      this.toastrConfig.iconClasses = {
+        ...token.default.iconClasses,
+        ...token.config.iconClasses,
+      };
+    }
   }
   /** show toast */
   show(
