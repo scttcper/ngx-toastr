@@ -82,7 +82,7 @@ export class ToastRef<T> {
       this._resetTimeout.next();
     }
     if (countDuplicate) {
-      this._countDuplicate.next(this.duplicatesCount++);
+      this._countDuplicate.next(++this.duplicatesCount);
     }
   }
 }
