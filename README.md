@@ -308,10 +308,7 @@ import {
     // ...
 
     // BrowserAnimationsModule no longer required
-    ToastNoAnimationModule,
-    ToastrModule.forRoot({
-      toastComponent: ToastNoAnimation
-    })
+    ToastNoAnimationModule.forRoot(),
   ]
   // ...
 })

@@ -7,13 +7,14 @@ import {
   SecurityContext
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
 import { Observable } from 'rxjs';
+
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
 import { ToastInjector, ToastRef } from './toast-injector';
-import { ToastToken, TOAST_CONFIG } from './toast-token';
 import { ToastContainerDirective } from './toast.directive';
-import { GlobalConfig, IndividualConfig, ToastPackage } from './toastr-config';
+import { GlobalConfig, IndividualConfig, ToastPackage, ToastToken, TOAST_CONFIG } from './toastr-config';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
@@ -38,7 +39,7 @@ export interface ActiveToast<C> {
   onAction: Observable<any>;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ToastrService {
   toastrConfig: GlobalConfig;
   currentlyActive = 0;
@@ -54,12 +55,16 @@ export class ToastrService {
     private sanitizer: DomSanitizer,
     private ngZone: NgZone
   ) {
-    const defaultConfig = new token.defaults();
-    this.toastrConfig = { ...defaultConfig, ...token.config };
-    this.toastrConfig.iconClasses = {
-      ...defaultConfig.iconClasses,
-      ...token.config.iconClasses
+    this.toastrConfig = {
+      ...token.default,
+      ...token.config,
     };
+    if (token.config.iconClasses) {
+      this.toastrConfig.iconClasses = {
+        ...token.default.iconClasses,
+        ...token.config.iconClasses,
+      };
+    }
   }
   /** show toast */
   show(
