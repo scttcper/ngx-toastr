@@ -24,7 +24,7 @@ import { ToastrService } from './toastr.service';
       <span aria-hidden="true">&times;</span>
     </button>
     <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-      {{ title }} <ng-container *ngIf="refCount">[{{ refCount + 1 }}]</ng-container>
+      {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
     </div>
     <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
          [class]="options.messageClass" [innerHTML]="message">
@@ -61,7 +61,7 @@ export class Toast implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
   options: IndividualConfig;
-  refCount = 0;
+  duplicatesCount: number;
   originalTimeout: number;
   /** width of progress bar */
   width = -1;
@@ -105,8 +105,8 @@ export class Toast implements OnDestroy {
     this.sub2 = toastPackage.toastRef.timeoutReset().subscribe(() => {
       this.resetTimeout();
     });
-    this.sub3 = toastPackage.toastRef.refCountIncrement().subscribe(() => {
-      this.incrementRefCount();
+    this.sub3 = toastPackage.toastRef.countDuplicate().subscribe(count => {
+      this.duplicatesCount = count;
     });
   }
   ngOnDestroy() {
@@ -254,9 +254,5 @@ export class Toast implements OnDestroy {
     } else {
       func();
     }
-  }
-
-  private incrementRefCount() {
-    this.refCount++;
   }
 }
