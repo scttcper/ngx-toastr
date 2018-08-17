@@ -1,27 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
-  styles: [`
-  .header {
-    text-align: center;
-  }
-  .header h1 {
-    font-size: 46px;
-    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-weight: bold;
-  }
-  p {
-    color: #777;
-  }
-  `],
   template: `
-  <header class="header mt-5">
+  <header class="header mt-5 text-center">
     <h1>Angular Toastr</h1>
-    <p>Easy Toasts for Angular</p>
+    <p style="color: #777" class="mb-1">Easy Toasts for Angular</p>
+    <mdo-github-button user="scttcper" repo="ngx-toastr" [count]="true"></mdo-github-button>
   </header>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {
-}
+export class HeaderComponent {}

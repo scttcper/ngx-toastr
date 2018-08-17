@@ -22,7 +22,7 @@
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" [(ngModel)]="options.enableHtml" id="enableHtml">
                   <label class="form-check-label" for="enableHtml">
-                    Enable Html (message)
+                    Enable HTML (message)
                   </label>
                 </div>
                 <div class="form-check">
@@ -271,15 +271,11 @@
               <p class="mb-1">
                 <small>Example Custom Toasts:</small>
               </p>
-              <button (click)="openToastNoAnimation()" type="button" class="btn btn-light mr-1">
+              <button (click)="openToastNoAnimation()" type="button" class="btn btn-sm btn-light mr-1">
                 No Animations
               </button>
-              <button (click)="openPinkToast()" type="button" class="btn btn-pink mr-1">
-                Pink
-              </button>
-              <button (click)="openNotyf()" type="button" class="btn btn-dark mr-1">
-                Notyf
-              </button>
+              <button (click)="openPinkToast()" type="button" class="btn btn-sm btn-pink mr-1">Pink</button>
+              <button (click)="openNotyf()" type="button" class="btn btn-sm btn-dark mr-1">Notyf</button>
             </div>
           </div>
         </div>
