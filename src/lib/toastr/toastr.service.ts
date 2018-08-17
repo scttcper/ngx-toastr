@@ -184,10 +184,7 @@ export class ToastrService {
         if (countDuplicates) {
           this.toasts[i].toastRef.incrementRefCount();
         }
-        if (
-          resetOnDuplicate &&
-          this.toasts[i].toastRef.componentInstance.resetTimeout
-        ) {
+        if (resetOnDuplicate) {
           this.toasts[i].toastRef.resetTimeout();
         }
         return true;
