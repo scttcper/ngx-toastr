@@ -198,7 +198,7 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   autoDismiss: false,
   newestOnTop: true,
   preventDuplicates: false,
-  countDuplicates: false,
+  countDuplicates: true,
   resetTimeoutOnDuplicate: false,
   iconClasses: {
     error: 'toast-error',
