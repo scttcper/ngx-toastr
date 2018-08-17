@@ -28,7 +28,7 @@ import { ToastrService } from './toastr.service';
     <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-    {{ title }} <ng-container *ngIf="options.countDuplicates && refCount > 1">[{{ refCount }}]</ng-container>
+    {{ title }} <ng-container *ngIf="refCount">[{{ refCount + 1}}]</ng-container>
   </div>
   <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
@@ -46,7 +46,7 @@ export class ToastNoAnimation implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
   options: IndividualConfig;
-  refCount = 1;
+  refCount = 0;
   originalTimeout: number;
   /** width of progress bar */
   width = -1;

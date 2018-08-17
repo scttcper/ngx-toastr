@@ -178,10 +178,12 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  isDuplicate(message: string, resetOnDuplicate: boolean) {
+  isDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
       if (this.toasts[i].message === message) {
-        this.toasts[i].toastRef.incrementRefCount();
+        if (countDuplicates) {
+          this.toasts[i].toastRef.incrementRefCount();
+        }
         if (
           resetOnDuplicate &&
           this.toasts[i].toastRef.componentInstance.resetTimeout
@@ -247,7 +249,7 @@ export class ToastrService {
     if (
       message &&
       this.toastrConfig.preventDuplicates &&
-      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate)
+      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate, this.toastrConfig.countDuplicates)
     ) {
       return null;
     }

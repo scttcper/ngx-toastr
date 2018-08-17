@@ -151,7 +151,7 @@ export class ToastPackage {
 
   constructor(
     public toastId: number,
-    public config: GlobalConfig,
+    public config: IndividualConfig,
     public message: string | SafeHtml | null | undefined,
     public title: string | undefined,
     public toastType: string,
@@ -198,6 +198,7 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   autoDismiss: false,
   newestOnTop: true,
   preventDuplicates: false,
+  countDuplicates: false,
   resetTimeoutOnDuplicate: false,
   iconClasses: {
     error: 'toast-error',
