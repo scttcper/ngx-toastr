@@ -22,7 +22,7 @@ export class ToastRef<T> {
   /** notifies the toast that it should reset the timeouts */
   private _resetTimeout = new Subject<any>();
   /** notifies the toast that it should count a duplicate toast */
-  private _countDuplicate = new Subject<any>();
+  private _countDuplicate = new Subject<number>();
 
   constructor(private _overlayRef: OverlayRef) {}
 
