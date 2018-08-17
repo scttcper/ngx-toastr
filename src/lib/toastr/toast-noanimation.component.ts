@@ -1,15 +1,24 @@
 import { CommonModule } from '@angular/common';
+import { ModuleWithProviders } from '@angular/compiler/src/core';
 import {
   ApplicationRef,
   Component,
   HostBinding,
   HostListener,
   NgModule,
-  OnDestroy
+  OnDestroy,
 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+
 import { Subscription } from 'rxjs';
-import { GlobalConfig, ToastPackage } from './toastr-config';
+
+import {
+  DefaultNoComponentGlobalConfig,
+  GlobalConfig,
+  IndividualConfig,
+  ToastPackage,
+  TOAST_CONFIG,
+} from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
@@ -31,12 +40,12 @@ import { ToastrService } from './toastr.service';
   <div *ngIf="options.progressBar">
     <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
-  `
+  `,
 })
 export class ToastNoAnimation implements OnDestroy {
   message?: string | SafeHtml | null;
   title?: string;
-  options: GlobalConfig;
+  options: IndividualConfig;
   refCount = 1;
   originalTimeout: number;
   /** width of progress bar */
@@ -52,6 +61,7 @@ export class ToastNoAnimation implements OnDestroy {
     }
     return 'inherit';
   }
+
   /** controls animation */
   state = 'inactive';
   private timeout: any;
@@ -65,7 +75,7 @@ export class ToastNoAnimation implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected appRef: ApplicationRef
+    protected appRef: ApplicationRef,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -158,7 +168,7 @@ export class ToastNoAnimation implements OnDestroy {
     clearTimeout(this.timeout);
     this.state = 'removed';
     this.timeout = setTimeout(() =>
-      this.toastrService.remove(this.toastPackage.toastId)
+      this.toastrService.remove(this.toastPackage.toastId),
     );
   }
   @HostListener('click')
@@ -195,7 +205,7 @@ export class ToastNoAnimation implements OnDestroy {
     }
     this.timeout = setTimeout(
       () => this.remove(),
-      this.options.extendedTimeOut
+      this.options.extendedTimeOut,
     );
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
@@ -210,10 +220,30 @@ export class ToastNoAnimation implements OnDestroy {
   }
 }
 
+export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
+  ...DefaultNoComponentGlobalConfig,
+  toastComponent: ToastNoAnimation,
+};
+
 @NgModule({
   imports: [CommonModule],
   declarations: [ToastNoAnimation],
   exports: [ToastNoAnimation],
-  entryComponents: [ToastNoAnimation]
+  entryComponents: [ToastNoAnimation],
 })
-export class ToastNoAnimationModule {}
+export class ToastNoAnimationModule {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
+    return {
+      ngModule: ToastNoAnimationModule,
+      providers: [
+        {
+          provide: TOAST_CONFIG,
+          useValue: {
+            default: DefaultNoAnimationsGlobalConfig,
+            config,
+          },
+        },
+      ],
+    };
+  }
+}

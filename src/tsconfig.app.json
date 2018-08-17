@@ -1,17 +1,11 @@
 {
-  "$schema": "http://json.schemastore.org/tsconfig",
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
-    "module": "es2015",
     "types": []
   },
   "exclude": [
-    "test.ts",
+    "src/test.ts",
     "**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-    "preserveWhitespaces": false
-  }
+  ]
 }

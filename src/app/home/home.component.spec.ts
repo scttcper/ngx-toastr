@@ -25,9 +25,7 @@ describe('AppComponent', () => {
         BrowserAnimationsModule,
         AppTestModule,
       ],
-      declarations: [
-        HomeComponent,
-      ],
+      declarations: [HomeComponent],
     }).compileComponents();
   });
 
@@ -36,7 +34,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it('should trigger onShown', (done) => {
+  it('should trigger onShown', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
@@ -45,7 +43,7 @@ describe('AppComponent', () => {
       done();
     });
   });
-  it('should trigger onHidden', (done) => {
+  it('should trigger onHidden', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
@@ -54,18 +52,17 @@ describe('AppComponent', () => {
       done();
     });
   });
-  it('should trigger onTap', (done) => {
+  it('should trigger onTap', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.portal).toBeDefined();
-    opened.onTap.toPromise()
-      .then(() => {
-        done();
-      });
-      opened.portal.instance.tapToast();
+    opened.onTap.toPromise().then(() => {
+      done();
+    });
+    opened.portal.instance.tapToast();
   });
-  it('should extend life on mouseover and exit', (done) => {
+  it('should extend life on mouseover and exit', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
@@ -74,7 +71,7 @@ describe('AppComponent', () => {
     expect(opened.portal.instance.options.timeOut).toBe(1000);
     done();
   });
-  it('should keep on mouse exit with extended timeout 0', (done) => {
+  it('should keep on mouse exit with extended timeout 0', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     app.options.extendedTimeOut = 0;
@@ -84,39 +81,43 @@ describe('AppComponent', () => {
     expect(opened.portal.instance.options.timeOut).toBe(0);
     done();
   });
-  it('should trigger onShown for openPinkToast', (done) => {
+  it('should trigger onShown for openPinkToast', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<PinkToast> = app.openPinkToast();
+    expect(opened.portal).toBeDefined();
     opened.onShown.toPromise().then(() => {
       done();
     });
   });
-  it('should trigger onHidden for openPinkToast', (done) => {
+  it('should trigger onHidden for openPinkToast', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<PinkToast> = app.openPinkToast();
+    expect(opened.portal).toBeDefined();
     opened.onHidden.toPromise().then(() => {
       done();
     });
   });
-  it('should trigger onShown for openNotyf', (done) => {
+  it('should trigger onShown for openNotyf', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<NotyfToast> = app.openNotyf();
+    expect(opened.portal).toBeDefined();
     opened.onShown.toPromise().then(() => {
       done();
     });
   });
-  it('should trigger onHidden for openNotyf', (done) => {
+  it('should trigger onHidden for openNotyf', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<NotyfToast> = app.openNotyf();
+    expect(opened.portal).toBeDefined();
     opened.onHidden.toPromise().then(() => {
       done();
     });
   });
-  it('should have defined componentInstance', async((done) => {
+  it('should have defined componentInstance', async(done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
@@ -125,11 +126,8 @@ describe('AppComponent', () => {
 });
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ToastrModule,
-  ],
+  imports: [CommonModule, ToastrModule],
   entryComponents: [PinkToast, NotyfToast],
   declarations: [PinkToast, NotyfToast],
 })
-class AppTestModule { }
+class AppTestModule {}
