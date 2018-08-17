@@ -24,7 +24,7 @@ import { ToastrService } from './toastr.service';
       <span aria-hidden="true">&times;</span>
     </button>
     <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-      {{ title }} <ng-container *ngIf="refCount">[{{ refCount + 1}}]</ng-container>
+      {{ title }} <ng-container *ngIf="refCount">[{{ refCount + 1 }}]</ng-container>
     </div>
     <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
          [class]="options.messageClass" [innerHTML]="message">
