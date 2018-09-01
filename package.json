@@ -49,7 +49,7 @@
     "@types/jasmine": "2.8.8",
     "@types/jasminewd2": "2.0.3",
     "@types/lodash-es": "4.17.1",
-    "@types/node": "10.7.0",
+    "@types/node": "10.7.2",
     "@types/rimraf": "2.0.2",
     "codelyzer": "4.4.4",
     "fs-extra": "7.0.0",
