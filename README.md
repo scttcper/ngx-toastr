@@ -31,8 +31,16 @@ DEMO: https://scttcper.github.io/ngx-toastr/
 
 ## Install
 
+If you're using Angular 6.x, install the version 9.x of this package:
+
 ```bash
-npm install ngx-toastr --save
+npm install ngx-toastr@9.0.0 --save
+```
+
+If you're using Angular 5.x, install the version 8.x of this package:
+
+```bash
+npm install ngx-toastr@^8.10.2 --save
 ```
 
 `@angular/animations` package is a required dependency for the default toast
