@@ -29,6 +29,14 @@ DEMO: https://scttcper.github.io/ngx-toastr/
   [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)
 - Output toasts to an optional target directive
 
+## Dependencies
+Latest version available for each version of Angular
+
+| ngx-toastr   | Angular |
+| ------------ | ------- |
+| 6.4.1-beta.0 | 4.x     |
+| 8.10.2       | 5.x     |
+
 ## Install
 
 ```bash
