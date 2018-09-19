@@ -176,21 +176,19 @@ export class ToastrService {
   }
 
   /**
-   * Determines if toast message is already shown
+   * Finds a duplicate toast if one exists
    */
-  isDuplicate(message: string, resetOnDuplicate: boolean) {
+  private findDuplicate(message: string, resetOnDuplicate: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
-      if (this.toasts[i].message === message) {
-        if (
-          resetOnDuplicate &&
-          this.toasts[i].toastRef.componentInstance.resetTimeout
-        ) {
-          this.toasts[i].toastRef.resetTimeout();
+      const toast = this.toasts[i];
+      if (toast.message === message) {
+        if (resetOnDuplicate && toast.toastRef.componentInstance.resetTimeout) {
+          toast.toastRef.resetTimeout();
         }
-        return true;
+        return toast;
       }
     }
-    return false;
+    return null;
   }
 
   /** create a clone of global config and apply individual settings */
@@ -231,7 +229,7 @@ export class ToastrService {
 
   /**
    * Creates and attaches toast data to component
-   * returns null if toast is duplicate and preventDuplicates == True
+   * returns the active toast, or in case preventDuplicates is enabled the original/non-duplicate active toast.
    */
   private _buildNotification(
     toastType: string,
@@ -245,10 +243,12 @@ export class ToastrService {
     // max opened and auto dismiss = true
     if (
       message &&
-      this.toastrConfig.preventDuplicates &&
-      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate)
+      this.toastrConfig.preventDuplicates
     ) {
-      return null;
+      const duplicate = this.findDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate);
+      if (duplicate !== null) {
+        return duplicate;
+      }
     }
     this.previousToastMessage = message;
     let keepInactive = false;

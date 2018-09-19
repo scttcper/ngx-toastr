@@ -202,8 +202,6 @@ imports: [
 
 ### Toastr Service methods return:
 
-Toastr Service will return undefined if prevent duplicates is enabled
-
 ```typescript
 export interface ActiveToast {
   /** Your Toast ID. Use this to close it individually */
