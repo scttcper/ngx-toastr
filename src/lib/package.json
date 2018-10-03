@@ -4,8 +4,10 @@
   "version": "0.0.0-placeholder",
   "peerDependencies": {
     "@angular/core": "^6.0.0",
+    "@angular/compiler": "^6.0.0",
     "@angular/common": "^6.0.0",
     "@angular/platform-browser": "^6.0.0",
+    "@angular/animations": "^6.0.0",
     "rxjs": "^6.1.0"
   },
   "ngPackage": {
