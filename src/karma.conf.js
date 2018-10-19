@@ -21,9 +21,6 @@ module.exports = function(config) {
       reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true,
     },
-    angularCli: {
-      environment: 'dev',
-    },
     reporters: ['mocha', 'kjhtml'],
     port: 9876,
     browserDisconnectTimeout: 10000,
