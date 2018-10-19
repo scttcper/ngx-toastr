@@ -26,6 +26,7 @@ module.exports = function(config) {
     },
     reporters: ['mocha', 'kjhtml'],
     port: 9876,
+    browserDisconnectTimeout: 10000,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
