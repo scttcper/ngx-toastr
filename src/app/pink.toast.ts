@@ -83,12 +83,10 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
       transition('active => removed', animate('400ms ease-out', keyframes([
         style({
           opacity: 1,
-          offset: 0.2,
         }),
         style({
           transform: 'translate3d(100%, 0, 0) skewX(30deg)',
           opacity: 0,
-          offset: 1,
         }),
       ]))),
     ]),
