@@ -31,7 +31,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     }
   `],
   template: `
-  <div class="row">
+  <div class="row" [style.display]="state === 'inactive' ? 'none' : ''">
     <div class="col-9">
       <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
         {{ title }}
@@ -60,8 +60,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
-        display: 'none',
-        opacity: 0
+        opacity: 0,
       })),
       transition('inactive => active', animate('400ms ease-out', keyframes([
         style({
