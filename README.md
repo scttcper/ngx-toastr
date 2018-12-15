@@ -362,6 +362,20 @@ ngOnInit() {
     https://github.com/scttcper/ngx-toastr/issues/179
 4.  How can I translate messages See:
     https://github.com/scttcper/ngx-toastr/issues/201
+5. How to handle toastr click/tap action?
+
+```ts
+showToaster() {
+  this.toastr.success('Hello world!', 'Toastr fun!')
+    .onTap
+    .pipe(take(1))
+    .subscribe(() => this.toasterClickedHandler());
+}
+
+toasterClickedHandler() {
+  console.log('Toastr clicked');
+}
+```
 
 ## Previous Works
 
