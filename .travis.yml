@@ -1,17 +1,25 @@
-sudo: false
 language: node_js
-node_js: 10
-addons:
-  chrome: stable
+node_js:
+  - node
+  - lts/*
+
 script:
   - npm run lint
   - npm run test:ci
   - npm run build
-  - npm run bundlesize
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - npm run travis-deploy-once "npm run semantic-release"
-  - npm run ghpages
+  - npm run build:docs
+
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script:
+        - npm run build
+        - npm run semantic-release
+
 deploy:
   provider: pages
   skip_cleanup: true
@@ -19,6 +27,6 @@ deploy:
   github_token: $GH_TOKEN
   on:
     branch: master
+
 notifications:
   email: false
-
