@@ -6,7 +6,7 @@ import { of as ObservableOf } from 'rxjs';
 import { HeaderComponent } from './header.component';
 
 class FakeButtonService {
-  repo(user: string, repo: string) {
+  repo() {
     return ObservableOf({ stargazers_count: 0 });
   }
 }

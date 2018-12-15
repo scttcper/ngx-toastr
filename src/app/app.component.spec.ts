@@ -4,19 +4,17 @@ import { NgModule } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { ButtonService, MdoButtonModule } from '@ctrl/ngx-github-buttons';
 import { of as ObservableOf } from 'rxjs';
 
 import { ToastrModule } from '../lib/public_api';
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
 class FakeButtonService {
-  repo(user: string, repo: string) {
+  repo() {
     return ObservableOf({ stargazers_count: 0 });
   }
 }
