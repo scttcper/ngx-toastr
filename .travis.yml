@@ -10,7 +10,6 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - npm run build:docs
 
 jobs:
   include:
@@ -19,14 +18,17 @@ jobs:
       script:
         - npm run build
         - npm run semantic-release
-
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: dist
-  github_token: $GH_TOKEN
-  on:
-    branch: master
+    - stage: deploy
+      node_js: lts/*
+      script:
+        - npm run build:docs
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: dist
+        github_token: $GH_TOKEN
+        on:
+          branch: master
 
 notifications:
   email: false
