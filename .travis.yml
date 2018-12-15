@@ -1,7 +1,6 @@
 language: node_js
 node_js:
-  - node
-  - lts/*
+  - 10
 
 script:
   - npm run lint
@@ -15,7 +14,7 @@ after_success:
 jobs:
   include:
     - stage: release
-      node_js: lts/*
+      node_js: 10
       script:
         - npm run build
         - npm run semantic-release
