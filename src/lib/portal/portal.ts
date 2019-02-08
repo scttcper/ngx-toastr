@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 
 export interface ComponentType<T> {
+  // tslint:disable-next-line:callable-types
   new (...args: any[]): T;
 }
 
