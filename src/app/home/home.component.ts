@@ -6,6 +6,7 @@ import {
   ToastrService,
   ToastContainerDirective,
   ToastNoAnimation,
+  ToastPosition
 } from '../../lib/public_api';
 
 import { NotyfToast } from '../notyf.toast';
@@ -119,7 +120,7 @@ export class HomeComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = NotyfToast;
     opt.toastClass = 'notyf confirm';
-    opt.positionClass = 'notyf-container';
+    opt.positionClass = ToastPosition.notyf_container;
     this.options.newestOnTop = false;
     const { message, title } = this.getMessage();
     const inserted = this.toastr.show(message || 'Success', title, opt);
@@ -140,10 +141,10 @@ export class HomeComponent {
   setInlineClass(enableInline: boolean) {
     if (enableInline) {
       this.toastr.overlayContainer = this.inlineContainers.toArray()[this.inlinePositionIndex];
-      this.options.positionClass = 'inline';
+      this.options.positionClass = ToastPosition.inline;
     } else {
       this.toastr.overlayContainer = undefined;
-      this.options.positionClass = 'toast-top-right';
+      this.options.positionClass = ToastPosition.toast_top_right;
     }
   }
   setInlinePosition(index: number) {

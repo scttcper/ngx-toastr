@@ -8,6 +8,24 @@ import { ToastRef } from './toast-injector';
 
 export type ProgressAnimationType = 'increasing' | 'decreasing';
 
+/*
+ * @enum ToastPosition string
+ */
+export enum ToastPosition {
+  toast_center_center = 'toast-center-center',
+  toast_top_center = 'toast-top-center',
+  toast_bottom_center = 'toast-bottom-center',
+  toast_top_full_width = 'toast-top-full-width',
+  toast_bottom_full_width = 'toast-bottom-full-width',
+  toast_top_left = 'toast-top-left',
+  toast_top_right = 'toast-top-right',
+  toast_bottom_right = 'toast-bottom-right',
+  toast_bottom_left = 'toast-bottom-left',
+  notyf_container = 'notyf-container',
+  inline = 'inline',
+  empty = '',
+}
+
 /**
  * Configuration for an individual toast.
  */
@@ -58,7 +76,7 @@ export interface IndividualConfig {
    * css class on toast container
    * default: toast-top-right
    */
-  positionClass: string;
+  positionClass: ToastPosition;
   /**
    * css class on toast title
    * default: toast-title
@@ -210,7 +228,7 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   enableHtml: false,
   progressBar: false,
   toastClass: 'toast',
-  positionClass: 'toast-top-right',
+  positionClass: ToastPosition.toast_top_right,
   titleClass: 'toast-title',
   messageClass: 'toast-message',
   easing: 'ease-in',

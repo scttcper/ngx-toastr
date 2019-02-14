@@ -8,6 +8,7 @@ import {
 
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { ToastContainerDirective } from '../toastr/toast.directive';
+import { ToastPosition } from '../toastr/toastr-config';
 import { OverlayContainer } from './overlay-container';
 import { OverlayRef } from './overlay-ref';
 
@@ -38,7 +39,7 @@ export class Overlay {
    * @returns A reference to the created overlay.
    */
   create(
-    positionClass?: string,
+    positionClass?: ToastPosition,
     overlayContainer?: ToastContainerDirective,
   ): OverlayRef {
     // get existing pane if possible
@@ -48,7 +49,7 @@ export class Overlay {
   }
 
   getPaneElement(
-    positionClass: string = '',
+    positionClass: ToastPosition = ToastPosition.empty,
     overlayContainer?: ToastContainerDirective,
   ): HTMLElement {
     if (!this._paneElements.get(overlayContainer)) {
@@ -68,7 +69,7 @@ export class Overlay {
    * @returns Newly-created pane element
    */
   private _createPaneElement(
-    positionClass: string,
+    positionClass: ToastPosition,
     overlayContainer?: ToastContainerDirective,
   ): HTMLElement {
     const pane = this._document.createElement('div');
