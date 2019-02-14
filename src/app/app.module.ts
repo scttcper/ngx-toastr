@@ -1,33 +1,42 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToastrModule } from '../lib';
+import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
+
+import {
+  ToastrModule,
+  ToastContainerModule,
+  ToastNoAnimationModule,
+} from '../lib/public_api';
 
 import { AppComponent } from './app.component';
-import { PinkToast } from './pink.toast';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
 import { NotyfToast } from './notyf.toast';
-// import { ToastContainerModule } from '../lib/toast-directive';
+import { PinkToast } from './pink.toast';
 
 @NgModule({
   declarations: [
     AppComponent,
     PinkToast,
     NotyfToast,
+    FooterComponent,
+    HeaderComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    ToastNoAnimationModule,
     ToastrModule.forRoot(),
-    // ToastContainerModule.forRoot(),
+    ToastContainerModule,
+    MdoButtonModule,
   ],
-  entryComponents: [
-    PinkToast,
-    NotyfToast,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  entryComponents: [PinkToast, NotyfToast],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

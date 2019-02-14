@@ -35,6 +35,7 @@ testem.log
 /deploy
 /waste
 /build
+dist.tgz
 
 # e2e
 /e2e/*.js

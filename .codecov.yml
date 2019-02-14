@@ -1,7 +1,8 @@
 coverage:
+  range: "50..100"
   status:
-    project:
-      default:
-        target: auto
-        threshold: 10
-        base: auto
+    project: no
+    patch: no
+comment:
+  require_changes: yes
+  behavior: once
