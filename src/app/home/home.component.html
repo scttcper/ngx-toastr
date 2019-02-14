@@ -1,0 +1,285 @@
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="toastTitle">
+                  <strong>Title</strong>
+                </label>
+                <input [(ngModel)]="title" type="text" class="form-control" name="toastTitle" id="toastTitle" placeholder="Toast title">
+              </div>
+              <div class="form-group">
+                <label for="toastMessage">
+                  <strong>Message</strong>
+                </label>
+                <textarea [(ngModel)]="message" rows="3" class="form-control" name="toastMessage" id="toastMessage" placeholder="Toast message"></textarea>
+              </div>
+
+              <div class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.enableHtml" id="enableHtml">
+                  <label class="form-check-label" for="enableHtml">
+                    Enable HTML (message)
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.tapToDismiss" id="tapToDismiss">
+                  <label class="form-check-label" for="tapToDismiss">
+                    Tap to dismiss
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.closeButton" id="closeButton">
+                  <label class="form-check-label" for="closeButton">
+                    Close button
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.preventDuplicates" id="preventDuplicates">
+                  <label class="form-check-label" for="preventDuplicates">
+                    Prevent duplicates
+                  </label>
+                </div>
+                <div class="form-check ml-2">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.resetTimeoutOnDuplicate" id="resetTimeoutOnDuplicate"
+                    [disabled]="!options.preventDuplicates">
+                  <label class="form-check-label" for="resetTimeoutOnDuplicate">
+                    Reset timeout on duplicate
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.newestOnTop" id="newestOnTop">
+                  <label class="form-check-label" for="newestOnTop">
+                    New toasts on top
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.progressBar" id="progressBar">
+                  <label class="form-check-label" for="progressBar">
+                    Progress bar
+                  </label>
+                </div>
+              </div>
+              <fieldset class="form-group">
+                <label>
+                  <strong>Progress Bar Animation</strong>
+                </label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="decreasing"
+                    [disabled]="!options.progressBar" id="progressBarDecreasing">
+                  <label class="form-check-label" for="progressBarDecreasing">Decreasing</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="progressAnimationRadio" [(ngModel)]="options.progressAnimation" value="increasing"
+                    [disabled]="!options.progressBar" id="progressBarIncreasing">
+                  <label class="form-check-label" for="progressBarIncreasing">
+                    Increasing
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col-md-4 mb-2">
+              <div class="form-group">
+                <label for="toastTimeout">
+                  <strong>Timeout</strong>
+                </label>
+                <input [(ngModel)]="options.timeOut" (ngModelChange)="fixNumber('timeOut')" [disabled]="options.disableTimeOut" type="text"
+                  class="form-control" id="toastTimeout" aria-describedby="toastTimeoutHelp">
+                <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
+              </div>
+              <div class="form-group">
+                <label for="toastExtendedTimeout">
+                  <strong>Extended Timeout</strong>
+                </label>
+                <input type="text" [(ngModel)]="options.extendedTimeOut" (ngModelChange)="fixNumber('extendedTimeOut')" [disabled]="options.disableTimeOut"
+                  class="form-control" id="toastExtendedTimeout">
+                <small id="toastExtendedTimeoutHelp" class="form-text text-muted">0 never expires</small>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="options.disableTimeOut" id="disableTimeOut">
+                  <label for="disableTimeOut" class="form-check-label">
+                    Disable timouts
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="maxNumberToasts">
+                  <strong>Maximum Toasts</strong>
+                </label>
+                <input [(ngModel)]="toastr.toastrConfig.maxOpened" (ngModelChange)="fixNumber('maxOpened')" type="text" class="form-control"
+                  id="maxNumberToasts" aria-describedby="maxNumberToastsHelp">
+                <small id="maxNumberToastsHelp" class="form-text text-muted">0 is no limit</small>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" [(ngModel)]="toastr.toastrConfig.autoDismiss" id="autoDismiss">
+                  <label for="disableTimeOut" class="form-check-label" for="autoDismiss">Auto dismiss on max</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="toastExtendedTimeout">
+                  <strong>Ease Time</strong>
+                </label>
+                <input type="text" [(ngModel)]="toastr.toastrConfig.easeTime" (ngModelChange)="fixNumber('easeTime')" class="form-control"
+                  id="toastExtendedTimeout">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-6 col-md-12">
+                  <fieldset class="form-group">
+                    <label>
+                      <strong>Toast Type</strong>
+                    </label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="success" id="typesuccess">
+                      <label class="form-check-label" for="typesuccess">
+                        Success
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="info" id="typeinfo">
+                      <label class="form-check-label" for="typeinfo">
+                        Info
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="warning" id="typewarning">
+                      <label class="form-check-label" for="typewarning">
+                        Warning
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="typeRadios" [(ngModel)]="type" value="error" id="typeerror">
+                      <label class="form-check-label" for="typeerror">
+                        Error
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+                <div class="col-6 col-md-12">
+                  <fieldset class="form-group">
+                    <label>
+                      <strong>Toast Position</strong>
+                    </label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-right"
+                        id="toast-top-right">
+                      <label for="toast-top-right" class="form-check-label">Top Right</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-right"
+                        id="toast-bottom-right">
+                      <label for="toast-bottom-right" class="form-check-label">Bottom Right</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-left"
+                        id="toast-bottom-left">
+                      <label for="toast-bottom-left" class="form-check-label">Bottom Left</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-left"
+                        id="toast-top-left">
+                      <label for="toast-top-left" class="form-check-label">Top Left</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-full-width"
+                        id="top-full-width">
+                      <label for="top-full-width" class="form-check-label">Top Full Width</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-full-width"
+                        id="bottom-full-width">
+                      <label for="bottom-full-width" class="form-check-label">Bottom Full Width</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-top-center"
+                        id="toast-top-center">
+                      <label for="toast-top-center" class="form-check-label">Top Center</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="positionRadio" [(ngModel)]="options.positionClass" [disabled]="inline" value="toast-bottom-center"
+                        id="toast-bottom-center">
+                      <label for="toast-bottom-center" class="form-check-label">Bottom Center</label>
+                    </div>
+                  </fieldset>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" (ngModelChange)="setInlineClass($event)" [(ngModel)]="inline" id="inline">
+                      <label for="inline" class="form-check-label">Inline Position</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="inlinePositionRadio" (ngModelChange)="setInlinePosition($event)" [(ngModel)]="inlinePositionIndex" [disabled]="!inline" [value]="0"
+                        id="inline-a">
+                      <label for="inline-a" class="form-check-label">A</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="inlinePositionRadio" (ngModelChange)="setInlinePosition($event)" [(ngModel)]="inlinePositionIndex" [disabled]="!inline" [value]="1"
+                        id="inline-b">
+                      <label for="inline-b" class="form-check-label">B</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" (ngModelChange)="setClass($event)" [(ngModel)]="enableBootstrap" id="enableBootstrap">
+                      <label for="enableBootstrap" class="form-check-label">Bootstrap 4 Style</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <label>
+                <strong>Inline A</strong>
+              </label>
+              <span toastContainer></span>
+            </div>
+            <div class="col-6">
+              <label>
+                <strong>Inline B</strong>
+              </label>
+              <span toastContainer></span>
+            </div>
+          </div>
+          <hr>
+          <div class="row mb-3">
+            <div class="col-12 text-center">
+              <p class="mb-1">
+                <small>Toast Controls:</small>
+              </p>
+              <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-3">
+                  <button (click)="openToast()" type="button" class="btn btn-primary btn-block">
+                    Open Toast
+                  </button>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+                  <button (click)="clearLastToast()" type="button" class="btn btn-outline-primary btn-block">
+                    Clear Last Toast
+                  </button>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
+                  <button (click)="clearToasts()" type="button" class="btn btn-outline-primary btn-block">
+                    Clear All Toasts
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-12 text-center">
+              <p class="mb-1">
+                <small>Example Custom Toasts:</small>
+              </p>
+              <button (click)="openToastNoAnimation()" type="button" class="btn btn-sm btn-light mr-1">
+                No Animations
+              </button>
+              <button (click)="openPinkToast()" type="button" class="btn btn-sm btn-pink mr-1">Pink</button>
+              <button (click)="openNotyf()" type="button" class="btn btn-sm btn-dark mr-1">Notyf</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

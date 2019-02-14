@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base",
+    ":semanticCommitTypeAll(chore)",
+    "schedule:monthly"
+  ],
+  "rebaseStalePrs": true,
+  "semanticCommits": true,
+  "patch": {
+    "automerge": true
+  }
+}

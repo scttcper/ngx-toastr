@@ -1,9 +1,7 @@
-import {Injector} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {Subject} from 'rxjs/Subject';
-
-import {OverlayRef} from '../overlay/overlay-ref';
-import {ToastData} from './toastr-config';
+import { Injector, InjectFlags } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { OverlayRef } from '../overlay/overlay-ref';
+import { ToastPackage } from './toastr-config';
 
 /**
  * Reference to a toast opened via the Toastr service.
@@ -13,11 +11,15 @@ export class ToastRef<T> {
   componentInstance: T;
 
   /** Subject for notifying the user that the toast has finished closing. */
-  private _afterClosed: Subject<any> = new Subject();
-  private _activate: Subject<any> = new Subject();
-  private _manualClose: Subject<any> = new Subject();
+  private _afterClosed = new Subject<any>();
+  /** triggered when toast is activated */
+  private _activate = new Subject<any>();
+  /** notifies the toast that it should close before the timeout */
+  private _manualClose = new Subject<any>();
+  /** notifies the toast that it should reset the timeouts */
+  private _resetTimeout = new Subject<any>();
 
-  constructor(private _overlayRef: OverlayRef) { }
+  constructor(private _overlayRef: OverlayRef) {}
 
   manualClose() {
     this._manualClose.next();
@@ -28,13 +30,21 @@ export class ToastRef<T> {
     return this._manualClose.asObservable();
   }
 
+  timeoutReset(): Observable<any> {
+    return this._resetTimeout.asObservable();
+  }
+
   /**
    * Close the toast.
    */
   close(): void {
     this._overlayRef.detach();
     this._afterClosed.next();
+    this._manualClose.next();
     this._afterClosed.complete();
+    this._manualClose.complete();
+    this._activate.complete();
+    this._resetTimeout.complete();
   }
 
   /** Gets an observable that is notified when the toast is finished closing. */
@@ -55,25 +65,24 @@ export class ToastRef<T> {
   afterActivate(): Observable<any> {
     return this._activate.asObservable();
   }
-}
 
+  /** Reset the toast timouts */
+  resetTimeout() {
+    this._resetTimeout.next();
+  }
+}
 
 /** Custom injector type specifically for instantiating components with a toast. */
 export class ToastInjector implements Injector {
   constructor(
-    private _dialogRef: ToastRef<any>,
-    private _data: ToastData,
-    private _parentInjector: Injector) { }
+    private _toastPackage: ToastPackage,
+    private _parentInjector: Injector
+  ) {}
 
-  get(token: any, notFoundValue?: any): any {
-    if (token === ToastRef) {
-      return this._dialogRef;
+  get<T>(token: any, notFoundValue?: T, flags?: InjectFlags): T | ToastPackage {
+    if (token === ToastPackage) {
+      return this._toastPackage;
     }
-
-    if (token === ToastData && this._data) {
-      return this._data;
-    }
-
-    return this._parentInjector.get(token, notFoundValue);
+    return this._parentInjector.get<T>(token, notFoundValue, flags);
   }
 }

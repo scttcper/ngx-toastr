@@ -3,58 +3,99 @@
   "description": "Toastr for Angular",
   "homepage": "https://github.com/scttcper/ngx-toastr",
   "bugs": "https://github.com/scttcper/ngx-toastr/issues",
-  "repository": "https://github.com/scttcper/ngx-toastr.git",
-  "version": "0.0.0",
+  "repository": "scttcper/ngx-toastr",
+  "version": "0.0.0-placeholder",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot",
-    "build": "ng build",
-    "test": "ng test",
-    "cleanup": "rimraf dist waste deploy",
-    "ghpages": "ng build --prod --aot --no-progress --baseHref='/ngx-toastr/'",
+    "start": "ng serve",
+    "build": "ts-node -O '{\"module\": \"commonjs\"}' build.ts",
+    "test": "ng test --watch=false",
+    "test:watch": "ng test",
+    "test:ci": "ng test --watch=false --code-coverage --no-progress",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint:fix": "ng lint --fix",
+    "ghpages": "ng build --prod --no-progress --baseHref='/ngx-toastr/'",
+    "e2e": "ng e2e",
+    "bundlesize": "npx bundlesize",
+    "semantic-release": "cd dist && semantic-release"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^4.1.0",
-    "@angular/common": "^4.1.0",
-    "@angular/compiler": "^4.1.0",
-    "@angular/core": "^4.1.0",
-    "@angular/forms": "^4.1.0",
-    "@angular/platform-browser": "^4.1.0",
-    "@angular/platform-browser-dynamic": "^4.1.0",
-    "@angular/router": "^4.1.0",
-    "bootstrap": "^4.0.0-alpha.6",
-    "core-js": "^2.4.1",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.random": "^3.2.0",
-    "rxjs": "^5.3.0",
-    "zone.js": "^0.8.9"
+    "@angular/animations": "7.2.4",
+    "@angular/common": "7.2.4",
+    "@angular/compiler": "7.2.4",
+    "@angular/core": "7.2.4",
+    "@angular/forms": "7.2.4",
+    "@angular/http": "7.2.4",
+    "@angular/platform-browser": "7.2.4",
+    "@angular/platform-browser-dynamic": "7.2.4",
+    "@angular/router": "7.2.4",
+    "@ctrl/ngx-github-buttons": "2.1.0",
+    "bootstrap": "4.2.1",
+    "core-js": "2.6.4",
+    "lodash-es": "4.17.11",
+    "rxjs": "6.4.0",
+    "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@angular/cli": "1.0.1",
-    "@angular/compiler-cli": "^4.1.0",
-    "@types/jasmine": "^2.5.47",
-    "@types/lodash.clonedeep": "^4.5.2",
-    "@types/lodash.random": "^3.2.2",
-    "@types/node": "^7.0.14",
-    "codelyzer": "^3.0.1",
-    "jasmine-core": "^2.6.1",
-    "jasmine-spec-reporter": "^4.0.0",
-    "karma": "^1.6.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-coverage-istanbul-reporter": "^1.2.0",
-    "karma-jasmine": "^1.1.0",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "^5.1.1",
-    "rimraf": "^2.6.1",
-    "rollup": "^0.41.6",
-    "rollup-plugin-sourcemaps": "^0.4.2",
-    "ts-node": "^3.0.2",
-    "tslint": "^5.1.0",
-    "typescript": "^2.3.2"
-  }
+    "@angular-devkit/build-angular": "0.13.1",
+    "@angular/cli": "7.3.1",
+    "@angular/compiler-cli": "7.2.4",
+    "@angular/language-service": "7.2.4",
+    "@types/fs-extra": "5.0.4",
+    "@types/jasmine": "3.3.8",
+    "@types/jasminewd2": "2.0.6",
+    "@types/lodash-es": "4.17.1",
+    "@types/node": "10.12.23",
+    "@types/rimraf": "2.0.2",
+    "codelyzer": "4.5.0",
+    "fs-extra": "7.0.1",
+    "jasmine-core": "3.3.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "karma": "4.0.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-cli": "2.0.0",
+    "karma-coverage-istanbul-reporter": "2.0.4",
+    "karma-jasmine": "2.0.1",
+    "karma-jasmine-html-reporter": "1.4.0",
+    "karma-mocha-reporter": "2.2.5",
+    "ng-packagr": "4.7.0",
+    "protractor": "5.4.2",
+    "rimraf": "2.6.3",
+    "semantic-release": "15.13.3",
+    "ts-node": "8.0.2",
+    "tsickle": "0.34.3",
+    "tslint": "5.12.1",
+    "typescript": "3.2.4"
+  },
+  "release": {
+    "branch": "master"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/bundles/ngx-toastr.umd.min.js",
+      "maxSize": "5 kB"
+    },
+    {
+      "path": "./dist/esm2015/ngx-toastr.js",
+      "maxSize": "8 kB"
+    },
+    {
+      "path": "./dist/esm5/ngx-toastr.js",
+      "maxSize": "8 kB"
+    },
+    {
+      "path": "./dist/toastr.css",
+      "maxSize": "5 kB"
+    },
+    {
+      "path": "./dist/toastr-old.css",
+      "maxSize": "5 kB"
+    },
+    {
+      "path": "./dist/toastr-bs4-alert.scss",
+      "maxSize": "5 kB"
+    }
+  ]
 }

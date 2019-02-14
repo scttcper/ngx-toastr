@@ -1,16 +1,14 @@
-/* tslint:disable:no-access-missing-member */
 import {
-  Component,
-  trigger,
-  transition,
   animate,
-  style,
   keyframes,
-  ApplicationRef,
   state,
-} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
+import { Component } from '@angular/core';
+
+import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
   selector: '[pink-toast-component]',
@@ -27,21 +25,28 @@ import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
       pointer-events: all;
       cursor: pointer;
     }
+    .btn-pink {
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+    }
   `],
   template: `
-  <div class="row">
+  <div class="row" [style.display]="state.value === 'inactive' ? 'none' : ''">
     <div class="col-9">
-      <div *ngIf="title" class="{{options.titleClass}}" [attr.aria-label]="title">
-        {{title}}
+      <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+        {{ title }}
       </div>
-      <div *ngIf="message && options.enableHtml" class="{{options.messageClass}}" [innerHTML]="message"></div>
-      <div *ngIf="message && !options.enableHtml" class="{{options.messageClass}}" [attr.aria-label]="message">
-        {{message}}
+      <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+        [class]="options.messageClass" [innerHTML]="message">
+      </div>
+      <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+        [class]="options.messageClass" [attr.aria-label]="message">
+        {{ message }}
       </div>
     </div>
     <div class="col-3 text-right">
       <a *ngIf="!options.closeButton" class="btn btn-pink btn-sm" (click)="action($event)">
-        {{undoString}}
+        {{ undoString }}
       </a>
       <a *ngIf="options.closeButton" (click)="remove()" class="btn btn-pink btn-sm">
         close
@@ -49,14 +54,13 @@ import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
     </div>
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width.%]="width"></div>
+    <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
   animations: [
     trigger('flyInOut', [
       state('inactive', style({
-        display: 'none',
-        opacity: 0
+        opacity: 0,
       })),
       transition('inactive => active', animate('400ms ease-out', keyframes([
         style({
@@ -87,6 +91,7 @@ import { Toast, ToastData, ToastrService, ToastRef } from '../lib';
       ]))),
     ]),
   ],
+  preserveWhitespaces: false,
 })
 export class PinkToast extends Toast {
   // used for demo purposes
@@ -95,19 +100,15 @@ export class PinkToast extends Toast {
   // constructor is only necessary when not using AoT
   constructor(
     protected toastrService: ToastrService,
-    public data: ToastData,
-    protected toastRef: ToastRef<any>,
-    protected appRef: ApplicationRef,
-    protected sanitizer: DomSanitizer
+    public toastPackage: ToastPackage,
   ) {
-    super(toastrService, data, toastRef, appRef, sanitizer);
+    super(toastrService, toastPackage);
   }
 
   action(event: Event) {
     event.stopPropagation();
     this.undoString = 'undid';
-    this.onAction.next(this.undoString);
-    this.onAction.complete();
+    this.toastPackage.triggerAction();
     return false;
   }
 }
