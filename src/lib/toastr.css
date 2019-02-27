@@ -105,6 +105,7 @@ button.toast-close-button {
   background-size: 24px;
   box-shadow: 0 0 12px #999999;
   color: #FFFFFF;
+  opacity: 1;
 }
 .toast-container .toast:hover {
   box-shadow: 0 0 12px #000000;
