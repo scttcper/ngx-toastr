@@ -39,20 +39,17 @@ import { ToastrService } from './toastr.service';
   `,
   animations: [
     trigger('flyInOut', [
-      state(
-        'inactive',
-        style({
-          display: 'none',
-          opacity: 0
-        })
-      ),
-      state('active', style({})),
+      state('inactive', style({ opacity: 0 })),
+      state('active', style({ opacity: 1 })),
       state('removed', style({ opacity: 0 })),
       transition(
         'inactive => active',
         animate('{{ easeTime }}ms {{ easing }}')
       ),
-      transition('active => removed', animate('{{ easeTime }}ms {{ easing }}'))
+      transition(
+        'active => removed',
+        animate('{{ easeTime }}ms {{ easing }}')
+      )
     ])
   ],
   preserveWhitespaces: false
@@ -75,6 +72,16 @@ export class Toast implements OnDestroy {
       easing: 'ease-in'
     }
   };
+
+  /** hides component when waiting to be displayed */
+  @HostBinding('style.display')
+  get displayStyle() {
+    if (this.state.value === 'inactive') {
+      return 'none';
+    }
+    return 'inherit';
+  }
+
   private timeout: any;
   private intervalId: any;
   private hideTime: number;

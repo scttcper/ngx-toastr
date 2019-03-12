@@ -52,6 +52,7 @@ export class ToastNoAnimation implements OnDestroy {
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
 
+  /** hides component when waiting to be displayed */
   @HostBinding('style.display')
   get displayStyle() {
     if (this.state === 'inactive') {
