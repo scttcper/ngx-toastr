@@ -59,7 +59,7 @@
   position: fixed;
   z-index: 999999;
 
-  .toast {
+  .ngx-toastr {
     @include border-radius($alert-border-radius);
     position: relative;
     overflow: hidden;
@@ -208,7 +208,7 @@
 
 // Responsive Design
 @media all and (max-width: 240px) {
-  .toast-container .toast.div {
+  .toast-container .ngx-toastr.div {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
@@ -218,7 +218,7 @@
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
-  .toast-container .toast.div {
+  .toast-container .ngx-toastr.div {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
@@ -228,7 +228,7 @@
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
-  .toast-container .toast.div {
+  .toast-container .ngx-toastr.div {
     padding: 15px 15px 15px 50px;
     width: 25em;
   }
