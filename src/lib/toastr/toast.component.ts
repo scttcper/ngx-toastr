@@ -27,10 +27,10 @@ import { ToastrService } from './toastr.service';
     {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
   </div>
   <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
-        [class]="options.messageClass" [innerHTML]="message">
+    [class]="options.messageClass" [innerHTML]="message">
   </div>
   <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
-        [class]="options.messageClass" [attr.aria-label]="message">
+    [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
   <div *ngIf="options.progressBar">
