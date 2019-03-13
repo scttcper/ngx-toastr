@@ -117,7 +117,7 @@ describe('AppComponent', () => {
       done();
     });
   });
-  it('should have defined componentInstance', async(done => {
+  it('should have defined componentInstance', async(() => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();

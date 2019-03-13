@@ -24,22 +24,22 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-    <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-      {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
-    </div>
-    <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
-         [class]="options.messageClass" [innerHTML]="message">
-    </div>
-    <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
-         [class]="options.messageClass" [attr.aria-label]="message">
-      {{ message }}
-    </div>
-    <div *ngIf="options.progressBar">
-      <div class="toast-progress" [style.width]="width + '%'"></div>
-    </div>
+  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
+    {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
+  </div>
+  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+    [class]="options.messageClass" [innerHTML]="message">
+  </div>
+  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+    [class]="options.messageClass" [attr.aria-label]="message">
+    {{ message }}
+  </div>
+  <div *ngIf="options.progressBar">
+    <div class="toast-progress" [style.width]="width + '%'"></div>
+  </div>
   `,
 })
 export class ToastNoAnimation implements OnDestroy {
@@ -50,9 +50,10 @@ export class ToastNoAnimation implements OnDestroy {
   originalTimeout: number;
   /** width of progress bar */
   width = -1;
-
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
+
+  /** hides component when waiting to be displayed */
   @HostBinding('style.display')
   get displayStyle() {
     if (this.state === 'inactive') {
@@ -63,7 +64,6 @@ export class ToastNoAnimation implements OnDestroy {
 
   /** controls animation */
   state = 'inactive';
-
   private timeout: any;
   private intervalId: any;
   private hideTime: number;
@@ -96,7 +96,6 @@ export class ToastNoAnimation implements OnDestroy {
     this.sub3 = toastPackage.toastRef.countDuplicate().subscribe(count => {
       this.duplicatesCount = count;
     });
-
   }
   ngOnDestroy() {
     this.sub.unsubscribe();

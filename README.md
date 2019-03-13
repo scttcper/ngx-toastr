@@ -29,6 +29,14 @@ DEMO: https://scttcper.github.io/ngx-toastr/
   [Web Animations API](https://angular.io/docs/ts/latest/guide/animations.html)
 - Output toasts to an optional target directive
 
+## Dependencies
+Latest version available for each version of Angular
+
+| ngx-toastr   | Angular |
+| ------------ | ------- |
+| 6.4.1-beta.0 | 4.x     |
+| 8.10.2       | 5.x     |
+
 ## Install
 
 ```bash
@@ -195,8 +203,6 @@ imports: [
 
 ### Toastr Service methods return:
 
-Toastr Service will return undefined if prevent duplicates is enabled
-
 ```typescript
 export interface ActiveToast {
   /** Your Toast ID. Use this to close it individually */
@@ -357,6 +363,20 @@ ngOnInit() {
     https://github.com/scttcper/ngx-toastr/issues/179
 4.  How can I translate messages See:
     https://github.com/scttcper/ngx-toastr/issues/201
+5. How to handle toastr click/tap action?
+
+```ts
+showToaster() {
+  this.toastr.success('Hello world!', 'Toastr fun!')
+    .onTap
+    .pipe(take(1))
+    .subscribe(() => this.toasterClickedHandler());
+}
+
+toasterClickedHandler() {
+  console.log('Toastr clicked');
+}
+```
 
 ## Previous Works
 

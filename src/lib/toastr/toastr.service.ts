@@ -178,14 +178,15 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  isDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
+  findDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
-      if (this.toasts[i].message === message) {
-        this.toasts[i].toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
-        return true;
+      const toast = this.toasts[i];
+      if (toast.message === message) {
+        toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
+        return toast;
       }
     }
-    return false;
+    return null;
   }
 
   /** create a clone of global config and apply individual settings */
@@ -226,7 +227,7 @@ export class ToastrService {
 
   /**
    * Creates and attaches toast data to component
-   * returns null if toast is duplicate and preventDuplicates == True
+   * returns the active toast, or in case preventDuplicates is enabled the original/non-duplicate active toast.
    */
   private _buildNotification(
     toastType: string,
@@ -238,13 +239,15 @@ export class ToastrService {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
-    if (
-      message &&
-      this.toastrConfig.preventDuplicates &&
-      this.isDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate, this.toastrConfig.countDuplicates)
-    ) {
-      return null;
+    const duplicate = this.findDuplicate(
+      message,
+      this.toastrConfig.resetTimeoutOnDuplicate,
+      this.toastrConfig.countDuplicates
+    );
+    if (message && this.toastrConfig.preventDuplicates && duplicate !== null) {
+      return duplicate;
     }
+
     this.previousToastMessage = message;
     let keepInactive = false;
     if (
@@ -256,6 +259,7 @@ export class ToastrService {
         this.clear(this.toasts[0].toastId);
       }
     }
+
     const overlayRef = this.overlay.create(
       config.positionClass,
       this.overlayContainer
@@ -265,6 +269,7 @@ export class ToastrService {
     if (message && config.enableHtml) {
       sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
     }
+
     const toastRef = new ToastRef(overlayRef);
     const toastPackage = new ToastPackage(
       this.index,
