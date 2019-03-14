@@ -40,14 +40,14 @@
   bottom: 12px;
   left: 12px;
 }
-.toast-container.toast-top-center .toast,
-.toast-container.toast-bottom-center .toast {
+.toast-container.toast-top-center .ngx-toastr,
+.toast-container.toast-bottom-center .ngx-toastr {
   width: 300px;
   margin-left: auto;
   margin-right: auto;
 }
-.toast-container.toast-top-full-width .toast,
-.toast-container.toast-bottom-full-width .toast {
+.toast-container.toast-top-full-width .ngx-toastr,
+.toast-container.toast-bottom-full-width .ngx-toastr {
   width: 96%;
   margin-left: auto;
   margin-right: auto;
