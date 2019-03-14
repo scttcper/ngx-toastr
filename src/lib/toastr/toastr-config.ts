@@ -214,7 +214,7 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   extendedTimeOut: 1000,
   enableHtml: false,
   progressBar: false,
-  toastClass: 'toast',
+  toastClass: 'ngx-toastr',
   positionClass: 'toast-top-right',
   titleClass: 'toast-title',
   messageClass: 'toast-message',
