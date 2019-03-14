@@ -139,7 +139,7 @@ button.toast-close-button {
   margin-left: auto;
   margin-right: auto;
 }
-.toast {
+.ngx-toastr {
   background-color: #030303;
   pointer-events: auto;
 }
