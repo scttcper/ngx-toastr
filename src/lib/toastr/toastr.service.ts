@@ -176,15 +176,13 @@ export class ToastrService {
   }
 
   /**
-   * Finds a duplicate toast if one exists
+   * Determines if toast message is already shown
    */
-  private findDuplicate(message: string, resetOnDuplicate: boolean) {
+  findDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
     for (let i = 0; i < this.toasts.length; i++) {
       const toast = this.toasts[i];
       if (toast.message === message) {
-        if (resetOnDuplicate && toast.toastRef.componentInstance.resetTimeout) {
-          toast.toastRef.resetTimeout();
-        }
+        toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
       }
     }
@@ -241,15 +239,15 @@ export class ToastrService {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
-    if (
-      message &&
-      this.toastrConfig.preventDuplicates
-    ) {
-      const duplicate = this.findDuplicate(message, this.toastrConfig.resetTimeoutOnDuplicate);
-      if (duplicate !== null) {
-        return duplicate;
-      }
+    const duplicate = this.findDuplicate(
+      message,
+      this.toastrConfig.resetTimeoutOnDuplicate,
+      this.toastrConfig.countDuplicates
+    );
+    if (message && this.toastrConfig.preventDuplicates && duplicate !== null) {
+      return duplicate;
     }
+
     this.previousToastMessage = message;
     let keepInactive = false;
     if (
@@ -261,6 +259,7 @@ export class ToastrService {
         this.clear(this.toasts[0].toastId);
       }
     }
+
     const overlayRef = this.overlay.create(
       config.positionClass,
       this.overlayContainer
@@ -270,6 +269,7 @@ export class ToastrService {
     if (message && config.enableHtml) {
       sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
     }
+
     const toastRef = new ToastRef(overlayRef);
     const toastPackage = new ToastPackage(
       this.index,
