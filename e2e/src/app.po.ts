@@ -21,13 +21,13 @@ export class ToastrPage {
   }
   waitForToast() {
     return browser
-      .wait(until.elementLocated(by.className('toast')), 500, 'not found')
+      .wait(until.elementLocated(by.className('ngx-toastr')), 500, 'not found')
       .then((el) => {
         return browser.wait(until.elementIsVisible(el), 5000, 'not found');
       });
   }
   waitForToastDisappear(timeout) {
-    const toast = by.className('toast');
+    const toast = by.className('ngx-toastr');
     return browser
        .wait(until.elementLocated(toast), 500, 'not found')
        .then((el) => {
@@ -35,7 +35,7 @@ export class ToastrPage {
        });
   }
   getToast() {
-    return browser.findElement(by.className('toast'));
+    return browser.findElement(by.className('ngx-toastr'));
   }
   clickShowToast() {
     return element.all(by.css('button')).get(0).click();
