@@ -51,7 +51,7 @@ export interface IndividualConfig {
   enableHtml: boolean;
   /**
    * css class on toast component
-   * default: toast
+   * default: ngx-toastr
    */
   toastClass: string;
   /**
