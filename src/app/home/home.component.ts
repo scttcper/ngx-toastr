@@ -119,8 +119,8 @@ export class HomeComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = NotyfToast;
     opt.toastClass = 'notyf confirm';
-    opt.positionClass = 'notyf-container';
-    this.options.newestOnTop = false;
+    // opt.positionClass = 'notyf__wrapper';
+    // this.options.newestOnTop = false;
     const { message, title } = this.getMessage();
     const inserted = this.toastr.show(message || 'Success', title, opt);
     if (inserted && inserted.toastId) {
