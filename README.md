@@ -63,7 +63,7 @@ Don't want to use `@angular/animations`? See
 
 ```scss
 // regular style toast
-@import '~ngx-toastr/toastr.css';
+@import '~ngx-toastr/toastr';
 
 // bootstrap style toast
 // or import a bootstrap 4 alert styled design (SASS ONLY)
