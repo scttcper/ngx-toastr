@@ -9,8 +9,6 @@ import { Component, VERSION } from '@angular/core';
     <a href="https://github.com/scttcper/ngx-toastr/blob/master/LICENSE">MIT license</a>
     -
     <a href="https://github.com/scttcper/ngx-toastr">Source</a>
-    <br>
-    Listed on <a href="https://angular.parts/package/ngx-toastr">angular.parts</a>
   </footer>
   `,
   styles: [
