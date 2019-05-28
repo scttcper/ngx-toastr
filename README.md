@@ -171,7 +171,7 @@ options:
 | autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                                                                        |
 | iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                                                                           |
 | newestOnTop             | boolean | true                               | New toast placement                                                                                              |
-| preventDuplicates       | boolean | true                               | Block duplicate messages                                                                                         |
+| preventDuplicates       | boolean | false                               | Block duplicate messages                                                                                         |
 | countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message    |
 | resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)                                                |
 
