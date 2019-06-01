@@ -44,7 +44,7 @@
     "@angular/compiler-cli": "7.2.15",
     "@angular/language-service": "7.2.15",
     "@types/fs-extra": "5.1.0",
-    "@types/jasmine": "3.3.12",
+    "@types/jasmine": "3.3.13",
     "@types/jasminewd2": "2.0.6",
     "@types/lodash-es": "4.17.3",
     "@types/node": "12.0.0",
