@@ -60,7 +60,7 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "1.4.2",
     "karma-mocha-reporter": "2.2.5",
-    "ng-packagr": "5.1.0",
+    "ng-packagr": "5.4.3",
     "protractor": "5.4.2",
     "rimraf": "2.6.3",
     "semantic-release": "15.13.18",
