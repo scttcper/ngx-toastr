@@ -32,11 +32,12 @@ DEMO: https://ngx-toastr.netlify.com/
 ## Dependencies
 Latest version available for each version of Angular
 
-| ngx-toastr   | Angular |
-| ------------ | ------- |
-| 6.4.1-beta.0 | 4.x     |
-| 8.10.2       | 5.x     |
-| 10.0.4       | 8.x 7.x 6.x |
+| ngx-toastr   | Angular     |
+| ------------ | ----------- |
+| 6.4.1-beta.0 | 4.x         |
+| 8.10.2       | 5.x         |
+| 10.1.0       | 8.x 7.x 6.x |
+| current      | >= 8.x      |
 
 ## Install
 
@@ -166,15 +167,15 @@ All [individual options](#individual-options) can be overridden in the global
 options to affect all toasts. In addition, global options include the following
 options:
 
-| Option                  | Type    | Default                            | Description                                                                                                      |
-| ----------------------- | ------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited                                                         |
-| autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                                                                        |
-| iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                                                                           |
-| newestOnTop             | boolean | true                               | New toast placement                                                                                              |
-| preventDuplicates       | boolean | false                               | Block duplicate messages                                                                                         |
-| countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message    |
-| resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)                                                |
+| Option                  | Type    | Default                            | Description                                                                                                   |
+| ----------------------- | ------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited                                                      |
+| autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                                                                     |
+| iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                                                                        |
+| newestOnTop             | boolean | true                               | New toast placement                                                                                           |
+| preventDuplicates       | boolean | false                              | Block duplicate messages                                                                                      |
+| countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message |
+| resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)                                             |
 
 ##### iconClasses defaults
 
