@@ -1,0 +1,51 @@
+version: 2.1
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10-browsers
+        environment:
+          CHROME_BIN: '/usr/bin/google-chrome'
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: npm-install
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: npm run test:ci
+      - run:
+          name: lint
+          command: npm run lint
+      - run:
+          name: codecov
+          command: bash <(curl -s https://codecov.io/bash)
+  release:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - run: npm run build
+      - run: npm run semantic-release
+
+workflows:
+  version: 2
+  test_and_release:
+    # Run the test jobs first, then the release only when all the test jobs are successful
+    jobs:
+      - test
+      - release:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - test
