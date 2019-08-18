@@ -15,7 +15,7 @@
     "test:ci": "ng test --watch=false --code-coverage --no-progress",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "ghpages": "ng build --prod --no-progress --baseHref='/ngx-toastr/'",
+    "ghpages": "ng build --prod --no-progress",
     "e2e": "ng e2e",
     "semantic-release": "cd dist && semantic-release"
   },

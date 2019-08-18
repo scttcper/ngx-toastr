@@ -6,8 +6,8 @@
   <a href="https://www.npmjs.org/package/ngx-toastr">
     <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
   </a>
-  <a href="https://travis-ci.org/scttcper/ngx-toastr">
-    <img src="https://travis-ci.org/scttcper/ngx-toastr.svg?branch=master" alt="travis">
+  <a href="https://circleci.com/gh/scttcper/ngx-toastr">
+    <img src="https://circleci.com/gh/scttcper/ngx-toastr.svg?style=svg" alt="circleci">
   </a>
   <a href="https://codecov.io/github/scttcper/ngx-toastr">
     <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
@@ -16,7 +16,7 @@
   <br>
 </div>
 
-DEMO: https://scttcper.github.io/ngx-toastr/
+DEMO: https://ngx-toastr.netlify.com/
 
 ## Features
 
