@@ -179,8 +179,7 @@ export class ToastrService {
    * Determines if toast message is already shown
    */
   findDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
-    for (let i = 0; i < this.toasts.length; i++) {
-      const toast = this.toasts[i];
+    for (const toast of this.toasts) {
       if (toast.message === message) {
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
@@ -282,7 +281,7 @@ export class ToastrService {
     const toastInjector = new ToastInjector(toastPackage, this._injector);
     const component = new ComponentPortal(config.toastComponent, toastInjector);
     const portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
-    toastRef.componentInstance = (<any>portal)._component;
+    toastRef.componentInstance = (portal as any)._component;
     const ins: ActiveToast<any> = {
       toastId: this.index,
       message: message || '',
