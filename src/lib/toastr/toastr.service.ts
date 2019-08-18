@@ -238,9 +238,11 @@ export class ToastrService {
       throw new Error('toastComponent required');
     }
     // max opened and auto dismiss = true
+    // if timeout = 0 resetting it would result in setting this.hideTime = Date.now(). Hence, we only want to reset timeout if there is
+    // a timeout at all
     const duplicate = this.findDuplicate(
       message,
-      this.toastrConfig.resetTimeoutOnDuplicate,
+      this.toastrConfig.resetTimeoutOnDuplicate && config.timeOut > 0,
       this.toastrConfig.countDuplicates
     );
     if (message && this.toastrConfig.preventDuplicates && duplicate !== null) {
