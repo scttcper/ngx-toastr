@@ -80,7 +80,6 @@ export class Toast implements OnDestroy {
     if (this.state.value === 'inactive') {
       return 'none';
     }
-    return 'inherit';
   }
 
   private timeout: any;
