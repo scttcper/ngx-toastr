@@ -16,7 +16,7 @@
   <br>
 </div>
 
-DEMO: https://scttcper.github.io/ngx-toastr/
+DEMO: https://ngx-toastr.netlify.com/
 
 ## Features
 
