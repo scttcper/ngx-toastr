@@ -1,15 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonService, MdoButtonModule } from '@ctrl/ngx-github-buttons';
-import { of as ObservableOf } from 'rxjs';
+import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
 
 import { HeaderComponent } from './header.component';
-
-class FakeButtonService {
-  repo() {
-    return ObservableOf({ stargazers_count: 0 });
-  }
-}
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -19,7 +12,6 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports: [MdoButtonModule],
       declarations: [HeaderComponent],
-      providers: [{ provide: ButtonService, useClass: FakeButtonService }],
     }).compileComponents();
   }));
 

@@ -226,7 +226,7 @@ export class Toast implements OnDestroy {
     }
   }
 
-  outsideTimeout(func: Function, timeout: number) {
+  outsideTimeout(func: () => any, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(
         () =>
@@ -240,7 +240,7 @@ export class Toast implements OnDestroy {
     }
   }
 
-  outsideInterval(func: Function, timeout: number) {
+  outsideInterval(func: () => any, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(
         () =>
@@ -254,7 +254,7 @@ export class Toast implements OnDestroy {
     }
   }
 
-  private runInsideAngular(func: Function) {
+  private runInsideAngular(func: () => any) {
     if (this.ngZone) {
       this.ngZone.run(() => func());
     } else {

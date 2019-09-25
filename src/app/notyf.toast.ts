@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 
 @Component({
-  selector: '[notyf-toast-component]',
+  selector: 'notyf-toast-component',
   styles: [],
   template: `
     <div class="notyf__toast notyf__toast--success notyf__toast">
