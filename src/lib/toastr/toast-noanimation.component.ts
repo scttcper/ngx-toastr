@@ -59,7 +59,6 @@ export class ToastNoAnimation implements OnDestroy {
     if (this.state === 'inactive') {
       return 'none';
     }
-    return 'inherit';
   }
 
   /** controls animation */

@@ -32,12 +32,12 @@ DEMO: https://ngx-toastr.netlify.com/
 ## Dependencies
 Latest version available for each version of Angular
 
-| ngx-toastr   | Angular     |
-| ------------ | ----------- |
-| 6.4.1-beta.0 | 4.x         |
-| 8.10.2       | 5.x         |
-| 10.1.0       | 8.x 7.x 6.x |
-| current      | >= 8.x      |
+| ngx-toastr | Angular     |
+| ---------- | ----------- |
+| 6.5.0      | 4.x         |
+| 8.10.2     | 5.x         |
+| 10.1.0     | 8.x 7.x 6.x |
+| current    | >= 8.x      |
 
 ## Install
 
