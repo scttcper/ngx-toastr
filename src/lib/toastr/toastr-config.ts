@@ -16,7 +16,7 @@ export interface IndividualConfig {
    * disable both timeOut and extendedTimeOut
    * default: false
    */
-  disableTimeOut: boolean;
+  disableTimeOut: boolean | 'timeOut' | 'extendedTimeOut';
   /**
    * toast time to live in milliseconds
    * default: 5000
