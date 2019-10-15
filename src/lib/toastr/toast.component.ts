@@ -128,7 +128,7 @@ export class Toast implements OnDestroy {
    */
   activateToast() {
     this.state = { ...this.state, value: 'active' };
-    if ((this.options.disableTimeOut === false || this.options.disableTimeOut !== 'timeOut') && this.options.timeOut) {
+    if (!(this.options.disableTimeOut === true || this.options.disableTimeOut === 'timeOut') && this.options.timeOut) {
       this.outsideTimeout(() => this.remove(), this.options.timeOut);
       this.hideTime = new Date().getTime() + this.options.timeOut;
       if (this.options.progressBar) {
