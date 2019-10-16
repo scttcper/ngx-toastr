@@ -4,9 +4,7 @@ import {
   Injectable,
   Injector,
   NgZone,
-  SecurityContext
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs';
 
@@ -48,7 +46,6 @@ export class ToastrService {
     @Inject(TOAST_CONFIG) token: ToastToken,
     private overlay: Overlay,
     private _injector: Injector,
-    private sanitizer: DomSanitizer,
     private ngZone: NgZone
   ) {
     this.toastrConfig = {
@@ -266,16 +263,12 @@ export class ToastrService {
       this.overlayContainer
     );
     this.index = this.index + 1;
-    let sanitizedMessage: string | SafeHtml | undefined | null = message;
-    if (message && config.enableHtml) {
-      sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
-    }
 
     const toastRef = new ToastRef(overlayRef);
     const toastPackage = new ToastPackage(
       this.index,
       config,
-      sanitizedMessage,
+      message,
       title,
       toastType,
       toastRef
