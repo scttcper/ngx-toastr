@@ -10,6 +10,8 @@ import { ActiveToast, ToastrModule } from '../../lib/public_api';
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';
 import { HomeComponent } from './home.component';
+import { DomSanitizer } from '@angular/platform-browser';
+import { delay } from 'rxjs/operators';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -123,6 +125,47 @@ describe('AppComponent', () => {
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.toastRef.componentInstance).toBeDefined();
   }));
+  it('should sanitize HTML', done => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    const app: HomeComponent = fixture.debugElement.componentInstance;
+    const toastClass = 'ngx-toastr-should-sanitize-html';
+    app.options.toastClass = toastClass;
+    app.message = '<a href="#" onclick="return false">Click</a>';
+    const opened: ActiveToast<Toast> = app.openToast();
+    expect(opened).toBeDefined();
+    opened.onShown.pipe(
+      delay(100),
+    ).toPromise().then(() => {
+      const element = document.querySelector(`.${toastClass}`);
+      expect(element.innerHTML).toContain('<a ');
+      // Removed by [innerHTML]="message"
+      expect(element.innerHTML).not.toContain('onclick');
+      done();
+    });
+  });
+  it('should pass through SafeHtml', done => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    const sanitizer = TestBed.get(DomSanitizer);
+    const app: HomeComponent = fixture.debugElement.componentInstance;
+    const toastClass = 'ngx-toastr-should-pass-through-safe-html';
+    app.options.toastClass = toastClass;
+    // Non-empty title is required to pass the
+    // !this.title.length && !this.message.length test which the SafeHtml message
+    // will fail.
+    app.title = 'Title';
+    app.message = sanitizer.bypassSecurityTrustHtml('<a href="#" onclick="return false">Click</a>') as string;
+    const opened: ActiveToast<Toast> = app.openToast();
+    expect(opened).toBeDefined();
+    opened.onShown.pipe(
+      delay(100),
+    ).toPromise().then(() => {
+      const element = document.querySelector(`.${toastClass}`);
+      expect(element.innerHTML).toContain('<a ');
+      // Not removed by [innerHTML]="message" since value is trusted
+      expect(element.innerHTML).toContain('onclick');
+      done();
+    });
+  });
 });
 
 @NgModule({
