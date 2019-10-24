@@ -6,7 +6,7 @@ import {
   NgZone,
   SecurityContext
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs';
 
@@ -266,7 +266,7 @@ export class ToastrService {
       this.overlayContainer
     );
     this.index = this.index + 1;
-    let sanitizedMessage: string | SafeHtml | undefined | null = message;
+    let sanitizedMessage: string | undefined | null = message;
     if (message && config.enableHtml) {
       sanitizedMessage = this.sanitizer.sanitize(SecurityContext.HTML, message);
     }

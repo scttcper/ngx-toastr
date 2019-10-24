@@ -12,7 +12,6 @@ import {
   NgZone,
   OnDestroy
 } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
@@ -55,7 +54,7 @@ import { ToastrService } from './toastr.service';
   preserveWhitespaces: false
 })
 export class Toast implements OnDestroy {
-  message?: string | SafeHtml | null;
+  message?: string | null;
   title?: string;
   options: IndividualConfig;
   duplicatesCount: number;

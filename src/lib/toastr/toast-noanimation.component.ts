@@ -8,7 +8,6 @@ import {
   NgModule,
   OnDestroy,
 } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 
 import { Subscription } from 'rxjs';
 
@@ -43,7 +42,7 @@ import { ToastrService } from './toastr.service';
   `,
 })
 export class ToastNoAnimation implements OnDestroy {
-  message?: string | SafeHtml | null;
+  message?: string | null;
   title?: string;
   options: IndividualConfig;
   duplicatesCount: number;

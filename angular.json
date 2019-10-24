@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-toastr:build"
+            "browserTarget": "ngx-toastr:build",
+            "aot": true
           },
           "configurations": {
             "production": {
