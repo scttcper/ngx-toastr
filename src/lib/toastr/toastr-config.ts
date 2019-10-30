@@ -1,5 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
 
 import { Observable, Subject } from 'rxjs';
 
@@ -152,7 +151,7 @@ export class ToastPackage {
   constructor(
     public toastId: number,
     public config: IndividualConfig,
-    public message: string | SafeHtml | null | undefined,
+    public message: string | null | undefined,
     public title: string | undefined,
     public toastType: string,
     public toastRef: ToastRef<any>,
