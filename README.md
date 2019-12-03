@@ -271,7 +271,7 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 `
 })
 export class AppComponent implements OnInit {
-  @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
+  @ViewChild(ToastContainerDirective, {static: true}) toastContainer: ToastContainerDirective;
 
   constructor(private toastrService: ToastrService) {}
   ngOnInit() {
