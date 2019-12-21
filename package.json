@@ -62,7 +62,7 @@
     "ng-packagr": "5.5.1",
     "protractor": "5.4.2",
     "rimraf": "3.0.0",
-    "semantic-release": "15.13.30",
+    "semantic-release": "15.13.32",
     "ts-node": "8.4.1",
     "tsickle": "0.37.0",
     "tslint": "5.20.0",
