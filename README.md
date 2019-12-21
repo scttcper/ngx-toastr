@@ -283,6 +283,18 @@ export class AppComponent implements OnInit {
 }
 ```
 
+## Functions
+```
+clear(toastId?: number): Takes toaster id which is optional
+```
+Remove all or a single toast by id
+##
+```
+remove(toastId?: number): Takes toaster id which is optional
+```
+Remove and destroy a single toast by id
+
+
 ## SystemJS
 
 If you are using SystemJS, you should also adjust your configuration to point to
