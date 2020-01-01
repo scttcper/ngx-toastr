@@ -31,7 +31,7 @@
     "@angular/platform-browser-dynamic": "8.2.8",
     "@angular/router": "8.2.8",
     "@ctrl/ngx-github-buttons": "3.2.7",
-    "bootstrap": "4.3.1",
+    "bootstrap": "4.4.1",
     "core-js": "3.2.1",
     "lodash-es": "4.17.15",
     "rxjs": "6.5.3",
