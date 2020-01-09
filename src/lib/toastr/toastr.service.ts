@@ -296,10 +296,8 @@ export class ToastrService {
     };
 
     if (!keepInactive) {
-      setTimeout(() => {
         ins.toastRef.activate();
         this.currentlyActive = this.currentlyActive + 1;
-      });
     }
 
     this.toasts.push(ins);
