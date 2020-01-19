@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders } from '@angular/compiler/src/core';
+import { ModuleWithProviders } from '@angular/core';
 import {
   ApplicationRef,
   Component,
