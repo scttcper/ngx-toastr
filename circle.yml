@@ -25,6 +25,9 @@ jobs:
       - run:
           name: codecov
           command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: lint
+          command: npm run ghpages
   release:
     docker:
       - image: circleci/node:10
