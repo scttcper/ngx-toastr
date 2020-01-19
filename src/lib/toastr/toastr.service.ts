@@ -296,9 +296,9 @@ export class ToastrService {
     };
 
     if (!keepInactive) {
+      this.currentlyActive = this.currentlyActive + 1;
       setTimeout(() => {
         ins.toastRef.activate();
-        this.currentlyActive = this.currentlyActive + 1;
       });
     }
 
