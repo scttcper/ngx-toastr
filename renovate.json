@@ -1,12 +1,9 @@
 {
   "extends": [
-    "config:base",
-    ":semanticCommitTypeAll(chore)",
+    "config:js-lib",
     "schedule:monthly"
   ],
-  "rebaseStalePrs": true,
+  "automerge": "minor",
   "semanticCommits": true,
-  "patch": {
-    "automerge": true
-  }
+  "pinVersions": false
 }
