@@ -49,6 +49,8 @@ export class HomeComponent {
   options: GlobalConfig;
   title = '';
   message = '';
+  customClass = '';
+  appendCustomClass = true;
   type = types[0];
   version = VERSION;
   enableBootstrap = false;
@@ -74,10 +76,22 @@ export class HomeComponent {
       title: t,
     };
   }
+
+  private updateToastClass(options: GlobalConfig) {
+    if (this.customClass && this.customClass.length > 0) {
+      if (this.appendCustomClass) {
+        options.toastClass += ' ' + this.customClass;
+      } else {
+        options.toastClass = this.customClass;
+      }
+    }
+  }
+
   openToast() {
     const { message, title } = this.getMessage();
     // Clone current config so it doesn't change when ngModel updates
     const opt = cloneDeep(this.options);
+    this.updateToastClass(opt);
     const inserted = this.toastr.show(
       message,
       title,
@@ -93,6 +107,7 @@ export class HomeComponent {
     const { message, title } = this.getMessage();
     const opt = cloneDeep(this.options);
     opt.toastComponent = ToastNoAnimation;
+    this.updateToastClass(opt);
     const inserted = this.toastr.show(
       message,
       title,
@@ -108,6 +123,7 @@ export class HomeComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'pinktoast';
+    this.updateToastClass(opt);
     const { message, title } = this.getMessage();
     const inserted = this.toastr.show(message, title, opt);
     if (inserted && inserted.toastId) {
@@ -119,6 +135,7 @@ export class HomeComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = NotyfToast;
     opt.toastClass = 'notyf confirm';
+    this.updateToastClass(opt);
     // opt.positionClass = 'notyf__wrapper';
     // this.options.newestOnTop = false;
     const { message, title } = this.getMessage();

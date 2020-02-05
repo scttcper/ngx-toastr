@@ -143,6 +143,9 @@ button.toast-close-button {
   background-color: #030303;
   pointer-events: auto;
 }
+.ngx-toastr_pointer-events-enabled {
+  pointer-events: auto;
+}
 .toast-success {
   background-color: #51A351;
 }

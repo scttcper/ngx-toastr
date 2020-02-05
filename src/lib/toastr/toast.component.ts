@@ -90,6 +90,9 @@ export class Toast implements OnDestroy {
   private sub1: Subscription;
   private sub2: Subscription;
   private sub3: Subscription;
+  /** specifies the class-name that is used in css. This class also enables pointer-events **/
+  private cssToastClass = 'ngx-toastr';
+  private cssToastPointerEventsClass = 'ngx-toastr_pointer-events-enabled';
 
   constructor(
     protected toastrService: ToastrService,
@@ -103,6 +106,11 @@ export class Toast implements OnDestroy {
     this.toastClasses = `${toastPackage.toastType} ${
       toastPackage.config.toastClass
     }`;
+    if (this.toastClasses.indexOf(this.cssToastClass) < 0) {
+      // user changed class-name. Since pointer-events are disabled in container-element they won't work in toast itself too.
+      // To enable pointer-events we add an additional class without any styles
+      this.toastClasses += ' ' + this.cssToastPointerEventsClass;
+    }
     this.sub = toastPackage.toastRef.afterActivate().subscribe(() => {
       this.activateToast();
     });

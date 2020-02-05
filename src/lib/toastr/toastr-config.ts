@@ -52,6 +52,8 @@ export interface IndividualConfig {
   /**
    * css class on toast component
    * default: ngx-toastr
+   * if toastClass is changed an additional class 'ngx-toastr_pointer-events-enabled' will be added to toasts to allow mouse-events in
+   * toasts
    */
   toastClass: string;
   /**
