@@ -20,7 +20,7 @@ export const DefaultGlobalConfig: GlobalConfig = {
   entryComponents: [Toast],
 })
 export class ToastrModule {
-  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
     return {
       ngModule: ToastrModule,
       providers: [
@@ -40,7 +40,7 @@ export class ToastrModule {
   imports: [CommonModule],
 })
 export class ToastrComponentlessModule {
-  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
     return {
       ngModule: ToastrModule,
       providers: [
