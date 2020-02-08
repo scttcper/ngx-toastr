@@ -226,7 +226,7 @@ export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
   entryComponents: [ToastNoAnimation],
 })
 export class ToastNoAnimationModule {
-  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastNoAnimationModule> {
     return {
       ngModule: ToastNoAnimationModule,
       providers: [
