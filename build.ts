@@ -1,11 +1,11 @@
-import { copySync } from 'fs-extra';
+import * as del from 'del';
+import { copyFileSync } from 'fs';
 import { build } from 'ng-packagr';
 import { join } from 'path';
-import * as rimraf from 'rimraf';
 
 async function main() {
   // cleanup dist
-  rimraf.sync(join(process.cwd(), '/dist'));
+  del.sync(join(process.cwd(), '/dist'));
 
   // build packages
   await build({
@@ -13,17 +13,17 @@ async function main() {
   });
 
   // copy everything else
-  copySync('README.md', join(process.cwd(), 'dist/README.md'));
-  copySync('LICENSE', join(process.cwd(), 'dist/LICENSE'));
-  copySync(
+  copyFileSync('README.md', join(process.cwd(), 'dist/README.md'));
+  copyFileSync('LICENSE', join(process.cwd(), 'dist/LICENSE'));
+  copyFileSync(
     join(process.cwd(), 'src/lib/toastr-bs4-alert.scss'),
     join(process.cwd(), 'dist/toastr-bs4-alert.scss'),
   );
-  copySync(
+  copyFileSync(
     join(process.cwd(), 'src/lib/toastr.css'),
     join(process.cwd(), 'dist/toastr.css'),
   );
-  copySync(
+  copyFileSync(
     join(process.cwd(), 'src/lib/toastr-old.css'),
     join(process.cwd(), 'dist/toastr-old.css'),
   );
