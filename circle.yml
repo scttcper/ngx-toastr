@@ -2,20 +2,14 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:12-browsers
         environment:
           CHROME_BIN: '/usr/bin/google-chrome'
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
           name: npm-install
           command: npm ci
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ~/.npm
       - run:
           name: test
           command: npm run test:ci
@@ -26,15 +20,13 @@ jobs:
           name: codecov
           command: bash <(curl -s https://codecov.io/bash)
       - run:
-          name: lint
+          name: ghpages
           command: npm run ghpages
   release:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:12
     steps:
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm ci
       - run: npm run build
       - run: npm run semantic-release
