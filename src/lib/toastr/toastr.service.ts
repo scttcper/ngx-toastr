@@ -185,7 +185,6 @@ export class ToastrService {
     message = (message === undefined) ? '' : message;
     for (const toast of this.toasts) {
       if (toast.title === title && toast.message === message) {
-        console.log("duplicates match");
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
       }
