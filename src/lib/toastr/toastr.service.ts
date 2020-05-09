@@ -19,6 +19,8 @@ import { GlobalConfig, IndividualConfig, ToastPackage, ToastToken, TOAST_CONFIG 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
   toastId: number;
+  /** the title of your toast. Stored to prevent duplicates */
+  title: string;
   /** the message of your toast. Stored to prevent duplicates */
   message: string;
   /** a reference to the component see portal.ts */
@@ -178,9 +180,12 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  findDuplicate(message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
+  findDuplicate(title :string, message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
+    title = (title === undefined) ? '' : title;
+    message = (message === undefined) ? '' : message;
     for (const toast of this.toasts) {
-      if (toast.message === message) {
+      if (toast.title === title && toast.message === message) {
+        console.log("duplicates match");
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
       }
@@ -240,7 +245,7 @@ export class ToastrService {
     // max opened and auto dismiss = true
     // if timeout = 0 resetting it would result in setting this.hideTime = Date.now(). Hence, we only want to reset timeout if there is
     // a timeout at all
-    const duplicate = this.findDuplicate(
+    const duplicate = this.findDuplicate(title,
       message,
       this.toastrConfig.resetTimeoutOnDuplicate && config.timeOut > 0,
       this.toastrConfig.countDuplicates
@@ -286,6 +291,7 @@ export class ToastrService {
     toastRef.componentInstance = portal.instance;
     const ins: ActiveToast<any> = {
       toastId: this.index,
+      title: title || '',
       message: message || '',
       toastRef,
       onShown: toastRef.afterActivate(),
