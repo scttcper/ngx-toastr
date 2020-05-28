@@ -93,6 +93,11 @@ export interface IndividualConfig {
    * default: false
    */
   onActivateTick: boolean;
+  /**
+   * New toast placement
+   * default: true
+   */
+  newestOnTop: boolean;
 }
 
 export interface ToastrIconClasses {
@@ -119,11 +124,6 @@ export interface GlobalConfig extends IndividualConfig {
    */
   autoDismiss: boolean;
   iconClasses: Partial<ToastrIconClasses>;
-  /**
-   * New toast placement
-   * default: true
-   */
-  newestOnTop: boolean;
   /**
    * block duplicate messages
    * default: false
