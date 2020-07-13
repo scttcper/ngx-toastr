@@ -24,7 +24,7 @@ export class Overlay {
   // Namespace panes by overlay container
   private _paneElements: Map<
     ToastContainerDirective,
-    { string?: HTMLElement }
+    Record<string, HTMLElement>
   > = new Map();
 
   constructor(
@@ -51,15 +51,15 @@ export class Overlay {
     positionClass: string = '',
     overlayContainer?: ToastContainerDirective,
   ): HTMLElement {
-    if (!this._paneElements.get(overlayContainer)) {
-      this._paneElements.set(overlayContainer, {});
+    if (!this._paneElements.get(overlayContainer as ToastContainerDirective)) {
+      this._paneElements.set(overlayContainer as ToastContainerDirective, {});
     }
 
-    if (!this._paneElements.get(overlayContainer)[positionClass]) {
-      this._paneElements.get(overlayContainer)[positionClass] = this._createPaneElement(positionClass, overlayContainer);
+    if (!this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass]) {
+      this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass] = this._createPaneElement(positionClass, overlayContainer);
     }
 
-    return this._paneElements.get(overlayContainer)[positionClass];
+    return this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass];
   }
 
 

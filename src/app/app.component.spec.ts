@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
+import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 
 import { ToastrModule } from '../lib/public_api';
 import { AppComponent } from './app.component';
@@ -25,7 +25,7 @@ describe('AppComponent', () => {
         FormsModule,
         BrowserAnimationsModule,
         AppTestModule,
-        MdoButtonModule,
+        GhButtonModule,
       ],
       declarations: [
         AppComponent,

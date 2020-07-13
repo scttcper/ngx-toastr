@@ -23,7 +23,7 @@ export class ComponentPortal<T> {
    * This is different from where the component *renders*, which is determined by the PortalHost.
    * The origin necessary when the host is outside of the Angular application context.
    */
-  viewContainerRef: ViewContainerRef;
+  viewContainerRef!: ViewContainerRef;
 
   /** Injector used for the instantiation of the component. */
   injector: Injector;
@@ -34,7 +34,7 @@ export class ComponentPortal<T> {
   }
 
   /** Attach this portal to a host. */
-  attach(host: BasePortalHost, newestOnTop: boolean) {
+  attach(host: BasePortalHost, newestOnTop: boolean): ComponentRef<any> {
     this._attachedHost = host;
     return host.attach(this, newestOnTop);
   }

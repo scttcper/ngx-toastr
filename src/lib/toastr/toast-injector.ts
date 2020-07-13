@@ -8,19 +8,19 @@ import { ToastPackage } from './toastr-config';
  */
 export class ToastRef<T> {
   /** The instance of component opened into the toast. */
-  componentInstance: T;
+  componentInstance!: T;
 
   /** Count of duplicates of this toast */
   private duplicatesCount = 0;
 
   /** Subject for notifying the user that the toast has finished closing. */
-  private _afterClosed = new Subject<any>();
+  private _afterClosed = new Subject<void>();
   /** triggered when toast is activated */
-  private _activate = new Subject<any>();
+  private _activate = new Subject<void>();
   /** notifies the toast that it should close before the timeout */
-  private _manualClose = new Subject<any>();
+  private _manualClose = new Subject<void>();
   /** notifies the toast that it should reset the timeouts */
-  private _resetTimeout = new Subject<any>();
+  private _resetTimeout = new Subject<void>();
   /** notifies the toast that it should count a duplicate toast */
   private _countDuplicate = new Subject<number>();
 
