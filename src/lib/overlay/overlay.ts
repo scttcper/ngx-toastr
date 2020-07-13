@@ -1,10 +1,6 @@
+/* tslint:disable:no-non-null-assertion */
 import { DOCUMENT } from '@angular/common';
-import {
-  ApplicationRef,
-  ComponentFactoryResolver,
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, Inject, Injectable } from '@angular/core';
 
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { ToastContainerDirective } from '../toastr/toast.directive';
@@ -22,10 +18,7 @@ import { OverlayRef } from './overlay-ref';
 @Injectable({ providedIn: 'root' })
 export class Overlay {
   // Namespace panes by overlay container
-  private _paneElements: Map<
-    ToastContainerDirective,
-    { string?: HTMLElement }
-  > = new Map();
+  private _paneElements: Map<ToastContainerDirective, Record<string, HTMLElement>> = new Map();
 
   constructor(
     private _overlayContainer: OverlayContainer,
@@ -37,31 +30,27 @@ export class Overlay {
    * Creates an overlay.
    * @returns A reference to the created overlay.
    */
-  create(
-    positionClass?: string,
-    overlayContainer?: ToastContainerDirective,
-  ): OverlayRef {
+  create(positionClass?: string, overlayContainer?: ToastContainerDirective): OverlayRef {
     // get existing pane if possible
-    return this._createOverlayRef(
-      this.getPaneElement(positionClass, overlayContainer),
-    );
+    return this._createOverlayRef(this.getPaneElement(positionClass, overlayContainer));
   }
 
   getPaneElement(
     positionClass: string = '',
     overlayContainer?: ToastContainerDirective,
   ): HTMLElement {
-    if (!this._paneElements.get(overlayContainer)) {
-      this._paneElements.set(overlayContainer, {});
+    if (!this._paneElements.get(overlayContainer as ToastContainerDirective)) {
+      this._paneElements.set(overlayContainer as ToastContainerDirective, {});
     }
 
-    if (!this._paneElements.get(overlayContainer)[positionClass]) {
-      this._paneElements.get(overlayContainer)[positionClass] = this._createPaneElement(positionClass, overlayContainer);
+    if (!this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass]) {
+      this._paneElements.get(overlayContainer as ToastContainerDirective)![
+        positionClass
+      ] = this._createPaneElement(positionClass, overlayContainer);
     }
 
-    return this._paneElements.get(overlayContainer)[positionClass];
+    return this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass];
   }
-
 
   /**
    * Creates the DOM element for an overlay and appends it to the overlay container.
@@ -92,11 +81,7 @@ export class Overlay {
    * @returns A portal host for the given DOM element.
    */
   private _createPortalHost(pane: HTMLElement): DomPortalHost {
-    return new DomPortalHost(
-      pane,
-      this._componentFactoryResolver,
-      this._appRef,
-    );
+    return new DomPortalHost(pane, this._componentFactoryResolver, this._appRef);
   }
 
   /**

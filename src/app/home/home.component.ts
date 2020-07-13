@@ -55,7 +55,7 @@ export class HomeComponent {
   private lastInserted: number[] = [];
   inline = false;
   inlinePositionIndex = 0;
-  @ViewChildren(ToastContainerDirective) inlineContainers: QueryList<ToastContainerDirective>;
+  @ViewChildren(ToastContainerDirective) inlineContainers!: QueryList<ToastContainerDirective>;
 
 
   constructor(public toastr: ToastrService, private renderer: Renderer2) {
@@ -134,8 +134,8 @@ export class HomeComponent {
   clearLastToast() {
     this.toastr.clear(this.lastInserted.pop());
   }
-  fixNumber(field: string) {
-    this.options[field] = Number(this.options[field]);
+  fixNumber(field: keyof GlobalConfig): void {
+    (this.options as any)[field] = Number(this.options[field]) as any;
   }
   setInlineClass(enableInline: boolean) {
     if (enableInline) {

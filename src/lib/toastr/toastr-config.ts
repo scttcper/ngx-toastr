@@ -105,6 +105,7 @@ export interface ToastrIconClasses {
   info: string;
   success: string;
   warning: string;
+  [key: string]: string;
 }
 
 /**
@@ -145,7 +146,7 @@ export interface GlobalConfig extends IndividualConfig {
  * Everything a toast needs to launch
  */
 export class ToastPackage {
-  private _onTap = new Subject<any>();
+  private _onTap = new Subject<void>();
   private _onAction = new Subject<any>();
 
   constructor(
@@ -163,23 +164,23 @@ export class ToastPackage {
   }
 
   /** Fired on click */
-  triggerTap() {
+  triggerTap(): void {
     this._onTap.next();
     if (this.config.tapToDismiss) {
       this._onTap.complete();
     }
   }
 
-  onTap(): Observable<any> {
+  onTap(): Observable<void> {
     return this._onTap.asObservable();
   }
 
   /** available for use in custom toast */
-  triggerAction(action?: any) {
+  triggerAction(action?: any): void {
     this._onAction.next(action);
   }
 
-  onAction(): Observable<any> {
+  onAction(): Observable<void> {
     return this._onAction.asObservable();
   }
 }

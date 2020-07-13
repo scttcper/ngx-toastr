@@ -57,7 +57,7 @@ export class Toast implements OnDestroy {
   message?: string | null;
   title?: string;
   options: IndividualConfig;
-  duplicatesCount: number;
+  duplicatesCount!: number;
   originalTimeout: number;
   /** width of progress bar */
   width = -1;
@@ -75,15 +75,17 @@ export class Toast implements OnDestroy {
 
   /** hides component when waiting to be displayed */
   @HostBinding('style.display')
-  get displayStyle() {
+  get displayStyle(): string | undefined {
     if (this.state.value === 'inactive') {
       return 'none';
     }
+
+    return;
   }
 
   private timeout: any;
   private intervalId: any;
-  private hideTime: number;
+  private hideTime!: number;
   private sub: Subscription;
   private sub1: Subscription;
   private sub2: Subscription;

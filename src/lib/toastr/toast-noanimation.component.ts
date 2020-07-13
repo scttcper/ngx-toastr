@@ -45,7 +45,7 @@ export class ToastNoAnimation implements OnDestroy {
   message?: string | null;
   title?: string;
   options: IndividualConfig;
-  duplicatesCount: number;
+  duplicatesCount!: number;
   originalTimeout: number;
   /** width of progress bar */
   width = -1;
@@ -64,7 +64,7 @@ export class ToastNoAnimation implements OnDestroy {
   state = 'inactive';
   private timeout: any;
   private intervalId: any;
-  private hideTime: number;
+  private hideTime!: number;
   private sub: Subscription;
   private sub1: Subscription;
   private sub2: Subscription;

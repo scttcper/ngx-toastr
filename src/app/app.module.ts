@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MdoButtonModule } from '@ctrl/ngx-github-buttons';
+import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 
 import {
   ToastrModule,
@@ -34,7 +34,7 @@ import { PinkToast } from './pink.toast';
     ToastNoAnimationModule,
     ToastrModule.forRoot(),
     ToastContainerModule,
-    MdoButtonModule,
+    GhButtonModule,
   ],
   entryComponents: [PinkToast, NotyfToast],
   bootstrap: [AppComponent],
