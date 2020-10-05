@@ -139,6 +139,11 @@ export interface GlobalConfig extends IndividualConfig {
    * default: false
    */
   resetTimeoutOnDuplicate: boolean;
+  /**
+   * consider the title of a toast when checking if duplicate
+   * default: false
+   */
+  includeTitleDuplicates: boolean;
 }
 
 /**
@@ -197,8 +202,10 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   autoDismiss: false,
   newestOnTop: true,
   preventDuplicates: false,
-  countDuplicates: false,
+  countDuplicates: false,  
   resetTimeoutOnDuplicate: false,
+  includeTitleDuplicates: false,
+
   iconClasses: {
     error: 'toast-error',
     info: 'toast-info',

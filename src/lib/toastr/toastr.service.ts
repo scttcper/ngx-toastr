@@ -184,7 +184,7 @@ export class ToastrService {
     title = (title === undefined) ? '' : title;
     message = (message === undefined) ? '' : message;
     for (const toast of this.toasts) {
-      if (toast.title === title && toast.message === message) {
+      if ((!this.toastrConfig.includeTitleDuplicates || (this.toastrConfig.includeTitleDuplicates && toast.title === title)) && (!message || toast.message === message)) {
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
       }
@@ -244,12 +244,13 @@ export class ToastrService {
     // max opened and auto dismiss = true
     // if timeout = 0 resetting it would result in setting this.hideTime = Date.now(). Hence, we only want to reset timeout if there is
     // a timeout at all
-    const duplicate = this.findDuplicate(title,
+    const duplicate = this.findDuplicate(
+      title,
       message,
       this.toastrConfig.resetTimeoutOnDuplicate && config.timeOut > 0,
       this.toastrConfig.countDuplicates
     );
-    if (message && this.toastrConfig.preventDuplicates && duplicate !== null) {
+    if (((this.toastrConfig.includeTitleDuplicates && title) || message) && this.toastrConfig.preventDuplicates && duplicate !== null) {
       return duplicate;
     }
 

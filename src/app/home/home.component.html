@@ -57,6 +57,13 @@
                     Reset timeout on duplicate
                   </label>
                 </div>
+                <div class="form-check ml-2">
+                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.includeTitleDuplicates" id="includeTitleDuplicate"
+                    [disabled]="!options.preventDuplicates">
+                  <label class="form-check-label" for="includeTitleDuplicate">
+                    Include title in duplicate checks
+                  </label>
+                </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" [(ngModel)]="options.newestOnTop" id="newestOnTop">
                   <label class="form-check-label" for="newestOnTop">
