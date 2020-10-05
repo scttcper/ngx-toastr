@@ -130,9 +130,7 @@ export class ToastrService {
   /**
    * Determines if toast message is already shown
    */
-  findDuplicate(title :string, message: string, resetOnDuplicate: boolean, countDuplicates: boolean) {
-    title = (title === undefined) ? '' : title;
-    message = (message === undefined) ? '' : message;
+  findDuplicate(title = '', message = '', resetOnDuplicate: boolean, countDuplicates: boolean) {
     for (const toast of this.toasts) {
       if ((!this.toastrConfig.includeTitleDuplicates || (this.toastrConfig.includeTitleDuplicates && toast.title === title)) && (!message || toast.message === message)) {
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
