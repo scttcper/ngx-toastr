@@ -179,6 +179,7 @@ options:
 | preventDuplicates       | boolean | false                              | Block duplicate messages                                                                                      |
 | countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message |
 | resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)                                             |
+| includeTitleDuplicates  | boolean | false                              | Include the title of a toast when checking for duplicates (by default only message is compared)               |
 
 ##### iconClasses defaults
 
@@ -212,6 +213,8 @@ imports: [
 export interface ActiveToast {
   /** Your Toast ID. Use this to close it individually */
   toastId: number;
+  /** the title of your toast. Stored to prevent duplicates if includeTitleDuplicates set */
+  title: string
   /** the message of your toast. Stored to prevent duplicates */
   message: string;
   /** a reference to the component see portal.ts */
