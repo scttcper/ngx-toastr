@@ -131,12 +131,16 @@ export class ToastrService {
    * Determines if toast message is already shown
    */
   findDuplicate(title = '', message = '', resetOnDuplicate: boolean, countDuplicates: boolean) {
+    const { includeTitleDuplicates } = this.toastrConfig;
+
     for (const toast of this.toasts) {
-      if ((!this.toastrConfig.includeTitleDuplicates || (this.toastrConfig.includeTitleDuplicates && toast.title === title)) && (!message || toast.message === message)) {
+      const hasDuplicateTitle = includeTitleDuplicates && toast.title === title;
+      if ((!includeTitleDuplicates || hasDuplicateTitle) && toast.message === message) {
         toast.toastRef.onDuplicate(resetOnDuplicate, countDuplicates);
         return toast;
       }
     }
+
     return null;
   }
 
@@ -194,7 +198,11 @@ export class ToastrService {
       this.toastrConfig.resetTimeoutOnDuplicate && config.timeOut > 0,
       this.toastrConfig.countDuplicates,
     );
-    if (((this.toastrConfig.includeTitleDuplicates && title) || message) && this.toastrConfig.preventDuplicates && duplicate !== null) {
+    if (
+      ((this.toastrConfig.includeTitleDuplicates && title) || message) &&
+      this.toastrConfig.preventDuplicates &&
+      duplicate !== null
+    ) {
       return duplicate;
     }
 
