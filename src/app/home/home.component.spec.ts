@@ -1,7 +1,7 @@
 /* tslint:disable:no-use-before-declare */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -29,7 +29,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the app', async(() => {
+  it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
@@ -117,7 +117,7 @@ describe('AppComponent', () => {
       done();
     });
   });
-  it('should have defined componentInstance', async(() => {
+  it('should have defined componentInstance', waitForAsync(() => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
