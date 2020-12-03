@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-toastr": {
+    "root": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/dev-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngx-toastr:build"
+            "browserTarget": "root:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngx-toastr:build:production"
+              "browserTarget": "root:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-toastr:build"
+            "browserTarget": "root:build"
           }
         },
         "test": {
@@ -112,7 +112,50 @@
           }
         }
       }
+    },
+    "ngx-toastr": {
+      "projectType": "library",
+      "root": "projects/ngx-toastr",
+      "sourceRoot": "projects/ngx-toastr/src",
+      "prefix": "toastr",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ngx-toastr/tsconfig.lib.json",
+            "project": "projects/ngx-toastr/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-toastr/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-toastr/src/test.ts",
+            "tsConfig": "projects/ngx-toastr/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-toastr/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-toastr/tsconfig.lib.json",
+              "projects/ngx-toastr/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "ngx-toastr"
+  "defaultProject": "root",
+  "cli": {
+    "analytics": "0b94dc47-63f4-4a17-aba6-0ce3f1e92deb"
+  }
 }

@@ -1,22 +1,27 @@
+import { CommonModule } from '@angular/common';
+import { ModuleWithProviders } from '@angular/core';
 import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
-import {
+  ApplicationRef,
   Component,
   HostBinding,
   HostListener,
-  NgZone,
-  OnDestroy
+  NgModule,
+  OnDestroy,
 } from '@angular/core';
+
 import { Subscription } from 'rxjs';
-import { IndividualConfig, ToastPackage } from './toastr-config';
+
+import {
+  DefaultNoComponentGlobalConfig,
+  GlobalConfig,
+  IndividualConfig,
+  ToastPackage,
+  TOAST_CONFIG,
+} from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: '[toast-component]',
   template: `
   <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
@@ -25,10 +30,10 @@ import { ToastrService } from './toastr.service';
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
     {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
   </div>
-  <div *ngIf="message && options.enableHtml" role="alertdialog" aria-live="polite"
+  <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [innerHTML]="message">
   </div>
-  <div *ngIf="message && !options.enableHtml" role="alertdialog" aria-live="polite"
+  <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
     [class]="options.messageClass" [attr.aria-label]="message">
     {{ message }}
   </div>
@@ -36,24 +41,8 @@ import { ToastrService } from './toastr.service';
     <div class="toast-progress" [style.width]="width + '%'"></div>
   </div>
   `,
-  animations: [
-    trigger('flyInOut', [
-      state('inactive', style({ opacity: 0 })),
-      state('active', style({ opacity: 1 })),
-      state('removed', style({ opacity: 0 })),
-      transition(
-        'inactive => active',
-        animate('{{ easeTime }}ms {{ easing }}')
-      ),
-      transition(
-        'active => removed',
-        animate('{{ easeTime }}ms {{ easing }}')
-      )
-    ])
-  ],
-  preserveWhitespaces: false
 })
-export class Toast implements OnDestroy {
+export class ToastNoAnimation implements OnDestroy {
   message?: string | null;
   title?: string;
   options: IndividualConfig;
@@ -63,26 +52,17 @@ export class Toast implements OnDestroy {
   width = -1;
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
-  /** controls animation */
-  @HostBinding('@flyInOut')
-  state = {
-    value: 'inactive',
-    params: {
-      easeTime: this.toastPackage.config.easeTime,
-      easing: 'ease-in'
-    }
-  };
 
   /** hides component when waiting to be displayed */
   @HostBinding('style.display')
-  get displayStyle(): string | undefined {
-    if (this.state.value === 'inactive') {
+  get displayStyle() {
+    if (this.state === 'inactive') {
       return 'none';
     }
-
-    return;
   }
 
+  /** controls animation */
+  state = 'inactive';
   private timeout: any;
   private intervalId: any;
   private hideTime!: number;
@@ -94,7 +74,7 @@ export class Toast implements OnDestroy {
   constructor(
     protected toastrService: ToastrService,
     public toastPackage: ToastPackage,
-    protected ngZone?: NgZone
+    protected appRef: ApplicationRef,
   ) {
     this.message = toastPackage.message;
     this.title = toastPackage.title;
@@ -128,13 +108,18 @@ export class Toast implements OnDestroy {
    * activates toast and sets timeout
    */
   activateToast() {
-    this.state = { ...this.state, value: 'active' };
+    this.state = 'active';
     if (!(this.options.disableTimeOut === true || this.options.disableTimeOut === 'timeOut') && this.options.timeOut) {
-      this.outsideTimeout(() => this.remove(), this.options.timeOut);
+      this.timeout = setTimeout(() => {
+        this.remove();
+      }, this.options.timeOut);
       this.hideTime = new Date().getTime() + this.options.timeOut;
       if (this.options.progressBar) {
-        this.outsideInterval(() => this.updateProgress(), 10);
+        this.intervalId = setInterval(() => this.updateProgress(), 10);
       }
+    }
+    if (this.options.onActivateTick) {
+      this.appRef.tick();
     }
   }
   /**
@@ -161,14 +146,14 @@ export class Toast implements OnDestroy {
   resetTimeout() {
     clearTimeout(this.timeout);
     clearInterval(this.intervalId);
-    this.state = { ...this.state, value: 'active' };
+    this.state = 'active';
 
-    this.outsideTimeout(() => this.remove(), this.originalTimeout);
     this.options.timeOut = this.originalTimeout;
-    this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
+    this.timeout = setTimeout(() => this.remove(), this.originalTimeout);
+    this.hideTime = new Date().getTime() + (this.originalTimeout || 0);
     this.width = -1;
     if (this.options.progressBar) {
-      this.outsideInterval(() => this.updateProgress(), 10);
+      this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
   }
 
@@ -176,19 +161,18 @@ export class Toast implements OnDestroy {
    * tells toastrService to remove this toast after animation time
    */
   remove() {
-    if (this.state.value === 'removed') {
+    if (this.state === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
-    this.state = { ...this.state, value: 'removed' };
-    this.outsideTimeout(
-      () => this.toastrService.remove(this.toastPackage.toastId),
-      +this.toastPackage.config.easeTime
+    this.state = 'removed';
+    this.timeout = setTimeout(() =>
+      this.toastrService.remove(this.toastPackage.toastId),
     );
   }
   @HostListener('click')
   tapToast() {
-    if (this.state.value === 'removed') {
+    if (this.state === 'removed') {
       return;
     }
     this.toastPackage.triggerTap();
@@ -198,7 +182,7 @@ export class Toast implements OnDestroy {
   }
   @HostListener('mouseenter')
   stickAround() {
-    if (this.state.value === 'removed') {
+    if (this.state === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
@@ -214,52 +198,47 @@ export class Toast implements OnDestroy {
     if (
       (this.options.disableTimeOut === true || this.options.disableTimeOut === 'extendedTimeOut') ||
       this.options.extendedTimeOut === 0 ||
-      this.state.value === 'removed'
+      this.state === 'removed'
     ) {
       return;
     }
-    this.outsideTimeout(() => this.remove(), this.options.extendedTimeOut);
+    this.timeout = setTimeout(
+      () => this.remove(),
+      this.options.extendedTimeOut,
+    );
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
     this.width = -1;
     if (this.options.progressBar) {
-      this.outsideInterval(() => this.updateProgress(), 10);
+      this.intervalId = setInterval(() => this.updateProgress(), 10);
     }
   }
+}
 
-  outsideTimeout(func: () => any, timeout: number) {
-    if (this.ngZone) {
-      this.ngZone.runOutsideAngular(
-        () =>
-          (this.timeout = setTimeout(
-            () => this.runInsideAngular(func),
-            timeout
-          ))
-      );
-    } else {
-      this.timeout = setTimeout(() => func(), timeout);
-    }
-  }
+export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
+  ...DefaultNoComponentGlobalConfig,
+  toastComponent: ToastNoAnimation,
+};
 
-  outsideInterval(func: () => any, timeout: number) {
-    if (this.ngZone) {
-      this.ngZone.runOutsideAngular(
-        () =>
-          (this.intervalId = setInterval(
-            () => this.runInsideAngular(func),
-            timeout
-          ))
-      );
-    } else {
-      this.intervalId = setInterval(() => func(), timeout);
-    }
-  }
-
-  private runInsideAngular(func: () => any) {
-    if (this.ngZone) {
-      this.ngZone.run(() => func());
-    } else {
-      func();
-    }
+@NgModule({
+  imports: [CommonModule],
+  declarations: [ToastNoAnimation],
+  exports: [ToastNoAnimation],
+  entryComponents: [ToastNoAnimation],
+})
+export class ToastNoAnimationModule {
+  static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastNoAnimationModule> {
+    return {
+      ngModule: ToastNoAnimationModule,
+      providers: [
+        {
+          provide: TOAST_CONFIG,
+          useValue: {
+            default: DefaultNoAnimationsGlobalConfig,
+            config,
+          },
+        },
+      ],
+    };
   }
 }

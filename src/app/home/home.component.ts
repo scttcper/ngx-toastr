@@ -6,7 +6,7 @@ import {
   ToastrService,
   ToastContainerDirective,
   ToastNoAnimation,
-} from '../../lib/public_api';
+} from 'ngx-toastr';
 
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';

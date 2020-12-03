@@ -1,3 +1,7 @@
+/*
+ * Public API Surface of ngx-toastr
+ */
+
 export * from './toastr/toast.directive';
 export * from './toastr/toast.component';
 export * from './toastr/toastr.service';

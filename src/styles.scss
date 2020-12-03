@@ -39,10 +39,10 @@ $enable-gradients: true;
 @import "notyf.css";
 
 .normal {
-  @import "lib/toastr";
+  @import "./projects/ngx-toastr/src/toastr.css";
 }
 .bootstrap {
-  @import "lib/toastr-bs4-alert";
+  @import "./projects/ngx-toastr/src/toastr-bs4-alert";
 }
 
 body {

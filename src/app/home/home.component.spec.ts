@@ -5,8 +5,7 @@ import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Toast } from '../../lib/public_api';
-import { ActiveToast, ToastrModule } from '../../lib/public_api';
+import { ActiveToast, Toast, ToastrModule } from 'ngx-toastr';
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';
 import { HomeComponent } from './home.component';

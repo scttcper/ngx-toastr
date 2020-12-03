@@ -7,7 +7,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
+import { Toast, ToastrService, ToastPackage } from 'ngx-toastr';
 
 @Component({
   selector: 'notyf-toast-component',

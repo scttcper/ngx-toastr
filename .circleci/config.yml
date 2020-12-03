@@ -28,8 +28,9 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      - run: npm run build
-      - run: cd dist && npx semantic-release
+      - run: npm run build:lib
+      - run: npm run cp
+      - run: cd dist/ngx-toastr && npx semantic-release
 
 workflows:
   version: 2

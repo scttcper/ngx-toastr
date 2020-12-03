@@ -9,7 +9,7 @@ import {
   ToastrModule,
   ToastContainerModule,
   ToastNoAnimationModule,
-} from '../lib/public_api';
+} from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
