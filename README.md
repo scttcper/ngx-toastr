@@ -40,7 +40,8 @@ Latest version available for each version of Angular
 | 10.1.0     | 8.x 7.x 6.x |
 | 11.3.3     | 8.x         |
 | 12.1.0     | 9.x         |
-| current    | >= 10.x     |
+| 13.2.1     | 10.x 11.x   |
+| current    | >= 12.x     |
 
 ## Install
 
@@ -135,7 +136,7 @@ There are **individual options** and **global options**.
 Passed to `ToastrService.success/error/warning/info/show()`
 
 | Option            | Type                           | Default                        | Description                                                                                                                               |
-| ----------------- | ------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------- | ------------------------------ | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | toastComponent    | Component                      | Toast                          | Angular component that will be used                                                                                                       |
 | closeButton       | boolean                        | false                          | Show close button                                                                                                                         |
 | timeOut           | number                         | 5000                           | Time to live in milliseconds                                                                                                              |
@@ -214,7 +215,7 @@ export interface ActiveToast {
   /** Your Toast ID. Use this to close it individually */
   toastId: number;
   /** the title of your toast. Stored to prevent duplicates if includeTitleDuplicates set */
-  title: string
+  title: string;
   /** the message of your toast. Stored to prevent duplicates */
   message: string;
   /** a reference to the component see portal.ts */
