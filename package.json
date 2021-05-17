@@ -14,7 +14,7 @@
     "test:ci": "ng test --watch=false --code-coverage --no-progress",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
-    "ghpages": "ng build --prod --no-progress"
+    "ghpages": "ng build --configuration production --no-progress"
   },
   "private": true,
   "devDependencies": {
