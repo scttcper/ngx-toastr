@@ -190,7 +190,7 @@ export class ToastPackage {
   }
 }
 
-/* tslint:disable:no-empty-interface */
+/* eslint-disable @typescript-eslint/no-empty-interface */
 /** @deprecated use GlobalConfig */
 export interface GlobalToastrConfig extends GlobalConfig {}
 /** @deprecated use IndividualConfig */
