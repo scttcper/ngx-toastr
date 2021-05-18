@@ -3,9 +3,9 @@
   "name": "ngx-toastr",
   "version": "0.0.0-placeholder",
   "peerDependencies": {
-    "@angular/core": ">=10.0.0-0",
-    "@angular/common": ">=10.0.0-0",
-    "@angular/platform-browser": ">=10.0.0-0"
+    "@angular/core": ">=12.0.0-0",
+    "@angular/common": ">=12.0.0-0",
+    "@angular/platform-browser": ">=12.0.0-0"
   },
   "ngPackage": {
     "lib": {

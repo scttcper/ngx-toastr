@@ -1,4 +1,4 @@
-/* tslint:disable:no-use-before-declare */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
