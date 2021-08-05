@@ -11,6 +11,7 @@ jobs:
           CHROME_BIN: '/usr/bin/google-chrome'
     steps:
       - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - checkout
       - node/install-packages
       - run:
