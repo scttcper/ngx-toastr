@@ -10,6 +10,7 @@ import {
 
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';
+import { BootstrapToast } from '../bootstrap.toast';
 
 interface Quote {
   title?: string;
@@ -108,6 +109,17 @@ export class HomeComponent {
     const opt = cloneDeep(this.options);
     opt.toastComponent = PinkToast;
     opt.toastClass = 'pinktoast';
+    const { message, title } = this.getMessage();
+    const inserted = this.toastr.show(message, title, opt);
+    if (inserted && inserted.toastId) {
+      this.lastInserted.push(inserted.toastId);
+    }
+    return inserted;
+  }
+  openBootstrapToast() {
+    const opt = cloneDeep(this.options);
+    opt.toastComponent = BootstrapToast;
+    opt.toastClass = 'toast';
     const { message, title } = this.getMessage();
     const inserted = this.toastr.show(message, title, opt);
     if (inserted && inserted.toastId) {

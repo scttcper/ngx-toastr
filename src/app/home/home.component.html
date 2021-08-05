@@ -1,11 +1,11 @@
 <div class="container mt-3">
   <div class="row justify-content-center">
-    <div class="col-lg-10 col-sm-12">
+    <div class="col-12 col-lg-10">
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-md-5">
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="toastTitle">
                   <strong>Title</strong>
                 </label>
@@ -18,7 +18,7 @@
                   placeholder="Toast title"
                 />
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="toastMessage">
                   <strong>Message</strong>
                 </label>
@@ -32,7 +32,7 @@
                 ></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <div class="form-check">
                   <input
                     class="form-check-input"
@@ -40,9 +40,7 @@
                     [(ngModel)]="options.enableHtml"
                     id="enableHtml"
                   />
-                  <label class="form-check-label" for="enableHtml">
-                    Enable HTML (message)
-                  </label>
+                  <label class="form-check-label" for="enableHtml"> Enable HTML (message) </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -51,9 +49,7 @@
                     [(ngModel)]="options.tapToDismiss"
                     id="tapToDismiss"
                   />
-                  <label class="form-check-label" for="tapToDismiss">
-                    Tap to dismiss
-                  </label>
+                  <label class="form-check-label" for="tapToDismiss"> Tap to dismiss </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -62,9 +58,7 @@
                     [(ngModel)]="options.closeButton"
                     id="closeButton"
                   />
-                  <label class="form-check-label" for="closeButton">
-                    Close button
-                  </label>
+                  <label class="form-check-label" for="closeButton"> Close button </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -85,9 +79,7 @@
                     id="countDuplicates"
                     [disabled]="!options.preventDuplicates"
                   />
-                  <label class="form-check-label" for="countDuplicates">
-                    Count duplicates
-                  </label>
+                  <label class="form-check-label" for="countDuplicates"> Count duplicates </label>
                 </div>
                 <div class="form-check ml-2">
                   <input
@@ -102,8 +94,13 @@
                   </label>
                 </div>
                 <div class="form-check ml-2">
-                  <input class="form-check-input" type="checkbox" [(ngModel)]="options.includeTitleDuplicates" id="includeTitleDuplicate"
-                    [disabled]="!options.preventDuplicates">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [(ngModel)]="options.includeTitleDuplicates"
+                    id="includeTitleDuplicate"
+                    [disabled]="!options.preventDuplicates"
+                  />
                   <label class="form-check-label" for="includeTitleDuplicate">
                     Include title in duplicate checks
                   </label>
@@ -115,9 +112,7 @@
                     [(ngModel)]="options.newestOnTop"
                     id="newestOnTop"
                   />
-                  <label class="form-check-label" for="newestOnTop">
-                    New toasts on top
-                  </label>
+                  <label class="form-check-label" for="newestOnTop"> New toasts on top </label>
                 </div>
                 <div class="form-check">
                   <input
@@ -126,12 +121,10 @@
                     [(ngModel)]="options.progressBar"
                     id="progressBar"
                   />
-                  <label class="form-check-label" for="progressBar">
-                    Progress bar
-                  </label>
+                  <label class="form-check-label" for="progressBar"> Progress bar </label>
                 </div>
               </div>
-              <fieldset class="form-group">
+              <fieldset class="form-group mb-3">
                 <label>
                   <strong>Progress Bar Animation</strong>
                 </label>
@@ -157,14 +150,12 @@
                     [disabled]="!options.progressBar"
                     id="progressBarIncreasing"
                   />
-                  <label class="form-check-label" for="progressBarIncreasing">
-                    Increasing
-                  </label>
+                  <label class="form-check-label" for="progressBarIncreasing"> Increasing </label>
                 </div>
               </fieldset>
             </div>
             <div class="col-md-4 mb-2">
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="toastTimeout">
                   <strong>Timeout</strong>
                 </label>
@@ -181,7 +172,7 @@
                 />
                 <small id="toastTimeoutHelp" class="form-text text-muted">0 never expires</small>
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="toastExtendedTimeout">
                   <strong>Extended Timeout</strong>
                 </label>
@@ -199,7 +190,7 @@
                   >0 never expires</small
                 >
 
-                <fieldset class="form-group">
+                <fieldset class="form-group mb-3">
                   <label>
                     <strong>Disable Timeouts</strong>
                   </label>
@@ -253,7 +244,7 @@
                   </div>
                 </fieldset>
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="maxNumberToasts">
                   <strong>Maximum Toasts</strong>
                 </label>
@@ -278,7 +269,7 @@
                   >
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group mb-3">
                 <label for="toastExtendedTimeout">
                   <strong>Ease Time</strong>
                 </label>
@@ -294,7 +285,7 @@
             <div class="col-md-3">
               <div class="row">
                 <div class="col-6 col-md-12">
-                  <fieldset class="form-group">
+                  <fieldset class="form-group mb-3">
                     <label>
                       <strong>Toast Type</strong>
                     </label>
@@ -307,9 +298,7 @@
                         value="success"
                         id="typesuccess"
                       />
-                      <label class="form-check-label" for="typesuccess">
-                        Success
-                      </label>
+                      <label class="form-check-label" for="typesuccess"> Success </label>
                     </div>
                     <div class="form-check">
                       <input
@@ -320,9 +309,7 @@
                         value="info"
                         id="typeinfo"
                       />
-                      <label class="form-check-label" for="typeinfo">
-                        Info
-                      </label>
+                      <label class="form-check-label" for="typeinfo"> Info </label>
                     </div>
                     <div class="form-check">
                       <input
@@ -333,9 +320,7 @@
                         value="warning"
                         id="typewarning"
                       />
-                      <label class="form-check-label" for="typewarning">
-                        Warning
-                      </label>
+                      <label class="form-check-label" for="typewarning"> Warning </label>
                     </div>
                     <div class="form-check">
                       <input
@@ -346,14 +331,12 @@
                         value="error"
                         id="typeerror"
                       />
-                      <label class="form-check-label" for="typeerror">
-                        Error
-                      </label>
+                      <label class="form-check-label" for="typeerror"> Error </label>
                     </div>
                   </fieldset>
                 </div>
                 <div class="col-6 col-md-12">
-                  <fieldset class="form-group">
+                  <fieldset class="form-group mb-3">
                     <label>
                       <strong>Toast Position</strong>
                     </label>
@@ -458,7 +441,7 @@
                       >
                     </div>
                   </fieldset>
-                  <div class="form-group">
+                  <div class="form-group mb-3">
                     <div class="form-check">
                       <input
                         class="form-check-input"
@@ -496,20 +479,6 @@
                       <label for="inline-b" class="form-check-label">B</label>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        (ngModelChange)="setClass($event)"
-                        [(ngModel)]="enableBootstrap"
-                        id="enableBootstrap"
-                      />
-                      <label for="enableBootstrap" class="form-check-label"
-                        >Bootstrap 4 Style</label
-                      >
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -532,30 +501,26 @@
               <p class="mb-1">
                 <small>Toast Controls:</small>
               </p>
-              <div class="row justify-content-center">
-                <div class="col-lg-3 col-md-4 col-sm-12 col-12 mb-3">
-                  <button (click)="openToast()" type="button" class="btn btn-primary btn-block">
-                    Open Toast
-                  </button>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-                  <button
-                    (click)="clearLastToast()"
-                    type="button"
-                    class="btn btn-outline-primary btn-block"
-                  >
-                    Clear Last Toast
-                  </button>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-                  <button
-                    (click)="clearToasts()"
-                    type="button"
-                    class="btn btn-outline-primary btn-block"
-                  >
-                    Clear All Toasts
-                  </button>
-                </div>
+              <div class="d-flex justify-content-center">
+                <button (click)="openToast()" type="button" class="btn btn-primary btn-block mx-1">
+                  Open Toast
+                </button>
+
+                <button
+                  (click)="clearLastToast()"
+                  type="button"
+                  class="btn btn-outline-primary btn-block mx-1"
+                >
+                  Clear Last Toast
+                </button>
+
+                <button
+                  (click)="clearToasts()"
+                  type="button"
+                  class="btn btn-outline-primary btn-block mx-1"
+                >
+                  Clear All Toasts
+                </button>
               </div>
             </div>
           </div>
@@ -567,14 +532,21 @@
               <button
                 (click)="openToastNoAnimation()"
                 type="button"
-                class="btn btn-sm btn-light mr-1"
+                class="btn btn-sm btn-light mx-1"
               >
                 No Animations
               </button>
-              <button (click)="openPinkToast()" type="button" class="btn btn-sm btn-pink mr-1">
+              <button
+                (click)="openBootstrapToast()"
+                type="button"
+                class="btn btn-sm btn-light mx-1"
+              >
+                Bootstrap 5
+              </button>
+              <button (click)="openPinkToast()" type="button" class="btn btn-sm btn-pink mx-1">
                 Pink
               </button>
-              <button (click)="openNotyf()" type="button" class="btn btn-sm btn-dark mr-1">
+              <button (click)="openNotyf()" type="button" class="btn btn-sm btn-dark mx-1">
                 Notyf
               </button>
             </div>

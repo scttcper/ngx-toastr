@@ -17,11 +17,13 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { NotyfToast } from './notyf.toast';
 import { PinkToast } from './pink.toast';
+import { BootstrapToast } from './bootstrap.toast';
 
 @NgModule({
   declarations: [
     AppComponent,
     PinkToast,
+    BootstrapToast,
     NotyfToast,
     FooterComponent,
     HeaderComponent,
@@ -36,7 +38,7 @@ import { PinkToast } from './pink.toast';
     ToastContainerModule,
     GhButtonModule,
   ],
-  entryComponents: [PinkToast, NotyfToast],
+  entryComponents: [PinkToast, BootstrapToast, NotyfToast],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
