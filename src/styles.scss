@@ -1,48 +1,54 @@
+// Configuration
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 $enable-shadows: true;
 $enable-gradients: true;
 @import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 // @import "~bootstrap/scss/images";
-// @import "~bootstrap/scss/code";
+@import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
 // @import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/transitions";
+// @import "~bootstrap/scss/transitions";
 // @import "~bootstrap/scss/dropdown";
 // @import "~bootstrap/scss/button-group";
-// @import "~bootstrap/scss/input-group";
-// @import "~bootstrap/scss/custom-forms";
 // @import "~bootstrap/scss/nav";
 // @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/card";
+// @import "~bootstrap/scss/accordion";
 // @import "~bootstrap/scss/breadcrumb";
 // @import "~bootstrap/scss/pagination";
 // @import "~bootstrap/scss/badge";
-// @import "~bootstrap/scss/jumbotron";
-@import "~bootstrap/scss/alert";
+// @import "~bootstrap/scss/alert";
 // @import "~bootstrap/scss/progress";
-// @import "~bootstrap/scss/media";
 // @import "~bootstrap/scss/list-group";
-// @import "~bootstrap/scss/close";
+@import "~bootstrap/scss/close";
+// @import "~bootstrap/scss/toasts";
 // @import "~bootstrap/scss/modal";
 // @import "~bootstrap/scss/tooltip";
 // @import "~bootstrap/scss/popover";
 // @import "~bootstrap/scss/carousel";
-@import "~bootstrap/scss/utilities";
-@import "~bootstrap/scss/print";
+// @import "~bootstrap/scss/spinners";
+// @import "~bootstrap/scss/offcanvas";
+// @import "~bootstrap/scss/placeholders";
+
+// Helpers
+@import "~bootstrap/scss/helpers";
+
+// Utilities
+@import "~bootstrap/scss/utilities/api";
 
 @import "notyf.css";
 
 .normal {
   @import "lib/toastr";
-}
-.bootstrap {
-  @import "lib/toastr-bs4-alert";
 }
 
 body {
@@ -51,9 +57,8 @@ body {
 strong {
   font-weight: 500;
 }
-
-.btn {
-  cursor: pointer;
+code {
+  color: black;
 }
 
 .btn-pink {
@@ -71,4 +76,54 @@ strong {
 
 .toast-container.inline {
   position: relative;
+}
+
+
+// bs5 toast https://github.com/twbs/bootstrap/blob/main/scss/_toasts.scss
+.toast {
+  width: $toast-max-width;
+  max-width: 100%;
+  @include font-size($toast-font-size);
+  color: $toast-color;
+  pointer-events: auto;
+  background-color: $toast-background-color;
+  background-clip: padding-box;
+  border: $toast-border-width solid $toast-border-color;
+  box-shadow: $toast-box-shadow;
+  @include border-radius($toast-border-radius);
+
+  &.showing {
+    opacity: 0;
+  }
+}
+
+// .toast-container {
+//   width: max-content;
+//   max-width: 100%;
+//   pointer-events: none;
+
+//   > :not(:last-child) {
+//     margin-bottom: $toast-spacing;
+//   }
+// }
+
+.toast-header {
+  display: flex;
+  align-items: center;
+  padding: $toast-padding-y $toast-padding-x;
+  color: $toast-header-color;
+  background-color: $toast-header-background-color;
+  background-clip: padding-box;
+  border-bottom: $toast-border-width solid $toast-header-border-color;
+  @include border-top-radius(subtract($toast-border-radius, $toast-border-width));
+
+  .btn-close {
+    margin-right: $toast-padding-x * -.5;
+    margin-left: $toast-padding-x;
+  }
+}
+
+.toast-body {
+  padding: $toast-padding-x; // apply to both vertical and horizontal
+  word-wrap: break-word;
 }
