@@ -8,7 +8,7 @@ jobs:
     docker:
       - image: cimg/node:current-browsers
         environment:
-          CHROME_BIN: '/usr/local/bin/google-chrome'
+          CHROME_BIN: 'google-chrome'
     steps:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
