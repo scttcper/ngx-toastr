@@ -49,6 +49,11 @@ export interface IndividualConfig {
    */
   enableHtml: boolean;
   /**
+   * html for the close button (possibly unsafe)
+   * default: undefined
+   */
+  closeHtml: string | undefined;
+  /**
    * css class on toast component
    * default: ngx-toastr
    */
@@ -74,10 +79,20 @@ export interface IndividualConfig {
    */
   easing: string;
   /**
+   * animation hide easing on toast
+   * default: ease-out
+   */
+  hideEasing: string;
+  /**
    * animation ease time on toast
    * default: 300
    */
   easeTime: string | number;
+    /**
+   * animation hide ease time on toast
+   * default: 300
+   */
+  hideEasingTime: string | number;
   /**
    * clicking on toast dismisses it
    * default: true
@@ -220,13 +235,16 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   timeOut: 5000,
   extendedTimeOut: 1000,
   enableHtml: false,
+  closeHtml: undefined,
   progressBar: false,
   toastClass: 'ngx-toastr',
   positionClass: 'toast-top-right',
   titleClass: 'toast-title',
   messageClass: 'toast-message',
   easing: 'ease-in',
+  hideEasing: 'ease-out',
   easeTime: 300,
+  hideEasingTime: 300,
   tapToDismiss: true,
   onActivateTick: false,
   progressAnimation: 'decreasing',
