@@ -31,7 +31,19 @@
                   placeholder="Toast message"
                 ></textarea>
               </div>
-
+              <div class="form-group mb-3">
+                <label for="toastMessage">
+                  <strong>Close Button HTML</strong>
+                </label>
+                <textarea
+                  [(ngModel)]="options.closeHtml"
+                  rows="2"
+                  class="form-control"
+                  name="closeHtml"
+                  id="closeHtml"
+                  placeholder="HTML for the close button"
+                ></textarea>
+              </div>
               <div class="form-group mb-3">
                 <div class="form-check">
                   <input
@@ -280,6 +292,38 @@
                   class="form-control"
                   id="toastExtendedTimeout"
                 />
+              </div>
+              <div class="form-group mb-3">
+                <label for="toastHideEaseTime">
+                  <strong>Hide Ease Time</strong>
+                </label>
+                <input
+                  type="text"
+                  [(ngModel)]="toastr.toastrConfig.hideEaseTime"
+                  (ngModelChange)="fixNumber('hideEaseTime')"
+                  class="form-control"
+                  id="toastHideEaseTime"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label for="toastShowEaseType">Ease Type</label>
+                <select class="form-control"
+                    name="easeType" 
+                    id="toastShowEaseType" 
+                    [(ngModel)]="toastr.toastrConfig.easing">
+                   <option [ngValue]="null" disabled>Select Ease Type</option>
+                   <option *ngFor="let type of easeTypes" [ngValue]="type">{{type}}</option>
+                 </select>
+              </div>
+              <div class="form-group mb-3">
+                <label for="toastHideEaseType">Hide Ease Type</label>
+                <select class="form-control"
+                    name="hideEaseType" 
+                    id="toastHideEaseType" 
+                    [(ngModel)]="toastr.toastrConfig.hideEasing">
+                  <option [ngValue]="null" disabled>Select Hide Ease Type</option>
+                  <option *ngFor="let type of easeTypes" [ngValue]="type">{{type}}</option>
+                </select>
               </div>
             </div>
             <div class="col-md-3">
