@@ -19,7 +19,10 @@ import { ToastrService } from './toastr.service';
 @Component({
   selector: '[toast-component]',
   template: `
-  <button *ngIf="options.closeButton" (click)="remove()" class="toast-close-button" aria-label="Close">
+  <button *ngIf="options.closeButton && options.closeHtml" (click)="remove()" 
+    class="toast-close-button" aria-label="Close" aria-hidden="true" [innerHTML]="options.closeHtml">
+  </button>
+  <button *ngIf="options.closeButton && !options.closeHtml" (click)="remove()" class="toast-close-button" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
@@ -47,7 +50,7 @@ import { ToastrService } from './toastr.service';
       ),
       transition(
         'active => removed',
-        animate('{{ easeTime }}ms {{ easing }}')
+        animate('{{ hideEaseTime }}ms {{ hideEasing }}')
       )
     ])
   ],
@@ -69,7 +72,9 @@ export class Toast implements OnDestroy {
     value: 'inactive',
     params: {
       easeTime: this.toastPackage.config.easeTime,
-      easing: 'ease-in'
+      hideEaseTime: this.toastPackage.config.hideEaseTime ? this.toastPackage.config.hideEaseTime : this.toastPackage.config.easeTime,
+      easing: this.toastPackage.config.easing,
+      hideEasing: this.toastPackage.config.hideEasing ? this.toastPackage.config.hideEasing : this.toastPackage.config.easing
     }
   };
 
@@ -181,9 +186,10 @@ export class Toast implements OnDestroy {
     }
     clearTimeout(this.timeout);
     this.state = { ...this.state, value: 'removed' };
+    const hideEaseTime = this.toastPackage.config.hideEaseTime ? this.toastPackage.config.hideEaseTime : this.toastPackage.config.easeTime;
     this.outsideTimeout(
       () => this.toastrService.remove(this.toastPackage.toastId),
-      +this.toastPackage.config.easeTime
+      + hideEaseTime
     );
   }
   @HostListener('click')

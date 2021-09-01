@@ -58,6 +58,7 @@ export class HomeComponent {
   inlinePositionIndex = 0;
   @ViewChildren(ToastContainerDirective) inlineContainers!: QueryList<ToastContainerDirective>;
 
+  easeTypes = [ "ease", "ease-in", "ease-out", "ease-in-out", "linear", "step-start", "step-end" ];
 
   constructor(public toastr: ToastrService, private renderer: Renderer2) {
     this.options = this.toastr.toastrConfig;
