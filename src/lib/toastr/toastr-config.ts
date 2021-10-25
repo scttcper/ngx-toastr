@@ -98,6 +98,12 @@ export interface IndividualConfig {
    * default: true
    */
   newestOnTop: boolean;
+
+  /**
+   * payload to pass to the toastComponent
+   * default: null
+   */
+  payload: any;
 }
 
 export interface ToastrIconClasses {
