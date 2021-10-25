@@ -236,6 +236,8 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   tapToDismiss: true,
   onActivateTick: false,
   progressAnimation: 'decreasing',
+
+  payload: null
 };
 
 export interface ToastToken {
