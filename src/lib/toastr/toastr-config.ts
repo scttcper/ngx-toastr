@@ -98,6 +98,12 @@ export interface IndividualConfig {
    * default: true
    */
   newestOnTop: boolean;
+
+  /**
+   * payload to pass to the toastComponent
+   * default: null
+   */
+  payload: any;
 }
 
 export interface ToastrIconClasses {
@@ -230,6 +236,8 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   tapToDismiss: true,
   onActivateTick: false,
   progressAnimation: 'decreasing',
+
+  payload: null
 };
 
 export interface ToastToken {
