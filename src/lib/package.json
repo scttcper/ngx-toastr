@@ -7,10 +7,26 @@
     "@angular/common": ">=12.0.0-0",
     "@angular/platform-browser": ">=12.0.0-0"
   },
+  "exports": {
+    "./toastr": {
+      "default": "./toastr.css"
+    },
+    "./toastr-old": {
+      "default": "./toastr-old.css"
+    },
+    "./toastr-bs4-alert": {
+      "default": "./toastr-bs4-alert.scss"
+    }
+  },
   "ngPackage": {
     "lib": {
       "entryFile": "public_api.ts"
     },
+    "assets": [
+      "./toastr.css",
+      "./toastr-old.css",
+      "./toastr-bs4-alert.scss"
+    ],
     "dest": "../../dist"
   },
   "repository": "scttcper/ngx-toastr",
