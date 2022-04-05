@@ -113,7 +113,9 @@ export class ToastrService {
     }
     found.activeToast.toastRef.close();
     this.toasts.splice(found.index, 1);
-    this.currentlyActive = this.currentlyActive - 1;
+    if(this.toasts[this.currentlyActive]) {
+      this.currentlyActive = this.currentlyActive - 1;
+    }
     if (!this.toastrConfig.maxOpened || !this.toasts.length) {
       return false;
     }
