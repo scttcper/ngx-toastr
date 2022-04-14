@@ -201,13 +201,16 @@ export class Toast implements OnDestroy {
     if (this.state.value === 'removed') {
       return;
     }
-    clearTimeout(this.timeout);
-    this.options.timeOut = 0;
-    this.hideTime = 0;
 
-    // disable progressBar
-    clearInterval(this.intervalId);
-    this.width = 0;
+    if (this.options.disableTimeOut !== 'extendedTimeOut') {
+      clearTimeout(this.timeout);
+      this.options.timeOut = 0;
+      this.hideTime = 0;
+  
+      // disable progressBar
+      clearInterval(this.intervalId);
+      this.width = 0;
+    }
   }
   @HostListener('mouseleave')
   delayedHideToast() {
