@@ -237,7 +237,9 @@ export interface ActiveToast {
 
 Put toasts in a specific div inside your application. This should probably be
 somewhere that doesn't get deleted. Add `ToastContainerModule` to the ngModule
-where you need the directive available.
+where you need the directive available. Make sure that your container has
+an `aria-live="polite"` attribute, so that any time a toast is injected into
+the container it is announced by screen readers.
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -274,7 +276,7 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
   selector: 'app-root',
   template: `
     <h1><a (click)="onClick()">Click</a></h1>
-    <div toastContainer></div>
+    <div aria-live="polite" toastContainer></div>
   `,
 })
 export class AppComponent implements OnInit {
