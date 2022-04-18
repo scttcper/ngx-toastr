@@ -19,7 +19,6 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
       <div class="toast-body">
         <div
           role="alert"
-          aria-live="polite"
           [attr.aria-label]="message"
         >
           {{ message || 'default message' }}

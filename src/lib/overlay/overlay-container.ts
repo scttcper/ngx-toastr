@@ -29,11 +29,13 @@ export class OverlayContainer implements OnDestroy {
 
   /**
    * Create the overlay container element, which is simply a div
-   * with the 'cdk-overlay-container' class on the document body.
+   * with the 'cdk-overlay-container' class on the document body
+   * and 'aria-live="polite"'
    */
   protected _createContainer(): void {
     const container = this._document.createElement('div');
     container.classList.add('overlay-container');
+    container.setAttribute('aria-live','polite');
     this._document.body.appendChild(container);
     this._containerElement = container;
   }
