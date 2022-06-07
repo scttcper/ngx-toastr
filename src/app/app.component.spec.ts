@@ -44,8 +44,7 @@ describe('AppComponent', () => {
 });
 
 @NgModule({
-  imports: [CommonModule, ToastrModule],
-  entryComponents: [],
-  declarations: [],
+    imports: [CommonModule, ToastrModule],
+    declarations: []
 })
 class AppTestModule {}

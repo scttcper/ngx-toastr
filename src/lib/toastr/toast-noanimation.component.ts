@@ -220,10 +220,9 @@ export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
 };
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [ToastNoAnimation],
-  exports: [ToastNoAnimation],
-  entryComponents: [ToastNoAnimation],
+    imports: [CommonModule],
+    declarations: [ToastNoAnimation],
+    exports: [ToastNoAnimation]
 })
 export class ToastNoAnimationModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastNoAnimationModule> {

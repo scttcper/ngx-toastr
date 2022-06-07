@@ -20,25 +20,24 @@ import { PinkToast } from './pink.toast';
 import { BootstrapToast } from './bootstrap.toast';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PinkToast,
-    BootstrapToast,
-    NotyfToast,
-    FooterComponent,
-    HeaderComponent,
-    HomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastNoAnimationModule,
-    ToastrModule.forRoot(),
-    ToastContainerModule,
-    GhButtonModule,
-  ],
-  entryComponents: [PinkToast, BootstrapToast, NotyfToast],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        PinkToast,
+        BootstrapToast,
+        NotyfToast,
+        FooterComponent,
+        HeaderComponent,
+        HomeComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        ToastNoAnimationModule,
+        ToastrModule.forRoot(),
+        ToastContainerModule,
+        GhButtonModule,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

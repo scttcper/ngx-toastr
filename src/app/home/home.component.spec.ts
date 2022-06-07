@@ -126,8 +126,7 @@ describe('AppComponent', () => {
 });
 
 @NgModule({
-  imports: [CommonModule, ToastrModule],
-  entryComponents: [PinkToast, NotyfToast],
-  declarations: [PinkToast, NotyfToast],
+    imports: [CommonModule, ToastrModule],
+    declarations: [PinkToast, NotyfToast]
 })
 class AppTestModule {}

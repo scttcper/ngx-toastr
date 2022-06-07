@@ -14,10 +14,9 @@ export const DefaultGlobalConfig: GlobalConfig = {
 };
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [Toast],
-  exports: [Toast],
-  entryComponents: [Toast],
+    imports: [CommonModule],
+    declarations: [Toast],
+    exports: [Toast]
 })
 export class ToastrModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
