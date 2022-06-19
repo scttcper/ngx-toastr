@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/package.schema.json",
+  "lib": {
+    "entryFile": "public_api.ts"
+  },
+  "assets": [
+    "./toastr.css",
+    "./toastr-old.css",
+    "./toastr-bs4-alert.scss"
+  ],
+  "dest": "../../dist"
+}
