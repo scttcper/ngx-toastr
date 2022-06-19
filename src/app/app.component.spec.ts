@@ -27,12 +27,7 @@ describe('AppComponent', () => {
         AppTestModule,
         GhButtonModule,
       ],
-      declarations: [
-        AppComponent,
-        FooterComponent,
-        HomeComponent,
-        HeaderComponent,
-      ],
+      declarations: [AppComponent, FooterComponent, HomeComponent, HeaderComponent],
     }).compileComponents();
   }));
 
@@ -45,7 +40,6 @@ describe('AppComponent', () => {
 
 @NgModule({
   imports: [CommonModule, ToastrModule],
-  entryComponents: [],
   declarations: [],
 })
 class AppTestModule {}

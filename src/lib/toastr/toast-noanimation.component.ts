@@ -223,7 +223,6 @@ export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
   imports: [CommonModule],
   declarations: [ToastNoAnimation],
   exports: [ToastNoAnimation],
-  entryComponents: [ToastNoAnimation],
 })
 export class ToastNoAnimationModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastNoAnimationModule> {

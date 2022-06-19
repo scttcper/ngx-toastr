@@ -35,13 +35,11 @@ Latest version available for each version of Angular
 
 | ngx-toastr | Angular     |
 | ---------- | ----------- |
-| 6.5.0      | 4.x         |
-| 8.10.2     | 5.x         |
-| 10.1.0     | 8.x 7.x 6.x |
 | 11.3.3     | 8.x         |
 | 12.1.0     | 9.x         |
 | 13.2.1     | 10.x 11.x   |
-| current    | >= 12.x     |
+| 14.3.0     | 12.x 13.x   |
+| current    | >= 14.x     |
 
 ## Install
 
@@ -364,7 +362,6 @@ import { ToastrModule } from 'ngx-toastr';
       toastComponent: YourToastComponent, // added custom toast!
     }),
   ],
-  entryComponents: [YourToastComponent], // add!
   bootstrap: [App],
   declarations: [App, YourToastComponent], // add!
 })

@@ -5,11 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 
-import {
-  ToastrModule,
-  ToastContainerModule,
-  ToastNoAnimationModule,
-} from '../lib/public_api';
+import { ToastrModule, ToastContainerModule, ToastNoAnimationModule } from '../lib/public_api';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './footer/footer.component';
@@ -38,7 +34,6 @@ import { BootstrapToast } from './bootstrap.toast';
     ToastContainerModule,
     GhButtonModule,
   ],
-  entryComponents: [PinkToast, BootstrapToast, NotyfToast],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
