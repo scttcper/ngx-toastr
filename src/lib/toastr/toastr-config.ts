@@ -3,7 +3,7 @@ import { InjectionToken } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 import { ComponentType } from '../portal/portal';
-import { ToastRef } from './toast-injector';
+import { ToastRef } from './toast-ref';
 
 export type ProgressAnimationType = 'increasing' | 'decreasing';
 

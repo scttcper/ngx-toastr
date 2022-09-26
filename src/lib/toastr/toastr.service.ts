@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
-import { ToastRef } from './toast-injector';
+import { ToastRef } from './toast-ref';
 import { ToastContainerDirective } from './toast.directive';
 import {
   GlobalConfig,
