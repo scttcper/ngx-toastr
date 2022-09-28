@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Overlay } from '../overlay/overlay';
 import { ComponentPortal } from '../portal/portal';
-import { ToastInjector, ToastRef } from './toast-injector';
+import { ToastRef } from './toast-ref';
 import { ToastContainerDirective } from './toast.directive';
 import {
   GlobalConfig,
@@ -231,7 +231,11 @@ export class ToastrService {
       toastType,
       toastRef,
     );
-    const toastInjector = new ToastInjector(toastPackage, this._injector);
+
+    /** New injector that contains an instance of `ToastPackage`. */
+    const providers = [{provide: ToastPackage, useValue: toastPackage}];
+    const toastInjector = Injector.create({providers, parent: this._injector});
+
     const component = new ComponentPortal(config.toastComponent, toastInjector);
     const portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
     toastRef.componentInstance = portal.instance;
