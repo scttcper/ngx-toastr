@@ -36,10 +36,10 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
       <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
         {{ title }}
       </div>
-      <div *ngIf="message && options.enableHtml" role="alert" aria-live="polite"
+      <div *ngIf="message && options.enableHtml" role="alert"
         [class]="options.messageClass" [innerHTML]="message">
       </div>
-      <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite"
+      <div *ngIf="message && !options.enableHtml" role="alert"
         [class]="options.messageClass" [attr.aria-label]="message">
         {{ message }}
       </div>

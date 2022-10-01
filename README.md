@@ -35,13 +35,11 @@ Latest version available for each version of Angular
 
 | ngx-toastr | Angular     |
 | ---------- | ----------- |
-| 6.5.0      | 4.x         |
-| 8.10.2     | 5.x         |
-| 10.1.0     | 8.x 7.x 6.x |
 | 11.3.3     | 8.x         |
 | 12.1.0     | 9.x         |
 | 13.2.1     | 10.x 11.x   |
-| current    | >= 12.x     |
+| 14.3.0     | 12.x 13.x   |
+| current    | >= 14.x     |
 
 ## Install
 
@@ -237,7 +235,9 @@ export interface ActiveToast {
 
 Put toasts in a specific div inside your application. This should probably be
 somewhere that doesn't get deleted. Add `ToastContainerModule` to the ngModule
-where you need the directive available.
+where you need the directive available. Make sure that your container has
+an `aria-live="polite"` attribute, so that any time a toast is injected into
+the container it is announced by screen readers.
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -274,7 +274,7 @@ import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
   selector: 'app-root',
   template: `
     <h1><a (click)="onClick()">Click</a></h1>
-    <div toastContainer></div>
+    <div aria-live="polite" toastContainer></div>
   `,
 })
 export class AppComponent implements OnInit {
@@ -362,7 +362,6 @@ import { ToastrModule } from 'ngx-toastr';
       toastComponent: YourToastComponent, // added custom toast!
     }),
   ],
-  entryComponents: [YourToastComponent], // add!
   bootstrap: [App],
   declarations: [App, YourToastComponent], // add!
 })

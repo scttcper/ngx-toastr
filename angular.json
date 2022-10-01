@@ -125,8 +125,6 @@
       }
     }
   },
-  "defaultProject": "ngx-toastr",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
   }
 }

@@ -2,11 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { Toast } from './toast.component';
-import {
-  DefaultNoComponentGlobalConfig,
-  GlobalConfig,
-  TOAST_CONFIG,
-} from './toastr-config';
+import { DefaultNoComponentGlobalConfig, GlobalConfig, TOAST_CONFIG } from './toastr-config';
 
 export const DefaultGlobalConfig: GlobalConfig = {
   ...DefaultNoComponentGlobalConfig,
@@ -17,7 +13,6 @@ export const DefaultGlobalConfig: GlobalConfig = {
   imports: [CommonModule],
   declarations: [Toast],
   exports: [Toast],
-  entryComponents: [Toast],
 })
 export class ToastrModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
