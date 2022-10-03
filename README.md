@@ -143,6 +143,7 @@ Passed to `ToastrService.success/error/warning/info/show()`
 | easing            | string                         | 'ease-in'                      | Toast component easing                            |
 | easeTime          | string \| number               | 300                            | Time spent easing                                 |
 | enableHtml        | boolean                        | false                          | Allow html in message                             |
+| newestOnTop       | boolean                        | true                           | New toast placement                               |
 | progressBar       | boolean                        | false                          | Show progress bar                                 |
 | progressAnimation | `'decreasing' \| 'increasing'` | 'decreasing'                   | Changes the animation of the progress bar.        |
 | toastClass        | string                         | 'ngx-toastr'                   | Class on toast                                    |
@@ -174,7 +175,6 @@ options:
 | maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited           |
 | autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                          |
 | iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                             |
-| newestOnTop             | boolean | true                               | New toast placement                                                |
 | preventDuplicates       | boolean | false                              | Block duplicate messages                                           |
 | countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message |
 | resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)  |

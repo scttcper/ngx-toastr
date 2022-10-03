@@ -237,7 +237,7 @@ export class ToastrService {
     const toastInjector = Injector.create({providers, parent: this._injector});
 
     const component = new ComponentPortal(config.toastComponent, toastInjector);
-    const portal = overlayRef.attach(component, this.toastrConfig.newestOnTop);
+    const portal = overlayRef.attach(component, config.newestOnTop);
     toastRef.componentInstance = portal.instance;
     const ins: ActiveToast<any> = {
       toastId: this.index,
