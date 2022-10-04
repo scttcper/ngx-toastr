@@ -3,12 +3,13 @@ import { Component, VERSION } from '@angular/core';
 @Component({
   selector: 'app-footer',
   template: `
-  <footer class="footer mb-4 mt-5">
-    Angular {{ version }}
+  <footer class="footer mt-5">
+   <div style="background-color:#1162D8;color:white;"> Angular {{ version }}
     <br>
-    <a href="https://github.com/scttcper/ngx-toastr/blob/master/LICENSE">MIT license</a>
+    <a style="color:white;" href="https://github.com/scttcper/ngx-toastr/blob/master/LICENSE">MIT license</a>
     -
-    <a href="https://github.com/scttcper/ngx-toastr">Source</a>
+    <a style="color:white;" href="https://github.com/scttcper/ngx-toastr">Source</a>
+   </div>
   </footer>
   `,
   styles: [
@@ -16,7 +17,7 @@ import { Component, VERSION } from '@angular/core';
       .footer {
         line-height: 2;
         text-align: center;
-        font-size: 11px;
+        font-size: 15px;
         font-family: var(--font-family-monospace);
         color: #999;
       }
