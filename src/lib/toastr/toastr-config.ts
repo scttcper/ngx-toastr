@@ -6,6 +6,7 @@ import { ComponentType } from '../portal/portal';
 import { ToastRef } from './toast-ref';
 
 export type ProgressAnimationType = 'increasing' | 'decreasing';
+export type DisableTimoutType = boolean | 'timeOut' | 'extendedTimeOut';
 
 /**
  * Configuration for an individual toast.
@@ -15,7 +16,7 @@ export interface IndividualConfig {
    * disable both timeOut and extendedTimeOut
    * default: false
    */
-  disableTimeOut: boolean | 'timeOut' | 'extendedTimeOut';
+  disableTimeOut: DisableTimoutType;
   /**
    * toast time to live in milliseconds
    * default: 5000
