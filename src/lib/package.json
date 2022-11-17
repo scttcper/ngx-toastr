@@ -15,6 +15,9 @@
     },
     "./toastr-bs4-alert": {
       "default": "./toastr-bs4-alert.scss"
+    },
+    "./toastr-bs5-alert": {
+      "default": "./toastr-bs5-alert.scss"
     }
   },
   "repository": "scttcper/ngx-toastr",
