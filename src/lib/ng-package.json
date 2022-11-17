@@ -6,7 +6,8 @@
   "assets": [
     "./toastr.css",
     "./toastr-old.css",
-    "./toastr-bs4-alert.scss"
+    "./toastr-bs4-alert.scss",
+    "./toastr-bs5-alert.scss"
   ],
   "dest": "../../dist"
 }
