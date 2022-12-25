@@ -150,10 +150,10 @@ Passed to `ToastrService.success/error/warning/info/show()`
 | newestOnTop       | boolean                        | true                           | New toast placement                               |
 | progressBar       | boolean                        | false                          | Show progress bar                                 |
 | progressAnimation | `'decreasing' \| 'increasing'` | 'decreasing'                   | Changes the animation of the progress bar.        |
-| toastClass        | string                         | 'ngx-toastr'                   | Class(es) for toast                               |
-| positionClass     | string                         | 'toast-top-right'              | Class(es) for toast container                     |
-| titleClass        | string                         | 'toast-title'                  | Class(es) for inside toast on title               |
-| messageClass      | string                         | 'toast-message'                | Class(es) for inside toast on message             |
+| toastClass        | string                         | 'ngx-toastr'                   | CSS class(es) for toast                           |
+| positionClass     | string                         | 'toast-top-right'              | CSS class(es) for toast container                 |
+| titleClass        | string                         | 'toast-title'                  | CSS class(es) for inside toast on title           |
+| messageClass      | string                         | 'toast-message'                | CSS class(es) for inside toast on message         |
 | tapToDismiss      | boolean                        | true                           | Close on click                                    |
 | onActivateTick    | boolean                        | false                          | Fires `changeDetectorRef.detectChanges()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
 
@@ -404,7 +404,7 @@ ngOnInit() {
     }
     ```
 6. How to customize styling without overridding defaults?\
-    Add multiple classes separated by a space:
+    Add multiple CSS classes separated by a space:
     ```ts
     toastClass: 'yourclass ngx-toastr'
     ```
