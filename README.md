@@ -150,10 +150,10 @@ Passed to `ToastrService.success/error/warning/info/show()`
 | newestOnTop       | boolean                        | true                           | New toast placement                               |
 | progressBar       | boolean                        | false                          | Show progress bar                                 |
 | progressAnimation | `'decreasing' \| 'increasing'` | 'decreasing'                   | Changes the animation of the progress bar.        |
-| toastClass        | string                         | 'ngx-toastr'                   | Class on toast                                    |
-| positionClass     | string                         | 'toast-top-right'              | Class on toast container                          |
-| titleClass        | string                         | 'toast-title'                  | Class inside toast on title                       |
-| messageClass      | string                         | 'toast-message'                | Class inside toast on message                     |
+| toastClass        | string                         | 'ngx-toastr'                   | CSS class(es) for toast                           |
+| positionClass     | string                         | 'toast-top-right'              | CSS class(es) for toast container                 |
+| titleClass        | string                         | 'toast-title'                  | CSS class(es) for inside toast on title           |
+| messageClass      | string                         | 'toast-message'                | CSS class(es) for inside toast on message         |
 | tapToDismiss      | boolean                        | true                           | Close on click                                    |
 | onActivateTick    | boolean                        | false                          | Fires `changeDetectorRef.detectChanges()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
 
@@ -385,23 +385,30 @@ ngOnInit() {
 ```
 
 2.  Change default icons (check, warning sign, etc)\
-    Overwrite the css background-image https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css
-3.  How do I use this in an ErrorHandler? See:
-    https://github.com/scttcper/ngx-toastr/issues/179
-4.  How can I translate messages See:
-    https://github.com/scttcper/ngx-toastr/issues/201
+    Overwrite the css background-image: https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css.
+3.  How do I use this in an ErrorHandler?\
+    See: https://github.com/scttcper/ngx-toastr/issues/179.
+4.  How can I translate messages?\
+    See: https://github.com/scttcper/ngx-toastr/issues/201.
 5.  How to handle toastr click/tap action?
+    ```ts
+    showToaster() {
+      this.toastr.success('Hello world!', 'Toastr fun!')
+        .onTap
+        .pipe(take(1))
+        .subscribe(() => this.toasterClickedHandler());
+    }
 
-```ts
-showToaster() {
-  const toast = this.toastr.success('Hello world!', 'Toastr fun!');
-  toast.onTap.pipe(take(1)).subscribe(() => this.toasterClickedHandler(toast));
-}
-
-toasterClickedHandler(toast: ActiveToast<any>) {
-  console.log(`Toastr ${toast.toastId} clicked`);
-}
-```
+    toasterClickedHandler() {
+      console.log('Toastr clicked');
+    }
+    ```
+6. How to customize styling without overridding defaults?\
+    Add multiple CSS classes separated by a space:
+    ```ts
+    toastClass: 'yourclass ngx-toastr'
+    ```
+    See: https://github.com/scttcper/ngx-toastr/issues/594.
 
 ## Previous Works
 
