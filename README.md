@@ -394,14 +394,12 @@ ngOnInit() {
 
 ```ts
 showToaster() {
-  this.toastr.success('Hello world!', 'Toastr fun!')
-    .onTap
-    .pipe(take(1))
-    .subscribe(() => this.toasterClickedHandler());
+  const toast = this.toastr.success('Hello world!', 'Toastr fun!');
+  toast.onTap.pipe(take(1)).subscribe(() => this.toasterClickedHandler(toast));
 }
 
-toasterClickedHandler() {
-  console.log('Toastr clicked');
+toasterClickedHandler(toast: ActiveToast<any>) {
+  console.log(`Toastr ${toast.toastId} clicked`);
 }
 ```
 
