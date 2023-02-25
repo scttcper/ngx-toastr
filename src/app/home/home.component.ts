@@ -92,7 +92,7 @@ export class HomeComponent {
     };
   }
   openToast() {
-    this.soundToastTypeMap.get(this.type)?.play();
+    if(this.options.enableSound) this.soundToastTypeMap.get(this.type)?.play();
     const { message, title } = this.getMessage();
     // Clone current config so it doesn't change when ngModel updates
     const opt = cloneDeep(this.options);

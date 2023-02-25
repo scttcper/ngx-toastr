@@ -99,6 +99,11 @@ export interface IndividualConfig {
    * default: true
    */
   newestOnTop: boolean;
+  /**
+   * enable sound in toast
+   * default: false
+   */
+  enableSound: boolean;
 
   /**
    * payload to pass to the toastComponent
@@ -237,6 +242,7 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   tapToDismiss: true,
   onActivateTick: false,
   progressAnimation: 'decreasing',
+  enableSound: false,
 
   payload: null
 };
