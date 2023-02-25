@@ -1,16 +1,16 @@
-import { Component, QueryList, Renderer2, ViewChildren, VERSION } from '@angular/core';
+import { Component, QueryList, Renderer2, VERSION, ViewChildren } from '@angular/core';
+import { Howl } from 'howler';
 import { cloneDeep, random } from 'lodash-es';
 
+
 import {
-  GlobalConfig,
-  ToastrService,
-  ToastContainerDirective,
-  ToastNoAnimation,
+    GlobalConfig, ToastContainerDirective,
+    ToastNoAnimation, ToastrService
 } from '../../lib/public_api';
 
+import { BootstrapToast } from '../bootstrap.toast';
 import { NotyfToast } from '../notyf.toast';
 import { PinkToast } from '../pink.toast';
-import { BootstrapToast } from '../bootstrap.toast';
 
 interface Quote {
   title?: string;
@@ -56,6 +56,22 @@ export class HomeComponent {
   private lastInserted: number[] = [];
   inline = false;
   inlinePositionIndex = 0;
+  
+  soundToastTypeMap: Map<string,Howl> = new Map([
+    ['success', new Howl({
+        src: ['assets/notification-sound/success.mp3'],
+    })],
+    ['error', new Howl({
+        src: ['assets/notification-sound/error.mp3'],
+    })],
+    ['info', new Howl({
+        src: ['assets/notification-sound/info.mp3']
+    })],
+    ['warning', new Howl({
+        src: ['assets/notification-sound/warning.mp3']
+    })],
+  ]);
+  
   @ViewChildren(ToastContainerDirective) inlineContainers!: QueryList<ToastContainerDirective>;
 
 
@@ -79,6 +95,9 @@ export class HomeComponent {
     const { message, title } = this.getMessage();
     // Clone current config so it doesn't change when ngModel updates
     const opt = cloneDeep(this.options);
+
+    if(opt.enableSound) this.soundToastTypeMap.get(this.type)?.play();
+    
     const inserted = this.toastr.show(
       message,
       title,

@@ -33,14 +33,14 @@ DEMO: https://ngx-toastr.vercel.app
 
 Latest version available for each version of Angular
 
-| ngx-toastr | Angular     |
-| ---------- | ----------- |
-| 11.3.3     | 8.x         |
-| 12.1.0     | 9.x         |
-| 13.2.1     | 10.x 11.x   |
-| 14.3.0     | 12.x 13.x   |
-| 15.2.2     | 14.x.       |
-| current    | >= 15.x     |
+| ngx-toastr | Angular   |
+| ---------- | --------- |
+| 11.3.3     | 8.x       |
+| 12.1.0     | 9.x       |
+| 13.2.1     | 10.x 11.x |
+| 14.3.0     | 12.x 13.x |
+| 15.2.2     | 14.x.     |
+| current    | >= 15.x   |
 
 ## Install
 
@@ -137,25 +137,26 @@ There are **individual options** and **global options**.
 
 Passed to `ToastrService.success/error/warning/info/show()`
 
-| Option            | Type                           | Default                        | Description                                                                             
-| ----------------- | ------------------------------ | ------------------------------ | ------------------------------------------------- |
-| toastComponent    | Component                      | Toast                          | Angular component that will be used               |
-| closeButton       | boolean                        | false                          | Show close button                                 |
-| timeOut           | number                         | 5000                           | Time to live in milliseconds                      |
-| extendedTimeOut   | number                         | 1000                           | Time to close after a user hovers over toast      |
-| disableTimeOut    | `boolean \| 'timeOut' \| 'extendedTimeOut'`  | false              | Disable both timeOut and extendedTimeOut when set to `true`. Allows specifying which timeOut to disable, either: `timeOut` or `extendedTimeOut` |
-| easing            | string                         | 'ease-in'                      | Toast component easing                            |
-| easeTime          | string \| number               | 300                            | Time spent easing                                 |
-| enableHtml        | boolean                        | false                          | Allow html in message                             |
-| newestOnTop       | boolean                        | true                           | New toast placement                               |
-| progressBar       | boolean                        | false                          | Show progress bar                                 |
-| progressAnimation | `'decreasing' \| 'increasing'` | 'decreasing'                   | Changes the animation of the progress bar.        |
-| toastClass        | string                         | 'ngx-toastr'                   | CSS class(es) for toast                           |
-| positionClass     | string                         | 'toast-top-right'              | CSS class(es) for toast container                 |
-| titleClass        | string                         | 'toast-title'                  | CSS class(es) for inside toast on title           |
-| messageClass      | string                         | 'toast-message'                | CSS class(es) for inside toast on message         |
-| tapToDismiss      | boolean                        | true                           | Close on click                                    |
-| onActivateTick    | boolean                        | false                          | Fires `changeDetectorRef.detectChanges()` when activated. Helps show toast from asynchronous events outside of Angular's change detection |
+| Option            | Type                                        | Default           | Description                                                                                                                                     |
+| ----------------- | ------------------------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| toastComponent    | Component                                   | Toast             | Angular component that will be used                                                                                                             |
+| closeButton       | boolean                                     | false             | Show close button                                                                                                                               |
+| timeOut           | number                                      | 5000              | Time to live in milliseconds                                                                                                                    |
+| extendedTimeOut   | number                                      | 1000              | Time to close after a user hovers over toast                                                                                                    |
+| disableTimeOut    | `boolean \| 'timeOut' \| 'extendedTimeOut'` | false             | Disable both timeOut and extendedTimeOut when set to `true`. Allows specifying which timeOut to disable, either: `timeOut` or `extendedTimeOut` |
+| easing            | string                                      | 'ease-in'         | Toast component easing                                                                                                                          |
+| easeTime          | string \| number                            | 300               | Time spent easing                                                                                                                               |
+| enableHtml        | boolean                                     | false             | Allow html in message                                                                                                                           |
+| newestOnTop       | boolean                                     | true              | New toast placement                                                                                                                             |
+| progressBar       | boolean                                     | false             | Show progress bar                                                                                                                               |
+| progressAnimation | `'decreasing' \| 'increasing'`              | 'decreasing'      | Changes the animation of the progress bar.                                                                                                      |
+| toastClass        | string                                      | 'ngx-toastr'      | CSS class(es) for toast                                                                                                                         |
+| positionClass     | string                                      | 'toast-top-right' | CSS class(es) for toast container                                                                                                               |
+| titleClass        | string                                      | 'toast-title'     | CSS class(es) for inside toast on title                                                                                                         |
+| messageClass      | string                                      | 'toast-message'   | CSS class(es) for inside toast on message                                                                                                       |
+| tapToDismiss      | boolean                                     | true              | Close on click                                                                                                                                  |
+| onActivateTick    | boolean                                     | false             | Fires `changeDetectorRef.detectChanges()` when activated. Helps show toast from asynchronous events outside of Angular's change detection       |
+| enableSound       | boolean                                     | false             | Allow sound with notification                                                                                                                   |
 
 #### Setting Individual Options
 
@@ -175,14 +176,14 @@ options to affect all toasts. In addition, global options include the following
 options:
 
 | Option                  | Type    | Default                            | Description                                                                                                   |
-| ----------------------- | ------- | ---------------------------------- | ------------------------------------------------------------------ |
-| maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited           |
-| autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                          |
-| iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                             |
-| preventDuplicates       | boolean | false                              | Block duplicate messages                                           |
+| ----------------------- | ------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| maxOpened               | number  | 0                                  | Max toasts opened. Toasts will be queued. 0 is unlimited                                                      |
+| autoDismiss             | boolean | false                              | Dismiss current toast when max is reached                                                                     |
+| iconClasses             | object  | [see below](#iconclasses-defaults) | Classes used on toastr service methods                                                                        |
+| preventDuplicates       | boolean | false                              | Block duplicate messages                                                                                      |
 | countDuplicates         | boolean | false                              | Displays a duplicates counter (preventDuplicates must be true). Toast must have a title and duplicate message |
-| resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)  |
-| includeTitleDuplicates  | boolean | false                              | Include the title of a toast when checking for duplicates (by default only message is compared) |
+| resetTimeoutOnDuplicate | boolean | false                              | Reset toast timeout on duplicate (preventDuplicates must be true)                                             |
+| includeTitleDuplicates  | boolean | false                              | Include the title of a toast when checking for duplicates (by default only message is compared)               |
 
 ##### iconClasses defaults
 
@@ -391,6 +392,7 @@ ngOnInit() {
 4.  How can I translate messages?\
     See: https://github.com/scttcper/ngx-toastr/issues/201.
 5.  How to handle toastr click/tap action?
+
     ```ts
     showToaster() {
       this.toastr.success('Hello world!', 'Toastr fun!')
@@ -403,10 +405,11 @@ ngOnInit() {
       console.log('Toastr clicked');
     }
     ```
-6. How to customize styling without overridding defaults?\
+
+6.  How to customize styling without overridding defaults?\
     Add multiple CSS classes separated by a space:
     ```ts
-    toastClass: 'yourclass ngx-toastr'
+    toastClass: 'yourclass ngx-toastr';
     ```
     See: https://github.com/scttcper/ngx-toastr/issues/594.
 
