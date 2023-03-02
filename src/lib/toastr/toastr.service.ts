@@ -64,26 +64,26 @@ export class ToastrService {
     }
   }
   /** show toast */
-  show(message?: string, title?: string, override: Partial<IndividualConfig> = {}, type = '') {
+  show<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}, type = '') {
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
-  success(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  success<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
     const type = this.toastrConfig.iconClasses.success || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  error<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
     const type = this.toastrConfig.iconClasses.error || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  info<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
     const type = this.toastrConfig.iconClasses.info || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning(message?: string, title?: string, override: Partial<IndividualConfig> = {}) {
+  warning<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
     const type = this.toastrConfig.iconClasses.warning || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }

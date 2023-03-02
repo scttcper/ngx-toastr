@@ -11,7 +11,7 @@ export type DisableTimoutType = boolean | 'timeOut' | 'extendedTimeOut';
 /**
  * Configuration for an individual toast.
  */
-export interface IndividualConfig {
+export interface IndividualConfig<ConfigPayload = any> {
   /**
    * disable both timeOut and extendedTimeOut
    * default: false
@@ -101,10 +101,9 @@ export interface IndividualConfig {
   newestOnTop: boolean;
 
   /**
-   * payload to pass to the toastComponent
-   * default: null
+   * Payload to pass to the toast component
    */
-  payload: any;
+  payload?: ConfigPayload;
 }
 
 export interface ToastrIconClasses {
@@ -157,13 +156,13 @@ export interface GlobalConfig extends IndividualConfig {
 /**
  * Everything a toast needs to launch
  */
-export class ToastPackage {
+export class ToastPackage<ConfigPayload = any> {
   private _onTap = new Subject<void>();
   private _onAction = new Subject<any>();
 
   constructor(
     public toastId: number,
-    public config: IndividualConfig,
+    public config: IndividualConfig<ConfigPayload>,
     public message: string | null | undefined,
     public title: string | undefined,
     public toastType: string,
@@ -237,8 +236,6 @@ export const DefaultNoComponentGlobalConfig: GlobalConfig = {
   tapToDismiss: true,
   onActivateTick: false,
   progressAnimation: 'decreasing',
-
-  payload: null
 };
 
 export interface ToastToken {
