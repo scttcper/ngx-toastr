@@ -63,7 +63,8 @@ export class Overlay {
     const pane = this._document.createElement('div');
 
     pane.id = 'toast-container';
-    pane.classList.add(positionClass);
+    const positionClassArray = positionClass.split(/\s/g)
+    positionClassArray.forEach((posClass:string)=>posClass.length && pane.classList.add(posClass));
     pane.classList.add('toast-container');
 
     if (!overlayContainer) {
