@@ -19,7 +19,8 @@
     "module": "es2020",
     "lib": [
       "es2018",
-      "dom"
+      "dom",
+      "es2021"
     ],
     "useDefineForClassFields": false
   },
