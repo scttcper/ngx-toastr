@@ -94,7 +94,9 @@ Don't want to use `@angular/animations`? See
 ]
 ```
 
-**step 2:** add ToastrModule to app NgModule, make sure you have BrowserAnimationsModule as well
+**step 2:** add `ToastrModule` to app `NgModule`, or `provideToastr` to providers, make sure you have `BrowserAnimationsModule` (or `provideAnimations`) as well.
+
+- Module based
 
 ```typescript
 import { CommonModule } from '@angular/common';
@@ -112,6 +114,22 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [App],
 })
 class MainModule {}
+```
+
+- Standalone
+
+```typescript
+import { AppComponent } from './src/app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideAnimations(), // required animations providers
+    provideToastr(), // Toastr providers
+  ]
+});
 ```
 
 ## Use
@@ -197,7 +215,9 @@ iconClasses = {
 
 #### Setting Global Options
 
-Pass values to `ToastrModule.forRoot()`
+Pass values to `ToastrModule.forRoot()` or `provideToastr()` to set global options.
+
+- Module based
 
 ```typescript
 // root app NgModule
@@ -209,6 +229,26 @@ imports: [
   }),
 ],
 ```
+
+- Standalone
+
+```typescript
+import { AppComponent } from './src/app.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { provideToastr } from 'ngx-toastr';
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideToastr({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }), 
+  ]
+});
+```
+
 
 ### Toastr Service methods return:
 
