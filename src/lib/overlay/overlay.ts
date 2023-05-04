@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, Inject, Injectable } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, inject, Inject, Injectable } from '@angular/core';
 
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { ToastContainerDirective } from '../toastr/toast.directive';
@@ -17,15 +17,14 @@ import { OverlayRef } from './overlay-ref';
  */
 @Injectable({ providedIn: 'root' })
 export class Overlay {
+  private _overlayContainer = inject(OverlayContainer);
+  private _componentFactoryResolver = inject(ComponentFactoryResolver);
+  private _appRef = inject(ApplicationRef);
+  private _document = inject(DOCUMENT);
+
   // Namespace panes by overlay container
   private _paneElements: Map<ToastContainerDirective, Record<string, HTMLElement>> = new Map();
 
-  constructor(
-    private _overlayContainer: OverlayContainer,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _appRef: ApplicationRef,
-    @Inject(DOCUMENT) private _document: any,
-  ) {}
   /**
    * Creates an overlay.
    * @returns A reference to the created overlay.

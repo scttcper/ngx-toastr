@@ -1,39 +1,23 @@
-import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { Toast } from './toast.component';
 import { DefaultNoComponentGlobalConfig, GlobalConfig, TOAST_CONFIG } from './toastr-config';
-
-export const DefaultGlobalConfig: GlobalConfig = {
-  ...DefaultNoComponentGlobalConfig,
-  toastComponent: Toast,
-};
+import { provideToastr } from './toast.provider';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [Toast],
+  imports: [Toast],
   exports: [Toast],
 })
 export class ToastrModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
     return {
       ngModule: ToastrModule,
-      providers: [
-        {
-          provide: TOAST_CONFIG,
-          useValue: {
-            default: DefaultGlobalConfig,
-            config,
-          },
-        },
-      ],
+      providers: [provideToastr(config)],
     };
   }
 }
 
-@NgModule({
-  imports: [CommonModule],
-})
+@NgModule({})
 export class ToastrComponentlessModule {
   static forRoot(config: Partial<GlobalConfig> = {}): ModuleWithProviders<ToastrModule> {
     return {
