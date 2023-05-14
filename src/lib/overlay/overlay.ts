@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { DOCUMENT } from '@angular/common';
-import { ApplicationRef, ComponentFactoryResolver, inject, Inject, Injectable } from '@angular/core';
+import { ApplicationRef, ComponentFactoryResolver, inject, Injectable } from '@angular/core';
 
 import { DomPortalHost } from '../portal/dom-portal-host';
 import { ToastContainerDirective } from '../toastr/toast.directive';

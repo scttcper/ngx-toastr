@@ -6,9 +6,6 @@
   <a href="https://www.npmjs.org/package/ngx-toastr">
     <img src="https://badge.fury.io/js/ngx-toastr.svg" alt="npm">
   </a>
-  <a href="https://circleci.com/gh/scttcper/ngx-toastr">
-    <img src="https://circleci.com/gh/scttcper/ngx-toastr.svg?style=svg" alt="circleci">
-  </a>
   <a href="https://codecov.io/github/scttcper/ngx-toastr">
     <img src="https://img.shields.io/codecov/c/github/scttcper/ngx-toastr.svg" alt="codecov">
   </a>
@@ -40,7 +37,8 @@ Latest version available for each version of Angular
 | 13.2.1     | 10.x 11.x   |
 | 14.3.0     | 12.x 13.x   |
 | 15.2.2     | 14.x.       |
-| current    | >= 15.x     |
+| 16.2.0     | 15.x        |
+| current    | >= 16.x     |
 
 ## Install
 

@@ -2,9 +2,9 @@
   "name": "ngx-toastr",
   "version": "0.0.0-placeholder",
   "peerDependencies": {
-    "@angular/core": ">=14.0.0-0",
-    "@angular/common": ">=14.0.0-0",
-    "@angular/platform-browser": ">=14.0.0-0"
+    "@angular/core": ">=16.0.0-0",
+    "@angular/common": ">=16.0.0-0",
+    "@angular/platform-browser": ">=16.0.0-0"
   },
   "exports": {
     "./toastr": {
