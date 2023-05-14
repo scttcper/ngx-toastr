@@ -12,7 +12,7 @@
     "postbuild": "cpy README.md LICENSE dist",
     "test": "ng test --watch=false",
     "test:watch": "ng test",
-    "test:ci": "ng test --watch=false --code-coverage --no-progress",
+    "test:ci": "ng test --watch=false --code-coverage --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "ghpages": "ng build --configuration production --no-progress"
