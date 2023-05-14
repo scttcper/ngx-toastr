@@ -38,5 +38,14 @@
     "angular toastr",
     "notifications"
   ],
-  "ng-update": {}
+  "ng-update": {},
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "release": {
+    "branches": [
+      "master"
+    ]
+  }
 }
