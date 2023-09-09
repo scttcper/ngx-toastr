@@ -276,7 +276,7 @@ export interface ActiveToast {
 ### Put toasts in your own container
 
 Put toasts in a specific div inside your application. This should probably be
-somewhere that doesn't get deleted. Add `ToastContainerModule` to the ngModule
+somewhere that doesn't get deleted. Add `ToastContainerDirective` to the ngModule
 where you need the directive available. Make sure that your container has
 an `aria-live="polite"` attribute, so that any time a toast is injected into
 the container it is announced by screen readers.
@@ -286,7 +286,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
+import { ToastrModule, ToastContainerDirective } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 
@@ -297,7 +297,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
 
     ToastrModule.forRoot({ positionClass: 'inline' }),
-    ToastContainerModule,
+    ToastContainerDirective,
   ],
   providers: [],
   bootstrap: [AppComponent],
