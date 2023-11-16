@@ -83,12 +83,4 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     ]),
   ],
 })
-export class NotyfToast extends Toast {
-  // constructor is only necessary when not using AoT
-  constructor(
-    protected toastrService: ToastrService,
-    public toastPackage: ToastPackage,
-  ) {
-    super(toastrService, toastPackage);
-  }
-}
+export class NotyfToast extends Toast {}
