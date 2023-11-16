@@ -97,14 +97,6 @@ export class PinkToast extends Toast {
   // used for demo purposes
   undoString = 'undo';
 
-  // constructor is only necessary when not using AoT
-  constructor(
-    protected toastrService: ToastrService,
-    public toastPackage: ToastPackage,
-  ) {
-    super(toastrService, toastPackage);
-  }
-
   action(event: Event) {
     event.stopPropagation();
     this.undoString = 'undid';

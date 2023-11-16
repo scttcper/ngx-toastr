@@ -37,11 +37,6 @@ export class BootstrapToast extends Toast {
   // used for demo purposes
   undoString = 'undo';
 
-  // constructor is only necessary when not using AoT
-  constructor(protected toastrService: ToastrService, public toastPackage: ToastPackage) {
-    super(toastrService, toastPackage);
-  }
-
   // Demo click handler
   handleClick(event: Event) {
     event.stopPropagation();
