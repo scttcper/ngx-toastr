@@ -5,7 +5,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
 @Component({
   selector: '[bootstrap-toast-component]',
   template: `
-    <div class="toast" role="alert" [style.display]="state.value === 'inactive' ? 'none' : ''">
+    <div class="toast" role="alert" [style.display]="state().value === 'inactive' ? 'none' : ''">
       <div class="toast-header">
         <strong class="me-auto">{{ title || 'default header' }}</strong>
         <button

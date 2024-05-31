@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,7 @@ import { provideToastr } from '../lib/toastr/toast.provider';
     ToastContainerDirective,
     GhButtonModule,
   ],
-  providers: [provideToastr()],
+  providers: [provideToastr(), provideExperimentalZonelessChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
