@@ -1,4 +1,11 @@
-import { Component, QueryList, Renderer2, ViewChildren, VERSION } from '@angular/core';
+import {
+  Component,
+  QueryList,
+  Renderer2,
+  ViewChildren,
+  VERSION,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { cloneDeep, random } from 'lodash-es';
 
 import {
@@ -45,6 +52,7 @@ const types = ['success', 'error', 'info', 'warning'];
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
   options: GlobalConfig;

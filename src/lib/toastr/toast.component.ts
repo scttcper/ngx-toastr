@@ -6,11 +6,14 @@ import {
   trigger
 } from '@angular/animations';
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
   HostListener,
   NgZone,
   OnDestroy,
+  WritableSignal,
+  signal,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -34,7 +37,7 @@ import { ToastrService } from './toastr.service';
     {{ message }}
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width]="width + '%'"></div>
+    <div class="toast-progress" [style.width]="width() + '%'"></div>
   </div>
   `,
   animations: [
@@ -49,6 +52,7 @@ import { ToastrService } from './toastr.service';
   preserveWhitespaces: false,
   standalone: true,
   imports: [NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Toast<ConfigPayload = any> implements OnDestroy {
   message?: string | null;
@@ -57,19 +61,24 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
   duplicatesCount!: number;
   originalTimeout: number;
   /** width of progress bar */
-  width = -1;
+  width = signal(-1);
   /** a combination of toast type and options.toastClass */
   @HostBinding('class') toastClasses = '';
-  /** controls animation */
-  @HostBinding('@flyInOut') state!: {
+
+  state: WritableSignal<{
     value: 'inactive' | 'active' | 'removed';
     params: { easeTime: number | string; easing: string };
-  };
+  }>;
+
+  /** controls animation */
+  @HostBinding('@flyInOut') get _state() {
+    return this.state();
+  }
 
   /** hides component when waiting to be displayed */
   @HostBinding('style.display')
   get displayStyle(): string | undefined {
-    if (this.state.value === 'inactive') {
+    if (this.state().value === 'inactive') {
       return 'none';
     }
 
@@ -106,13 +115,13 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
     this.sub3 = toastPackage.toastRef.countDuplicate().subscribe(count => {
       this.duplicatesCount = count;
     });
-    this.state = {
+    this.state = signal({
       value: 'inactive',
       params: {
         easeTime: this.toastPackage.config.easeTime,
         easing: 'ease-in',
       },
-    };
+    });
   }
   ngOnDestroy() {
     this.sub.unsubscribe();
@@ -126,7 +135,7 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
    * activates toast and sets timeout
    */
   activateToast() {
-    this.state = { ...this.state, value: 'active' };
+    this.state.update(state => ({ ...state, value: 'active' }));
     if (
       !(this.options.disableTimeOut === true || this.options.disableTimeOut === 'timeOut') &&
       this.options.timeOut
@@ -142,32 +151,32 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
    * updates progress bar width
    */
   updateProgress() {
-    if (this.width === 0 || this.width === 100 || !this.options.timeOut) {
+    if (this.width() === 0 || this.width() === 100 || !this.options.timeOut) {
       return;
     }
     const now = new Date().getTime();
     const remaining = this.hideTime - now;
-    this.width = (remaining / this.options.timeOut) * 100;
+    this.width.set((remaining / this.options.timeOut) * 100);
     if (this.options.progressAnimation === 'increasing') {
-      this.width = 100 - this.width;
+      this.width.update(width => 100 - width);
     }
-    if (this.width <= 0) {
-      this.width = 0;
+    if (this.width() <= 0) {
+      this.width.set(0);
     }
-    if (this.width >= 100) {
-      this.width = 100;
+    if (this.width() >= 100) {
+      this.width.set(100);
     }
   }
 
   resetTimeout() {
     clearTimeout(this.timeout);
     clearInterval(this.intervalId);
-    this.state = { ...this.state, value: 'active' };
+    this.state.update(state => ({ ...state, value: 'active' }));
 
     this.outsideTimeout(() => this.remove(), this.originalTimeout);
     this.options.timeOut = this.originalTimeout;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
-    this.width = -1;
+    this.width.set(-1);
     if (this.options.progressBar) {
       this.outsideInterval(() => this.updateProgress(), 10);
     }
@@ -177,19 +186,19 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
    * tells toastrService to remove this toast after animation time
    */
   remove() {
-    if (this.state.value === 'removed') {
+    if (this.state().value === 'removed') {
       return;
     }
     clearTimeout(this.timeout);
-    this.state = { ...this.state, value: 'removed' };
+    this.state.update(state => ({ ...state, value: 'removed' }));
     this.outsideTimeout(
       () => this.toastrService.remove(this.toastPackage.toastId),
-      +this.toastPackage.config.easeTime
+      +this.toastPackage.config.easeTime,
     );
   }
   @HostListener('click')
   tapToast() {
-    if (this.state.value === 'removed') {
+    if (this.state().value === 'removed') {
       return;
     }
     this.toastPackage.triggerTap();
@@ -199,7 +208,7 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
   }
   @HostListener('mouseenter')
   stickAround() {
-    if (this.state.value === 'removed') {
+    if (this.state().value === 'removed') {
       return;
     }
 
@@ -210,7 +219,7 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
 
       // disable progressBar
       clearInterval(this.intervalId);
-      this.width = 0;
+      this.width.set(0);
     }
   }
   @HostListener('mouseleave')
@@ -218,14 +227,14 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
     if (
       (this.options.disableTimeOut === true || this.options.disableTimeOut === 'extendedTimeOut') ||
       this.options.extendedTimeOut === 0 ||
-      this.state.value === 'removed'
+      this.state().value === 'removed'
     ) {
       return;
     }
     this.outsideTimeout(() => this.remove(), this.options.extendedTimeOut);
     this.options.timeOut = this.options.extendedTimeOut;
     this.hideTime = new Date().getTime() + (this.options.timeOut || 0);
-    this.width = -1;
+    this.width.set(-1);
     if (this.options.progressBar) {
       this.outsideInterval(() => this.updateProgress(), 10);
     }
