@@ -54,7 +54,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     </div>
   </div>
   <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width]="width + '%'"></div>
+    <div class="toast-progress" [style.width]="width() + '%'"></div>
   </div>
   `,
   animations: [
