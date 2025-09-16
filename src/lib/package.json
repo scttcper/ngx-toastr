@@ -20,7 +20,10 @@
       "default": "./toastr-bs5-alert.scss"
     }
   },
-  "repository": "scttcper/ngx-toastr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scttcper/ngx-toastr.git"
+  },
   "homepage": "https://ngx-toastr.vercel.app",
   "license": "MIT",
   "description": "Toastr for Angular",

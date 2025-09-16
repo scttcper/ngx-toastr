@@ -2,7 +2,10 @@
   "name": "ngx-toastr",
   "description": "Toastr for Angular",
   "homepage": "https://ngx-toastr.vercel.app",
-  "repository": "scttcper/ngx-toastr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scttcper/ngx-toastr.git"
+  },
   "version": "0.0.0-placeholder",
   "license": "MIT",
   "scripts": {
