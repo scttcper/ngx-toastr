@@ -1,7 +1,6 @@
-import { NgModule, provideExperimentalZonelessChangeDetection } from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 
@@ -29,12 +28,11 @@ import { provideToastr } from '../lib/toastr/toast.provider';
   imports: [
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule,
     ToastNoAnimationModule,
     ToastContainerDirective,
     GhButtonModule,
   ],
-  providers: [provideToastr(), provideExperimentalZonelessChangeDetection()],
+  providers: [provideToastr(), provideZonelessChangeDetection()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

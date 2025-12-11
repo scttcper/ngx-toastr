@@ -1,10 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,31 +9,13 @@ import {
   WritableSignal,
   signal,
 } from '@angular/core';
-import { NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { IndividualConfig, ToastPackage } from './toastr-config';
 import { ToastrService } from './toastr.service';
 
 @Component({
   selector: '[toast-component]',
-  template: `
-  <button *ngIf="options.closeButton" (click)="remove()" type="button" class="toast-close-button" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div *ngIf="title" [class]="options.titleClass" [attr.aria-label]="title">
-    {{ title }} <ng-container *ngIf="duplicatesCount">[{{ duplicatesCount + 1 }}]</ng-container>
-  </div>
-  <div *ngIf="message && options.enableHtml" role="alert"
-    [class]="options.messageClass" [innerHTML]="message">
-  </div>
-  <div *ngIf="message && !options.enableHtml" role="alert"
-    [class]="options.messageClass" [attr.aria-label]="message">
-    {{ message }}
-  </div>
-  <div *ngIf="options.progressBar">
-    <div class="toast-progress" [style.width]="width() + '%'"></div>
-  </div>
-  `,
+  templateUrl: './toast.component.html',
   animations: [
     trigger('flyInOut', [
       state('inactive', style({ opacity: 0 })),
@@ -51,7 +27,6 @@ import { ToastrService } from './toastr.service';
   ],
   preserveWhitespaces: false,
   standalone: true,
-  imports: [NgIf],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Toast<ConfigPayload = any> implements OnDestroy {
@@ -225,7 +200,8 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
   @HostListener('mouseleave')
   delayedHideToast() {
     if (
-      (this.options.disableTimeOut === true || this.options.disableTimeOut === 'extendedTimeOut') ||
+      this.options.disableTimeOut === true ||
+      this.options.disableTimeOut === 'extendedTimeOut' ||
       this.options.extendedTimeOut === 0 ||
       this.state().value === 'removed'
     ) {
@@ -243,11 +219,7 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
   outsideTimeout(func: () => any, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(
-        () =>
-          (this.timeout = setTimeout(
-            () => this.runInsideAngular(func),
-            timeout
-          ))
+        () => (this.timeout = setTimeout(() => this.runInsideAngular(func), timeout)),
       );
     } else {
       this.timeout = setTimeout(() => func(), timeout);
@@ -257,11 +229,7 @@ export class Toast<ConfigPayload = any> implements OnDestroy {
   outsideInterval(func: () => any, timeout: number) {
     if (this.ngZone) {
       this.ngZone.runOutsideAngular(
-        () =>
-          (this.intervalId = setInterval(
-            () => this.runInsideAngular(func),
-            timeout
-          ))
+        () => (this.intervalId = setInterval(() => this.runInsideAngular(func), timeout)),
       );
     } else {
       this.intervalId = setInterval(() => func(), timeout);
