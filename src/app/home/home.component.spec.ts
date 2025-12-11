@@ -66,7 +66,7 @@ describe('AppComponent', () => {
     const opened: ActiveToast<Toast> = app.openToast();
     opened.portal.instance.stickAround();
     opened.portal.instance.delayedHideToast();
-    expect(opened.portal.instance.options.timeOut).toBe(1000);
+    expect(opened.portal.instance.options().timeOut).toBe(1000);
     done();
   });
   it('should keep on mouse exit with extended timeout 0', done => {
@@ -76,7 +76,7 @@ describe('AppComponent', () => {
     const opened: ActiveToast<Toast> = app.openToast();
     opened.portal.instance.stickAround();
     opened.portal.instance.delayedHideToast();
-    expect(opened.portal.instance.options.timeOut).toBe(0);
+    expect(opened.portal.instance.options().timeOut).toBe(0);
     done();
   });
   it('should trigger onShown for openPinkToast', done => {
