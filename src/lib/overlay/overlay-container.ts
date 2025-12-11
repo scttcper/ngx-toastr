@@ -34,7 +34,7 @@ export class OverlayContainer implements OnDestroy {
   protected _createContainer(): void {
     const container = this._document.createElement('div');
     container.classList.add('overlay-container');
-    container.setAttribute('aria-live','polite');
+    container.setAttribute('aria-live', 'polite');
     this._document.body.appendChild(container);
     this._containerElement = container;
   }

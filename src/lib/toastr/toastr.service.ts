@@ -1,4 +1,4 @@
-import { ComponentRef, Inject, Injectable, Injector, NgZone, SecurityContext } from '@angular/core';
+import { ComponentRef, Injectable, Injector, NgZone, SecurityContext, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Observable } from 'rxjs';
@@ -38,6 +38,11 @@ export interface ActiveToast<C> {
 
 @Injectable({ providedIn: 'root' })
 export class ToastrService {
+  private overlay = inject(Overlay);
+  private _injector = inject(Injector);
+  private sanitizer = inject(DomSanitizer);
+  private ngZone = inject(NgZone);
+
   toastrConfig: GlobalConfig;
   currentlyActive = 0;
   toasts: ActiveToast<any>[] = [];
@@ -45,13 +50,9 @@ export class ToastrService {
   previousToastMessage: string | undefined;
   private index = 0;
 
-  constructor(
-    @Inject(TOAST_CONFIG) token: ToastToken,
-    private overlay: Overlay,
-    private _injector: Injector,
-    private sanitizer: DomSanitizer,
-    private ngZone: NgZone,
-  ) {
+  constructor() {
+    const token = inject<ToastToken>(TOAST_CONFIG);
+
     this.toastrConfig = {
       ...token.default,
       ...token.config,
@@ -64,26 +65,47 @@ export class ToastrService {
     }
   }
   /** show toast */
-  show<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}, type = '') {
+  show<ConfigPayload = any>(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig<ConfigPayload>> = {},
+    type = '',
+  ) {
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show successful toast */
-  success<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  success<ConfigPayload = any>(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig<ConfigPayload>> = {},
+  ) {
     const type = this.toastrConfig.iconClasses.success || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show error toast */
-  error<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  error<ConfigPayload = any>(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig<ConfigPayload>> = {},
+  ) {
     const type = this.toastrConfig.iconClasses.error || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show info toast */
-  info<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  info<ConfigPayload = any>(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig<ConfigPayload>> = {},
+  ) {
     const type = this.toastrConfig.iconClasses.info || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
   /** show warning toast */
-  warning<ConfigPayload = any>(message?: string, title?: string, override: Partial<IndividualConfig<ConfigPayload>> = {}) {
+  warning<ConfigPayload = any>(
+    message?: string,
+    title?: string,
+    override: Partial<IndividualConfig<ConfigPayload>> = {},
+  ) {
     const type = this.toastrConfig.iconClasses.warning || '';
     return this._preBuildNotification(type, message, title, this.applyConfig(override));
   }
@@ -233,8 +255,8 @@ export class ToastrService {
     );
 
     /** New injector that contains an instance of `ToastPackage`. */
-    const providers = [{provide: ToastPackage, useValue: toastPackage}];
-    const toastInjector = Injector.create({providers, parent: this._injector});
+    const providers = [{ provide: ToastPackage, useValue: toastPackage }];
+    const toastInjector = Injector.create({ providers, parent: this._injector });
 
     const component = new ComponentPortal(config.toastComponent, toastInjector);
     const portal = overlayRef.attach(component, config.newestOnTop);

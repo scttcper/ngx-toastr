@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GhButtonModule } from '@ctrl/ngx-github-buttons';
 
 import { ToastrModule } from '../lib/public_api';
@@ -22,11 +21,14 @@ describe('AppComponent', () => {
           enableHtml: true,
         }),
         FormsModule,
-        BrowserAnimationsModule,
         AppTestModule,
         GhButtonModule,
+        AppComponent,
+        FooterComponent,
+        HomeComponent,
+        HeaderComponent,
+        CommonModule,
       ],
-      declarations: [AppComponent, FooterComponent, HomeComponent, HeaderComponent],
     }).compileComponents();
   }));
 
@@ -39,6 +41,5 @@ describe('AppComponent', () => {
 
 @NgModule({
   imports: [CommonModule, ToastrModule],
-  declarations: [],
 })
 class AppTestModule {}

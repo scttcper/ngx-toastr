@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { Toast } from './toast.component';
+import { Toast } from './toast/toast.component';
 import { DefaultNoComponentGlobalConfig, GlobalConfig, TOAST_CONFIG } from './toastr-config';
 import { provideToastr } from './toast.provider';
 

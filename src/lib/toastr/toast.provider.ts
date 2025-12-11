@@ -1,6 +1,6 @@
 import { DefaultNoComponentGlobalConfig, GlobalConfig, TOAST_CONFIG } from './toastr-config';
 import { EnvironmentProviders, makeEnvironmentProviders, Provider } from '@angular/core';
-import { Toast } from './toast.component';
+import { Toast } from './toast/toast.component';
 
 export const DefaultGlobalConfig: GlobalConfig = {
   ...DefaultNoComponentGlobalConfig,
@@ -34,8 +34,8 @@ export const provideToastr = (config: Partial<GlobalConfig> = {}): EnvironmentPr
       useValue: {
         default: DefaultGlobalConfig,
         config,
-      }
-    }
+      },
+    },
   ];
 
   return makeEnvironmentProviders(providers);

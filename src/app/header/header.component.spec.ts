@@ -10,8 +10,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [GhButtonModule],
-      declarations: [HeaderComponent],
+      imports: [GhButtonModule, HeaderComponent],
     }).compileComponents();
   }));
 

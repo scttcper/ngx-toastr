@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
+import { Toast } from '../lib/public_api';
 
 @Component({
   selector: '[bootstrap-toast-component]',
@@ -8,19 +7,12 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
     <div class="toast" role="alert" [style.display]="state().value === 'inactive' ? 'none' : ''">
       <div class="toast-header">
         <strong class="me-auto">{{ title || 'default header' }}</strong>
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          *ngIf="options.closeButton"
-          (click)="remove()"
-        ></button>
+        @if (options.closeButton) {
+          <button type="button" class="btn-close" aria-label="Close" (click)="remove()"></button>
+        }
       </div>
       <div class="toast-body">
-        <div
-          role="alert"
-          [attr.aria-label]="message"
-        >
+        <div role="alert" [attr.aria-label]="message">
           {{ message || 'default message' }}
         </div>
         <div class="mt-2 pt-2 border-top">

@@ -1,13 +1,6 @@
-import {
-  animate,
-  keyframes,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
-import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
+import { Toast } from '../lib/public_api';
 
 @Component({
   selector: 'notyf-toast-component',
@@ -20,10 +13,7 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
         </div>
         <div class="notyf__message">{{ title }} {{ message }}</div>
       </div>
-      <div
-        class="notyf__ripple"
-        style="background-color: rgb(61, 199, 99);"
-      ></div>
+      <div class="notyf__ripple" style="background-color: rgb(61, 199, 99);"></div>
     </div>
   `,
   animations: [
@@ -71,11 +61,11 @@ import { Toast, ToastrService, ToastPackage } from '../lib/public_api';
           keyframes([
             style({
               opacity: 1,
-              transform: 'translateY(0)'
+              transform: 'translateY(0)',
             }),
             style({
               opacity: 0,
-              transform: 'translateY(25%)'
+              transform: 'translateY(25%)',
             }),
           ]),
         ),

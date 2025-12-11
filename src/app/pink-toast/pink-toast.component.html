@@ -1,0 +1,32 @@
+<div class="row" [style.display]="state().value === 'inactive' ? 'none' : ''">
+  <div class="col-9">
+    @if (title) {
+      <div [class]="options.titleClass" [attr.aria-label]="title">
+        {{ title }}
+      </div>
+    }
+    @if (message && options.enableHtml) {
+      <div role="alert" [class]="options.messageClass" [innerHTML]="message"></div>
+    }
+    @if (message && !options.enableHtml) {
+      <div role="alert" [class]="options.messageClass" [attr.aria-label]="message">
+        {{ message }}
+      </div>
+    }
+  </div>
+  <div class="col-3 text-right">
+    @if (!options.closeButton) {
+      <a class="btn btn-pink btn-sm" (click)="action($event)">
+        {{ undoString }}
+      </a>
+    } @else {
+      <a (click)="remove()" class="btn btn-pink btn-sm"> close </a>
+    }
+  </div>
+</div>
+
+@if (options.progressBar) {
+  <div>
+    <div class="toast-progress" [style.width]="width() + '%'"></div>
+  </div>
+}

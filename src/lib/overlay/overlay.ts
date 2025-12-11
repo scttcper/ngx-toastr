@@ -42,9 +42,8 @@ export class Overlay {
     }
 
     if (!this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass]) {
-      this._paneElements.get(overlayContainer as ToastContainerDirective)![
-        positionClass
-      ] = this._createPaneElement(positionClass, overlayContainer);
+      this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass] =
+        this._createPaneElement(positionClass, overlayContainer);
     }
 
     return this._paneElements.get(overlayContainer as ToastContainerDirective)![positionClass];

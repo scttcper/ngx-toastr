@@ -1,13 +1,8 @@
-import {
-  ComponentRef,
-  Injector,
-  ViewContainerRef
-} from '@angular/core';
+import { ComponentRef, Injector, ViewContainerRef } from '@angular/core';
 
 export interface ComponentType<T> {
   new (...args: any[]): T;
 }
-
 
 /**
  * A `ComponentPortal` is a portal that instantiates some Component upon attachment.
@@ -77,7 +72,10 @@ export abstract class BasePortalHost {
     return this.attachComponentPortal(portal, newestOnTop);
   }
 
-  abstract attachComponentPortal<T>(portal: ComponentPortal<T>, newestOnTop: boolean): ComponentRef<T>;
+  abstract attachComponentPortal<T>(
+    portal: ComponentPortal<T>,
+    newestOnTop: boolean,
+  ): ComponentRef<T>;
 
   detach() {
     if (this._attachedPortal) {

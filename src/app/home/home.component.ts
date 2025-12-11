@@ -5,6 +5,7 @@ import {
   ViewChildren,
   VERSION,
   ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { cloneDeep, random } from 'lodash-es';
 
@@ -16,8 +17,9 @@ import {
 } from '../../lib/public_api';
 
 import { NotyfToast } from '../notyf.toast';
-import { PinkToast } from '../pink.toast';
+import { PinkToast } from '../pink-toast/pink-toast.component';
 import { BootstrapToast } from '../bootstrap.toast';
+import { FormsModule } from '@angular/forms';
 
 interface Quote {
   title?: string;
@@ -53,8 +55,12 @@ const types = ['success', 'error', 'info', 'warning'];
   selector: 'app-home',
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FormsModule],
 })
 export class HomeComponent {
+  toastr = inject(ToastrService);
+  private renderer = inject(Renderer2);
+
   options: GlobalConfig;
   title = '';
   message = '';
@@ -66,8 +72,7 @@ export class HomeComponent {
   inlinePositionIndex = 0;
   @ViewChildren(ToastContainerDirective) inlineContainers!: QueryList<ToastContainerDirective>;
 
-
-  constructor(public toastr: ToastrService, private renderer: Renderer2) {
+  constructor() {
     this.options = this.toastr.toastrConfig;
   }
   getMessage() {
@@ -87,12 +92,7 @@ export class HomeComponent {
     const { message, title } = this.getMessage();
     // Clone current config so it doesn't change when ngModel updates
     const opt = cloneDeep(this.options);
-    const inserted = this.toastr.show(
-      message,
-      title,
-      opt,
-      this.options.iconClasses[this.type],
-    );
+    const inserted = this.toastr.show(message, title, opt, this.options.iconClasses[this.type]);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -102,12 +102,7 @@ export class HomeComponent {
     const { message, title } = this.getMessage();
     const opt = cloneDeep(this.options);
     opt.toastComponent = ToastNoAnimation;
-    const inserted = this.toastr.show(
-      message,
-      title,
-      opt,
-      this.options.iconClasses[this.type],
-    );
+    const inserted = this.toastr.show(message, title, opt, this.options.iconClasses[this.type]);
     if (inserted) {
       this.lastInserted.push(inserted.toastId);
     }
@@ -175,5 +170,4 @@ export class HomeComponent {
     this.renderer.addClass(document.body, add);
     this.renderer.removeClass(document.body, remove);
   }
-
 }

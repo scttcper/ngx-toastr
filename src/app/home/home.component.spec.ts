@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Toast } from '../../lib/public_api';
 import { ActiveToast, ToastrModule } from '../../lib/public_api';
 import { NotyfToast } from '../notyf.toast';
-import { PinkToast } from '../pink.toast';
+import { PinkToast } from '../pink-toast/pink-toast.component';
 import { HomeComponent } from './home.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -21,10 +21,9 @@ describe('AppComponent', () => {
           enableHtml: true,
         }),
         FormsModule,
-        BrowserAnimationsModule,
         AppTestModule,
+        HomeComponent,
       ],
-      declarations: [HomeComponent],
     }).compileComponents();
   });
 
@@ -125,7 +124,7 @@ describe('AppComponent', () => {
 });
 
 @NgModule({
-  imports: [CommonModule, ToastrModule],
-  declarations: [PinkToast, NotyfToast],
+  imports: [CommonModule, ToastrModule, PinkToast, NotyfToast],
+  providers: [provideAnimations()],
 })
 class AppTestModule {}
