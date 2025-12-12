@@ -1,14 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { Toast } from '../../lib/public_api';
-import { ActiveToast, ToastrModule } from '../../lib/public_api';
-import { NotyfToast } from '../notyf.toast';
+import { Toast, ActiveToast, ToastrModule } from 'ngx-toastr';
+import { NotyfToast } from '../notyf-toast/notyf-toast.component';
 import { PinkToast } from '../pink-toast/pink-toast.component';
 import { HomeComponent } from './home.component';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { firstValueFrom } from 'rxjs';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -21,23 +18,22 @@ describe('AppComponent', () => {
           enableHtml: true,
         }),
         FormsModule,
-        AppTestModule,
         HomeComponent,
       ],
     }).compileComponents();
   });
 
-  it('should create the app', waitForAsync(() => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
   it('should trigger onShown', done => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened).toBeDefined();
-    opened.onShown.toPromise().then(() => {
+    firstValueFrom(opened.onShown).then(() => {
       done();
     });
   });
@@ -46,7 +42,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.portal).toBeDefined();
-    opened.onHidden.toPromise().then(() => {
+    firstValueFrom(opened.onHidden).then(() => {
       done();
     });
   });
@@ -55,7 +51,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.portal).toBeDefined();
-    opened.onTap.toPromise().then(() => {
+    firstValueFrom(opened.onTap).then(() => {
       done();
     });
     opened.portal.instance.tapToast();
@@ -84,7 +80,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<PinkToast> = app.openPinkToast();
     expect(opened.portal).toBeDefined();
-    opened.onShown.toPromise().then(() => {
+    firstValueFrom(opened.onShown).then(() => {
       done();
     });
   });
@@ -93,7 +89,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<PinkToast> = app.openPinkToast();
     expect(opened.portal).toBeDefined();
-    opened.onHidden.toPromise().then(() => {
+    firstValueFrom(opened.onHidden).then(() => {
       done();
     });
   });
@@ -102,7 +98,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<NotyfToast> = app.openNotyf();
     expect(opened.portal).toBeDefined();
-    opened.onShown.toPromise().then(() => {
+    firstValueFrom(opened.onShown).then(() => {
       done();
     });
   });
@@ -111,20 +107,14 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<NotyfToast> = app.openNotyf();
     expect(opened.portal).toBeDefined();
-    opened.onHidden.toPromise().then(() => {
+    firstValueFrom(opened.onHidden).then(() => {
       done();
     });
   });
-  it('should have defined componentInstance', waitForAsync(() => {
+  it('should have defined componentInstance', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     const app = fixture.debugElement.componentInstance;
     const opened: ActiveToast<Toast> = app.openToast();
     expect(opened.toastRef.componentInstance).toBeDefined();
-  }));
+  });
 });
-
-@NgModule({
-  imports: [CommonModule, ToastrModule, PinkToast, NotyfToast],
-  providers: [provideAnimations()],
-})
-class AppTestModule {}

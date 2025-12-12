@@ -1,16 +1,24 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:application": {
+      "testRunner": "karma"
+    },
+    "@schematics/angular:library": {
+      "testRunner": "karma"
+    }
+  },
   "projects": {
-    "ngx-toastr": {
+    "ngx-toastr-site": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -20,16 +28,31 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist",
-            "index": "src/index.html",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
-            "polyfills": ["zone.js"]
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {
@@ -42,29 +65,22 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "buildTarget": "ngx-toastr:build"
-          },
           "configurations": {
             "production": {
-              "buildTarget": "ngx-toastr:build:production"
+              "buildTarget": "ngx-toastr-site:build:production"
+            },
+            "development": {
+              "buildTarget": "ngx-toastr-site:build:development"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "buildTarget": "ngx-toastr:build"
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "tsconfig.spec.json",
             "runner": "karma",
-            "coverage": true,
-            "ui": false,
-            "runnerConfig": true
+            "runnerConfig": true,
+            "coverage": true
           }
         },
         "lint": {
@@ -74,9 +90,27 @@
           }
         }
       }
+    },
+    "ngx-toastr": {
+      "projectType": "library",
+      "root": "projects/ngx-toastr",
+      "sourceRoot": "projects/ngx-toastr/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-toastr/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-toastr/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }
+

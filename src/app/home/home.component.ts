@@ -9,16 +9,11 @@ import {
 } from '@angular/core';
 import { cloneDeep, random } from 'lodash-es';
 
-import {
-  GlobalConfig,
-  ToastrService,
-  ToastContainerDirective,
-  ToastNoAnimation,
-} from '../../lib/public_api';
+import { GlobalConfig, ToastrService, ToastContainerDirective, ToastNoAnimation } from 'ngx-toastr';
 
-import { NotyfToast } from '../notyf.toast';
+import { NotyfToast } from '../notyf-toast/notyf-toast.component';
 import { PinkToast } from '../pink-toast/pink-toast.component';
-import { BootstrapToast } from '../bootstrap.toast';
+import { BootstrapToast } from '../bootstrap-toast/bootstrap-toast.component';
 import { FormsModule } from '@angular/forms';
 
 interface Quote {
@@ -149,8 +144,8 @@ export class HomeComponent {
   clearLastToast() {
     this.toastr.clear(this.lastInserted.pop());
   }
-  fixNumber(field: keyof GlobalConfig): void {
-    (this.options as any)[field] = Number(this.options[field]) as any;
+  fixNumber<K extends keyof GlobalConfig>(field: K): void {
+    this.options[field] = Number(this.options[field]) as never;
   }
   setInlineClass(enableInline: boolean) {
     if (enableInline) {
