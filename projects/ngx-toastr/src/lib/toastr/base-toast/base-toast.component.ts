@@ -1,19 +1,31 @@
 import {
   ApplicationRef,
+  ChangeDetectionStrategy,
+  Component,
   computed,
-  Directive,
   inject,
   linkedSignal,
   signal,
   type OnDestroy,
 } from '@angular/core';
-import { ToastPackage, type IndividualConfig } from './toastr-config';
-import { ToastrService } from './toastr.service';
+import { ToastPackage, type IndividualConfig } from '../toastr-config';
+import { ToastrService } from '../toastr.service';
 import type { Subscription } from 'rxjs';
-import { TimeoutsService } from '../timeouts.service';
+import { TimeoutsService } from '../../timeouts.service';
 
-@Directive({})
-export abstract class ToastBase<ConfigPayload = unknown> implements OnDestroy {
+@Component({
+  selector: '[toast-component]',
+  templateUrl: './base-toast.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class]': 'toastClasses()',
+    '[style.display]': 'displayStyle()',
+    '(mouseenter)': 'stickAround()',
+    '(mouseleave)': 'delayedHideToast()',
+    '(click)': 'tapToast()',
+  },
+})
+export class ToastBase<ConfigPayload = unknown> implements OnDestroy {
   public toastPackage = inject(ToastPackage);
   protected toastrService = inject(ToastrService);
   protected appRef = inject(ApplicationRef);

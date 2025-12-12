@@ -9,20 +9,21 @@
 @if (title()) {
   <div [class]="_options.titleClass" [attr.aria-label]="title()">
     {{ title() }}
+
     @if (duplicatesCount) {
       <ng-container>[{{ duplicatesCount + 1 }}]</ng-container>
     }
   </div>
 }
 
-@if (message() && _options.enableHtml) {
-  <div role="alert" [class]="_options.messageClass" [innerHTML]="message()"></div>
-}
-
-@if (message() && !_options.enableHtml) {
-  <div role="alert" [class]="_options.messageClass" [attr.aria-label]="message()">
-    {{ message() }}
-  </div>
+@if (message()) {
+  @if (_options.enableHtml) {
+    <div role="alert" [class]="_options.messageClass" [innerHTML]="message()"></div>
+  } @else {
+    <div role="alert" [class]="_options.messageClass" [attr.aria-label]="message()">
+      {{ message() }}
+    </div>
+  }
 }
 
 @if (_options.progressBar) {

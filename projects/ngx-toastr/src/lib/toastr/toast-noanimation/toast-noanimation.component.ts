@@ -1,22 +1,7 @@
-import { ChangeDetectionStrategy, ModuleWithProviders } from '@angular/core';
-import { Component, NgModule } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { DefaultNoComponentGlobalConfig, GlobalConfig, TOAST_CONFIG } from '../toastr-config';
-import { ToastBase } from '../toast.abstract';
-
-@Component({
-  selector: '[toast-component]',
-  templateUrl: './toast-noanimation.component.html',
-  standalone: true,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class]': 'toastClasses()',
-    '[style.display]': 'displayStyle()',
-    '(mouseenter)': 'stickAround()',
-    '(mouseleave)': 'delayedHideToast()',
-    '(click)': 'tapToast()',
-  },
-})
-export class ToastNoAnimation extends ToastBase {}
+import { ToastBase as ToastNoAnimation } from '../base-toast/base-toast.component';
 
 export const DefaultNoAnimationsGlobalConfig: GlobalConfig = {
   ...DefaultNoComponentGlobalConfig,
@@ -43,3 +28,5 @@ export class ToastNoAnimationModule {
     };
   }
 }
+
+export { ToastNoAnimation };

@@ -4,7 +4,6 @@ import { Toast } from 'ngx-toastr';
 @Component({
   selector: '[bootstrap-toast-component]',
   templateUrl: './bootstrap-toast.component.html',
-  preserveWhitespaces: false,
 })
 export class BootstrapToast extends Toast {
   // used for demo purposes

@@ -164,24 +164,6 @@ button.toast-close-button {
   opacity: 0.4;
 }
 
-/* animation */
-.toast-in {
-  animation: toast-animation var(--animation-duration) var(--animation-easing);
-}
-
-.toast-out {
-  animation: toast-animation var(--animation-duration) var(--animation-easing) reverse;
-}
-
-@keyframes toast-animation {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
 /* Responsive Design */
 @media all and (max-width: 240px) {
   .toast-container .ngx-toastr.div {

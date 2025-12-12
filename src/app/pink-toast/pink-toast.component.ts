@@ -10,7 +10,6 @@ import { Toast } from 'ngx-toastr';
     'animate.enter': 'animate-pink-in',
     'animate.leave': 'animate-pink-out',
   },
-  preserveWhitespaces: false,
 })
 export class PinkToast extends Toast {
   // used for demo purposes
