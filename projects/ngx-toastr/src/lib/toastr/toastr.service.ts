@@ -14,6 +14,7 @@ import {
   ToastToken,
   TOAST_CONFIG,
 } from './toastr-config';
+import type { ToastBase } from './base-toast/base-toast.component';
 
 export interface ActiveToast<C> {
   /** Your Toast ID. Use this to close it individually */
@@ -65,13 +66,18 @@ export class ToastrService {
     }
   }
   /** show toast */
-  show<ConfigPayload = unknown>(
+  show<C extends ToastBase = ToastBase, ConfigPayload = unknown>(
     message?: string,
     title?: string,
     override: Partial<IndividualConfig<ConfigPayload>> = {},
     type = '',
   ) {
-    return this._preBuildNotification(type, message, title, this.applyConfig(override));
+    return this._preBuildNotification(
+      type,
+      message,
+      title,
+      this.applyConfig(override),
+    ) as ActiveToast<C> | null;
   }
   /** show successful toast */
   success<ConfigPayload = unknown>(

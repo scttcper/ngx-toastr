@@ -80,7 +80,8 @@
           "options": {
             "runner": "karma",
             "runnerConfig": true,
-            "coverage": true
+            "coverage": true,
+            "coverageExclude": ["src/app/*-toast/**"]
           }
         },
         "lint": {

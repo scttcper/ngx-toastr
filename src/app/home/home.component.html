@@ -502,12 +502,16 @@
                 <small>Toast Controls:</small>
               </p>
               <div class="d-flex justify-content-center">
-                <button (click)="openToast()" type="button" class="btn btn-primary btn-block mx-1">
+                <button
+                  (click)="toastManager.openToastAnimation(options, type, { message, title })"
+                  type="button"
+                  class="btn btn-primary btn-block mx-1"
+                >
                   Open Toast
                 </button>
 
                 <button
-                  (click)="clearLastToast()"
+                  (click)="toastManager.clearLastToast()"
                   type="button"
                   class="btn btn-outline-primary btn-block mx-1"
                 >
@@ -515,7 +519,7 @@
                 </button>
 
                 <button
-                  (click)="clearToasts()"
+                  (click)="toastManager.clearToasts()"
                   type="button"
                   class="btn btn-outline-primary btn-block mx-1"
                 >
@@ -530,23 +534,31 @@
                 <small>Example Custom Toasts:</small>
               </p>
               <button
-                (click)="openToastNoAnimation()"
+                (click)="toastManager.openToastNoAnimation(options, type, { message, title })"
                 type="button"
                 class="btn btn-sm btn-light mx-1"
               >
                 No Animations
               </button>
               <button
-                (click)="openBootstrapToast()"
+                (click)="toastManager.openBootstrapToast(options, { message, title })"
                 type="button"
                 class="btn btn-sm btn-light mx-1"
               >
                 Bootstrap 5's Toast
               </button>
-              <button (click)="openPinkToast()" type="button" class="btn btn-sm btn-pink mx-1">
+              <button
+                (click)="toastManager.openPinkToast(options, { message, title })"
+                type="button"
+                class="btn btn-sm btn-pink mx-1"
+              >
                 Pink
               </button>
-              <button (click)="openNotyf()" type="button" class="btn btn-sm btn-dark mx-1">
+              <button
+                (click)="toastManager.openNotyf(options, { message, title })"
+                type="button"
+                class="btn btn-sm btn-dark mx-1"
+              >
                 Notyf
               </button>
             </div>

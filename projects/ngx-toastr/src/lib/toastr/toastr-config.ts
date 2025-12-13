@@ -118,7 +118,7 @@ export interface ToastrIconClasses {
  * Global Toast configuration
  * Includes all IndividualConfig
  */
-export interface GlobalConfig extends IndividualConfig {
+export interface GlobalConfig<C = unknown> extends IndividualConfig<C> {
   /**
    * max toasts opened. Toasts will be queued
    * Zero is unlimited

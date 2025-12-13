@@ -18,11 +18,11 @@
   </div>
   <div class="col-3 text-right">
     @if (!_options.closeButton) {
-      <a class="btn btn-pink btn-sm" (click)="action($event)">
+      <button class="btn btn-pink btn-sm" (click)="action($event)">
         {{ undoString }}
-      </a>
+      </button>
     } @else {
-      <a (click)="remove()" class="btn btn-pink btn-sm"> close </a>
+      <button (click)="remove()" class="btn btn-pink btn-sm">close</button>
     }
   </div>
 </div>
