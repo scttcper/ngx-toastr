@@ -32,8 +32,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - name: Release
-        run: cd dist/ngx-toastr && npx semantic-release
+        run: cd dist/ngx-toastr && npx semantic-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_CONFIG_PROVENANCE: true
-          NPM_CONFIG_AUTH_TYPE: oidc
