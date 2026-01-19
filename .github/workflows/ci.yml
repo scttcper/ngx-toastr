@@ -22,7 +22,7 @@ jobs:
       - name: test
         run: npm run test:ci
       - name: coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 

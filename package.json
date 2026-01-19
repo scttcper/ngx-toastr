@@ -9,7 +9,7 @@
     "postbuild": "cpy README.md LICENSE dist",
     "test": "ng test --watch=false",
     "test:watch": "ng test --watch",
-    "test:ci": "ng test --watch=false --code-coverage --no-progress --browsers=ChromeHeadlessCustom",
+    "test:ci": "ng test --watch=false --no-progress --browsers=ChromeHeadlessCustom",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix"
   },
