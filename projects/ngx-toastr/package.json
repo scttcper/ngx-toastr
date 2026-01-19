@@ -9,6 +9,10 @@
   "dependencies": {
     "tslib": "^2.8.1"
   },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "exports": {
     "./toastr": {
       "default": "./src/lib/toastr.css"
