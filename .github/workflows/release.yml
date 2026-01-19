@@ -26,6 +26,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - run: npm ci
+      - run: npm run build
       - name: Release
         run: cd dist/ngx-toastr && npx semantic-release
         env:
