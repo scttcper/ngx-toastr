@@ -15,6 +15,10 @@
   },
   "private": true,
   "packageManager": "npm@11.7.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scttcper/ngx-toastr"
+  },
   "dependencies": {
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
