@@ -1,29 +1,26 @@
 import { inject, Injectable, NgZone } from '@angular/core';
 
-type IntervalHandle = ReturnType<typeof setInterval>;
-type TimeoutHandle = ReturnType<typeof setTimeout>;
-
 @Injectable({ providedIn: 'root' })
 export class TimeoutsService {
   protected ngZone? = inject(NgZone);
 
-  public setInterval(func: () => unknown, timeout: number): IntervalHandle {
+  public setInterval(func: () => unknown, timeout: number): number {
     if (this.ngZone) {
       return this.ngZone.runOutsideAngular(() =>
-        setInterval(() => this.runInsideAngular(func), timeout),
+        window.setInterval(() => this.runInsideAngular(func), timeout),
       );
     } else {
-      return setInterval(() => func(), timeout);
+      return window.setInterval(() => func(), timeout);
     }
   }
 
-  public setTimeout(func: () => unknown, timeout?: number): TimeoutHandle {
+  public setTimeout(func: () => unknown, timeout?: number): number {
     if (this.ngZone) {
       return this.ngZone.runOutsideAngular(() =>
-        setTimeout(() => this.runInsideAngular(func), timeout),
+        window.setTimeout(() => this.runInsideAngular(func), timeout),
       );
     } else {
-      return setTimeout(() => func(), timeout);
+      return window.setTimeout(() => func(), timeout);
     }
   }
 
