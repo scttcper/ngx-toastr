@@ -35,3 +35,5 @@ jobs:
         run: cd dist/ngx-toastr && npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+          NPM_CONFIG_AUTH_TYPE: oidc
