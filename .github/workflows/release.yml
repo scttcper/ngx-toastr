@@ -27,6 +27,6 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Release
-        run: cd dist && npx semantic-release
+        run: cd dist/ngx-toastr && npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
