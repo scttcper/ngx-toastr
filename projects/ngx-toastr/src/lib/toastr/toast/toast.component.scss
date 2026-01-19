@@ -1,0 +1,18 @@
+:host {
+  &.toast-in {
+    animation: toast-animation var(--animation-duration) var(--animation-easing);
+  }
+
+  &.toast-out {
+    animation: toast-animation var(--animation-duration) var(--animation-easing) reverse forwards;
+  }
+}
+
+@keyframes toast-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,34 @@
+@let _options = options();
+
+<div class="row" [style.display]="state() === 'inactive' ? 'none' : ''">
+  <div class="col-9">
+    @if (title()) {
+      <div [class]="_options.titleClass" [attr.aria-label]="title()">
+        {{ title() }}
+      </div>
+    }
+    @if (message() && _options.enableHtml) {
+      <div role="alert" [class]="_options.messageClass" [innerHTML]="message()"></div>
+    }
+    @if (message() && !_options.enableHtml) {
+      <div role="alert" [class]="_options.messageClass" [attr.aria-label]="message()">
+        {{ message() }}
+      </div>
+    }
+  </div>
+  <div class="col-3 text-right">
+    @if (!_options.closeButton) {
+      <button class="btn btn-pink btn-sm" (click)="action($event)">
+        {{ undoString }}
+      </button>
+    } @else {
+      <button (click)="remove()" class="btn btn-pink btn-sm">close</button>
+    }
+  </div>
+</div>
+
+@if (_options.progressBar) {
+  <div>
+    <div class="toast-progress" [style.width]="width() + '%'"></div>
+  </div>
+}
