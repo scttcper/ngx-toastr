@@ -5,6 +5,9 @@ on:
     branches: [master]
     types: [completed]
 
+permissions:
+  contents: read # for checkout
+
 jobs:
   release:
     name: NPM Release
