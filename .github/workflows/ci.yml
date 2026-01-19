@@ -10,8 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v6
+      # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: 'npm'
@@ -21,6 +23,7 @@ jobs:
       - run: npm run build
       - name: test
         run: npm run test:ci
+      # https://github.com/codecov/codecov-action
       - name: coverage
         uses: codecov/codecov-action@v5
         with:
@@ -36,10 +39,12 @@ jobs:
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - uses: actions/checkout@v4
+      # https://github.com/actions/checkout
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      # https://github.com/actions/setup-node
+      - uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: 'npm'
