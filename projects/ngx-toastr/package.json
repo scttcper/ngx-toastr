@@ -13,6 +13,10 @@
     "access": "public",
     "provenance": true
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scttcper/ngx-toastr"
+  },
   "exports": {
     "./toastr": {
       "default": "./src/lib/toastr.css"
