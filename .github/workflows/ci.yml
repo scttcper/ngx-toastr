@@ -28,30 +28,3 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref_name == 'master'
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
-    steps:
-      # https://github.com/actions/checkout
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      # https://github.com/actions/setup-node
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - name: release
-        run: cd dist && npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
