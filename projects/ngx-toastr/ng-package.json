@@ -3,5 +3,9 @@
   "dest": "../../dist/ngx-toastr",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "src/lib/*.css",
+    "src/lib/*.scss"
+  ]
 }
