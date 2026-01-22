@@ -6,7 +6,12 @@
   },
   "assets": [
      {
-      "glob": "**/*",
+      "glob": "**/*.css",
+      "input": "src/lib",
+      "output": "."
+    },
+    {
+      "glob": "**/*.scss",
       "input": "src/lib",
       "output": "."
     }
