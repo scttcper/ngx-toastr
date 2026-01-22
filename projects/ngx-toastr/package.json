@@ -19,16 +19,16 @@
   },
   "exports": {
     "./toastr": {
-      "default": "./src/lib/toastr.css"
+      "default": "./toastr.css"
     },
     "./toastr-old": {
-      "default": "./src/lib/toastr-old.css"
+      "default": "./toastr-old.css"
     },
     "./toastr-bs4-alert": {
-      "default": "./src/lib/toastr-bs4-alert.scss"
+      "default": "./toastr-bs4-alert.scss"
     },
     "./toastr-bs5-alert": {
-      "default": "./src/lib/toastr-bs5-alert.scss"
+      "default": "./toastr-bs5-alert.scss"
     }
   },
   "sideEffects": false
