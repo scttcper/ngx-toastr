@@ -19,6 +19,7 @@
     "type": "git",
     "url": "https://github.com/scttcper/ngx-toastr"
   },
+  "license": "MIT",
   "dependencies": {
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
