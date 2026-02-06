@@ -1,6 +1,7 @@
 {
   "name": "ngx-toastr",
   "version": "0.0.1",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
